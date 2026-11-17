@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#10101b">
+<title>إنشاء حساب الطالب | منصة الدكتور محمود الجنايني</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --gold:#e9b95e;
+  --gold2:#ffd98b;
+  --orange:#e98736;
+  --bg:#10101b;
+  --panel:rgba(19,19,30,.94);
+  --text:#fff8ec;
+  --muted:#b9b1a5;
+  --line:rgba(233,185,94,.22);
+  --green:#38d99b;
+  --red:#ff687b;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{touch-action:pan-y}
+body{
+  margin:0;min-height:100vh;color:var(--text);
+  font-family:'Cairo',sans-serif;background:var(--bg);
+  overflow-x:hidden;
+}
+.background{
+  position:fixed;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  z-index:-3;pointer-events:none;
+}
+.overlay{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 15%,rgba(224,151,55,.17),transparent 55%),
+    linear-gradient(135deg,rgba(7,8,17,.88),rgba(13,12,22,.78));
+}
+.page{
+  width:100%;min-height:100vh;padding:28px 14px 45px;
+  display:flex;align-items:center;justify-content:center;
+}
+.wrapper{width:min(760px,100%);margin:auto}
+.brand{text-align:center;margin-bottom:20px}
+.brand-mark{
+  width:58px;height:58px;margin:0 auto 10px;
+  border:1px solid rgba(255,215,140,.55);
+  border-radius:19px;display:grid;place-items:center;
+  background:linear-gradient(145deg,rgba(236,175,83,.22),rgba(30,25,33,.8));
+  box-shadow:0 0 35px rgba(233,185,94,.16);
+}
+.brand-mark svg{width:34px;height:34px}
+.brand h1{font-size:23px;margin:0;font-weight:900;color:var(--gold2)}
+.brand p{font-size:12px;color:var(--muted);margin:3px 0 0}
+.card{
+  border:1px solid var(--line);border-radius:25px;
+  padding:25px;background:var(--panel);
+  backdrop-filter:blur(22px);
+  box-shadow:0 24px 80px rgba(0,0,0,.38);
+}
+.card-head{text-align:center;margin-bottom:22px}
+.card-head h2{font-size:22px;margin:0 0 5px}
+.card-head p{font-size:12px;color:var(--muted);margin:0}
+.progress-wrap{margin-bottom:24px}
+.progress-top{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--muted);margin-bottom:10px
+}
+.progress-top strong{color:var(--gold2)}
+.progress-track{
+  height:7px;border-radius:20px;background:#302b2b;overflow:hidden
+}
+.progress-fill{
+  height:100%;width:12.5%;border-radius:20px;
+  background:linear-gradient(90deg,var(--orange),var(--gold2));
+  transition:width .35s ease;
+}
+.steps{
+  display:flex;justify-content:space-between;gap:5px;
+  margin-bottom:23px;direction:rtl
+}
+.step-dot{
+  width:28px;height:28px;flex:0 0 28px;border-radius:50%;
+  display:grid;place-items:center;font-size:11px;font-weight:800;
+  color:#aaa;background:#302d31;border:1px solid #494044;
+  transition:.25s;
+}
+.step-dot.active,.step-dot.done{
+  color:#21170c;background:linear-gradient(135deg,var(--gold2),var(--orange));
+  border-color:var(--gold2);box-shadow:0 0 15px rgba(233,185,94,.2)
+}
+.stage{display:none;animation:appear .3s ease}
+.stage.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.stage-title{font-size:18px;font-weight:900;margin:0 0 5px}
+.stage-desc{font-size:12px;color:var(--muted);margin:0 0 20px}
+.field{margin-bottom:15px}
+.field label{
+  display:block;font-size:12px;font-weight:700;
+  color:#f4d9a7;margin-bottom:7px
+}
+.field input,.field select{
+  width:100%;height:49px;border-radius:13px;
+  border:1px solid rgba(233,185,94,.23);
+  background:rgba(255,255,255,.055);color:#fff;
+  padding:0 14px;font-family:inherit;font-size:13px;
+  outline:none;transition:.2s;
+}
+.field input:focus,.field select:focus{
+  border-color:var(--gold);background:rgba(255,255,255,.085);
+  box-shadow:0 0 0 3px rgba(233,185,94,.08)
+}
+.field input::placeholder{color:#8f8990}
+.field select{appearance:none;cursor:pointer}
+.field select option{background:#201e2a;color:#fff}
+.field select:disabled{opacity:.45;cursor:not-allowed}
+.grid-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.note{
+  padding:12px 14px;border-radius:13px;
+  border:1px solid rgba(233,185,94,.2);
+  background:rgba(233,185,94,.07);
+  color:#e8d6b6;font-size:11px;line-height:1.9;margin:12px 0
+}
+.choice-row{display:flex;gap:12px;flex-wrap:wrap}
+.choice{
+  flex:1;min-width:130px;position:relative
+}
+.choice input{position:absolute;opacity:0}
+.choice label{
+  display:flex;align-items:center;justify-content:center;
+  min-height:58px;padding:12px;border-radius:14px;
+  border:1px solid var(--line);background:rgba(255,255,255,.045);
+  cursor:pointer;font-size:13px;font-weight:800;transition:.2s
+}
+.choice input:checked+label{
+  border-color:var(--gold);background:rgba(233,185,94,.13);
+  color:var(--gold2);box-shadow:0 0 18px rgba(233,185,94,.08)
+}
+.nav-buttons{display:flex;gap:10px;margin-top:24px}
+.btn{
+  border:0;border-radius:13px;min-height:49px;padding:10px 20px;
+  font-family:inherit;font-size:13px;font-weight:900;cursor:pointer;
+  transition:.2s
+}
+.btn:active{transform:scale(.98)}
+.btn-primary{
+  flex:1;color:#21170c;
+  background:linear-gradient(120deg,var(--gold2),var(--orange));
+  box-shadow:0 8px 22px rgba(233,160,66,.16)
+}
+.btn-secondary{
+  color:#f4d9a7;border:1px solid var(--line);
+  background:rgba(255,255,255,.045)
+}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.photo-area{
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;padding:22px 12px;
+  border:1px dashed rgba(233,185,94,.4);
+  background:rgba(255,255,255,.025);border-radius:18px
+}
+.photo-preview{
+  width:145px;height:145px;border-radius:50%;object-fit:cover;
+  border:3px solid rgba(233,185,94,.7);
+  background:#272330;display:none;margin-bottom:14px
+}
+.upload-label{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:45px;padding:10px 20px;border-radius:12px;
+  background:rgba(233,185,94,.13);border:1px solid var(--line);
+  color:var(--gold2);font-size:12px;font-weight:800;cursor:pointer
+}
+#profilePhoto{display:none}
+.confirm-photo{
+  display:none;align-items:center;gap:9px;margin-top:16px;
+  font-size:12px;color:#f4e5c9;cursor:pointer
+}
+.confirm-photo input{accent-color:var(--green);width:18px;height:18px}
+.photo-confirmed{
+  display:none;color:var(--green);font-size:13px;
+  font-weight:900;margin-top:12px
+}
+.terms-box{
+  max-height:230px;overflow:auto;padding:15px;
+  border:1px solid var(--line);border-radius:14px;
+  background:rgba(255,255,255,.035);
+  color:#d4c9b8;font-size:12px;line-height:2
+}
+.terms-agree{
+  display:flex;gap:10px;align-items:flex-start;
+  margin-top:17px;font-size:12px;color:#f1dfc1
+}
+.terms-agree input{accent-color:var(--gold);width:18px;height:18px;flex-shrink:0;margin-top:3px}
+.success-view{text-align:center;display:none}
+.success-icon{
+  width:75px;height:75px;margin:0 auto 15px;border-radius:50%;
+  display:grid;place-items:center;color:#17241e;
+  background:linear-gradient(135deg,#6af0bd,#23b77f);
+  box-shadow:0 0 35px rgba(56,217,155,.2)
+}
+.success-icon svg{width:39px;height:39px}
+.profile-card{
+  margin:20px auto;padding:20px;border-radius:19px;
+  border:1px solid var(--line);background:rgba(255,255,255,.045);
+  max-width:420px
+}
+.final-photo{
+  width:100px;height:100px;object-fit:cover;border-radius:50%;
+  border:3px solid var(--gold);display:block;margin:0 auto 12px
+}
+.final-name{font-size:19px;font-weight:900}
+.verified-badge{
+  width:21px;height:21px;vertical-align:middle;margin-right:4px;
+  display:inline-block
+}
+.profile-id{font-size:12px;color:var(--gold2);margin-top:5px;direction:ltr}
+#qrcode{display:flex;justify-content:center;margin:15px auto}
+#qrcode img,#qrcode canvas{border:7px solid white;border-radius:8px}
+.toast{
+  position:fixed;z-index:10;bottom:22px;left:50%;
+  transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  width:min(90%,420px);padding:14px 17px;border-radius:14px;
+  border:1px solid var(--line);background:#211e2a;
+  box-shadow:0 15px 40px #0008;color:#fff;text-align:center;
+  font-size:12px;transition:.25s
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.error{border-color:rgba(255,104,123,.5)}
+.toast.success{border-color:rgba(56,217,155,.5)}
+.hidden{display:none!important}
+.login-link{text-align:center;margin-top:18px;color:var(--muted);font-size:12px}
+.login-link a{color:var(--gold2);text-decoration:none;font-weight:800}
+@media(max-width:560px){
+  .page{padding:18px 10px 30px;align-items:flex-start}
+  .card{padding:19px 14px;border-radius:20px}
+  .brand{margin-bottom:15px}
+  .brand h1{font-size:20px}
+  .card-head h2{font-size:19px}
+  .grid-two{grid-template-columns:1fr;gap:0}
+  .steps{gap:3px}
+  .step-dot{width:25px;height:25px;flex-basis:25px;font-size:10px}
+  .nav-buttons .btn{padding:10px 13px}
+}
+</style>
+</head>
+
+<body>
+<img class="background" src="./86.jpg" alt="">
+<div class="overlay"></div>
+
+<main class="page">
+<div class="wrapper">
+
+  <header class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#f2c879" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 8h16M28 8v17L15 48a6 6 0 0 0 5 9h24a6 6 0 0 0 5-9L36 25V8"/>
+        <path d="M21 43h22M26 36h12"/>
+        <circle cx="29" cy="47" r="2" fill="#f2c879" stroke="none"/>
+        <circle cx="38" cy="41" r="2" fill="#f2c879" stroke="none"/>
+      </svg>
+    </div>
+    <h1>منصة الدكتور محمود الجنايني</h1>
+    <p>رحلتك نحو التفوق في الكيمياء تبدأ من هنا</p>
+  </header>
+
+  <section class="card" id="registrationCard">
+    <div class="card-head">
+      <h2>إنشاء حساب طالب جديد</h2>
+      <p>أكمل بياناتك بالترتيب لإنشاء ملفك على المنصة</p>
+    </div>
+
+    <div id="wizard">
+      <div class="progress-wrap">
+        <div class="progress-top">
+          <span id="stepCaption">المرحلة الأولى من 8</span>
+          <strong id="stepPercent">12%</strong>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="steps" id="stepDots">
+        <span class="step-dot active">1</span><span class="step-dot">2</span>
+        <span class="step-dot">3</span><span class="step-dot">4</span>
+        <span class="step-dot">5</span><span class="step-dot">6</span>
+        <span class="step-dot">7</span><span class="step-dot">8</span>
+      </div>
+
+      <!-- المرحلة 1 -->
+      <section class="stage active" data-stage="0">
+        <h3 class="stage-title">بيانات حساب الطالب</h3>
+        <p class="stage-desc">اكتب بيانات الحساب التي ستستخدمها للدخول إلى المنصة.</p>
+
+        <div class="field">
+          <label for="studentName">اسم الطالب بالكامل</label>
+          <input id="studentName" type="text" placeholder="اكتب اسمك بالكامل" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="studentPhone">رقم هاتف الطالب</label>
+          <input id="studentPhone" type="tel" inputmode="tel" placeholder="رقم الهاتف">
+        </div>
+        <div class="grid-two">
+          <div class="field">
+            <label for="password">كلمة المرور</label>
+            <input id="password" type="password" placeholder="كلمة المرور">
+          </div>
+          <div class="field">
+            <label for="confirmPassword">تأكيد كلمة المرور</label>
+            <input id="confirmPassword" type="password" placeholder="أعد كتابة كلمة المرور">
+          </div>
+        </div>
+        <div class="note">احتفظ برقم الهاتف وكلمة المرور؛ ستحتاج إليهما عند تسجيل الدخول.</div>
+      </section>
+
+      <!-- المرحلة 2 -->
+      <section class="stage" data-stage="1">
+        <h3 class="stage-title">بيانات ولي الأمر</h3>
+        <p class="stage-desc">أدخل بيانات ولي أمرك للتواصل عند الحاجة.</p>
+        <div class="field">
+          <label for="parentName">اسم ولي الأمر</label>
+          <input id="parentName" type="text" placeholder="اسم ولي الأمر بالكامل">
+        </div>
+        <div class="field">
+          <label for="parentPhone">رقم هاتف ولي الأمر</label>
+          <input id="parentPhone" type="tel" inputmode="tel" placeholder="رقم هاتف ولي الأمر">
+        </div>
+      </section>
+
+      <!-- المرحلة 3 -->
+      <section class="stage" data-stage="2">
+        <h3 class="stage-title">نوع التعليم والصف الدراسي</h3>
+        <p class="stage-desc">حدد نوع تعليمك والصف الذي تدرس فيه.</p>
+
+        <div class="field">
+          <label>نوع التعليم</label>
+          <div class="choice-row">
+            <div class="choice">
+              <input type="radio" name="educationType" id="general" value="عام">
+              <label for="general">تعليم عام</label>
+            </div>
+            <div class="choice">
+              <input type="radio" name="educationType" id="azhar" value="أزهري">
+              <label for="azhar">تعليم أزهري</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="schoolGrade">الصف الدراسي</label>
+          <select id="schoolGrade">
+            <option value="">اختر نوع التعليم أولًا</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- المرحلة 4 -->
+      <section class="stage" data-stage="3">
+        <h3 class="stage-title">المحافظة</h3>
+        <p class="stage-desc">اختر المحافظة التي تقيم بها.</p>
+        <div class="field">
+          <label for="governorate">المحافظة</label>
+          <select id="governorate">
+            <option value="">اختر المحافظة</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- المرحلة 5 -->
+      <section class="stage" data-stage="4">
+        <h3 class="stage-title">المركز والقرية</h3>
+        <p class="stage-desc">حدد المركز ثم اكتب اسم القرية أو المدينة.</p>
+        <div class="field">
+          <label for="center">المركز أو المدينة</label>
+          <select id="center">
+            <option value="">اختر المحافظة أولًا</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="village">القرية أو المنطقة</label>
+          <input id="village" type="text" placeholder="اكتب اسم القرية أو المنطقة">
+        </div>
+        <div class="note">اختيار المركز مرتبط بالمحافظة التي حددتها في المرحلة السابقة.</div>
+      </section>
+
+      <!-- المرحلة 6 -->
+      <section class="stage" data-stage="5">
+        <h3 class="stage-title">الصورة الشخصية وتأكيدها</h3>
+        <p class="stage-desc">ارفع صورتك الشخصية، راجع المعاينة، ثم أكد أنها صورتك.</p>
+
+        <div class="photo-area">
+          <img id="photoPreview" class="photo-preview" alt="معاينة الصورة الشخصية">
+          <div id="photoPlaceholder" style="font-size:42px;margin-bottom:8px">◎</div>
+          <div style="font-size:13px;font-weight:800;margin-bottom:5px">صورتك الشخصية</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:15px">اختر صورة واضحة لك</div>
+          <label for="profilePhoto" class="upload-label">اختيار الصورة</label>
+          <input id="profilePhoto" type="file" accept="image/*">
+          <label class="confirm-photo" id="confirmPhotoLabel">
+            <input type="checkbox" id="confirmPhoto">
+            أؤكد أن هذه صورتي الشخصية
+          </label>
+          <div class="photo-confirmed" id="photoConfirmed">
+            ✓ تم تأكيد الصورة الشخصية
+          </div>
+        </div>
+
+        <div class="note">بعد تأكيدك لصورتك ستظهر علامة توثيق بجوار صورتك في ملفك الشخصي وعلى المنصة. هذه العلامة تعبر عن تأكيدك أنت للصورة.</div>
+      </section>
+
+      <!-- المرحلة 7 -->
+      <section class="stage" data-stage="6">
+        <h3 class="stage-title">الشروط والأحكام</h3>
+        <p class="stage-desc">اقرأ الشروط التالية قبل إتمام إنشاء حسابك.</p>
+
+        <div class="terms-box">
+          <strong style="color:var(--gold2)">شروط استخدام المنصة</strong><br>
+          1. يلتزم الطالب بإدخال بيانات صحيحة تخصه.<br>
+          2. يلتزم الطالب بالحفاظ على سرية كلمة المرور وعدم مشاركتها مع الآخرين.<br>
+          3. يجب استخدام المنصة للأغراض التعليمية المخصصة لها.<br>
+          4. يلتزم الطالب باحترام المعلمين والطلاب وعدم إساءة استخدام وسائل التواصل داخل المنصة.<br>
+          5. يقر الطالب بأن الصورة الشخصية التي رفعها هي الصورة التي اختارها وأكدها بنفسه.<br>
+          6. يوافق الطالب على حفظ بيانات حسابه وتقدمه الدراسي ونتائجه داخل المنصة لتقديم الخدمات التعليمية.<br>
+          7. قد يتم تحديث الشروط عند إضافة خدمات جديدة، وسيتم عرض التحديثات داخل المنصة.
+        </div>
+
+        <label class="terms-agree">
+          <input type="checkbox" id="agreeTerms">
+          <span>قرأت الشروط والأحكام وأوافق عليها.</span>
+        </label>
+      </section>
+
+      <!-- المرحلة 8 -->
+      <section class="stage" data-stage="7">
+        <h3 class="stage-title">مراجعة وإنشاء الحساب</h3>
+        <p class="stage-desc">راجع بياناتك ثم اضغط على إنشاء الحساب.</p>
+        <div class="note" id="reviewData" style="line-height:2.2"></div>
+        <button class="btn btn-primary" id="createAccount" type="button" style="width:100%">إنشاء حسابي الآن</button>
+      </section>
+
+      <div class="nav-buttons" id="navigation">
+        <button class="btn btn-secondary" id="backBtn" type="button" disabled>السابق</button>
+        <button class="btn btn-primary" id="nextBtn" type="button">المرحلة التالية</button>
+      </div>
+    </div>
+
+    <!-- شاشة نجاح التسجيل -->
+    <div class="success-view" id="successView">
+      <div class="success-icon">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m10 25 9 9L38 14"/>
+        </svg>
+      </div>
+      <h2 style="margin:0 0 5px;font-size:23px">تم تجهيز ملفك الشخصي</h2>
+      <p style="color:var(--muted);font-size:12px;margin:0">هذه معاينة لبيانات الحساب الذي أدخلته.</p>
+
+      <div class="profile-card">
+        <img id="finalPhoto" class="final-photo" alt="الصورة الشخصية">
+        <div class="final-name">
+          <span id="finalName"></span>
+          <svg class="verified-badge" viewBox="0 0 24 24" aria-label="تم تأكيد الصورة" title="تم تأكيد الصورة">
+            <path fill="#2699ed" d="M12 1.8 15 3l3.2-.1 1.3 2.9 2.5 2-.8 3.1.8 3.1-2.5 2-1.3 2.9L15 18l-3 1.2L9 18l-3.2.1-1.3-2.9-2.5-2 .8-3.1L2 7l2.5-2 1.3-2.9L9 3z"/>
+            <path d="m7.5 10.8 3 3 6-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="profile-id" id="finalId"></div>
+        <div id="qrcode"></div>
+        <div style="font-size:10px;color:var(--muted)">رمز QR الخاص بمعرّف الحساب</div>
+      </div>
+
+      <div class="note">تم إنشاء معاينة حسابك محليًا. يلزم ربط الموقع بقاعدة البيانات ونظام تسجيل الدخول حتى يصبح الحساب محفوظًا ويمكن الدخول به من الأجهزة الأخرى.</div>
+      <a href="login.html" class="btn btn-primary" style="display:block;text-decoration:none;padding:13px">الانتقال إلى صفحة تسجيل الدخول</a>
+    </div>
+  </section>
+
+  <div class="login-link" id="loginLink">
+    لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
+  </div>
+
+</div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const stages=[...document.querySelectorAll('.stage')];
+const dots=[...document.querySelectorAll('.step-dot')];
+const progressFill=document.getElementById('progressFill');
+const stepCaption=document.getElementById('stepCaption');
+const stepPercent=document.getElementById('stepPercent');
+const nextBtn=document.getElementById('nextBtn');
+const backBtn=document.getElementById('backBtn');
+const navigation=document.getElementById('navigation');
+const toast=document.getElementById('toast');
+
+let currentStage=0;
+let photoData='';
+let toastTimer;
+
+function showToast(message,type='error'){
+  toast.textContent=message;
+  toast.className='toast show '+type;
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toast.className='toast',3000);
+}
+
+function renderStage(){
+  stages.forEach((stage,index)=>stage.classList.toggle('active',index===currentStage));
+  dots.forEach((dot,index)=>{
+    dot.classList.toggle('active',index===currentStage);
+    dot.classList.toggle('done',index<currentStage);
+    dot.textContent=index<currentStage?'✓':index+1;
+  });
+  const percent=Math.round(((currentStage+1)/8)*100);
+  progressFill.style.width=percent+'%';
+  stepCaption.textContent=`المرحلة ${currentStage+1} من 8`;
+  stepPercent.textContent=percent+'%';
+  backBtn.disabled=currentStage===0;
+  nextBtn.classList.toggle('hidden',currentStage===7);
+}
+
+function value(id){return document.getElementById(id).value.trim()}
+
+function validateStage(index){
+  if(index===0){
+    if(!value('studentName')||!value('studentPhone')||!value('password')||!value('confirmPassword')){
+      showToast('من فضلك أكمل جميع بيانات حساب الطالب.');return false;
+    }
+    if(value('password')!==value('confirmPassword')){
+      showToast('كلمتا المرور غير متطابقتين.');return false;
+    }
+    if(value('password').length<6){
+      showToast('كلمة المرور يجب ألا تقل عن 6 أحرف أو أرقام.');return false;
+    }
+  }
+
+  if(index===1){
+    if(!value('parentName')||!value('parentPhone')){
+      showToast('أدخل اسم ولي الأمر ورقم هاتفه.');return false;
+    }
+  }
+
+  if(index===2){
+    if(!document.querySelector('input[name="educationType"]:checked')||!value('schoolGrade')){
+      showToast('اختر نوع التعليم والصف الدراسي.');return false;
+    }
+  }
+
+  if(index===3&&!value('governorate')){
+    showToast('اختر المحافظة أولًا.');return false;
+  }
+
+  if(index===4&&(!value('center')||!value('village'))){
+    showToast('حدد المركز واكتب القرية أو المنطقة.');return false;
+  }
+
+  if(index===5){
+    if(!photoData){showToast('اختر صورتك الشخصية أولًا.');return false;}
+    if(!document.getElementById('confirmPhoto').checked){
+      showToast('يجب تأكيد أن الصورة هي صورتك الشخصية.');return false;
+    }
+  }
+
+  if(index===6&&!document.getElementById('agreeTerms').checked){
+    showToast('يجب الموافقة على الشروط والأحكام للمتابعة.');return false;
+  }
+
+  return true;
+}
+
+nextBtn.addEventListener('click',()=>{
+  if(!validateStage(currentStage))return;
+  if(currentStage===6)buildReview();
+  currentStage++;
+  renderStage();
+});
+
+backBtn.addEventListener('click',()=>{
+  if(currentStage>0){currentStage--;renderStage();}
+});
+
+function buildReview(){
+  const education=document.querySelector('input[name="educationType"]:checked').value;
+  document.getElementById('reviewData').innerHTML=`
+    <strong style="color:var(--gold2)">اسم الطالب:</strong> ${safe(value('studentName'))}<br>
+    <strong style="color:var(--gold2)">رقم الهاتف:</strong> ${safe(value('studentPhone'))}<br>
+    <strong style="color:var(--gold2)">ولي الأمر:</strong> ${safe(value('parentName'))}<br>
+    <strong style="color:var(--gold2)">هاتف ولي الأمر:</strong> ${safe(value('parentPhone'))}<br>
+    <strong style="color:var(--gold2)">نوع التعليم:</strong> ${safe(education)}<br>
+    <strong style="color:var(--gold2)">الصف الدراسي:</strong> ${safe(value('schoolGrade'))}<br>
+    <strong style="color:var(--gold2)">المحافظة:</strong> ${safe(value('governorate'))}<br>
+    <strong style="color:var(--gold2)">المركز:</strong> ${safe(value('center'))}<br>
+    <strong style="color:var(--gold2)">القرية أو المنطقة:</strong> ${safe(value('village'))}<br>
+    <strong style="color:var(--green)">الصورة الشخصية:</strong> تم تأكيدها ✓
+  `;
+}
+
+function safe(str){
+  return String(str).replace(/[&<>"']/g,char=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[char]));
+}
+
+/* نوع التعليم والصف */
+document.querySelectorAll('input[name="educationType"]').forEach(radio=>{
+  radio.addEventListener('change',()=>{
+    const grade=document.getElementById('schoolGrade');
+    grade.innerHTML='<option value="">اختر الصف الدراسي</option>';
+    ['أولى ثانوي','تانية ثانوي','تالتة ثانوي'].forEach(item=>{
+      const option=document.createElement('option');
+      option.value=item;option.textContent=item;
+      grade.appendChild(option);
+    });
+  });
+});
+
+/* المحافظات المصرية */
+const governorates=[
+'القاهرة','الجيزة','الإسكندرية','القليوبية','المنوفية','الغربية',
+'كفر الشيخ','البحيرة','الدقهلية','دمياط','الشرقية','بورسعيد',
+'الإسماعيلية','السويس','شمال سيناء','جنوب سيناء','الفيوم',
+'بني سويف','المنيا','أسيوط','سوهاج','قنا','الأقصر',
+'أسوان','البحر الأحمر','الوادي الجديد','مطروح'
+];
+
+const governorateSelect=document.getElementById('governorate');
+governorates.forEach(name=>{
+  const option=document.createElement('option');
+  option.value=name;option.textContent=name;
+  governorateSelect.appendChild(option);
+});
+
+/* مراكز محافظة المنوفية */
+const centers={
+'المنوفية':[
+'شبين الكوم','قويسنا','منوف','أشمون','الباجور',
+'تلا','بركة السبع','السادات','الشهداء','سرس الليان'
+]
+};
+
+governorateSelect.addEventListener('change',()=>{
+  const center=document.getElementById('center');
+  center.innerHTML='';
+  const governorate=governorateSelect.value;
+  const list=centers[governorate];
+
+  if(list){
+    center.disabled=false;
+    center.add(new Option('اختر المركز',''));
+    list.forEach(name=>center.add(new Option(name,name)));
+  }else if(governorate){
+    center.disabled=false;
+    center.add(new Option('اكتب المركز في الحقل التالي',''));
+    center.removeAttribute('required');
+  }else{
+    center.disabled=true;
+    center.add(new Option('اختر المحافظة أولًا',''));
+  }
+});
+
+/* الصورة الشخصية */
+const photoInput=document.getElementById('profilePhoto');
+const photoPreview=document.getElementById('photoPreview');
+const confirmPhoto=document.getElementById('confirmPhoto');
+const confirmPhotoLabel=document.getElementById('confirmPhotoLabel');
+const photoConfirmed=document.getElementById('photoConfirmed');
+
+photoInput.addEventListener('change',()=>{
+  const file=photoInput.files[0];
+  if(!file)return;
+
+  if(!file.type.startsWith('image/')){
+    showToast('الملف المختار ليس صورة.');
+    photoInput.value='';return;
+  }
+
+  if(file.size>5*1024*1024){
+    showToast('حجم الصورة يجب ألا يتجاوز 5 ميجابايت.');
+    photoInput.value='';return;
+  }
+
+  const reader=new FileReader();
+  reader.onload=event=>{
+    photoData=event.target.result;
+    photoPreview.src=photoData;
+    photoPreview.style.display='block';
+    document.getElementById('photoPlaceholder').style.display='none';
+    confirmPhotoLabel.style.display='flex';
+    confirmPhoto.checked=false;
+    photoConfirmed.style.display='none';
+  };
+  reader.readAsDataURL(file);
+});
+
+confirmPhoto.addEventListener('change',()=>{
+  photoConfirmed.style.display=confirmPhoto.checked?'block':'none';
+});
+
+/* إتمام إنشاء الحساب - معاينة محلية */
+document.getElementById('createAccount').addEventListener('click',()=>{
+  if(!validateStage(7))return;
+
+  const id='ELG-'+Math.random().toString(36).slice(2,10).toUpperCase();
+
+  document.getElementById('finalPhoto').src=photoData;
+  document.getElementById('finalName').textContent=value('studentName');
+  document.getElementById('finalId').textContent=id;
+
+  const qr=document.getElementById('qrcode');
+  qr.innerHTML='';
+  if(window.QRCode){
+    new QRCode(qr,{text:id,width:120,height:120,colorDark:'#15121b',colorLight:'#ffffff'});
+  }else{
+    qr.textContent=id;
+  }
+
+  document.getElementById('wizard').style.display='none';
+  document.getElementById('successView').style.display='block';
+  document.getElementById('loginLink').style.display='none';
+  showToast('تم تجهيز معاينة ملفك الشخصي بنجاح.','success');
+});
+
+renderStage();
+</script>
+</body>
+</html>
