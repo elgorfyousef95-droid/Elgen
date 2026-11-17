@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -45,10 +44,7 @@ body{
   width:100%;min-height:100vh;padding:24px 14px 38px;
   display:flex;align-items:center;justify-content:center;
 }
-.wrapper{
-  width:min(620px,100%);
-  margin:auto;
-}
+.wrapper{width:min(620px,100%);margin:auto}
 .brand{text-align:center;margin-bottom:17px}
 .brand-mark{
   width:54px;height:54px;margin:0 auto 9px;
@@ -77,18 +73,13 @@ body{
   font-size:12px;color:var(--muted);margin-bottom:10px
 }
 .progress-top strong{color:var(--gold2)}
-.progress-track{
-  height:7px;border-radius:20px;background:#302b2b;overflow:hidden
-}
+.progress-track{height:7px;border-radius:20px;background:#302b2b;overflow:hidden}
 .progress-fill{
   height:100%;width:12.5%;border-radius:20px;
   background:linear-gradient(90deg,var(--orange),var(--gold2));
   transition:width .35s ease;
 }
-.steps{
-  display:flex;justify-content:space-between;gap:5px;
-  margin-bottom:21px;direction:rtl
-}
+.steps{display:flex;justify-content:space-between;gap:5px;margin-bottom:21px;direction:rtl}
 .step-dot{
   width:27px;height:27px;flex:0 0 27px;border-radius:50%;
   display:grid;place-items:center;font-size:11px;font-weight:800;
@@ -105,10 +96,7 @@ body{
 .stage-title{font-size:17px;font-weight:900;margin:0 0 5px}
 .stage-desc{font-size:12px;color:var(--muted);margin:0 0 17px}
 .field{margin-bottom:13px}
-.field label{
-  display:block;font-size:12px;font-weight:700;
-  color:#f4d9a7;margin-bottom:7px
-}
+.field label{display:block;font-size:12px;font-weight:700;color:#f4d9a7;margin-bottom:7px}
 .field input,.field select{
   width:100%;height:47px;border-radius:12px;
   border:1px solid rgba(233,185,94,.23);
@@ -179,25 +167,16 @@ body{
   color:var(--gold2);font-size:12px;font-weight:800;cursor:pointer
 }
 #profilePhoto{display:none}
-.confirm-photo{
-  display:none;align-items:center;gap:9px;margin-top:15px;
-  font-size:12px;color:#f4e5c9;cursor:pointer
-}
+.confirm-photo{display:none;align-items:center;gap:9px;margin-top:15px;font-size:12px;color:#f4e5c9;cursor:pointer}
 .confirm-photo input{accent-color:var(--green);width:18px;height:18px}
-.photo-confirmed{
-  display:none;color:var(--green);font-size:13px;
-  font-weight:900;margin-top:11px
-}
+.photo-confirmed{display:none;color:var(--green);font-size:13px;font-weight:900;margin-top:11px}
 .terms-box{
   max-height:210px;overflow:auto;padding:14px;
   border:1px solid var(--line);border-radius:13px;
   background:rgba(255,255,255,.035);
   color:#d4c9b8;font-size:12px;line-height:2
 }
-.terms-agree{
-  display:flex;gap:10px;align-items:flex-start;
-  margin-top:16px;font-size:12px;color:#f1dfc1
-}
+.terms-agree{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:12px;color:#f1dfc1}
 .terms-agree input{accent-color:var(--gold);width:18px;height:18px;flex-shrink:0;margin-top:3px}
 .success-view{text-align:center;display:none}
 .success-icon{
@@ -212,15 +191,9 @@ body{
   border:1px solid var(--line);background:rgba(255,255,255,.045);
   max-width:380px
 }
-.final-photo{
-  width:95px;height:95px;object-fit:cover;border-radius:50%;
-  border:3px solid var(--gold);display:block;margin:0 auto 11px
-}
+.final-photo{width:95px;height:95px;object-fit:cover;border-radius:50%;border:3px solid var(--gold);display:block;margin:0 auto 11px}
 .final-name{font-size:18px;font-weight:900}
-.verified-badge{
-  width:21px;height:21px;vertical-align:middle;margin-right:4px;
-  display:inline-block
-}
+.verified-badge{width:21px;height:21px;vertical-align:middle;margin-right:4px;display:inline-block}
 .profile-id{font-size:12px;color:var(--gold2);margin-top:5px;direction:ltr}
 #qrcode{display:flex;justify-content:center;margin:14px auto}
 #qrcode img,#qrcode canvas{border:7px solid white;border-radius:8px}
@@ -285,9 +258,7 @@ body{
         <span id="stepCaption">المرحلة الأولى من 8</span>
         <strong id="stepPercent">12%</strong>
       </div>
-      <div class="progress-track">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     </div>
 
     <div class="steps" id="stepDots">
@@ -301,21 +272,17 @@ body{
       <span class="step-dot">8</span>
     </div>
 
-    <!-- المرحلة الأولى -->
     <section class="stage active" data-stage="0">
       <h3 class="stage-title">بيانات حساب الطالب</h3>
       <p class="stage-desc">اكتب بيانات الحساب التي ستستخدمها للدخول إلى المنصة.</p>
-
       <div class="field">
         <label for="studentName">اسم الطالب بالكامل</label>
         <input id="studentName" type="text" placeholder="اكتب اسمك بالكامل" autocomplete="name">
       </div>
-
       <div class="field">
         <label for="studentPhone">رقم هاتف الطالب</label>
         <input id="studentPhone" type="tel" inputmode="tel" placeholder="رقم الهاتف">
       </div>
-
       <div class="grid-two">
         <div class="field">
           <label for="password">كلمة المرور</label>
@@ -326,31 +293,25 @@ body{
           <input id="confirmPassword" type="password" placeholder="أعد كتابة كلمة المرور">
         </div>
       </div>
-
       <div class="note">احتفظ برقم الهاتف وكلمة المرور؛ ستحتاج إليهما عند تسجيل الدخول.</div>
     </section>
 
-    <!-- المرحلة الثانية -->
     <section class="stage" data-stage="1">
       <h3 class="stage-title">بيانات ولي الأمر</h3>
       <p class="stage-desc">أدخل بيانات ولي أمرك للتواصل عند الحاجة.</p>
-
       <div class="field">
         <label for="parentName">اسم ولي الأمر</label>
         <input id="parentName" type="text" placeholder="اسم ولي الأمر بالكامل">
       </div>
-
       <div class="field">
         <label for="parentPhone">رقم هاتف ولي الأمر</label>
         <input id="parentPhone" type="tel" inputmode="tel" placeholder="رقم هاتف ولي الأمر">
       </div>
     </section>
 
-    <!-- المرحلة الثالثة -->
     <section class="stage" data-stage="2">
       <h3 class="stage-title">نوع التعليم والصف الدراسي</h3>
       <p class="stage-desc">حدد نوع تعليمك والصف الذي تدرس فيه.</p>
-
       <div class="field">
         <label>نوع التعليم</label>
         <div class="choice-row">
@@ -364,80 +325,60 @@ body{
           </div>
         </div>
       </div>
-
       <div class="field">
         <label for="schoolGrade">الصف الدراسي</label>
-        <select id="schoolGrade">
-          <option value="">اختر نوع التعليم أولًا</option>
-        </select>
+        <select id="schoolGrade"><option value="">اختر نوع التعليم أولًا</option></select>
       </div>
     </section>
 
-    <!-- المرحلة الرابعة -->
     <section class="stage" data-stage="3">
       <h3 class="stage-title">المحافظة</h3>
       <p class="stage-desc">اختر المحافظة التي تقيم بها.</p>
-
       <div class="field">
         <label for="governorate">المحافظة</label>
-        <select id="governorate">
-          <option value="">اختر المحافظة</option>
-        </select>
+        <select id="governorate"><option value="">اختر المحافظة</option></select>
       </div>
     </section>
 
-    <!-- المرحلة الخامسة -->
     <section class="stage" data-stage="4">
       <h3 class="stage-title">المركز والقرية</h3>
-      <p class="stage-desc">حدد المركز ثم اكتب اسم القرية أو المدينة.</p>
-
+      <p class="stage-desc">حدد المركز ثم اختر القرية أو المنطقة التي تقيم بها.</p>
       <div class="field">
         <label for="center">المركز أو المدينة</label>
-        <select id="center">
-          <option value="">اختر المحافظة أولًا</option>
-        </select>
+        <select id="center"><option value="">اختر المحافظة أولًا</option></select>
       </div>
-
       <div class="field">
         <label for="village">القرية أو المنطقة</label>
-        <input id="village" type="text" placeholder="اكتب اسم القرية أو المنطقة">
+        <select id="village">
+          <option value="">اختر القرية أو المنطقة</option>
+        </select>
+        <input id="villageOther" class="hidden" type="text" placeholder="اكتب اسم القرية أو الكفر أو العزبة">
       </div>
-
-      <div class="note">اختيار المركز مرتبط بالمحافظة التي حددتها في المرحلة السابقة.</div>
+      <div class="note">اختر المنطقة من القائمة. إذا لم تجد اسم منطقتك، اختر «أخرى» واكتب الاسم بنفسك.</div>
     </section>
 
-    <!-- المرحلة السادسة -->
     <section class="stage" data-stage="5">
       <h3 class="stage-title">الصورة الشخصية وتأكيدها</h3>
       <p class="stage-desc">ارفع صورتك الشخصية، راجع المعاينة، ثم أكد أنها صورتك.</p>
-
       <div class="photo-area">
         <img id="photoPreview" class="photo-preview" alt="معاينة الصورة الشخصية">
         <div id="photoPlaceholder" style="font-size:42px;margin-bottom:8px">◎</div>
         <div style="font-size:13px;font-weight:800;margin-bottom:5px">صورتك الشخصية</div>
         <div style="font-size:11px;color:var(--muted);margin-bottom:15px">اختر صورة واضحة لك</div>
-
         <label for="profilePhoto" class="upload-label">اختيار الصورة</label>
         <input id="profilePhoto" type="file" accept="image/*">
-
         <label class="confirm-photo" id="confirmPhotoLabel">
           <input type="checkbox" id="confirmPhoto">
           أؤكد أن هذه صورتي الشخصية
         </label>
-
-        <div class="photo-confirmed" id="photoConfirmed">
-          ✓ تم تأكيد الصورة الشخصية
-        </div>
+        <div class="photo-confirmed" id="photoConfirmed">✓ تم تأكيد الصورة الشخصية</div>
       </div>
-
-      <div class="note">بعد تأكيدك لصورتك ستظهر علامة توثيق بجوار صورتك في ملفك الشخصي وعلى المنصة. هذه العلامة تعبر عن تأكيدك أنت للصورة.</div>
+      <div class="note">تأكيد الصورة هنا إقرار منك بأنها صورتك الشخصية، وليس تحققًا آليًا من الهوية أو مطابقة للوجه.</div>
     </section>
 
-    <!-- المرحلة السابعة -->
     <section class="stage" data-stage="6">
       <h3 class="stage-title">الشروط والأحكام</h3>
       <p class="stage-desc">اقرأ الشروط التالية قبل إتمام إنشاء حسابك.</p>
-
       <div class="terms-box">
         <strong style="color:var(--gold2)">شروط استخدام المنصة</strong><br>
         1. يلتزم الطالب بإدخال بيانات صحيحة تخصه.<br>
@@ -448,18 +389,15 @@ body{
         6. يوافق الطالب على حفظ بيانات حسابه وتقدمه الدراسي ونتائجه داخل المنصة لتقديم الخدمات التعليمية.<br>
         7. قد يتم تحديث الشروط عند إضافة خدمات جديدة، وسيتم عرض التحديثات داخل المنصة.
       </div>
-
       <label class="terms-agree">
         <input type="checkbox" id="agreeTerms">
         <span>قرأت الشروط والأحكام وأوافق عليها.</span>
       </label>
     </section>
 
-    <!-- المرحلة الثامنة -->
     <section class="stage" data-stage="7">
       <h3 class="stage-title">مراجعة وإنشاء الحساب</h3>
       <p class="stage-desc">راجع بياناتك ثم اضغط على إنشاء الحساب.</p>
-
       <div class="note" id="reviewData" style="line-height:2.2"></div>
       <button class="btn btn-primary" id="createAccount" type="button" style="width:100%">إنشاء حسابي الآن</button>
     </section>
@@ -470,20 +408,16 @@ body{
     </div>
   </div>
 
-  <!-- شاشة نجاح التسجيل -->
   <div class="success-view" id="successView">
     <div class="success-icon">
       <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
         <path d="m10 25 9 9L38 14"/>
       </svg>
     </div>
-
     <h2 style="margin:0 0 5px;font-size:23px">تم تجهيز ملفك الشخصي</h2>
     <p style="color:var(--muted);font-size:12px;margin:0">هذه معاينة لبيانات الحساب الذي أدخلته.</p>
-
     <div class="profile-card">
       <img id="finalPhoto" class="final-photo" alt="الصورة الشخصية">
-
       <div class="final-name">
         <span id="finalName"></span>
         <svg class="verified-badge" viewBox="0 0 24 24" aria-label="تم تأكيد الصورة" title="تم تأكيد الصورة">
@@ -491,14 +425,11 @@ body{
           <path d="m7.5 10.8 3 3 6-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-
       <div class="profile-id" id="finalId"></div>
       <div id="qrcode"></div>
       <div style="font-size:10px;color:var(--muted)">رمز QR الخاص بمعرّف الحساب</div>
     </div>
-
     <div class="note">تم إنشاء معاينة حسابك محليًا. يلزم ربط الموقع بقاعدة البيانات ونظام تسجيل الدخول حتى يصبح الحساب محفوظًا ويمكن الدخول به من الأجهزة الأخرى.</div>
-
     <a href="login.html" class="btn btn-primary" style="display:block;text-decoration:none;padding:13px">الانتقال إلى صفحة تسجيل الدخول</a>
   </div>
 </section>
@@ -536,13 +467,11 @@ function showToast(message,type='error'){
 
 function renderStage(){
   stages.forEach((stage,index)=>stage.classList.toggle('active',index===currentStage));
-
   dots.forEach((dot,index)=>{
     dot.classList.toggle('active',index===currentStage);
     dot.classList.toggle('done',index<currentStage);
     dot.textContent=index<currentStage?'✓':index+1;
   });
-
   const percent=Math.round(((currentStage+1)/8)*100);
   progressFill.style.width=percent+'%';
   stepCaption.textContent=`المرحلة ${currentStage+1} من 8`;
@@ -561,12 +490,10 @@ function validateStage(index){
       showToast('من فضلك أكمل جميع بيانات حساب الطالب.');
       return false;
     }
-
     if(value('password')!==value('confirmPassword')){
       showToast('كلمتا المرور غير متطابقتين.');
       return false;
     }
-
     if(value('password').length<6){
       showToast('كلمة المرور يجب ألا تقل عن 6 أحرف أو أرقام.');
       return false;
@@ -592,8 +519,8 @@ function validateStage(index){
     return false;
   }
 
-  if(index===4&&(!value('center')||!value('village'))){
-    showToast('حدد المركز واكتب القرية أو المنطقة.');
+  if(index===4&&(!value('center')||!value('village')||(value('village')==='أخرى'&&!value('villageOther')))){
+    showToast('حدد المركز والقرية أو اختر «أخرى» واكتب اسم منطقتك.');
     return false;
   }
 
@@ -602,7 +529,6 @@ function validateStage(index){
       showToast('اختر صورتك الشخصية أولًا.');
       return false;
     }
-
     if(!document.getElementById('confirmPhoto').checked){
       showToast('يجب تأكيد أن الصورة هي صورتك الشخصية.');
       return false;
@@ -619,9 +545,7 @@ function validateStage(index){
 
 nextBtn.addEventListener('click',()=>{
   if(!validateStage(currentStage))return;
-
   if(currentStage===6)buildReview();
-
   currentStage++;
   renderStage();
 });
@@ -635,6 +559,7 @@ backBtn.addEventListener('click',()=>{
 
 function buildReview(){
   const education=document.querySelector('input[name="educationType"]:checked').value;
+  const selectedVillage=value('village')==='أخرى'?value('villageOther'):value('village');
 
   document.getElementById('reviewData').innerHTML=`
     <strong style="color:var(--gold2)">اسم الطالب:</strong> ${safe(value('studentName'))}<br>
@@ -645,7 +570,7 @@ function buildReview(){
     <strong style="color:var(--gold2)">الصف الدراسي:</strong> ${safe(value('schoolGrade'))}<br>
     <strong style="color:var(--gold2)">المحافظة:</strong> ${safe(value('governorate'))}<br>
     <strong style="color:var(--gold2)">المركز:</strong> ${safe(value('center'))}<br>
-    <strong style="color:var(--gold2)">القرية أو المنطقة:</strong> ${safe(value('village'))}<br>
+    <strong style="color:var(--gold2)">القرية أو المنطقة:</strong> ${safe(selectedVillage)}<br>
     <strong style="color:var(--green)">الصورة الشخصية:</strong> تم تأكيدها ✓
   `;
 }
@@ -665,7 +590,6 @@ document.querySelectorAll('input[name="educationType"]').forEach(radio=>{
   radio.addEventListener('change',()=>{
     const grade=document.getElementById('schoolGrade');
     grade.innerHTML='<option value="">اختر الصف الدراسي</option>';
-
     ['أولى ثانوي','تانية ثانوي','تالتة ثانوي'].forEach(item=>{
       const option=document.createElement('option');
       option.value=item;
@@ -702,6 +626,40 @@ const centers={
   ]
 };
 
+/* المناطق الأساسية والمتداولة في مركز بركة السبع */
+const barakaLocations=[
+  'مدينة بركة السبع',
+  'أبو مشهور',
+  'الشهيد فكري',
+  'الروضة',
+  'كفر الحمادية',
+  'جنزور',
+  'منشأة الرافعي',
+  'شنتنا الحجر',
+  'ميت أم صالح',
+  'الغوري',
+  'ميت فارس',
+  'كفر مليج',
+  'طوخ طنبشا',
+  'كفر عليم',
+  'طنبشا',
+  'الدبايبة',
+  'هورين',
+  'كفر هورين',
+  'الحلامشة',
+  'كفر هلال',
+  'كفر الشيخ طعيمة',
+  'كفر نفرة البحري',
+  'عزبة الدبايبة',
+  'زوير',
+  'سلكا',
+  'عزبة سلكا',
+  'ميت الموز',
+  'عزبة ميت الموز',
+  'ميت عافية',
+  'كفر سبع الرجال'
+];
+
 governorateSelect.addEventListener('change',()=>{
   const center=document.getElementById('center');
   center.innerHTML='';
@@ -712,10 +670,7 @@ governorateSelect.addEventListener('change',()=>{
   if(list){
     center.disabled=false;
     center.add(new Option('اختر المركز',''));
-
-    list.forEach(name=>{
-      center.add(new Option(name,name));
-    });
+    list.forEach(name=>center.add(new Option(name,name)));
   }else if(governorate){
     center.disabled=false;
     center.add(new Option('اكتب المركز في الحقل التالي',''));
@@ -724,6 +679,38 @@ governorateSelect.addEventListener('change',()=>{
     center.disabled=true;
     center.add(new Option('اختر المحافظة أولًا',''));
   }
+
+  updateVillageOptions();
+});
+
+function updateVillageOptions(){
+  const village=document.getElementById('village');
+  const other=document.getElementById('villageOther');
+  const selectedCenter=value('center');
+
+  village.innerHTML='';
+  village.add(new Option('اختر القرية أو المنطقة',''));
+
+  if(selectedCenter==='بركة السبع'){
+    barakaLocations.forEach(name=>{
+      village.add(new Option(name,name));
+    });
+  }
+
+  village.add(new Option('أخرى - اكتب الاسم بنفسك','أخرى'));
+  village.value='';
+  other.value='';
+  other.classList.add('hidden');
+}
+
+document.getElementById('center').addEventListener('change',updateVillageOptions);
+
+document.getElementById('village').addEventListener('change',()=>{
+  const other=document.getElementById('villageOther');
+  const isOther=value('village')==='أخرى';
+  other.classList.toggle('hidden',!isOther);
+  if(isOther)other.focus();
+  else other.value='';
 });
 
 /* الصورة الشخصية */
@@ -750,7 +737,6 @@ photoInput.addEventListener('change',()=>{
   }
 
   const reader=new FileReader();
-
   reader.onload=event=>{
     photoData=event.target.result;
     photoPreview.src=photoData;
@@ -760,7 +746,6 @@ photoInput.addEventListener('change',()=>{
     confirmPhoto.checked=false;
     photoConfirmed.style.display='none';
   };
-
   reader.readAsDataURL(file);
 });
 
