@@ -615,7 +615,10 @@ captureFaceBtn.addEventListener('click',async()=>{
   cameraStatus.textContent='جارٍ مقارنة الوجه بالصورة الشخصية...';
 
   try{
-    const options=new faceapi.TinyFaceDetectorOptions({inputSize:320,scoreThreshold:0.5});
+const options=new faceapi.TinyFaceDetectorOptions({
+  inputSize:416,
+  scoreThreshold:0.25
+});
     const uploadedFaces=await faceapi.detectAllFaces(photoPreview,options).withFaceLandmarks().withFaceDescriptors();
 
     if(uploadedFaces.length!==1){
