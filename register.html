@@ -9,11 +9,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#e9b95e;--gold2:#ffd98b;--orange:#e98736;--bg:#10101b;--panel:rgba(19,19,30,.82);--text:#fff8ec;--muted:#b9b1a5;--line:rgba(233,185,94,.22);--green:#38d99b;--red:#ff687b}
+:root{--gold:#e9b95e;--gold2:#ffd98b;--orange:#e98736;--bg:#10101b;--text:#fff8ec;--muted:#b9b1a5;--line:rgba(233,185,94,.22);--green:#38d99b;--red:#ff687b}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{touch-action:pan-y}
 body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;background:var(--bg);overflow-x:hidden}
-.background{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-3;pointer-events:none}
+.background{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;pointer-events:none}
 .overlay{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at 50% 15%,rgba(224,151,55,.12),transparent 55%),linear-gradient(135deg,rgba(7,8,17,.68),rgba(13,12,22,.58))}
 .page{width:100%;min-height:100vh;padding:24px 14px 38px;display:flex;align-items:center;justify-content:center}
 .wrapper{width:min(620px,100%);margin:auto}
@@ -30,54 +30,44 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
 .progress-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);margin-bottom:10px}
 .progress-top strong{color:var(--gold2)}
 .progress-track{height:7px;border-radius:20px;background:#302b2b;overflow:hidden}
-.progress-fill{height:100%;width:12.5%;border-radius:20px;background:linear-gradient(90deg,var(--orange),var(--gold2));transition:width .35s ease}
-.steps{display:flex;justify-content:space-between;gap:5px;margin-bottom:21px;direction:rtl}
+.progress-fill{height:100%;width:12.5%;border-radius:20px;background:linear-gradient(90deg,var(--orange),var(--gold2));transition:width .35s}
+.steps{display:flex;justify-content:space-between;gap:5px;margin-bottom:21px}
 .step-dot{width:27px;height:27px;flex:0 0 27px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;color:#aaa;background:#302d31;border:1px solid #494044;transition:.25s}
-.step-dot.active,.step-dot.done{color:#21170c;background:linear-gradient(135deg,var(--gold2),var(--orange));border-color:var(--gold2);box-shadow:0 0 15px rgba(233,185,94,.2)}
-.stage{display:none;animation:appear .3s ease}
+.step-dot.active,.step-dot.done{color:#21170c;background:linear-gradient(135deg,var(--gold2),var(--orange));border-color:var(--gold2)}
+.stage{display:none;animation:appear .3s}
 .stage.active{display:block}
 @keyframes appear{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
 .stage-title{font-size:17px;font-weight:900;margin:0 0 5px}
 .stage-desc{font-size:12px;color:var(--muted);margin:0 0 17px}
 .field{margin-bottom:13px}
 .field label{display:block;font-size:12px;font-weight:700;color:#f4d9a7;margin-bottom:7px}
-.field input,.field select{width:100%;height:47px;border-radius:12px;border:1px solid rgba(233,185,94,.23);background:rgba(255,255,255,.055);color:#fff;padding:0 13px;font-family:inherit;font-size:13px;outline:none;transition:.2s}
-.field input:focus,.field select:focus{border-color:var(--gold);background:rgba(255,255,255,.085);box-shadow:0 0 0 3px rgba(233,185,94,.08)}
+.field input,.field select{width:100%;height:47px;border-radius:12px;border:1px solid rgba(233,185,94,.23);background:rgba(255,255,255,.055);color:#fff;padding:0 13px;font-family:inherit;font-size:13px;outline:none}
+.field input:focus,.field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(233,185,94,.08)}
 .field input::placeholder{color:#8f8990}
 .field select{appearance:none;cursor:pointer}
 .field select option{background:#201e2a;color:#fff}
-.field select:disabled{opacity:.45;cursor:not-allowed}
-
-/* القوائم السوداء المخصصة */
+.field select:disabled{opacity:.45}
 .field .select-native-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .custom-select{position:relative;width:100%;direction:rtl}
-.custom-select-trigger{width:100%;min-height:48px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(233,185,94,.25);border-radius:13px;background:linear-gradient(145deg,rgba(32,30,44,.98),rgba(18,17,29,.98));color:#fff4df;font-family:inherit;font-size:13px;font-weight:700;text-align:right;cursor:pointer;transition:.2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
-.custom-select-trigger:after{content:"";width:8px;height:8px;flex:0 0 8px;border-left:2px solid var(--gold2);border-bottom:2px solid var(--gold2);transform:rotate(-45deg) translateY(-2px);transition:.2s}
-.custom-select.open .custom-select-trigger{border-color:var(--gold);box-shadow:0 0 0 3px rgba(233,185,94,.09)}
-.custom-select.open .custom-select-trigger:after{transform:rotate(135deg) translate(-2px,-2px)}
-.custom-select-trigger:disabled{opacity:.45;cursor:not-allowed}
+.custom-select-trigger{width:100%;min-height:48px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(233,185,94,.25);border-radius:13px;background:linear-gradient(145deg,#201e2c,#12111d);color:#fff4df;font-family:inherit;font-size:13px;font-weight:700;text-align:right;cursor:pointer}
+.custom-select-trigger:after{content:"";width:8px;height:8px;flex:0 0 8px;border-left:2px solid var(--gold2);border-bottom:2px solid var(--gold2);transform:rotate(-45deg)}
+.custom-select.open .custom-select-trigger{border-color:var(--gold)}
+.custom-select-trigger:disabled{opacity:.45}
 .custom-select-value.placeholder{color:#a49aa0;font-weight:500}
-.custom-select-panel{display:none;position:absolute;z-index:25;top:calc(100% + 8px);right:0;left:0;padding:9px;border:1px solid rgba(233,185,94,.34);border-radius:15px;background:linear-gradient(160deg,#211f2d,#11111c);box-shadow:0 18px 45px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.04);max-height:290px;overflow:hidden}
-.custom-select.open .custom-select-panel{display:block;animation:dropdownIn .16s ease}
-@keyframes dropdownIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
-.custom-select-search{width:100%;height:39px;margin-bottom:8px;padding:0 11px;border:1px solid rgba(233,185,94,.2);border-radius:10px;outline:none;background:#11111b;color:#fff;font:12px 'Cairo',sans-serif}
-.custom-select-search::placeholder{color:#8f8990}
-.custom-select-options{max-height:220px;overflow:auto;overscroll-behavior:contain}
-.custom-select-option{display:block;width:100%;padding:10px 11px;margin:2px 0;border:0;border-radius:9px;background:transparent;color:#eee5d8;text-align:right;font:600 12px 'Cairo',sans-serif;cursor:pointer;transition:background .15s,color .15s}
-.custom-select-option:hover,.custom-select-option:focus{outline:none;background:rgba(233,185,94,.12);color:var(--gold2)}
-.custom-select-option.selected{background:linear-gradient(90deg,rgba(233,185,94,.17),rgba(233,135,54,.09));color:var(--gold2);font-weight:900}
-.custom-select-empty{padding:13px 9px;color:#a99eaa;text-align:center;font-size:11px}
-.custom-select-options::-webkit-scrollbar{width:5px}
-.custom-select-options::-webkit-scrollbar-thumb{background:#67533b;border-radius:10px}
-@media(max-width:560px){.custom-select-panel{max-height:260px}.custom-select-options{max-height:190px}}
-
+.custom-select-panel{display:none;position:absolute;z-index:25;top:calc(100% + 8px);right:0;left:0;padding:9px;border:1px solid rgba(233,185,94,.34);border-radius:15px;background:#171522;box-shadow:0 18px 45px #000a;max-height:290px;overflow:hidden}
+.custom-select.open .custom-select-panel{display:block}
+.custom-select-search{width:100%;height:39px;margin-bottom:8px;padding:0 11px;border:1px solid rgba(233,185,94,.2);border-radius:10px;background:#11111b;color:#fff;font:12px 'Cairo',sans-serif}
+.custom-select-options{max-height:220px;overflow:auto}
+.custom-select-option{display:block;width:100%;padding:10px 11px;margin:2px 0;border:0;border-radius:9px;background:transparent;color:#eee5d8;text-align:right;font:600 12px 'Cairo',sans-serif;cursor:pointer}
+.custom-select-option:hover,.custom-select-option.selected{background:rgba(233,185,94,.13);color:var(--gold2)}
+.custom-select-empty{padding:13px;color:#a99eaa;text-align:center;font-size:11px}
 .grid-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .note{padding:11px 13px;border-radius:12px;border:1px solid rgba(233,185,94,.2);background:rgba(233,185,94,.07);color:#e8d6b6;font-size:11px;line-height:1.9;margin:11px 0}
 .choice-row{display:flex;gap:12px;flex-wrap:wrap}
 .choice{flex:1;min-width:130px;position:relative}
 .choice input{position:absolute;opacity:0}
-.choice label{display:flex;align-items:center;justify-content:center;min-height:54px;padding:11px;border-radius:13px;border:1px solid var(--line);background:rgba(255,255,255,.045);cursor:pointer;font-size:13px;font-weight:800;transition:.2s}
-.choice input:checked+label{border-color:var(--gold);background:rgba(233,185,94,.13);color:var(--gold2);box-shadow:0 0 18px rgba(233,185,94,.08)}
+.choice label{display:flex;align-items:center;justify-content:center;min-height:54px;padding:11px;border-radius:13px;border:1px solid var(--line);background:rgba(255,255,255,.045);cursor:pointer;font-size:13px;font-weight:800}
+.choice input:checked+label{border-color:var(--gold);background:rgba(233,185,94,.13);color:var(--gold2)}
 .nav-buttons{display:flex;gap:10px;margin-top:21px}
 .btn{border:0;border-radius:12px;min-height:47px;padding:10px 19px;font-family:inherit;font-size:13px;font-weight:900;cursor:pointer;transition:.2s}
 .btn:active{transform:scale(.98)}
@@ -97,17 +87,15 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
 .camera-panel p{font-size:12px;line-height:1.8;color:var(--muted);margin:0 0 13px}
 .camera-frame{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:15px;background:#080811;border:1px solid var(--line)}
 .camera-frame video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
-.camera-guide{position:absolute;inset:12% 23%;border:2px solid rgba(255,217,139,.9);border-radius:48% 48% 44% 44%;box-shadow:0 0 0 999px rgba(0,0,0,.14);pointer-events:none}
+.camera-guide{position:absolute;inset:12% 23%;border:2px solid rgba(255,217,139,.9);border-radius:48% 48% 44% 44%;pointer-events:none}
 .camera-status{min-height:25px;margin:12px 0;color:#f4d9a7;font-size:12px}
 .camera-actions{display:flex;gap:9px}
 .camera-actions .btn{flex:1}
-.camera-actions .btn-secondary{min-width:100px}
-@media(max-width:420px){.camera-panel{padding:14px}.camera-actions{flex-direction:column}.camera-actions .btn-secondary{width:100%}}
 .terms-box{max-height:210px;overflow:auto;padding:14px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.035);color:#d4c9b8;font-size:12px;line-height:2}
 .terms-agree{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:12px;color:#f1dfc1}
 .terms-agree input{accent-color:var(--gold);width:18px;height:18px;flex-shrink:0;margin-top:3px}
 .success-view{text-align:center;display:none}
-.success-icon{width:70px;height:70px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;color:#17241e;background:linear-gradient(135deg,#6af0bd,#23b77f);box-shadow:0 0 35px rgba(56,217,155,.2)}
+.success-icon{width:70px;height:70px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;color:#17241e;background:linear-gradient(135deg,#6af0bd,#23b77f)}
 .success-icon svg{width:37px;height:37px}
 .profile-card{margin:18px auto;padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.045);max-width:380px}
 .final-photo{width:95px;height:95px;object-fit:cover;border-radius:50%;border:3px solid var(--gold);display:block;margin:0 auto 11px}
@@ -122,7 +110,15 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
 .hidden{display:none!important}
 .login-link{text-align:center;margin-top:16px;color:var(--muted);font-size:12px}
 .login-link a{color:var(--gold2);text-decoration:none;font-weight:800}
-@media(max-width:560px){.page{padding:16px 10px 25px;align-items:flex-start}.wrapper{width:min(100%,520px)}.card{padding:17px 13px;border-radius:19px}.brand{margin-bottom:14px}.brand h1{font-size:20px}.card-head h2{font-size:19px}.grid-two{grid-template-columns:1fr;gap:0}.steps{gap:3px}.step-dot{width:25px;height:25px;flex-basis:25px;font-size:10px}.nav-buttons .btn{padding:10px 13px}}
+.video-gate{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(5,5,12,.98)}
+.video-gate.active{display:flex}
+.video-gate-inner{width:min(900px,100%);text-align:center}
+.video-gate-message{margin:0 auto 14px;padding:12px 16px;border:1px solid rgba(233,185,94,.45);border-radius:13px;background:#211e2a;color:#ffe2a5;font-size:14px;font-weight:900}
+.video-gate video{display:block;width:100%;max-height:78vh;background:#000;border:1px solid rgba(233,185,94,.35);border-radius:14px;object-fit:contain}
+.video-gate-error{display:none;margin-top:12px;color:#ffb6c0;font-size:12px;line-height:1.8}
+body.video-locked{overflow:hidden}
+@media(max-width:560px){.page{padding:16px 10px 25px;align-items:flex-start}.wrapper{width:min(100%,520px)}.card{padding:17px 13px;border-radius:19px}.brand h1{font-size:20px}.card-head h2{font-size:19px}.grid-two{grid-template-columns:1fr;gap:0}.steps{gap:3px}.step-dot{width:25px;height:25px;flex-basis:25px;font-size:10px}.nav-buttons .btn{padding:10px 13px}.custom-select-panel{max-height:260px}.custom-select-options{max-height:190px}}
+@media(max-width:420px){.camera-panel{padding:14px}.camera-actions{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -142,19 +138,23 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
   <h1>منصة الدكتور محمود الجنايني</h1>
   <p>رحلتك نحو التفوق في الكيمياء تبدأ من هنا</p>
 </header>
+
 <section class="card" id="registrationCard">
   <div class="card-head">
     <h2>إنشاء حساب طالب جديد</h2>
     <p>أكمل بياناتك بالترتيب لإنشاء ملفك على المنصة</p>
   </div>
+
   <div id="wizard">
     <div class="progress-wrap">
       <div class="progress-top"><span id="stepCaption">المرحلة الأولى من 8</span><strong id="stepPercent">12%</strong></div>
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     </div>
+
     <div class="steps" id="stepDots">
       <span class="step-dot active">1</span><span class="step-dot">2</span><span class="step-dot">3</span><span class="step-dot">4</span><span class="step-dot">5</span><span class="step-dot">6</span><span class="step-dot">7</span><span class="step-dot">8</span>
     </div>
+
     <section class="stage active" data-stage="0">
       <h3 class="stage-title">بيانات حساب الطالب</h3>
       <p class="stage-desc">اكتب بيانات الحساب التي ستستخدمها للدخول إلى المنصة.</p>
@@ -166,12 +166,14 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
       </div>
       <div class="note">احتفظ برقم الهاتف وكلمة المرور؛ ستحتاج إليهما عند تسجيل الدخول.</div>
     </section>
+
     <section class="stage" data-stage="1">
       <h3 class="stage-title">بيانات ولي الأمر</h3>
       <p class="stage-desc">أدخل بيانات ولي أمرك للتواصل عند الحاجة.</p>
       <div class="field"><label for="parentName">اسم ولي الأمر</label><input id="parentName" type="text" placeholder="اسم ولي الأمر بالكامل"></div>
       <div class="field"><label for="parentPhone">رقم هاتف ولي الأمر</label><input id="parentPhone" type="tel" inputmode="tel" placeholder="رقم هاتف ولي الأمر"></div>
     </section>
+
     <section class="stage" data-stage="2">
       <h3 class="stage-title">نوع التعليم والصف الدراسي</h3>
       <p class="stage-desc">حدد نوع تعليمك والصف الذي تدرس فيه.</p>
@@ -184,11 +186,13 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
       </div>
       <div class="field"><label for="schoolGrade">الصف الدراسي</label><select id="schoolGrade"><option value="">اختر نوع التعليم أولًا</option></select></div>
     </section>
+
     <section class="stage" data-stage="3">
       <h3 class="stage-title">المحافظة</h3>
       <p class="stage-desc">اختر المحافظة التي تقيم بها.</p>
       <div class="field"><label for="governorate">المحافظة</label><select id="governorate"><option value="">اختر المحافظة</option></select></div>
     </section>
+
     <section class="stage" data-stage="4">
       <h3 class="stage-title">المركز والقرية</h3>
       <p class="stage-desc">حدد المركز ثم اختر القرية أو المنطقة التي تقيم بها.</p>
@@ -200,6 +204,7 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
       </div>
       <div class="note">اختر المنطقة من القائمة. إذا لم تجد اسم منطقتك، اختر «أخرى» واكتب الاسم بنفسك.</div>
     </section>
+
     <section class="stage" data-stage="5">
       <h3 class="stage-title">الصورة الشخصية وتأكيدها</h3>
       <p class="stage-desc">ارفع صورتك الشخصية، ثم أكد مطابقة وجهك بالكاميرا.</p>
@@ -213,8 +218,9 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
         <button class="btn btn-primary camera-confirm-btn" id="openCameraVerify" type="button" disabled>تأكيد الصورة الشخصية بالكاميرا</button>
         <div class="photo-confirmed" id="photoConfirmed">✓ تمت مطابقة الوجه بالكاميرا</div>
       </div>
-      <div class="note">بعد رفع الصورة اضغط «تأكيد الصورة الشخصية بالكاميرا». ستفتح الكاميرا الأمامية، ولن تنتقل للمرحلة التالية إلا بعد نجاح مقارنة الوجه بالصورة المرفوعة.</div>
+      <div class="note">بعد رفع الصورة اضغط «تأكيد الصورة الشخصية بالكاميرا». لن تنتقل للمرحلة التالية إلا بعد نجاح مقارنة الوجه بالصورة المرفوعة.</div>
     </section>
+
     <section class="stage" data-stage="6">
       <h3 class="stage-title">الشروط والأحكام</h3>
       <p class="stage-desc">اقرأ الشروط التالية قبل إتمام إنشاء حسابك.</p>
@@ -230,35 +236,42 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
       </div>
       <label class="terms-agree"><input type="checkbox" id="agreeTerms"><span>قرأت الشروط والأحكام وأوافق عليها.</span></label>
     </section>
+
     <section class="stage" data-stage="7">
       <h3 class="stage-title">مراجعة وإنشاء الحساب</h3>
       <p class="stage-desc">راجع بياناتك ثم اضغط على إنشاء الحساب.</p>
       <div class="note" id="reviewData" style="line-height:2.2"></div>
       <button class="btn btn-primary" id="createAccount" type="button" style="width:100%">إنشاء حسابي الآن</button>
     </section>
+
     <div class="nav-buttons" id="navigation">
       <button class="btn btn-secondary" id="backBtn" type="button" disabled>السابق</button>
       <button class="btn btn-primary" id="nextBtn" type="button">المرحلة التالية</button>
     </div>
   </div>
+
   <div class="success-view" id="successView">
-    <div class="success-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m10 25 9 9L38 14"/></svg></div>
-    <h2 style="margin:0 0 5px;font-size:23px">تم تجهيز ملفك الشخصي</h2>
-    <p style="color:var(--muted);font-size:12px;margin:0">هذه معاينة لبيانات الحساب الذي أدخلته.</p>
+    <div class="success-icon">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m10 25 9 9L38 14"/></svg>
+    </div>
+    <h2 style="margin:0 0 5px;font-size:23px">تم إنشاء حسابك بنجاح</h2>
+    <p style="color:var(--muted);font-size:12px;margin:0">تم حفظ بيانات حسابك وصورتك في قاعدة البيانات.</p>
     <div class="profile-card">
       <img id="finalPhoto" class="final-photo" alt="الصورة الشخصية">
-      <div class="final-name"><span id="finalName"></span><span style="display:inline-block;color:var(--green);font-size:11px;margin-right:6px">تم فحص تطابق الوجه بالكاميرا</span></div>
+      <div class="final-name"><span id="finalName"></span></div>
       <div class="profile-id" id="finalId"></div>
       <div id="qrcode"></div>
-      <div style="font-size:10px;color:var(--muted)">رمز QR الخاص بمعرّف الحساب</div>
+      <div style="font-size:10px;color:var(--muted)">رمز QR الخاص برقم الطالب المسجل في قاعدة البيانات</div>
     </div>
-    <div class="note">تم إنشاء معاينة حسابك محليًا. يلزم ربط الموقع بقاعدة البيانات ونظام تسجيل الدخول حتى يصبح الحساب محفوظًا ويمكن الدخول به من الأجهزة الأخرى.</div>
-    <a href="login.html" class="btn btn-primary" style="display:block;text-decoration:none;padding:13px">الانتقال إلى صفحة تسجيل الدخول</a>
+    <div class="note">احتفظ برقم هاتفك وكلمة المرور لتسجيل الدخول لاحقًا.</div>
+    <button type="button" id="enterPlatformButton" class="btn btn-primary" style="display:block;width:100%;padding:13px">الدخول إلى المنصة</button>
   </div>
 </section>
+
 <div class="login-link" id="loginLink">لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></div>
 </div>
 </main>
+
 <div class="camera-modal" id="cameraModal" role="dialog" aria-modal="true" aria-labelledby="cameraTitle">
   <div class="camera-panel">
     <h3 id="cameraTitle">تأكيد الصورة الشخصية</h3>
@@ -271,11 +284,30 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
     </div>
   </div>
 </div>
+
 <div class="toast" id="toast"></div>
 
+<div class="video-gate" id="videoGate" aria-modal="true" role="dialog">
+  <div class="video-gate-inner">
+    <div class="video-gate-message">جارٍ تحويلك إلى المنصة بعد انتهاء الفيديو</div>
+    <video id="welcomeVideo" playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback"></video>
+    <div class="video-gate-error" id="videoGateError">
+      تعذر تشغيل الفيديو. تأكد من رفع الملف 89.mp4 بجانب ملفات الموقع ثم أعد المحاولة.
+      <br><button class="btn btn-primary" id="retryVideo" type="button">إعادة تشغيل الفيديو</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
 <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
+/* إعداد الاتصال بقاعدة بيانات المنصة */
+const SUPABASE_URL='https://iirrwfativrsrxluxmwp.supabase.co';
+const SUPABASE_KEY='sb_publishable_cDCIPKxT6-2NgbLmnTy1Lw_pW84RMam';
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+/* عناصر المراحل */
 const stages=[...document.querySelectorAll('.stage')];
 const dots=[...document.querySelectorAll('.step-dot')];
 const progressFill=document.getElementById('progressFill');
@@ -290,13 +322,13 @@ let photoData='';
 let photoMatchVerified=false;
 let cameraStream=null;
 let faceModelsReady=false;
-let toastTimer;
+let toastTimer=null;
 
 function showToast(message,type='error'){
   toast.textContent=message;
   toast.className='toast show '+type;
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>toast.className='toast',3000);
+  toastTimer=setTimeout(()=>toast.className='toast',4000);
 }
 
 function renderStage(){
@@ -308,37 +340,65 @@ function renderStage(){
   });
   const percent=Math.round(((currentStage+1)/8)*100);
   progressFill.style.width=percent+'%';
-  stepCaption.textContent=\`المرحلة \${currentStage+1} من 8\`;
+  stepCaption.textContent='المرحلة '+(currentStage+1)+' من 8';
   stepPercent.textContent=percent+'%';
   backBtn.disabled=currentStage===0;
   nextBtn.classList.toggle('hidden',currentStage===7);
 }
 
-function value(id){return document.getElementById(id).value.trim()}
+function value(id){
+  return document.getElementById(id).value.trim();
+}
 
 function validateStage(index){
   if(index===0){
-    if(!value('studentName')||!value('studentPhone')||!value('password')||!value('confirmPassword')){showToast('من فضلك أكمل جميع بيانات حساب الطالب.');return false}
-    if(value('password')!==value('confirmPassword')){showToast('كلمتا المرور غير متطابقتين.');return false}
-    if(value('password').length<6){showToast('كلمة المرور يجب ألا تقل عن 6 أحرف أو أرقام.');return false}
+    if(!value('studentName')||!value('studentPhone')||!value('password')||!value('confirmPassword')){
+      showToast('من فضلك أكمل جميع بيانات حساب الطالب.');return false;
+    }
+    if(value('password')!==value('confirmPassword')){
+      showToast('كلمتا المرور غير متطابقتين.');return false;
+    }
+    if(value('password').length<6){
+      showToast('كلمة المرور يجب ألا تقل عن 6 أحرف أو أرقام.');return false;
+    }
+    try{normalizeEgyptPhone(value('studentPhone'))}
+    catch(e){showToast(e.message);return false}
   }
-  if(index===1&&!value('parentName')||index===1&&!value('parentPhone')){showToast('أدخل اسم ولي الأمر ورقم هاتفه.');return false}
-  if(index===2&&(!document.querySelector('input[name="educationType"]:checked')||!value('schoolGrade'))){showToast('اختر نوع التعليم والصف الدراسي.');return false}
-  if(index===3&&!value('governorate')){showToast('اختر المحافظة أولًا.');return false}
-  if(index===4&&(!value('center')||!value('village')||(value('village')==='أخرى'&&!value('villageOther')))){showToast('حدد المركز والقرية أو اختر «أخرى» واكتب اسم منطقتك.');return false}
+
+  if(index===1){
+    if(!value('parentName')||!value('parentPhone')){
+      showToast('أدخل اسم ولي الأمر ورقم هاتفه.');return false;
+    }
+    try{normalizeEgyptPhone(value('parentPhone'))}
+    catch(e){showToast('رقم هاتف ولي الأمر غير صحيح.');return false}
+  }
+
+  if(index===2&&(!document.querySelector('input[name="educationType"]:checked')||!value('schoolGrade'))){
+    showToast('اختر نوع التعليم والصف الدراسي.');return false;
+  }
+  if(index===3&&!value('governorate')){
+    showToast('اختر المحافظة أولًا.');return false;
+  }
+  if(index===4&&(!value('center')||!value('village')||(value('village')==='أخرى'&&!value('villageOther')))){
+    showToast('حدد المركز والقرية أو اختر «أخرى» واكتب اسم منطقتك.');return false;
+  }
   if(index===5){
     if(!photoData){showToast('اختر صورتك الشخصية أولًا.');return false}
     if(!photoMatchVerified){showToast('يجب تأكيد الصورة من خلال الكاميرا أولًا.');return false}
   }
-  if(index===6&&!document.getElementById('agreeTerms').checked){showToast('يجب الموافقة على الشروط والأحكام للمتابعة.');return false}
+  if(index===6&&!document.getElementById('agreeTerms').checked){
+    showToast('يجب الموافقة على الشروط والأحكام للمتابعة.');return false;
+  }
   return true;
 }
 
 nextBtn.addEventListener('click',()=>{
   if(!validateStage(currentStage))return;
   if(currentStage===6)buildReview();
-  currentStage++;renderStage();
+  currentStage++;
+  renderStage();
 });
+
 backBtn.addEventListener('click',()=>{
   if(currentStage>0){currentStage--;renderStage()}
 });
@@ -346,22 +406,41 @@ backBtn.addEventListener('click',()=>{
 function buildReview(){
   const education=document.querySelector('input[name="educationType"]:checked').value;
   const selectedVillage=value('village')==='أخرى'?value('villageOther'):value('village');
-  document.getElementById('reviewData').innerHTML=\`
-    <strong style="color:var(--gold2)">اسم الطالب:</strong> \${safe(value('studentName'))}<br>
-    <strong style="color:var(--gold2)">رقم الهاتف:</strong> \${safe(value('studentPhone'))}<br>
-    <strong style="color:var(--gold2)">ولي الأمر:</strong> \${safe(value('parentName'))}<br>
-    <strong style="color:var(--gold2)">هاتف ولي الأمر:</strong> \${safe(value('parentPhone'))}<br>
-    <strong style="color:var(--gold2)">نوع التعليم:</strong> \${safe(education)}<br>
-    <strong style="color:var(--gold2)">الصف الدراسي:</strong> \${safe(value('schoolGrade'))}<br>
-    <strong style="color:var(--gold2)">المحافظة:</strong> \${safe(value('governorate'))}<br>
-    <strong style="color:var(--gold2)">المركز:</strong> \${safe(value('center'))}<br>
-    <strong style="color:var(--gold2)">القرية أو المنطقة:</strong> \${safe(selectedVillage)}<br>
-    <strong style="color:var(--green)">الصورة الشخصية:</strong> تمت مطابقة الوجه بالكاميرا ✓
-  \`;
+  document.getElementById('reviewData').innerHTML=`
+    <strong style="color:var(--gold2)">اسم الطالب:</strong> ${safe(value('studentName'))}<br>
+    <strong style="color:var(--gold2)">رقم الهاتف:</strong> ${safe(value('studentPhone'))}<br>
+    <strong style="color:var(--gold2)">ولي الأمر:</strong> ${safe(value('parentName'))}<br>
+    <strong style="color:var(--gold2)">هاتف ولي الأمر:</strong> ${safe(value('parentPhone'))}<br>
+    <strong style="color:var(--gold2)">نوع التعليم:</strong> ${safe(education)}<br>
+    <strong style="color:var(--gold2)">الصف الدراسي:</strong> ${safe(value('schoolGrade'))}<br>
+    <strong style="color:var(--gold2)">المحافظة:</strong> ${safe(value('governorate'))}<br>
+    <strong style="color:var(--gold2)">المركز:</strong> ${safe(value('center'))}<br>
+    <strong style="color:var(--gold2)">القرية أو المنطقة:</strong> ${safe(selectedVillage)}<br>
+    <strong style="color:var(--green)">الصورة الشخصية:</strong> تم تأكيد مطابقة الوجه ✓
+  `;
 }
 
 function safe(str){
   return String(str).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+
+/* تحويل رقم الهاتف المصري إلى الصيغة الدولية */
+function normalizeEgyptPhone(raw){
+  let p=String(raw||'').replace(/[\s().-]/g,'');
+  if(/^01[0125][0-9]{8}$/.test(p))return '+20'+p.slice(1);
+  if(/^201[0125][0-9]{8}$/.test(p))return '+'+p;
+  if(/^\+201[0125][0-9]{8}$/.test(p))return p;
+  throw new Error('رقم الهاتف المصري غير صحيح. اكتب رقمًا يبدأ بـ 010 أو 011 أو 012 أو 015.');
+}
+
+function authErrorMessage(error){
+  const m=(error&&error.message)||'';
+  if(/already registered|already been registered|user already exists/i.test(m)){
+    return 'رقم الهاتف مسجل بالفعل. استخدم صفحة تسجيل الدخول.';
+  }
+  if(/password/i.test(m))return 'كلمة المرور غير مقبولة. استخدم 6 أحرف أو أرقام على الأقل.';
+  if(/phone.*disabled|phone provider.*disabled/i.test(m))return 'تسجيل الهاتف غير مفعّل في إعدادات Supabase.';
+  return m||'حدث خطأ أثناء إنشاء الحساب. حاول مرة أخرى.';
 }
 
 /* نوع التعليم والصف */
@@ -383,8 +462,6 @@ governorates.forEach(name=>governorateSelect.add(new Option(name,name)));
 
 /* مراكز محافظة المنوفية */
 const centers={'المنوفية':['شبين الكوم','قويسنا','منوف','أشمون','الباجور','تلا','بركة السبع','السادات','الشهداء','سرس الليان']};
-
-/* المناطق الأساسية والمتداولة في مركز بركة السبع */
 const barakaLocations=['مدينة بركة السبع','أبو مشهور','الشهيد فكري','الروضة','كفر الحمادية','جنزور','منشأة الرافعي','شنتنا الحجر','ميت أم صالح','الغوري','ميت فارس','كفر مليج','طوخ طنبشا','كفر عليم','طنبشا','الدبايبة','هورين','كفر هورين','الحلامشة','كفر هلال','كفر الشيخ طعيمة','كفر نفرة البحري','عزبة الدبايبة','زوير','سلكا','عزبة سلكا','ميت الموز','عزبة ميت الموز','ميت عافية','كفر سبع الرجال'];
 
 governorateSelect.addEventListener('change',()=>{
@@ -392,14 +469,17 @@ governorateSelect.addEventListener('change',()=>{
   center.innerHTML='';
   const governorate=governorateSelect.value;
   const list=centers[governorate];
+
   if(list){
-    center.disabled=false;center.add(new Option('اختر المركز',''));
+    center.disabled=false;
+    center.add(new Option('اختر المركز',''));
     list.forEach(name=>center.add(new Option(name,name)));
   }else if(governorate){
-    center.disabled=false;center.add(new Option('اكتب المركز في الحقل التالي',''));
-    center.removeAttribute('required');
+    center.disabled=false;
+    center.add(new Option('اكتب المركز في الحقل التالي',''));
   }else{
-    center.disabled=true;center.add(new Option('اختر المحافظة أولًا',''));
+    center.disabled=true;
+    center.add(new Option('اختر المحافظة أولًا',''));
   }
   updateVillageOptions();
 });
@@ -410,10 +490,15 @@ function updateVillageOptions(){
   const selectedCenter=value('center');
   village.innerHTML='';
   village.add(new Option('اختر القرية أو المنطقة',''));
-  if(selectedCenter==='بركة السبع')barakaLocations.forEach(name=>village.add(new Option(name,name)));
+  if(selectedCenter==='بركة السبع'){
+    barakaLocations.forEach(name=>village.add(new Option(name,name)));
+  }
   village.add(new Option('أخرى - اكتب الاسم بنفسك','أخرى'));
-  village.value='';other.value='';other.classList.add('hidden');
+  village.value='';
+  other.value='';
+  other.classList.add('hidden');
 }
+
 document.getElementById('center').addEventListener('change',updateVillageOptions);
 document.getElementById('village').addEventListener('change',()=>{
   const other=document.getElementById('villageOther');
@@ -422,7 +507,7 @@ document.getElementById('village').addEventListener('change',()=>{
   if(isOther)other.focus();else other.value='';
 });
 
-/* الصورة الشخصية والكاميرا */
+/* الصورة الشخصية */
 const photoInput=document.getElementById('profilePhoto');
 const photoPreview=document.getElementById('photoPreview');
 const photoConfirmed=document.getElementById('photoConfirmed');
@@ -433,23 +518,37 @@ const cameraStatus=document.getElementById('cameraStatus');
 const captureFaceBtn=document.getElementById('captureFaceBtn');
 
 photoInput.addEventListener('change',()=>{
-  const file=photoInput.files[0];if(!file)return;
-  if(!file.type.startsWith('image/')){showToast('الملف المختار ليس صورة.');photoInput.value='';return}
-  if(file.size>5*1024*1024){showToast('حجم الصورة يجب ألا يتجاوز 5 ميجابايت.');photoInput.value='';return}
+  const file=photoInput.files[0];
+  if(!file)return;
+
+  if(!file.type.startsWith('image/')){
+    showToast('الملف المختار ليس صورة.');
+    photoInput.value='';
+    return;
+  }
+  if(file.size>5*1024*1024){
+    showToast('حجم الصورة يجب ألا يتجاوز 5 ميجابايت.');
+    photoInput.value='';
+    return;
+  }
+
   const reader=new FileReader();
   reader.onload=event=>{
-    photoData=event.target.result;photoPreview.src=photoData;
+    photoData=event.target.result;
+    photoPreview.src=photoData;
     photoPreview.style.display='block';
     document.getElementById('photoPlaceholder').style.display='none';
-    photoMatchVerified=false;openCameraVerify.disabled=false;
+    photoMatchVerified=false;
+    openCameraVerify.disabled=false;
     photoConfirmed.style.display='none';
   };
   reader.readAsDataURL(file);
 });
 
+/* فحص تطابق الصورة مع الوجه أمام الكاميرا */
 async function loadFaceModels(){
   if(faceModelsReady)return;
-  if(!window.faceapi)throw new Error('تعذر تحميل مكتبة فحص الوجه. تحقق من اتصال الإنترنت ثم حاول مرة أخرى.');
+  if(!window.faceapi)throw new Error('تعذر تحميل مكتبة فحص الوجه.');
   const modelUrl='https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/weights';
   await Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri(modelUrl),
@@ -460,35 +559,52 @@ async function loadFaceModels(){
 }
 
 function stopCamera(){
-  if(cameraStream){cameraStream.getTracks().forEach(track=>track.stop());cameraStream=null}
+  if(cameraStream){
+    cameraStream.getTracks().forEach(track=>track.stop());
+    cameraStream=null;
+  }
   faceCamera.srcObject=null;
 }
+
 function closeCamera(){
-  stopCamera();cameraModal.classList.remove('open');
-  captureFaceBtn.disabled=true;openCameraVerify.disabled=false;
+  stopCamera();
+  cameraModal.classList.remove('open');
+  captureFaceBtn.disabled=true;
+  openCameraVerify.disabled=false;
 }
+
 document.getElementById('closeCameraBtn').addEventListener('click',closeCamera);
 
 openCameraVerify.addEventListener('click',async()=>{
   if(!photoData){showToast('ارفع صورتك الشخصية أولًا.');return}
-  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){showToast('الكاميرا غير متاحة. افتح الموقع عبر HTTPS ومن متصفح يسمح بالكاميرا.');return}
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    showToast('الكاميرا غير متاحة. افتح الموقع عبر HTTPS واسمح باستخدام الكاميرا.');
+    return;
+  }
+
   cameraModal.classList.add('open');
   cameraStatus.textContent='جارٍ تحميل نظام فحص الوجه...';
   openCameraVerify.disabled=true;
+
   try{
     await loadFaceModels();
-    cameraStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:'user',width:{ideal:640},height:{ideal:480}}});
-    faceCamera.srcObject=cameraStream;
-    await new Promise((resolve,reject)=>{
-      faceCamera.onloadedmetadata=()=>resolve();
-      faceCamera.onerror=()=>reject(new Error('تعذر تشغيل بث الكاميرا.'));
+    cameraStream=await navigator.mediaDevices.getUserMedia({
+      audio:false,
+      video:{facingMode:'user',width:{ideal:640},height:{ideal:480}}
     });
+    faceCamera.srcObject=cameraStream;
+
+    await new Promise((resolve,reject)=>{
+      faceCamera.onloadedmetadata=resolve;
+      faceCamera.onerror=()=>reject(new Error('تعذر تشغيل الكاميرا.'));
+    });
+
     await faceCamera.play();
     cameraStatus.textContent='ضع وجهك داخل الإطار، ثم اضغط التقاط وفحص الوجه.';
     captureFaceBtn.disabled=false;
   }catch(error){
     stopCamera();
-    cameraStatus.textContent='تعذر تشغيل التحقق: '+(error.message||'خطأ غير معروف')+' — النافذة ستظل مفتوحة. راجع الرسالة وحاول مرة أخرى بعد السماح بالكاميرا.';
+    cameraStatus.textContent='تعذر تشغيل التحقق: '+(error.message||'خطأ غير معروف')+'؛ اسمح للمتصفح باستخدام الكاميرا ثم حاول مرة أخرى.';
     captureFaceBtn.disabled=true;
     openCameraVerify.disabled=false;
   }
@@ -496,65 +612,260 @@ openCameraVerify.addEventListener('click',async()=>{
 
 captureFaceBtn.addEventListener('click',async()=>{
   captureFaceBtn.disabled=true;
-  cameraStatus.textContent='جارٍ فحص الصورة المرفوعة ومقارنتها بوجهك أمام الكاميرا...';
+  cameraStatus.textContent='جارٍ مقارنة الوجه بالصورة الشخصية...';
+
   try{
     const options=new faceapi.TinyFaceDetectorOptions({inputSize:320,scoreThreshold:0.5});
     const uploadedFaces=await faceapi.detectAllFaces(photoPreview,options).withFaceLandmarks().withFaceDescriptors();
-    if(uploadedFaces.length!==1)throw new Error(uploadedFaces.length===0?'لم يتم العثور على وجه واضح في الصورة المرفوعة. اختر صورة يظهر فيها وجهك بوضوح.':'الصورة المرفوعة تحتوي على أكثر من وجه. اختر صورة لك وحدك.');
+
+    if(uploadedFaces.length!==1){
+      throw new Error(uploadedFaces.length===0?'لم يتم العثور على وجه واضح في الصورة المرفوعة.':'الصورة المرفوعة تحتوي على أكثر من وجه.');
+    }
+
     const liveFaces=await faceapi.detectAllFaces(faceCamera,options).withFaceLandmarks().withFaceDescriptors();
-    if(liveFaces.length!==1)throw new Error(liveFaces.length===0?'لم يتم اكتشاف وجه واضح أمام الكاميرا. اضبط الإضاءة وقرّب وجهك من الإطار.':'يجب أن يظهر وجه واحد فقط أمام الكاميرا.');
+
+    if(liveFaces.length!==1){
+      throw new Error(liveFaces.length===0?'لم يتم اكتشاف وجه واضح أمام الكاميرا.':'يجب أن يظهر وجه واحد فقط أمام الكاميرا.');
+    }
+
     const distance=faceapi.euclideanDistance(uploadedFaces[0].descriptor,liveFaces[0].descriptor);
-    if(distance>0.52)throw new Error('الوجه أمام الكاميرا لا يطابق الصورة المرفوعة. حاول مرة أخرى أو ارفع صورة أوضح.');
-    photoMatchVerified=true;photoConfirmed.style.display='block';
-    showToast('تمت مطابقة الوجه بنجاح.','success');closeCamera();
+
+    if(distance>0.52){
+      throw new Error('الوجه أمام الكاميرا لا يطابق الصورة المرفوعة. حاول مرة أخرى.');
+    }
+
+    photoMatchVerified=true;
+    photoConfirmed.style.display='block';
+    showToast('تمت مطابقة الوجه بنجاح.','success');
+    closeCamera();
+
   }catch(error){
     cameraStatus.textContent=error.message||'لم تنجح مطابقة الوجه. حاول مرة أخرى.';
     captureFaceBtn.disabled=false;
   }
 });
 
-/* إتمام إنشاء الحساب - معاينة محلية */
-document.getElementById('createAccount').addEventListener('click',()=>{
+/* إنشاء الحساب وحفظ بيانات الطالب والصورة في Supabase */
+let accountCreationBusy=false;
+
+async function createStudentAccount(){
+  if(accountCreationBusy)return;
   if(!validateStage(7))return;
-  const id='ELG-'+Math.random().toString(36).slice(2,10).toUpperCase();
-  document.getElementById('finalPhoto').src=photoData;
-  document.getElementById('finalName').textContent=value('studentName');
-  document.getElementById('finalId').textContent=id;
-  const qr=document.getElementById('qrcode');qr.innerHTML='';
-  if(window.QRCode)new QRCode(qr,{text:id,width:120,height:120,colorDark:'#15121b',colorLight:'#ffffff'});
-  else qr.textContent=id;
-  document.getElementById('wizard').style.display='none';
-  document.getElementById('successView').style.display='block';
-  document.getElementById('loginLink').style.display='none';
-  showToast('تم تجهيز معاينة ملفك الشخصي بنجاح.','success');
+
+  const button=document.getElementById('createAccount');
+  accountCreationBusy=true;
+  button.disabled=true;
+  button.textContent='جارٍ حفظ بياناتك...';
+
+  try{
+    const phone=normalizeEgyptPhone(value('studentPhone'));
+    const parentPhone=normalizeEgyptPhone(value('parentPhone'));
+    const education=document.querySelector('input[name="educationType"]:checked').value;
+    const village=value('village')==='أخرى'?value('villageOther'):value('village');
+    const photoFile=photoInput.files[0];
+
+    if(!photoFile)throw new Error('الصورة الشخصية غير موجودة. اختر الصورة مرة أخرى.');
+    if(!photoMatchVerified)throw new Error('يجب تأكيد مطابقة الصورة بالكاميرا قبل إنشاء الحساب.');
+
+    /* إنشاء حساب Auth برقم الهاتف وكلمة المرور */
+    const {data,error}=await supabaseClient.auth.signUp({
+      phone:phone,
+      password:value('password'),
+      options:{
+        data:{
+          full_name:value('studentName'),
+          parent_name:value('parentName'),
+          parent_phone:parentPhone,
+          education_type:education,
+          school_grade:value('schoolGrade'),
+          governorate:value('governorate'),
+          education_center:value('center'),
+          village:village
+        }
+      }
+    });
+
+    if(error)throw error;
+    if(!data.user)throw new Error('لم يتم إنشاء حساب المستخدم. حاول مرة أخرى.');
+
+    /*
+      يجب أن تكون جلسة المستخدم موجودة.
+      إذا لم توجد، فهذا يعني غالبًا أن تأكيد الهاتف ما زال مطلوبًا.
+    */
+    if(!data.session){
+      throw new Error('طلب التسجيل وصل إلى Supabase، لكن لم يتم تسجيل الدخول تلقائيًا. يجب مراجعة إعداد Phone Confirmations في إعدادات المشروع وإيقاف تأكيد الهاتف إذا كان المطلوب التسجيل دون رمز SMS. لا تعِد التسجيل بنفس الرقم قبل مراجعة الحساب.');
+    }
+
+    const userId=data.user.id;
+    const extension=(photoFile.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
+    const photoPath=userId+'/profile.'+extension;
+
+    /* رفع نفس الصورة التي اختارها الطالب وأكدها بالكاميرا */
+    const {error:uploadError}=await supabaseClient.storage
+      .from('student-avatars')
+      .upload(photoPath,photoFile,{
+        upsert:true,
+        contentType:photoFile.type||'image/jpeg'
+      });
+
+    if(uploadError){
+      throw new Error('تم إنشاء الحساب، لكن تعذر رفع الصورة إلى التخزين: '+uploadError.message+'. لا تنشئ حسابًا آخر بنفس الرقم.');
+    }
+
+    const {data:publicData}=supabaseClient.storage
+      .from('student-avatars')
+      .getPublicUrl(photoPath);
+
+    /* تحديث الملف الشخصي بالصورة ومسارها وتاريخ تأكيدها */
+    const {error:updateError}=await supabaseClient
+      .from('profiles')
+      .update({
+        avatar_url:publicData.publicUrl,
+        photo_path:photoPath,
+        face_match_checked_at:new Date().toISOString()
+      })
+      .eq('id',userId);
+
+    if(updateError){
+      throw new Error('تم إنشاء الحساب ورفع الصورة، لكن تعذر تحديث الملف الشخصي: '+updateError.message+'. لا تنشئ حسابًا آخر بنفس الرقم.');
+    }
+
+    /* قراءة رقم الطالب الحقيقي من جدول profiles */
+    const {data:profile,error:profileError}=await supabaseClient
+      .from('profiles')
+      .select('user_code,full_name,avatar_url')
+      .eq('id',userId)
+      .single();
+
+    if(profileError)throw new Error('تعذر قراءة رقم الطالب من قاعدة البيانات: '+profileError.message);
+    if(!profile||!profile.user_code)throw new Error('الحساب محفوظ لكن رقم الطالب لم يظهر من قاعدة البيانات.');
+
+    /* عرض بيانات الحساب المحفوظة */
+    document.getElementById('finalPhoto').src=profile.avatar_url||photoData;
+    document.getElementById('finalName').textContent=profile.full_name||value('studentName');
+    document.getElementById('finalId').textContent=profile.user_code;
+
+    const qr=document.getElementById('qrcode');
+    qr.innerHTML='';
+    if(window.QRCode){
+      new QRCode(qr,{
+        text:profile.user_code,
+        width:120,
+        height:120,
+        colorDark:'#15121b',
+        colorLight:'#ffffff'
+      });
+    }else{
+      qr.textContent=profile.user_code;
+    }
+
+    document.getElementById('wizard').style.display='none';
+    document.getElementById('successView').style.display='block';
+    document.getElementById('loginLink').style.display='none';
+
+    showToast('تم إنشاء الحساب وحفظ بياناتك وصورتك بنجاح.','success');
+
+  }catch(error){
+    showToast(authErrorMessage(error),'error');
+  }finally{
+    accountCreationBusy=false;
+    button.disabled=false;
+    button.textContent='إنشاء حسابي الآن';
+  }
+}
+
+document.getElementById('createAccount').addEventListener('click',createStudentAccount);
+
+/* فيديو الترحيب: 89.mp4 ثم الانتقال بعد انتهائه */
+const videoGate=document.getElementById('videoGate');
+const welcomeVideo=document.getElementById('welcomeVideo');
+const videoGateError=document.getElementById('videoGateError');
+const enterPlatformButton=document.getElementById('enterPlatformButton');
+
+function startWelcomeVideo(){
+  videoGate.classList.add('active');
+  document.body.classList.add('video-locked');
+  videoGateError.style.display='none';
+
+  welcomeVideo.src='./89.mp4';
+  welcomeVideo.load();
+
+  const playPromise=welcomeVideo.play();
+
+  if(playPromise&&typeof playPromise.catch==='function'){
+    playPromise.catch(()=>{
+      videoGateError.style.display='block';
+    });
+  }
+}
+
+enterPlatformButton.addEventListener('click',startWelcomeVideo);
+
+document.getElementById('retryVideo').addEventListener('click',()=>{
+  videoGateError.style.display='none';
+  welcomeVideo.currentTime=0;
+  welcomeVideo.play().catch(()=>{
+    videoGateError.style.display='block';
+  });
 });
 
-/* القوائم المخصصة: بحث واختيار وتحديث تلقائي للقيم */
+/* الانتقال لا يحدث إلا بعد انتهاء الفيديو بالكامل */
+welcomeVideo.addEventListener('ended',()=>{
+  window.location.replace('platform.html');
+});
+
+/* منع قائمة الضغط المطول ومحاولات التخطي المعتادة */
+welcomeVideo.addEventListener('contextmenu',event=>event.preventDefault());
+
+welcomeVideo.addEventListener('seeking',()=>{
+  if(Number.isFinite(welcomeVideo.duration)&&welcomeVideo.currentTime<welcomeVideo.duration-0.5){
+    welcomeVideo.currentTime=0;
+  }
+});
+
+document.addEventListener('keydown',event=>{
+  if(!videoGate.classList.contains('active'))return;
+  if(['Escape',' ','ArrowLeft','ArrowRight','Home','End'].includes(event.key)){
+    event.preventDefault();
+  }
+});
+
+/* القوائم المخصصة مع البحث */
 function setupCustomSelect(select){
   if(select.dataset.customReady==='1')return;
   select.dataset.customReady='1';
   select.classList.add('select-native-hidden');
+
   const wrapper=document.createElement('div');
   wrapper.className='custom-select';
   select.parentNode.insertBefore(wrapper,select);
   wrapper.appendChild(select);
 
   const trigger=document.createElement('button');
-  trigger.type='button';trigger.className='custom-select-trigger';
+  trigger.type='button';
+  trigger.className='custom-select-trigger';
   trigger.setAttribute('aria-haspopup','listbox');
-  const valueLabel=document.createElement('span');
-  valueLabel.className='custom-select-value';trigger.appendChild(valueLabel);
 
-  const panel=document.createElement('div');panel.className='custom-select-panel';
+  const valueLabel=document.createElement('span');
+  valueLabel.className='custom-select-value';
+  trigger.appendChild(valueLabel);
+
+  const panel=document.createElement('div');
+  panel.className='custom-select-panel';
+
   const search=document.createElement('input');
-  search.type='search';search.className='custom-select-search';
-  search.placeholder='ابحث في الاختيارات...';search.autocomplete='off';
+  search.type='search';
+  search.className='custom-select-search';
+  search.placeholder='ابحث في الاختيارات...';
+  search.autocomplete='off';
   search.setAttribute('aria-label','ابحث في الاختيارات');
 
   const optionsBox=document.createElement('div');
   optionsBox.className='custom-select-options';
   optionsBox.setAttribute('role','listbox');
-  panel.append(search,optionsBox);wrapper.append(trigger,panel);
+
+  panel.append(search,optionsBox);
+  wrapper.append(trigger,panel);
 
   function refresh(){
     const selected=select.options[select.selectedIndex];
@@ -562,27 +873,37 @@ function setupCustomSelect(select){
     valueLabel.classList.toggle('placeholder',!select.value);
     trigger.disabled=select.disabled;
     trigger.setAttribute('aria-expanded',wrapper.classList.contains('open')?'true':'false');
+
     const query=search.value.trim().toLocaleLowerCase('ar');
-    optionsBox.innerHTML='';let count=0;
+    optionsBox.innerHTML='';
+    let count=0;
 
     [...select.options].forEach(option=>{
       if(option.disabled)return;
       const label=option.textContent.trim();
       if(query&&!label.toLocaleLowerCase('ar').includes(query))return;
+
       const item=document.createElement('button');
       item.type='button';
       item.className='custom-select-option'+(option.value===select.value?' selected':'');
-      item.textContent=label;item.setAttribute('role','option');
+      item.textContent=label;
+      item.setAttribute('role','option');
       item.setAttribute('aria-selected',option.value===select.value?'true':'false');
+
       item.addEventListener('click',()=>{
         select.value=option.value;
         select.dispatchEvent(new Event('change',{bubbles:true}));
-        refresh();wrapper.classList.remove('open');
+        refresh();
+        wrapper.classList.remove('open');
         trigger.setAttribute('aria-expanded','false');
-        search.value='';optionsBox.scrollTop=0;
+        search.value='';
+        optionsBox.scrollTop=0;
       });
-      optionsBox.appendChild(item);count++;
+
+      optionsBox.appendChild(item);
+      count++;
     });
+
     if(!count){
       const empty=document.createElement('div');
       empty.className='custom-select-empty';
@@ -593,19 +914,28 @@ function setupCustomSelect(select){
 
   trigger.addEventListener('click',()=>{
     if(select.disabled)return;
+
     const willOpen=!wrapper.classList.contains('open');
+
     document.querySelectorAll('.custom-select.open').forEach(item=>{
       item.classList.remove('open');
       const button=item.querySelector('.custom-select-trigger');
       if(button)button.setAttribute('aria-expanded','false');
     });
+
     wrapper.classList.toggle('open',willOpen);
     trigger.setAttribute('aria-expanded',willOpen?'true':'false');
-    if(willOpen){search.value='';refresh();setTimeout(()=>search.focus(),30)}
+
+    if(willOpen){
+      search.value='';
+      refresh();
+      setTimeout(()=>search.focus(),30);
+    }
   });
 
   search.addEventListener('input',refresh);
   select.addEventListener('change',refresh);
+
   const observer=new MutationObserver(refresh);
   observer.observe(select,{childList:true,subtree:true,attributes:true,characterData:true});
 
@@ -615,8 +945,10 @@ function setupCustomSelect(select){
       trigger.setAttribute('aria-expanded','false');
     }
   });
+
   refresh();
 }
+
 document.querySelectorAll('.field select').forEach(setupCustomSelect);
 renderStage();
 </script>
