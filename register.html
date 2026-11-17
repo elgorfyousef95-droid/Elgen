@@ -549,7 +549,7 @@ photoInput.addEventListener('change',()=>{
 async function loadFaceModels(){
   if(faceModelsReady)return;
   if(!window.faceapi)throw new Error('تعذر تحميل مكتبة فحص الوجه.');
-  const modelUrl='https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/weights';
+  const modelUrl='https://cdn.jsdelivr.net/gh/cgarciagl/face-api.js@0.22.2/weights';
   await Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri(modelUrl),
     faceapi.nets.faceLandmark68Net.loadFromUri(modelUrl),
