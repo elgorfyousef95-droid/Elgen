@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -167,9 +168,43 @@ body{
   color:var(--gold2);font-size:12px;font-weight:800;cursor:pointer
 }
 #profilePhoto{display:none}
-.confirm-photo{display:none;align-items:center;gap:9px;margin-top:15px;font-size:12px;color:#f4e5c9;cursor:pointer}
-.confirm-photo input{accent-color:var(--green);width:18px;height:18px}
+.camera-confirm-btn{margin-top:15px;min-width:220px}
 .photo-confirmed{display:none;color:var(--green);font-size:13px;font-weight:900;margin-top:11px}
+.camera-modal{
+  position:fixed;inset:0;z-index:30;display:none;
+  align-items:center;justify-content:center;padding:16px;
+  background:rgba(5,5,12,.88);backdrop-filter:blur(12px)
+}
+.camera-modal.open{display:flex}
+.camera-panel{
+  width:min(460px,100%);padding:18px;
+  border:1px solid var(--line);border-radius:20px;
+  background:#171522;box-shadow:0 20px 70px #000b;text-align:center
+}
+.camera-panel h3{margin:0 0 7px;font-size:18px;color:var(--gold2)}
+.camera-panel p{font-size:12px;line-height:1.8;color:var(--muted);margin:0 0 13px}
+.camera-frame{
+  position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;
+  border-radius:15px;background:#080811;border:1px solid var(--line)
+}
+.camera-frame video{
+  width:100%;height:100%;object-fit:cover;transform:scaleX(-1)
+}
+.camera-guide{
+  position:absolute;inset:12% 23%;
+  border:2px solid rgba(255,217,139,.9);
+  border-radius:48% 48% 44% 44%;
+  box-shadow:0 0 0 999px rgba(0,0,0,.14);pointer-events:none
+}
+.camera-status{min-height:25px;margin:12px 0;color:#f4d9a7;font-size:12px}
+.camera-actions{display:flex;gap:9px}
+.camera-actions .btn{flex:1}
+.camera-actions .btn-secondary{min-width:100px}
+@media(max-width:420px){
+  .camera-panel{padding:14px}
+  .camera-actions{flex-direction:column}
+  .camera-actions .btn-secondary{width:100%}
+}
 .terms-box{
   max-height:210px;overflow:auto;padding:14px;
   border:1px solid var(--line);border-radius:13px;
@@ -193,12 +228,11 @@ body{
 }
 .final-photo{width:95px;height:95px;object-fit:cover;border-radius:50%;border:3px solid var(--gold);display:block;margin:0 auto 11px}
 .final-name{font-size:18px;font-weight:900}
-.verified-badge{width:21px;height:21px;vertical-align:middle;margin-right:4px;display:inline-block}
 .profile-id{font-size:12px;color:var(--gold2);margin-top:5px;direction:ltr}
 #qrcode{display:flex;justify-content:center;margin:14px auto}
 #qrcode img,#qrcode canvas{border:7px solid white;border-radius:8px}
 .toast{
-  position:fixed;z-index:10;bottom:22px;left:50%;
+  position:fixed;z-index:40;bottom:22px;left:50%;
   transform:translate(-50%,20px);opacity:0;pointer-events:none;
   width:min(90%,420px);padding:14px 17px;border-radius:14px;
   border:1px solid var(--line);background:#211e2a;
@@ -359,7 +393,7 @@ body{
 
     <section class="stage" data-stage="5">
       <h3 class="stage-title">الصورة الشخصية وتأكيدها</h3>
-      <p class="stage-desc">ارفع صورتك الشخصية، راجع المعاينة، ثم أكد أنها صورتك.</p>
+      <p class="stage-desc">ارفع صورتك الشخصية، ثم أكد مطابقة وجهك بالكاميرا.</p>
       <div class="photo-area">
         <img id="photoPreview" class="photo-preview" alt="معاينة الصورة الشخصية">
         <div id="photoPlaceholder" style="font-size:42px;margin-bottom:8px">◎</div>
@@ -367,13 +401,10 @@ body{
         <div style="font-size:11px;color:var(--muted);margin-bottom:15px">اختر صورة واضحة لك</div>
         <label for="profilePhoto" class="upload-label">اختيار الصورة</label>
         <input id="profilePhoto" type="file" accept="image/*">
-        <label class="confirm-photo" id="confirmPhotoLabel">
-          <input type="checkbox" id="confirmPhoto">
-          أؤكد أن هذه صورتي الشخصية
-        </label>
-        <div class="photo-confirmed" id="photoConfirmed">✓ تم تأكيد الصورة الشخصية</div>
+        <button class="btn btn-primary camera-confirm-btn" id="openCameraVerify" type="button" disabled>تأكيد الصورة الشخصية بالكاميرا</button>
+        <div class="photo-confirmed" id="photoConfirmed">✓ تمت مطابقة الوجه بالكاميرا</div>
       </div>
-      <div class="note">تأكيد الصورة هنا إقرار منك بأنها صورتك الشخصية، وليس تحققًا آليًا من الهوية أو مطابقة للوجه.</div>
+      <div class="note">بعد رفع الصورة اضغط «تأكيد الصورة الشخصية بالكاميرا». ستفتح الكاميرا الأمامية، ولن تنتقل للمرحلة التالية إلا بعد نجاح مقارنة الوجه بالصورة المرفوعة.</div>
     </section>
 
     <section class="stage" data-stage="6">
@@ -420,10 +451,7 @@ body{
       <img id="finalPhoto" class="final-photo" alt="الصورة الشخصية">
       <div class="final-name">
         <span id="finalName"></span>
-        <svg class="verified-badge" viewBox="0 0 24 24" aria-label="تم تأكيد الصورة" title="تم تأكيد الصورة">
-          <path fill="#2699ed" d="M12 1.8 15 3l3.2-.1 1.3 2.9 2.5 2-.8 3.1.8 3.1-2.5 2-1.3 2.9L15 18l-3 1.2L9 18l-3.2.1-1.3-2.9-2.5-2 .8-3.1L2 7l2.5-2 1.3-2.9L9 3z"/>
-          <path d="m7.5 10.8 3 3 6-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <span style="display:inline-block;color:var(--green);font-size:11px;margin-right:6px">تم فحص تطابق الوجه بالكاميرا</span>
       </div>
       <div class="profile-id" id="finalId"></div>
       <div id="qrcode"></div>
@@ -441,9 +469,27 @@ body{
 </div>
 </main>
 
+<div class="camera-modal" id="cameraModal" role="dialog" aria-modal="true" aria-labelledby="cameraTitle">
+  <div class="camera-panel">
+    <h3 id="cameraTitle">تأكيد الصورة الشخصية</h3>
+    <p>وجّه وجهك داخل الإطار، وانظر مباشرة إلى الكاميرا، ثم اضغط التقاط وفحص.</p>
+    <div class="camera-frame">
+      <video id="faceCamera" autoplay muted playsinline></video>
+      <div class="camera-guide"></div>
+    </div>
+    <div class="camera-status" id="cameraStatus">جارٍ تجهيز الكاميرا...</div>
+    <div class="camera-actions">
+      <button class="btn btn-primary" id="captureFaceBtn" type="button" disabled>التقاط وفحص الوجه</button>
+      <button class="btn btn-secondary" id="closeCameraBtn" type="button">إلغاء</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <script>
 const stages=[...document.querySelectorAll('.stage')];
 const dots=[...document.querySelectorAll('.step-dot')];
@@ -456,6 +502,9 @@ const toast=document.getElementById('toast');
 
 let currentStage=0;
 let photoData='';
+let photoMatchVerified=false;
+let cameraStream=null;
+let faceModelsReady=false;
 let toastTimer;
 
 function showToast(message,type='error'){
@@ -529,8 +578,8 @@ function validateStage(index){
       showToast('اختر صورتك الشخصية أولًا.');
       return false;
     }
-    if(!document.getElementById('confirmPhoto').checked){
-      showToast('يجب تأكيد أن الصورة هي صورتك الشخصية.');
+    if(!photoMatchVerified){
+      showToast('يجب تأكيد الصورة من خلال الكاميرا أولًا.');
       return false;
     }
   }
@@ -571,7 +620,7 @@ function buildReview(){
     <strong style="color:var(--gold2)">المحافظة:</strong> ${safe(value('governorate'))}<br>
     <strong style="color:var(--gold2)">المركز:</strong> ${safe(value('center'))}<br>
     <strong style="color:var(--gold2)">القرية أو المنطقة:</strong> ${safe(selectedVillage)}<br>
-    <strong style="color:var(--green)">الصورة الشخصية:</strong> تم تأكيدها ✓
+    <strong style="color:var(--green)">الصورة الشخصية:</strong> تمت مطابقة الوجه بالكاميرا ✓
   `;
 }
 
@@ -713,12 +762,15 @@ document.getElementById('village').addEventListener('change',()=>{
   else other.value='';
 });
 
-/* الصورة الشخصية */
+/* الصورة الشخصية والكاميرا */
 const photoInput=document.getElementById('profilePhoto');
 const photoPreview=document.getElementById('photoPreview');
-const confirmPhoto=document.getElementById('confirmPhoto');
-const confirmPhotoLabel=document.getElementById('confirmPhotoLabel');
 const photoConfirmed=document.getElementById('photoConfirmed');
+const openCameraVerify=document.getElementById('openCameraVerify');
+const cameraModal=document.getElementById('cameraModal');
+const faceCamera=document.getElementById('faceCamera');
+const cameraStatus=document.getElementById('cameraStatus');
+const captureFaceBtn=document.getElementById('captureFaceBtn');
 
 photoInput.addEventListener('change',()=>{
   const file=photoInput.files[0];
@@ -742,15 +794,153 @@ photoInput.addEventListener('change',()=>{
     photoPreview.src=photoData;
     photoPreview.style.display='block';
     document.getElementById('photoPlaceholder').style.display='none';
-    confirmPhotoLabel.style.display='flex';
-    confirmPhoto.checked=false;
+
+    /* تغيير الصورة يلغي نتيجة المطابقة السابقة */
+    photoMatchVerified=false;
+    openCameraVerify.disabled=false;
     photoConfirmed.style.display='none';
   };
   reader.readAsDataURL(file);
 });
 
-confirmPhoto.addEventListener('change',()=>{
-  photoConfirmed.style.display=confirmPhoto.checked?'block':'none';
+async function loadFaceModels(){
+  if(faceModelsReady)return;
+
+  if(!window.faceapi){
+    throw new Error('تعذر تحميل مكتبة فحص الوجه. تحقق من اتصال الإنترنت ثم حاول مرة أخرى.');
+  }
+
+  const modelUrl='https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/weights';
+
+  await Promise.all([
+    faceapi.nets.tinyFaceDetector.loadFromUri(modelUrl),
+    faceapi.nets.faceLandmark68Net.loadFromUri(modelUrl),
+    faceapi.nets.faceRecognitionNet.loadFromUri(modelUrl)
+  ]);
+
+  faceModelsReady=true;
+}
+
+function stopCamera(){
+  if(cameraStream){
+    cameraStream.getTracks().forEach(track=>track.stop());
+    cameraStream=null;
+  }
+  faceCamera.srcObject=null;
+}
+
+function closeCamera(){
+  stopCamera();
+  cameraModal.classList.remove('open');
+  captureFaceBtn.disabled=true;
+  openCameraVerify.disabled=false;
+}
+
+document.getElementById('closeCameraBtn').addEventListener('click',closeCamera);
+
+openCameraVerify.addEventListener('click',async()=>{
+  if(!photoData){
+    showToast('ارفع الصورة الشخصية أولًا.');
+    return;
+  }
+
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    showToast('الكاميرا غير متاحة. افتح الموقع عبر HTTPS ومن متصفح يسمح بالكاميرا.');
+    return;
+  }
+
+  cameraModal.classList.add('open');
+  cameraStatus.textContent='جارٍ تحميل نظام فحص الوجه...';
+  openCameraVerify.disabled=true;
+
+  try{
+    await loadFaceModels();
+
+    cameraStream=await navigator.mediaDevices.getUserMedia({
+      audio:false,
+      video:{
+        facingMode:'user',
+        width:{ideal:640},
+        height:{ideal:480}
+      }
+    });
+
+    faceCamera.srcObject=cameraStream;
+
+    await new Promise((resolve,reject)=>{
+      faceCamera.onloadedmetadata=()=>resolve();
+      faceCamera.onerror=()=>reject(new Error('تعذر تشغيل بث الكاميرا.'));
+    });
+
+    await faceCamera.play();
+
+    cameraStatus.textContent='ضع وجهك داخل الإطار، ثم اضغط التقاط وفحص الوجه.';
+    captureFaceBtn.disabled=false;
+
+  }catch(error){
+    closeCamera();
+    showToast(error.message||'تعذر فتح الكاميرا أو تحميل نظام فحص الوجه.');
+  }
+});
+
+captureFaceBtn.addEventListener('click',async()=>{
+  captureFaceBtn.disabled=true;
+  cameraStatus.textContent='جارٍ فحص الصورة المرفوعة ومقارنتها بوجهك أمام الكاميرا...';
+
+  try{
+    const options=new faceapi.TinyFaceDetectorOptions({
+      inputSize:320,
+      scoreThreshold:0.5
+    });
+
+    /* فحص الصورة الشخصية المرفوعة */
+    const uploadedFaces=await faceapi
+      .detectAllFaces(photoPreview,options)
+      .withFaceLandmarks()
+      .withFaceDescriptors();
+
+    if(uploadedFaces.length!==1){
+      throw new Error(
+        uploadedFaces.length===0
+        ?'لم يتم العثور على وجه واضح في الصورة المرفوعة. اختر صورة يظهر فيها وجهك بوضوح.'
+        :'الصورة المرفوعة تحتوي على أكثر من وجه. اختر صورة لك وحدك.'
+      );
+    }
+
+    /* فحص الوجه الحي من الكاميرا */
+    const liveFaces=await faceapi
+      .detectAllFaces(faceCamera,options)
+      .withFaceLandmarks()
+      .withFaceDescriptors();
+
+    if(liveFaces.length!==1){
+      throw new Error(
+        liveFaces.length===0
+        ?'لم يتم اكتشاف وجه واضح أمام الكاميرا. اضبط الإضاءة وقرّب وجهك من الإطار.'
+        :'يجب أن يظهر وجه واحد فقط أمام الكاميرا.'
+      );
+    }
+
+    /* مقارنة بصمة الوجه */
+    const distance=faceapi.euclideanDistance(
+      uploadedFaces[0].descriptor,
+      liveFaces[0].descriptor
+    );
+
+    if(distance>0.52){
+      throw new Error('الوجه أمام الكاميرا لا يطابق الصورة المرفوعة. حاول مرة أخرى أو ارفع صورة أوضح.');
+    }
+
+    photoMatchVerified=true;
+    photoConfirmed.style.display='block';
+
+    showToast('تمت مطابقة الوجه بنجاح.','success');
+    closeCamera();
+
+  }catch(error){
+    cameraStatus.textContent=error.message||'لم تنجح مطابقة الوجه. حاول مرة أخرى.';
+    captureFaceBtn.disabled=false;
+  }
 });
 
 /* إتمام إنشاء الحساب - معاينة محلية */
