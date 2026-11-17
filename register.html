@@ -6,91 +6,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="theme-color" content="#10101b">
 <title>إنشاء حساب الطالب | منصة الدكتور محمود الجنايني</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --gold:#e9b95e;
-  --gold2:#ffd98b;
-  --orange:#e98736;
-  --bg:#10101b;
-  --panel:rgba(19,19,30,.82);
-  --text:#fff8ec;
-  --muted:#b9b1a5;
-  --line:rgba(233,185,94,.22);
-  --green:#38d99b;
-  --red:#ff687b;
-}
+:root{--gold:#e9b95e;--gold2:#ffd98b;--orange:#e98736;--bg:#10101b;--panel:rgba(19,19,30,.82);--text:#fff8ec;--muted:#b9b1a5;--line:rgba(233,185,94,.22);--green:#38d99b;--red:#ff687b}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{touch-action:pan-y}
-body{
-  margin:0;min-height:100vh;color:var(--text);
-  font-family:'Cairo',sans-serif;background:var(--bg);
-  overflow-x:hidden;
-}
-.background{
-  position:fixed;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center;
-  z-index:-3;pointer-events:none;
-}
-.overlay{
-  position:fixed;inset:0;z-index:-2;pointer-events:none;
-  background:
-    radial-gradient(ellipse at 50% 15%,rgba(224,151,55,.12),transparent 55%),
-    linear-gradient(135deg,rgba(7,8,17,.68),rgba(13,12,22,.58));
-}
-.page{
-  width:100%;min-height:100vh;padding:24px 14px 38px;
-  display:flex;align-items:center;justify-content:center;
-}
+body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;background:var(--bg);overflow-x:hidden}
+.background{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-3;pointer-events:none}
+.overlay{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at 50% 15%,rgba(224,151,55,.12),transparent 55%),linear-gradient(135deg,rgba(7,8,17,.68),rgba(13,12,22,.58))}
+.page{width:100%;min-height:100vh;padding:24px 14px 38px;display:flex;align-items:center;justify-content:center}
 .wrapper{width:min(620px,100%);margin:auto}
 .brand{text-align:center;margin-bottom:17px}
-.brand-mark{
-  width:54px;height:54px;margin:0 auto 9px;
-  border:1px solid rgba(255,215,140,.55);
-  border-radius:17px;display:grid;place-items:center;
-  background:linear-gradient(145deg,rgba(236,175,83,.22),rgba(30,25,33,.8));
-  box-shadow:0 0 35px rgba(233,185,94,.16);
-}
+.brand-mark{width:54px;height:54px;margin:0 auto 9px;border:1px solid rgba(255,215,140,.55);border-radius:17px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(236,175,83,.22),rgba(30,25,33,.8));box-shadow:0 0 35px rgba(233,185,94,.16)}
 .brand-mark svg{width:32px;height:32px}
 .brand h1{font-size:22px;margin:0;font-weight:900;color:var(--gold2)}
 .brand p{font-size:12px;color:var(--muted);margin:3px 0 0}
-.card{
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:20px;
-  background:rgba(19,19,30,.82);
-  backdrop-filter:blur(14px);
-  box-shadow:0 18px 55px rgba(0,0,0,.28);
-}
+.card{border:1px solid var(--line);border-radius:22px;padding:20px;background:rgba(19,19,30,.82);backdrop-filter:blur(14px);box-shadow:0 18px 55px rgba(0,0,0,.28)}
 .card-head{text-align:center;margin-bottom:19px}
 .card-head h2{font-size:21px;margin:0 0 5px}
 .card-head p{font-size:12px;color:var(--muted);margin:0}
 .progress-wrap{margin-bottom:21px}
-.progress-top{
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:12px;color:var(--muted);margin-bottom:10px
-}
+.progress-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);margin-bottom:10px}
 .progress-top strong{color:var(--gold2)}
 .progress-track{height:7px;border-radius:20px;background:#302b2b;overflow:hidden}
-.progress-fill{
-  height:100%;width:12.5%;border-radius:20px;
-  background:linear-gradient(90deg,var(--orange),var(--gold2));
-  transition:width .35s ease;
-}
+.progress-fill{height:100%;width:12.5%;border-radius:20px;background:linear-gradient(90deg,var(--orange),var(--gold2));transition:width .35s ease}
 .steps{display:flex;justify-content:space-between;gap:5px;margin-bottom:21px;direction:rtl}
-.step-dot{
-  width:27px;height:27px;flex:0 0 27px;border-radius:50%;
-  display:grid;place-items:center;font-size:11px;font-weight:800;
-  color:#aaa;background:#302d31;border:1px solid #494044;
-  transition:.25s;
-}
-.step-dot.active,.step-dot.done{
-  color:#21170c;background:linear-gradient(135deg,var(--gold2),var(--orange));
-  border-color:var(--gold2);box-shadow:0 0 15px rgba(233,185,94,.2)
-}
+.step-dot{width:27px;height:27px;flex:0 0 27px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;color:#aaa;background:#302d31;border:1px solid #494044;transition:.25s}
+.step-dot.active,.step-dot.done{color:#21170c;background:linear-gradient(135deg,var(--gold2),var(--orange));border-color:var(--gold2);box-shadow:0 0 15px rgba(233,185,94,.2)}
 .stage{display:none;animation:appear .3s ease}
 .stage.active{display:block}
 @keyframes appear{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
@@ -98,175 +41,95 @@ body{
 .stage-desc{font-size:12px;color:var(--muted);margin:0 0 17px}
 .field{margin-bottom:13px}
 .field label{display:block;font-size:12px;font-weight:700;color:#f4d9a7;margin-bottom:7px}
-.field input,.field select{
-  width:100%;height:47px;border-radius:12px;
-  border:1px solid rgba(233,185,94,.23);
-  background:rgba(255,255,255,.055);color:#fff;
-  padding:0 13px;font-family:inherit;font-size:13px;
-  outline:none;transition:.2s;
-}
-.field input:focus,.field select:focus{
-  border-color:var(--gold);background:rgba(255,255,255,.085);
-  box-shadow:0 0 0 3px rgba(233,185,94,.08)
-}
+.field input,.field select{width:100%;height:47px;border-radius:12px;border:1px solid rgba(233,185,94,.23);background:rgba(255,255,255,.055);color:#fff;padding:0 13px;font-family:inherit;font-size:13px;outline:none;transition:.2s}
+.field input:focus,.field select:focus{border-color:var(--gold);background:rgba(255,255,255,.085);box-shadow:0 0 0 3px rgba(233,185,94,.08)}
 .field input::placeholder{color:#8f8990}
 .field select{appearance:none;cursor:pointer}
 .field select option{background:#201e2a;color:#fff}
 .field select:disabled{opacity:.45;cursor:not-allowed}
+
+/* القوائم السوداء المخصصة */
+.field .select-native-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.custom-select{position:relative;width:100%;direction:rtl}
+.custom-select-trigger{width:100%;min-height:48px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(233,185,94,.25);border-radius:13px;background:linear-gradient(145deg,rgba(32,30,44,.98),rgba(18,17,29,.98));color:#fff4df;font-family:inherit;font-size:13px;font-weight:700;text-align:right;cursor:pointer;transition:.2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+.custom-select-trigger:after{content:"";width:8px;height:8px;flex:0 0 8px;border-left:2px solid var(--gold2);border-bottom:2px solid var(--gold2);transform:rotate(-45deg) translateY(-2px);transition:.2s}
+.custom-select.open .custom-select-trigger{border-color:var(--gold);box-shadow:0 0 0 3px rgba(233,185,94,.09)}
+.custom-select.open .custom-select-trigger:after{transform:rotate(135deg) translate(-2px,-2px)}
+.custom-select-trigger:disabled{opacity:.45;cursor:not-allowed}
+.custom-select-value.placeholder{color:#a49aa0;font-weight:500}
+.custom-select-panel{display:none;position:absolute;z-index:25;top:calc(100% + 8px);right:0;left:0;padding:9px;border:1px solid rgba(233,185,94,.34);border-radius:15px;background:linear-gradient(160deg,#211f2d,#11111c);box-shadow:0 18px 45px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.04);max-height:290px;overflow:hidden}
+.custom-select.open .custom-select-panel{display:block;animation:dropdownIn .16s ease}
+@keyframes dropdownIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+.custom-select-search{width:100%;height:39px;margin-bottom:8px;padding:0 11px;border:1px solid rgba(233,185,94,.2);border-radius:10px;outline:none;background:#11111b;color:#fff;font:12px 'Cairo',sans-serif}
+.custom-select-search::placeholder{color:#8f8990}
+.custom-select-options{max-height:220px;overflow:auto;overscroll-behavior:contain}
+.custom-select-option{display:block;width:100%;padding:10px 11px;margin:2px 0;border:0;border-radius:9px;background:transparent;color:#eee5d8;text-align:right;font:600 12px 'Cairo',sans-serif;cursor:pointer;transition:background .15s,color .15s}
+.custom-select-option:hover,.custom-select-option:focus{outline:none;background:rgba(233,185,94,.12);color:var(--gold2)}
+.custom-select-option.selected{background:linear-gradient(90deg,rgba(233,185,94,.17),rgba(233,135,54,.09));color:var(--gold2);font-weight:900}
+.custom-select-empty{padding:13px 9px;color:#a99eaa;text-align:center;font-size:11px}
+.custom-select-options::-webkit-scrollbar{width:5px}
+.custom-select-options::-webkit-scrollbar-thumb{background:#67533b;border-radius:10px}
+@media(max-width:560px){.custom-select-panel{max-height:260px}.custom-select-options{max-height:190px}}
+
 .grid-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.note{
-  padding:11px 13px;border-radius:12px;
-  border:1px solid rgba(233,185,94,.2);
-  background:rgba(233,185,94,.07);
-  color:#e8d6b6;font-size:11px;line-height:1.9;margin:11px 0
-}
+.note{padding:11px 13px;border-radius:12px;border:1px solid rgba(233,185,94,.2);background:rgba(233,185,94,.07);color:#e8d6b6;font-size:11px;line-height:1.9;margin:11px 0}
 .choice-row{display:flex;gap:12px;flex-wrap:wrap}
 .choice{flex:1;min-width:130px;position:relative}
 .choice input{position:absolute;opacity:0}
-.choice label{
-  display:flex;align-items:center;justify-content:center;
-  min-height:54px;padding:11px;border-radius:13px;
-  border:1px solid var(--line);background:rgba(255,255,255,.045);
-  cursor:pointer;font-size:13px;font-weight:800;transition:.2s
-}
-.choice input:checked+label{
-  border-color:var(--gold);background:rgba(233,185,94,.13);
-  color:var(--gold2);box-shadow:0 0 18px rgba(233,185,94,.08)
-}
+.choice label{display:flex;align-items:center;justify-content:center;min-height:54px;padding:11px;border-radius:13px;border:1px solid var(--line);background:rgba(255,255,255,.045);cursor:pointer;font-size:13px;font-weight:800;transition:.2s}
+.choice input:checked+label{border-color:var(--gold);background:rgba(233,185,94,.13);color:var(--gold2);box-shadow:0 0 18px rgba(233,185,94,.08)}
 .nav-buttons{display:flex;gap:10px;margin-top:21px}
-.btn{
-  border:0;border-radius:12px;min-height:47px;padding:10px 19px;
-  font-family:inherit;font-size:13px;font-weight:900;cursor:pointer;
-  transition:.2s
-}
+.btn{border:0;border-radius:12px;min-height:47px;padding:10px 19px;font-family:inherit;font-size:13px;font-weight:900;cursor:pointer;transition:.2s}
 .btn:active{transform:scale(.98)}
-.btn-primary{
-  flex:1;color:#21170c;
-  background:linear-gradient(120deg,var(--gold2),var(--orange));
-  box-shadow:0 8px 22px rgba(233,160,66,.16)
-}
-.btn-secondary{
-  color:#f4d9a7;border:1px solid var(--line);
-  background:rgba(255,255,255,.045)
-}
+.btn-primary{flex:1;color:#21170c;background:linear-gradient(120deg,var(--gold2),var(--orange));box-shadow:0 8px 22px rgba(233,160,66,.16)}
+.btn-secondary{color:#f4d9a7;border:1px solid var(--line);background:rgba(255,255,255,.045)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.photo-area{
-  display:flex;flex-direction:column;align-items:center;
-  text-align:center;padding:19px 12px;
-  border:1px dashed rgba(233,185,94,.4);
-  background:rgba(255,255,255,.025);border-radius:17px
-}
-.photo-preview{
-  width:135px;height:135px;border-radius:50%;object-fit:cover;
-  border:3px solid rgba(233,185,94,.7);
-  background:#272330;display:none;margin-bottom:13px
-}
-.upload-label{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-height:43px;padding:10px 19px;border-radius:11px;
-  background:rgba(233,185,94,.13);border:1px solid var(--line);
-  color:var(--gold2);font-size:12px;font-weight:800;cursor:pointer
-}
+.photo-area{display:flex;flex-direction:column;align-items:center;text-align:center;padding:19px 12px;border:1px dashed rgba(233,185,94,.4);background:rgba(255,255,255,.025);border-radius:17px}
+.photo-preview{width:135px;height:135px;border-radius:50%;object-fit:cover;border:3px solid rgba(233,185,94,.7);background:#272330;display:none;margin-bottom:13px}
+.upload-label{display:inline-flex;align-items:center;justify-content:center;min-height:43px;padding:10px 19px;border-radius:11px;background:rgba(233,185,94,.13);border:1px solid var(--line);color:var(--gold2);font-size:12px;font-weight:800;cursor:pointer}
 #profilePhoto{display:none}
 .camera-confirm-btn{margin-top:15px;min-width:220px}
 .photo-confirmed{display:none;color:var(--green);font-size:13px;font-weight:900;margin-top:11px}
-.camera-modal{
-  position:fixed;inset:0;z-index:30;display:none;
-  align-items:center;justify-content:center;padding:16px;
-  background:rgba(5,5,12,.88);backdrop-filter:blur(12px)
-}
+.camera-modal{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(5,5,12,.88);backdrop-filter:blur(12px)}
 .camera-modal.open{display:flex}
-.camera-panel{
-  width:min(460px,100%);padding:18px;
-  border:1px solid var(--line);border-radius:20px;
-  background:#171522;box-shadow:0 20px 70px #000b;text-align:center
-}
+.camera-panel{width:min(460px,100%);padding:18px;border:1px solid var(--line);border-radius:20px;background:#171522;box-shadow:0 20px 70px #000b;text-align:center}
 .camera-panel h3{margin:0 0 7px;font-size:18px;color:var(--gold2)}
 .camera-panel p{font-size:12px;line-height:1.8;color:var(--muted);margin:0 0 13px}
-.camera-frame{
-  position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;
-  border-radius:15px;background:#080811;border:1px solid var(--line)
-}
-.camera-frame video{
-  width:100%;height:100%;object-fit:cover;transform:scaleX(-1)
-}
-.camera-guide{
-  position:absolute;inset:12% 23%;
-  border:2px solid rgba(255,217,139,.9);
-  border-radius:48% 48% 44% 44%;
-  box-shadow:0 0 0 999px rgba(0,0,0,.14);pointer-events:none
-}
+.camera-frame{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:15px;background:#080811;border:1px solid var(--line)}
+.camera-frame video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.camera-guide{position:absolute;inset:12% 23%;border:2px solid rgba(255,217,139,.9);border-radius:48% 48% 44% 44%;box-shadow:0 0 0 999px rgba(0,0,0,.14);pointer-events:none}
 .camera-status{min-height:25px;margin:12px 0;color:#f4d9a7;font-size:12px}
 .camera-actions{display:flex;gap:9px}
 .camera-actions .btn{flex:1}
 .camera-actions .btn-secondary{min-width:100px}
-@media(max-width:420px){
-  .camera-panel{padding:14px}
-  .camera-actions{flex-direction:column}
-  .camera-actions .btn-secondary{width:100%}
-}
-.terms-box{
-  max-height:210px;overflow:auto;padding:14px;
-  border:1px solid var(--line);border-radius:13px;
-  background:rgba(255,255,255,.035);
-  color:#d4c9b8;font-size:12px;line-height:2
-}
+@media(max-width:420px){.camera-panel{padding:14px}.camera-actions{flex-direction:column}.camera-actions .btn-secondary{width:100%}}
+.terms-box{max-height:210px;overflow:auto;padding:14px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.035);color:#d4c9b8;font-size:12px;line-height:2}
 .terms-agree{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:12px;color:#f1dfc1}
 .terms-agree input{accent-color:var(--gold);width:18px;height:18px;flex-shrink:0;margin-top:3px}
 .success-view{text-align:center;display:none}
-.success-icon{
-  width:70px;height:70px;margin:0 auto 14px;border-radius:50%;
-  display:grid;place-items:center;color:#17241e;
-  background:linear-gradient(135deg,#6af0bd,#23b77f);
-  box-shadow:0 0 35px rgba(56,217,155,.2)
-}
+.success-icon{width:70px;height:70px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;color:#17241e;background:linear-gradient(135deg,#6af0bd,#23b77f);box-shadow:0 0 35px rgba(56,217,155,.2)}
 .success-icon svg{width:37px;height:37px}
-.profile-card{
-  margin:18px auto;padding:18px;border-radius:18px;
-  border:1px solid var(--line);background:rgba(255,255,255,.045);
-  max-width:380px
-}
+.profile-card{margin:18px auto;padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.045);max-width:380px}
 .final-photo{width:95px;height:95px;object-fit:cover;border-radius:50%;border:3px solid var(--gold);display:block;margin:0 auto 11px}
 .final-name{font-size:18px;font-weight:900}
 .profile-id{font-size:12px;color:var(--gold2);margin-top:5px;direction:ltr}
 #qrcode{display:flex;justify-content:center;margin:14px auto}
 #qrcode img,#qrcode canvas{border:7px solid white;border-radius:8px}
-.toast{
-  position:fixed;z-index:40;bottom:22px;left:50%;
-  transform:translate(-50%,20px);opacity:0;pointer-events:none;
-  width:min(90%,420px);padding:14px 17px;border-radius:14px;
-  border:1px solid var(--line);background:#211e2a;
-  box-shadow:0 15px 40px #0008;color:#fff;text-align:center;
-  font-size:12px;transition:.25s
-}
+.toast{position:fixed;z-index:40;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;width:min(90%,420px);padding:14px 17px;border-radius:14px;border:1px solid var(--line);background:#211e2a;box-shadow:0 15px 40px #0008;color:#fff;text-align:center;font-size:12px;transition:.25s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .toast.error{border-color:rgba(255,104,123,.5)}
 .toast.success{border-color:rgba(56,217,155,.5)}
 .hidden{display:none!important}
 .login-link{text-align:center;margin-top:16px;color:var(--muted);font-size:12px}
 .login-link a{color:var(--gold2);text-decoration:none;font-weight:800}
-@media(max-width:560px){
-  .page{padding:16px 10px 25px;align-items:flex-start}
-  .wrapper{width:min(100%,520px)}
-  .card{padding:17px 13px;border-radius:19px}
-  .brand{margin-bottom:14px}
-  .brand h1{font-size:20px}
-  .card-head h2{font-size:19px}
-  .grid-two{grid-template-columns:1fr;gap:0}
-  .steps{gap:3px}
-  .step-dot{width:25px;height:25px;flex-basis:25px;font-size:10px}
-  .nav-buttons .btn{padding:10px 13px}
-}
+@media(max-width:560px){.page{padding:16px 10px 25px;align-items:flex-start}.wrapper{width:min(100%,520px)}.card{padding:17px 13px;border-radius:19px}.brand{margin-bottom:14px}.brand h1{font-size:20px}.card-head h2{font-size:19px}.grid-two{grid-template-columns:1fr;gap:0}.steps{gap:3px}.step-dot{width:25px;height:25px;flex-basis:25px;font-size:10px}.nav-buttons .btn{padding:10px 13px}}
 </style>
 </head>
-
 <body>
 <img class="background" src="./86.jpg" alt="">
 <div class="overlay"></div>
-
 <main class="page">
 <div class="wrapper">
-
 <header class="brand">
   <div class="brand-mark">
     <svg viewBox="0 0 64 64" fill="none" stroke="#f2c879" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
@@ -279,118 +142,64 @@ body{
   <h1>منصة الدكتور محمود الجنايني</h1>
   <p>رحلتك نحو التفوق في الكيمياء تبدأ من هنا</p>
 </header>
-
 <section class="card" id="registrationCard">
   <div class="card-head">
     <h2>إنشاء حساب طالب جديد</h2>
     <p>أكمل بياناتك بالترتيب لإنشاء ملفك على المنصة</p>
   </div>
-
   <div id="wizard">
     <div class="progress-wrap">
-      <div class="progress-top">
-        <span id="stepCaption">المرحلة الأولى من 8</span>
-        <strong id="stepPercent">12%</strong>
-      </div>
+      <div class="progress-top"><span id="stepCaption">المرحلة الأولى من 8</span><strong id="stepPercent">12%</strong></div>
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     </div>
-
     <div class="steps" id="stepDots">
-      <span class="step-dot active">1</span>
-      <span class="step-dot">2</span>
-      <span class="step-dot">3</span>
-      <span class="step-dot">4</span>
-      <span class="step-dot">5</span>
-      <span class="step-dot">6</span>
-      <span class="step-dot">7</span>
-      <span class="step-dot">8</span>
+      <span class="step-dot active">1</span><span class="step-dot">2</span><span class="step-dot">3</span><span class="step-dot">4</span><span class="step-dot">5</span><span class="step-dot">6</span><span class="step-dot">7</span><span class="step-dot">8</span>
     </div>
-
     <section class="stage active" data-stage="0">
       <h3 class="stage-title">بيانات حساب الطالب</h3>
       <p class="stage-desc">اكتب بيانات الحساب التي ستستخدمها للدخول إلى المنصة.</p>
-      <div class="field">
-        <label for="studentName">اسم الطالب بالكامل</label>
-        <input id="studentName" type="text" placeholder="اكتب اسمك بالكامل" autocomplete="name">
-      </div>
-      <div class="field">
-        <label for="studentPhone">رقم هاتف الطالب</label>
-        <input id="studentPhone" type="tel" inputmode="tel" placeholder="رقم الهاتف">
-      </div>
+      <div class="field"><label for="studentName">اسم الطالب بالكامل</label><input id="studentName" type="text" placeholder="اكتب اسمك بالكامل" autocomplete="name"></div>
+      <div class="field"><label for="studentPhone">رقم هاتف الطالب</label><input id="studentPhone" type="tel" inputmode="tel" placeholder="رقم الهاتف"></div>
       <div class="grid-two">
-        <div class="field">
-          <label for="password">كلمة المرور</label>
-          <input id="password" type="password" placeholder="كلمة المرور">
-        </div>
-        <div class="field">
-          <label for="confirmPassword">تأكيد كلمة المرور</label>
-          <input id="confirmPassword" type="password" placeholder="أعد كتابة كلمة المرور">
-        </div>
+        <div class="field"><label for="password">كلمة المرور</label><input id="password" type="password" placeholder="كلمة المرور"></div>
+        <div class="field"><label for="confirmPassword">تأكيد كلمة المرور</label><input id="confirmPassword" type="password" placeholder="أعد كتابة كلمة المرور"></div>
       </div>
       <div class="note">احتفظ برقم الهاتف وكلمة المرور؛ ستحتاج إليهما عند تسجيل الدخول.</div>
     </section>
-
     <section class="stage" data-stage="1">
       <h3 class="stage-title">بيانات ولي الأمر</h3>
       <p class="stage-desc">أدخل بيانات ولي أمرك للتواصل عند الحاجة.</p>
-      <div class="field">
-        <label for="parentName">اسم ولي الأمر</label>
-        <input id="parentName" type="text" placeholder="اسم ولي الأمر بالكامل">
-      </div>
-      <div class="field">
-        <label for="parentPhone">رقم هاتف ولي الأمر</label>
-        <input id="parentPhone" type="tel" inputmode="tel" placeholder="رقم هاتف ولي الأمر">
-      </div>
+      <div class="field"><label for="parentName">اسم ولي الأمر</label><input id="parentName" type="text" placeholder="اسم ولي الأمر بالكامل"></div>
+      <div class="field"><label for="parentPhone">رقم هاتف ولي الأمر</label><input id="parentPhone" type="tel" inputmode="tel" placeholder="رقم هاتف ولي الأمر"></div>
     </section>
-
     <section class="stage" data-stage="2">
       <h3 class="stage-title">نوع التعليم والصف الدراسي</h3>
       <p class="stage-desc">حدد نوع تعليمك والصف الذي تدرس فيه.</p>
       <div class="field">
         <label>نوع التعليم</label>
         <div class="choice-row">
-          <div class="choice">
-            <input type="radio" name="educationType" id="general" value="عام">
-            <label for="general">تعليم عام</label>
-          </div>
-          <div class="choice">
-            <input type="radio" name="educationType" id="azhar" value="أزهري">
-            <label for="azhar">تعليم أزهري</label>
-          </div>
+          <div class="choice"><input type="radio" name="educationType" id="general" value="عام"><label for="general">تعليم عام</label></div>
+          <div class="choice"><input type="radio" name="educationType" id="azhar" value="أزهري"><label for="azhar">تعليم أزهري</label></div>
         </div>
       </div>
-      <div class="field">
-        <label for="schoolGrade">الصف الدراسي</label>
-        <select id="schoolGrade"><option value="">اختر نوع التعليم أولًا</option></select>
-      </div>
+      <div class="field"><label for="schoolGrade">الصف الدراسي</label><select id="schoolGrade"><option value="">اختر نوع التعليم أولًا</option></select></div>
     </section>
-
     <section class="stage" data-stage="3">
       <h3 class="stage-title">المحافظة</h3>
       <p class="stage-desc">اختر المحافظة التي تقيم بها.</p>
-      <div class="field">
-        <label for="governorate">المحافظة</label>
-        <select id="governorate"><option value="">اختر المحافظة</option></select>
-      </div>
+      <div class="field"><label for="governorate">المحافظة</label><select id="governorate"><option value="">اختر المحافظة</option></select></div>
     </section>
-
     <section class="stage" data-stage="4">
       <h3 class="stage-title">المركز والقرية</h3>
       <p class="stage-desc">حدد المركز ثم اختر القرية أو المنطقة التي تقيم بها.</p>
-      <div class="field">
-        <label for="center">المركز أو المدينة</label>
-        <select id="center"><option value="">اختر المحافظة أولًا</option></select>
-      </div>
+      <div class="field"><label for="center">المركز أو المدينة</label><select id="center"><option value="">اختر المحافظة أولًا</option></select></div>
       <div class="field">
         <label for="village">القرية أو المنطقة</label>
-        <select id="village">
-          <option value="">اختر القرية أو المنطقة</option>
-        </select>
+        <select id="village"><option value="">اختر القرية أو المنطقة</option></select>
         <input id="villageOther" class="hidden" type="text" placeholder="اكتب اسم القرية أو الكفر أو العزبة">
       </div>
       <div class="note">اختر المنطقة من القائمة. إذا لم تجد اسم منطقتك، اختر «أخرى» واكتب الاسم بنفسك.</div>
     </section>
-
     <section class="stage" data-stage="5">
       <h3 class="stage-title">الصورة الشخصية وتأكيدها</h3>
       <p class="stage-desc">ارفع صورتك الشخصية، ثم أكد مطابقة وجهك بالكاميرا.</p>
@@ -406,7 +215,6 @@ body{
       </div>
       <div class="note">بعد رفع الصورة اضغط «تأكيد الصورة الشخصية بالكاميرا». ستفتح الكاميرا الأمامية، ولن تنتقل للمرحلة التالية إلا بعد نجاح مقارنة الوجه بالصورة المرفوعة.</div>
     </section>
-
     <section class="stage" data-stage="6">
       <h3 class="stage-title">الشروط والأحكام</h3>
       <p class="stage-desc">اقرأ الشروط التالية قبل إتمام إنشاء حسابك.</p>
@@ -420,39 +228,26 @@ body{
         6. يوافق الطالب على حفظ بيانات حسابه وتقدمه الدراسي ونتائجه داخل المنصة لتقديم الخدمات التعليمية.<br>
         7. قد يتم تحديث الشروط عند إضافة خدمات جديدة، وسيتم عرض التحديثات داخل المنصة.
       </div>
-      <label class="terms-agree">
-        <input type="checkbox" id="agreeTerms">
-        <span>قرأت الشروط والأحكام وأوافق عليها.</span>
-      </label>
+      <label class="terms-agree"><input type="checkbox" id="agreeTerms"><span>قرأت الشروط والأحكام وأوافق عليها.</span></label>
     </section>
-
     <section class="stage" data-stage="7">
       <h3 class="stage-title">مراجعة وإنشاء الحساب</h3>
       <p class="stage-desc">راجع بياناتك ثم اضغط على إنشاء الحساب.</p>
       <div class="note" id="reviewData" style="line-height:2.2"></div>
       <button class="btn btn-primary" id="createAccount" type="button" style="width:100%">إنشاء حسابي الآن</button>
     </section>
-
     <div class="nav-buttons" id="navigation">
       <button class="btn btn-secondary" id="backBtn" type="button" disabled>السابق</button>
       <button class="btn btn-primary" id="nextBtn" type="button">المرحلة التالية</button>
     </div>
   </div>
-
   <div class="success-view" id="successView">
-    <div class="success-icon">
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="m10 25 9 9L38 14"/>
-      </svg>
-    </div>
+    <div class="success-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m10 25 9 9L38 14"/></svg></div>
     <h2 style="margin:0 0 5px;font-size:23px">تم تجهيز ملفك الشخصي</h2>
     <p style="color:var(--muted);font-size:12px;margin:0">هذه معاينة لبيانات الحساب الذي أدخلته.</p>
     <div class="profile-card">
       <img id="finalPhoto" class="final-photo" alt="الصورة الشخصية">
-      <div class="final-name">
-        <span id="finalName"></span>
-        <span style="display:inline-block;color:var(--green);font-size:11px;margin-right:6px">تم فحص تطابق الوجه بالكاميرا</span>
-      </div>
+      <div class="final-name"><span id="finalName"></span><span style="display:inline-block;color:var(--green);font-size:11px;margin-right:6px">تم فحص تطابق الوجه بالكاميرا</span></div>
       <div class="profile-id" id="finalId"></div>
       <div id="qrcode"></div>
       <div style="font-size:10px;color:var(--muted)">رمز QR الخاص بمعرّف الحساب</div>
@@ -461,22 +256,14 @@ body{
     <a href="login.html" class="btn btn-primary" style="display:block;text-decoration:none;padding:13px">الانتقال إلى صفحة تسجيل الدخول</a>
   </div>
 </section>
-
-<div class="login-link" id="loginLink">
-  لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
-</div>
-
+<div class="login-link" id="loginLink">لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></div>
 </div>
 </main>
-
 <div class="camera-modal" id="cameraModal" role="dialog" aria-modal="true" aria-labelledby="cameraTitle">
   <div class="camera-panel">
     <h3 id="cameraTitle">تأكيد الصورة الشخصية</h3>
     <p>وجّه وجهك داخل الإطار، وانظر مباشرة إلى الكاميرا، ثم اضغط التقاط وفحص.</p>
-    <div class="camera-frame">
-      <video id="faceCamera" autoplay muted playsinline></video>
-      <div class="camera-guide"></div>
-    </div>
+    <div class="camera-frame"><video id="faceCamera" autoplay muted playsinline></video><div class="camera-guide"></div></div>
     <div class="camera-status" id="cameraStatus">جارٍ تجهيز الكاميرا...</div>
     <div class="camera-actions">
       <button class="btn btn-primary" id="captureFaceBtn" type="button" disabled>التقاط وفحص الوجه</button>
@@ -484,12 +271,10 @@ body{
     </div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <script>
 const stages=[...document.querySelectorAll('.stage')];
 const dots=[...document.querySelectorAll('.step-dot')];
@@ -523,115 +308,60 @@ function renderStage(){
   });
   const percent=Math.round(((currentStage+1)/8)*100);
   progressFill.style.width=percent+'%';
-  stepCaption.textContent=`المرحلة ${currentStage+1} من 8`;
+  stepCaption.textContent=\`المرحلة \${currentStage+1} من 8\`;
   stepPercent.textContent=percent+'%';
   backBtn.disabled=currentStage===0;
   nextBtn.classList.toggle('hidden',currentStage===7);
 }
 
-function value(id){
-  return document.getElementById(id).value.trim();
-}
+function value(id){return document.getElementById(id).value.trim()}
 
 function validateStage(index){
   if(index===0){
-    if(!value('studentName')||!value('studentPhone')||!value('password')||!value('confirmPassword')){
-      showToast('من فضلك أكمل جميع بيانات حساب الطالب.');
-      return false;
-    }
-    if(value('password')!==value('confirmPassword')){
-      showToast('كلمتا المرور غير متطابقتين.');
-      return false;
-    }
-    if(value('password').length<6){
-      showToast('كلمة المرور يجب ألا تقل عن 6 أحرف أو أرقام.');
-      return false;
-    }
+    if(!value('studentName')||!value('studentPhone')||!value('password')||!value('confirmPassword')){showToast('من فضلك أكمل جميع بيانات حساب الطالب.');return false}
+    if(value('password')!==value('confirmPassword')){showToast('كلمتا المرور غير متطابقتين.');return false}
+    if(value('password').length<6){showToast('كلمة المرور يجب ألا تقل عن 6 أحرف أو أرقام.');return false}
   }
-
-  if(index===1){
-    if(!value('parentName')||!value('parentPhone')){
-      showToast('أدخل اسم ولي الأمر ورقم هاتفه.');
-      return false;
-    }
-  }
-
-  if(index===2){
-    if(!document.querySelector('input[name="educationType"]:checked')||!value('schoolGrade')){
-      showToast('اختر نوع التعليم والصف الدراسي.');
-      return false;
-    }
-  }
-
-  if(index===3&&!value('governorate')){
-    showToast('اختر المحافظة أولًا.');
-    return false;
-  }
-
-  if(index===4&&(!value('center')||!value('village')||(value('village')==='أخرى'&&!value('villageOther')))){
-    showToast('حدد المركز والقرية أو اختر «أخرى» واكتب اسم منطقتك.');
-    return false;
-  }
-
+  if(index===1&&!value('parentName')||index===1&&!value('parentPhone')){showToast('أدخل اسم ولي الأمر ورقم هاتفه.');return false}
+  if(index===2&&(!document.querySelector('input[name="educationType"]:checked')||!value('schoolGrade'))){showToast('اختر نوع التعليم والصف الدراسي.');return false}
+  if(index===3&&!value('governorate')){showToast('اختر المحافظة أولًا.');return false}
+  if(index===4&&(!value('center')||!value('village')||(value('village')==='أخرى'&&!value('villageOther')))){showToast('حدد المركز والقرية أو اختر «أخرى» واكتب اسم منطقتك.');return false}
   if(index===5){
-    if(!photoData){
-      showToast('اختر صورتك الشخصية أولًا.');
-      return false;
-    }
-    if(!photoMatchVerified){
-      showToast('يجب تأكيد الصورة من خلال الكاميرا أولًا.');
-      return false;
-    }
+    if(!photoData){showToast('اختر صورتك الشخصية أولًا.');return false}
+    if(!photoMatchVerified){showToast('يجب تأكيد الصورة من خلال الكاميرا أولًا.');return false}
   }
-
-  if(index===6&&!document.getElementById('agreeTerms').checked){
-    showToast('يجب الموافقة على الشروط والأحكام للمتابعة.');
-    return false;
-  }
-
+  if(index===6&&!document.getElementById('agreeTerms').checked){showToast('يجب الموافقة على الشروط والأحكام للمتابعة.');return false}
   return true;
 }
 
 nextBtn.addEventListener('click',()=>{
   if(!validateStage(currentStage))return;
   if(currentStage===6)buildReview();
-  currentStage++;
-  renderStage();
+  currentStage++;renderStage();
 });
-
 backBtn.addEventListener('click',()=>{
-  if(currentStage>0){
-    currentStage--;
-    renderStage();
-  }
+  if(currentStage>0){currentStage--;renderStage()}
 });
 
 function buildReview(){
   const education=document.querySelector('input[name="educationType"]:checked').value;
   const selectedVillage=value('village')==='أخرى'?value('villageOther'):value('village');
-
-  document.getElementById('reviewData').innerHTML=`
-    <strong style="color:var(--gold2)">اسم الطالب:</strong> ${safe(value('studentName'))}<br>
-    <strong style="color:var(--gold2)">رقم الهاتف:</strong> ${safe(value('studentPhone'))}<br>
-    <strong style="color:var(--gold2)">ولي الأمر:</strong> ${safe(value('parentName'))}<br>
-    <strong style="color:var(--gold2)">هاتف ولي الأمر:</strong> ${safe(value('parentPhone'))}<br>
-    <strong style="color:var(--gold2)">نوع التعليم:</strong> ${safe(education)}<br>
-    <strong style="color:var(--gold2)">الصف الدراسي:</strong> ${safe(value('schoolGrade'))}<br>
-    <strong style="color:var(--gold2)">المحافظة:</strong> ${safe(value('governorate'))}<br>
-    <strong style="color:var(--gold2)">المركز:</strong> ${safe(value('center'))}<br>
-    <strong style="color:var(--gold2)">القرية أو المنطقة:</strong> ${safe(selectedVillage)}<br>
+  document.getElementById('reviewData').innerHTML=\`
+    <strong style="color:var(--gold2)">اسم الطالب:</strong> \${safe(value('studentName'))}<br>
+    <strong style="color:var(--gold2)">رقم الهاتف:</strong> \${safe(value('studentPhone'))}<br>
+    <strong style="color:var(--gold2)">ولي الأمر:</strong> \${safe(value('parentName'))}<br>
+    <strong style="color:var(--gold2)">هاتف ولي الأمر:</strong> \${safe(value('parentPhone'))}<br>
+    <strong style="color:var(--gold2)">نوع التعليم:</strong> \${safe(education)}<br>
+    <strong style="color:var(--gold2)">الصف الدراسي:</strong> \${safe(value('schoolGrade'))}<br>
+    <strong style="color:var(--gold2)">المحافظة:</strong> \${safe(value('governorate'))}<br>
+    <strong style="color:var(--gold2)">المركز:</strong> \${safe(value('center'))}<br>
+    <strong style="color:var(--gold2)">القرية أو المنطقة:</strong> \${safe(selectedVillage)}<br>
     <strong style="color:var(--green)">الصورة الشخصية:</strong> تمت مطابقة الوجه بالكاميرا ✓
-  `;
+  \`;
 }
 
 function safe(str){
-  return String(str).replace(/[&<>"']/g,char=>({
-    '&':'&amp;',
-    '<':'&lt;',
-    '>':'&gt;',
-    '"':'&quot;',
-    "'":'&#39;'
-  }[char]));
+  return String(str).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 }
 
 /* نوع التعليم والصف */
@@ -641,94 +371,36 @@ document.querySelectorAll('input[name="educationType"]').forEach(radio=>{
     grade.innerHTML='<option value="">اختر الصف الدراسي</option>';
     ['أولى ثانوي','تانية ثانوي','تالتة ثانوي'].forEach(item=>{
       const option=document.createElement('option');
-      option.value=item;
-      option.textContent=item;
-      grade.appendChild(option);
+      option.value=item;option.textContent=item;grade.appendChild(option);
     });
   });
 });
 
 /* المحافظات المصرية */
-const governorates=[
-  'القاهرة','الجيزة','الإسكندرية','القليوبية','المنوفية',
-  'الغربية','كفر الشيخ','البحيرة','الدقهلية','دمياط',
-  'الشرقية','بورسعيد','الإسماعيلية','السويس','شمال سيناء',
-  'جنوب سيناء','الفيوم','بني سويف','المنيا','أسيوط',
-  'سوهاج','قنا','الأقصر','أسوان','البحر الأحمر',
-  'الوادي الجديد','مطروح'
-];
-
+const governorates=['القاهرة','الجيزة','الإسكندرية','القليوبية','المنوفية','الغربية','كفر الشيخ','البحيرة','الدقهلية','دمياط','الشرقية','بورسعيد','الإسماعيلية','السويس','شمال سيناء','جنوب سيناء','الفيوم','بني سويف','المنيا','أسيوط','سوهاج','قنا','الأقصر','أسوان','البحر الأحمر','الوادي الجديد','مطروح'];
 const governorateSelect=document.getElementById('governorate');
-
-governorates.forEach(name=>{
-  const option=document.createElement('option');
-  option.value=name;
-  option.textContent=name;
-  governorateSelect.appendChild(option);
-});
+governorates.forEach(name=>governorateSelect.add(new Option(name,name)));
 
 /* مراكز محافظة المنوفية */
-const centers={
-  'المنوفية':[
-    'شبين الكوم','قويسنا','منوف','أشمون','الباجور',
-    'تلا','بركة السبع','السادات','الشهداء','سرس الليان'
-  ]
-};
+const centers={'المنوفية':['شبين الكوم','قويسنا','منوف','أشمون','الباجور','تلا','بركة السبع','السادات','الشهداء','سرس الليان']};
 
 /* المناطق الأساسية والمتداولة في مركز بركة السبع */
-const barakaLocations=[
-  'مدينة بركة السبع',
-  'أبو مشهور',
-  'الشهيد فكري',
-  'الروضة',
-  'كفر الحمادية',
-  'جنزور',
-  'منشأة الرافعي',
-  'شنتنا الحجر',
-  'ميت أم صالح',
-  'الغوري',
-  'ميت فارس',
-  'كفر مليج',
-  'طوخ طنبشا',
-  'كفر عليم',
-  'طنبشا',
-  'الدبايبة',
-  'هورين',
-  'كفر هورين',
-  'الحلامشة',
-  'كفر هلال',
-  'كفر الشيخ طعيمة',
-  'كفر نفرة البحري',
-  'عزبة الدبايبة',
-  'زوير',
-  'سلكا',
-  'عزبة سلكا',
-  'ميت الموز',
-  'عزبة ميت الموز',
-  'ميت عافية',
-  'كفر سبع الرجال'
-];
+const barakaLocations=['مدينة بركة السبع','أبو مشهور','الشهيد فكري','الروضة','كفر الحمادية','جنزور','منشأة الرافعي','شنتنا الحجر','ميت أم صالح','الغوري','ميت فارس','كفر مليج','طوخ طنبشا','كفر عليم','طنبشا','الدبايبة','هورين','كفر هورين','الحلامشة','كفر هلال','كفر الشيخ طعيمة','كفر نفرة البحري','عزبة الدبايبة','زوير','سلكا','عزبة سلكا','ميت الموز','عزبة ميت الموز','ميت عافية','كفر سبع الرجال'];
 
 governorateSelect.addEventListener('change',()=>{
   const center=document.getElementById('center');
   center.innerHTML='';
-
   const governorate=governorateSelect.value;
   const list=centers[governorate];
-
   if(list){
-    center.disabled=false;
-    center.add(new Option('اختر المركز',''));
+    center.disabled=false;center.add(new Option('اختر المركز',''));
     list.forEach(name=>center.add(new Option(name,name)));
   }else if(governorate){
-    center.disabled=false;
-    center.add(new Option('اكتب المركز في الحقل التالي',''));
+    center.disabled=false;center.add(new Option('اكتب المركز في الحقل التالي',''));
     center.removeAttribute('required');
   }else{
-    center.disabled=true;
-    center.add(new Option('اختر المحافظة أولًا',''));
+    center.disabled=true;center.add(new Option('اختر المحافظة أولًا',''));
   }
-
   updateVillageOptions();
 });
 
@@ -736,30 +408,18 @@ function updateVillageOptions(){
   const village=document.getElementById('village');
   const other=document.getElementById('villageOther');
   const selectedCenter=value('center');
-
   village.innerHTML='';
   village.add(new Option('اختر القرية أو المنطقة',''));
-
-  if(selectedCenter==='بركة السبع'){
-    barakaLocations.forEach(name=>{
-      village.add(new Option(name,name));
-    });
-  }
-
+  if(selectedCenter==='بركة السبع')barakaLocations.forEach(name=>village.add(new Option(name,name)));
   village.add(new Option('أخرى - اكتب الاسم بنفسك','أخرى'));
-  village.value='';
-  other.value='';
-  other.classList.add('hidden');
+  village.value='';other.value='';other.classList.add('hidden');
 }
-
 document.getElementById('center').addEventListener('change',updateVillageOptions);
-
 document.getElementById('village').addEventListener('change',()=>{
   const other=document.getElementById('villageOther');
   const isOther=value('village')==='أخرى';
   other.classList.toggle('hidden',!isOther);
-  if(isOther)other.focus();
-  else other.value='';
+  if(isOther)other.focus();else other.value='';
 });
 
 /* الصورة الشخصية والكاميرا */
@@ -773,31 +433,15 @@ const cameraStatus=document.getElementById('cameraStatus');
 const captureFaceBtn=document.getElementById('captureFaceBtn');
 
 photoInput.addEventListener('change',()=>{
-  const file=photoInput.files[0];
-  if(!file)return;
-
-  if(!file.type.startsWith('image/')){
-    showToast('الملف المختار ليس صورة.');
-    photoInput.value='';
-    return;
-  }
-
-  if(file.size>5*1024*1024){
-    showToast('حجم الصورة يجب ألا يتجاوز 5 ميجابايت.');
-    photoInput.value='';
-    return;
-  }
-
+  const file=photoInput.files[0];if(!file)return;
+  if(!file.type.startsWith('image/')){showToast('الملف المختار ليس صورة.');photoInput.value='';return}
+  if(file.size>5*1024*1024){showToast('حجم الصورة يجب ألا يتجاوز 5 ميجابايت.');photoInput.value='';return}
   const reader=new FileReader();
   reader.onload=event=>{
-    photoData=event.target.result;
-    photoPreview.src=photoData;
+    photoData=event.target.result;photoPreview.src=photoData;
     photoPreview.style.display='block';
     document.getElementById('photoPlaceholder').style.display='none';
-
-    /* تغيير الصورة يلغي نتيجة المطابقة السابقة */
-    photoMatchVerified=false;
-    openCameraVerify.disabled=false;
+    photoMatchVerified=false;openCameraVerify.disabled=false;
     photoConfirmed.style.display='none';
   };
   reader.readAsDataURL(file);
@@ -805,138 +449,64 @@ photoInput.addEventListener('change',()=>{
 
 async function loadFaceModels(){
   if(faceModelsReady)return;
-
-  if(!window.faceapi){
-    throw new Error('تعذر تحميل مكتبة فحص الوجه. تحقق من اتصال الإنترنت ثم حاول مرة أخرى.');
-  }
-
+  if(!window.faceapi)throw new Error('تعذر تحميل مكتبة فحص الوجه. تحقق من اتصال الإنترنت ثم حاول مرة أخرى.');
   const modelUrl='https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/weights';
-
   await Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri(modelUrl),
     faceapi.nets.faceLandmark68Net.loadFromUri(modelUrl),
     faceapi.nets.faceRecognitionNet.loadFromUri(modelUrl)
   ]);
-
   faceModelsReady=true;
 }
 
 function stopCamera(){
-  if(cameraStream){
-    cameraStream.getTracks().forEach(track=>track.stop());
-    cameraStream=null;
-  }
+  if(cameraStream){cameraStream.getTracks().forEach(track=>track.stop());cameraStream=null}
   faceCamera.srcObject=null;
 }
-
 function closeCamera(){
-  stopCamera();
-  cameraModal.classList.remove('open');
-  captureFaceBtn.disabled=true;
-  openCameraVerify.disabled=false;
+  stopCamera();cameraModal.classList.remove('open');
+  captureFaceBtn.disabled=true;openCameraVerify.disabled=false;
 }
-
 document.getElementById('closeCameraBtn').addEventListener('click',closeCamera);
 
 openCameraVerify.addEventListener('click',async()=>{
-  if(!photoData){
-    showToast('ارفع الصورة الشخصية أولًا.');
-    return;
-  }
-
-  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
-    showToast('الكاميرا غير متاحة. افتح الموقع عبر HTTPS ومن متصفح يسمح بالكاميرا.');
-    return;
-  }
-
+  if(!photoData){showToast('ارفع صورتك الشخصية أولًا.');return}
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){showToast('الكاميرا غير متاحة. افتح الموقع عبر HTTPS ومن متصفح يسمح بالكاميرا.');return}
   cameraModal.classList.add('open');
   cameraStatus.textContent='جارٍ تحميل نظام فحص الوجه...';
   openCameraVerify.disabled=true;
-
   try{
     await loadFaceModels();
-
-    cameraStream=await navigator.mediaDevices.getUserMedia({
-      audio:false,
-      video:{
-        facingMode:'user',
-        width:{ideal:640},
-        height:{ideal:480}
-      }
-    });
-
+    cameraStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:'user',width:{ideal:640},height:{ideal:480}}});
     faceCamera.srcObject=cameraStream;
-
     await new Promise((resolve,reject)=>{
       faceCamera.onloadedmetadata=()=>resolve();
       faceCamera.onerror=()=>reject(new Error('تعذر تشغيل بث الكاميرا.'));
     });
-
     await faceCamera.play();
-
     cameraStatus.textContent='ضع وجهك داخل الإطار، ثم اضغط التقاط وفحص الوجه.';
     captureFaceBtn.disabled=false;
-
   }catch(error){
-    closeCamera();
-    showToast(error.message||'تعذر فتح الكاميرا أو تحميل نظام فحص الوجه.');
+    stopCamera();
+    cameraStatus.textContent='تعذر تشغيل التحقق: '+(error.message||'خطأ غير معروف')+' — النافذة ستظل مفتوحة. راجع الرسالة وحاول مرة أخرى بعد السماح بالكاميرا.';
+    captureFaceBtn.disabled=true;
+    openCameraVerify.disabled=false;
   }
 });
 
 captureFaceBtn.addEventListener('click',async()=>{
   captureFaceBtn.disabled=true;
   cameraStatus.textContent='جارٍ فحص الصورة المرفوعة ومقارنتها بوجهك أمام الكاميرا...';
-
   try{
-    const options=new faceapi.TinyFaceDetectorOptions({
-      inputSize:320,
-      scoreThreshold:0.5
-    });
-
-    /* فحص الصورة الشخصية المرفوعة */
-    const uploadedFaces=await faceapi
-      .detectAllFaces(photoPreview,options)
-      .withFaceLandmarks()
-      .withFaceDescriptors();
-
-    if(uploadedFaces.length!==1){
-      throw new Error(
-        uploadedFaces.length===0
-        ?'لم يتم العثور على وجه واضح في الصورة المرفوعة. اختر صورة يظهر فيها وجهك بوضوح.'
-        :'الصورة المرفوعة تحتوي على أكثر من وجه. اختر صورة لك وحدك.'
-      );
-    }
-
-    /* فحص الوجه الحي من الكاميرا */
-    const liveFaces=await faceapi
-      .detectAllFaces(faceCamera,options)
-      .withFaceLandmarks()
-      .withFaceDescriptors();
-
-    if(liveFaces.length!==1){
-      throw new Error(
-        liveFaces.length===0
-        ?'لم يتم اكتشاف وجه واضح أمام الكاميرا. اضبط الإضاءة وقرّب وجهك من الإطار.'
-        :'يجب أن يظهر وجه واحد فقط أمام الكاميرا.'
-      );
-    }
-
-    /* مقارنة بصمة الوجه */
-    const distance=faceapi.euclideanDistance(
-      uploadedFaces[0].descriptor,
-      liveFaces[0].descriptor
-    );
-
-    if(distance>0.52){
-      throw new Error('الوجه أمام الكاميرا لا يطابق الصورة المرفوعة. حاول مرة أخرى أو ارفع صورة أوضح.');
-    }
-
-    photoMatchVerified=true;
-    photoConfirmed.style.display='block';
-
-    showToast('تمت مطابقة الوجه بنجاح.','success');
-    closeCamera();
-
+    const options=new faceapi.TinyFaceDetectorOptions({inputSize:320,scoreThreshold:0.5});
+    const uploadedFaces=await faceapi.detectAllFaces(photoPreview,options).withFaceLandmarks().withFaceDescriptors();
+    if(uploadedFaces.length!==1)throw new Error(uploadedFaces.length===0?'لم يتم العثور على وجه واضح في الصورة المرفوعة. اختر صورة يظهر فيها وجهك بوضوح.':'الصورة المرفوعة تحتوي على أكثر من وجه. اختر صورة لك وحدك.');
+    const liveFaces=await faceapi.detectAllFaces(faceCamera,options).withFaceLandmarks().withFaceDescriptors();
+    if(liveFaces.length!==1)throw new Error(liveFaces.length===0?'لم يتم اكتشاف وجه واضح أمام الكاميرا. اضبط الإضاءة وقرّب وجهك من الإطار.':'يجب أن يظهر وجه واحد فقط أمام الكاميرا.');
+    const distance=faceapi.euclideanDistance(uploadedFaces[0].descriptor,liveFaces[0].descriptor);
+    if(distance>0.52)throw new Error('الوجه أمام الكاميرا لا يطابق الصورة المرفوعة. حاول مرة أخرى أو ارفع صورة أوضح.');
+    photoMatchVerified=true;photoConfirmed.style.display='block';
+    showToast('تمت مطابقة الوجه بنجاح.','success');closeCamera();
   }catch(error){
     cameraStatus.textContent=error.message||'لم تنجح مطابقة الوجه. حاول مرة أخرى.';
     captureFaceBtn.disabled=false;
@@ -946,35 +516,108 @@ captureFaceBtn.addEventListener('click',async()=>{
 /* إتمام إنشاء الحساب - معاينة محلية */
 document.getElementById('createAccount').addEventListener('click',()=>{
   if(!validateStage(7))return;
-
   const id='ELG-'+Math.random().toString(36).slice(2,10).toUpperCase();
-
   document.getElementById('finalPhoto').src=photoData;
   document.getElementById('finalName').textContent=value('studentName');
   document.getElementById('finalId').textContent=id;
-
-  const qr=document.getElementById('qrcode');
-  qr.innerHTML='';
-
-  if(window.QRCode){
-    new QRCode(qr,{
-      text:id,
-      width:120,
-      height:120,
-      colorDark:'#15121b',
-      colorLight:'#ffffff'
-    });
-  }else{
-    qr.textContent=id;
-  }
-
+  const qr=document.getElementById('qrcode');qr.innerHTML='';
+  if(window.QRCode)new QRCode(qr,{text:id,width:120,height:120,colorDark:'#15121b',colorLight:'#ffffff'});
+  else qr.textContent=id;
   document.getElementById('wizard').style.display='none';
   document.getElementById('successView').style.display='block';
   document.getElementById('loginLink').style.display='none';
-
   showToast('تم تجهيز معاينة ملفك الشخصي بنجاح.','success');
 });
 
+/* القوائم المخصصة: بحث واختيار وتحديث تلقائي للقيم */
+function setupCustomSelect(select){
+  if(select.dataset.customReady==='1')return;
+  select.dataset.customReady='1';
+  select.classList.add('select-native-hidden');
+  const wrapper=document.createElement('div');
+  wrapper.className='custom-select';
+  select.parentNode.insertBefore(wrapper,select);
+  wrapper.appendChild(select);
+
+  const trigger=document.createElement('button');
+  trigger.type='button';trigger.className='custom-select-trigger';
+  trigger.setAttribute('aria-haspopup','listbox');
+  const valueLabel=document.createElement('span');
+  valueLabel.className='custom-select-value';trigger.appendChild(valueLabel);
+
+  const panel=document.createElement('div');panel.className='custom-select-panel';
+  const search=document.createElement('input');
+  search.type='search';search.className='custom-select-search';
+  search.placeholder='ابحث في الاختيارات...';search.autocomplete='off';
+  search.setAttribute('aria-label','ابحث في الاختيارات');
+
+  const optionsBox=document.createElement('div');
+  optionsBox.className='custom-select-options';
+  optionsBox.setAttribute('role','listbox');
+  panel.append(search,optionsBox);wrapper.append(trigger,panel);
+
+  function refresh(){
+    const selected=select.options[select.selectedIndex];
+    valueLabel.textContent=selected?selected.textContent.trim():'اختر من القائمة';
+    valueLabel.classList.toggle('placeholder',!select.value);
+    trigger.disabled=select.disabled;
+    trigger.setAttribute('aria-expanded',wrapper.classList.contains('open')?'true':'false');
+    const query=search.value.trim().toLocaleLowerCase('ar');
+    optionsBox.innerHTML='';let count=0;
+
+    [...select.options].forEach(option=>{
+      if(option.disabled)return;
+      const label=option.textContent.trim();
+      if(query&&!label.toLocaleLowerCase('ar').includes(query))return;
+      const item=document.createElement('button');
+      item.type='button';
+      item.className='custom-select-option'+(option.value===select.value?' selected':'');
+      item.textContent=label;item.setAttribute('role','option');
+      item.setAttribute('aria-selected',option.value===select.value?'true':'false');
+      item.addEventListener('click',()=>{
+        select.value=option.value;
+        select.dispatchEvent(new Event('change',{bubbles:true}));
+        refresh();wrapper.classList.remove('open');
+        trigger.setAttribute('aria-expanded','false');
+        search.value='';optionsBox.scrollTop=0;
+      });
+      optionsBox.appendChild(item);count++;
+    });
+    if(!count){
+      const empty=document.createElement('div');
+      empty.className='custom-select-empty';
+      empty.textContent='لا توجد نتائج مطابقة';
+      optionsBox.appendChild(empty);
+    }
+  }
+
+  trigger.addEventListener('click',()=>{
+    if(select.disabled)return;
+    const willOpen=!wrapper.classList.contains('open');
+    document.querySelectorAll('.custom-select.open').forEach(item=>{
+      item.classList.remove('open');
+      const button=item.querySelector('.custom-select-trigger');
+      if(button)button.setAttribute('aria-expanded','false');
+    });
+    wrapper.classList.toggle('open',willOpen);
+    trigger.setAttribute('aria-expanded',willOpen?'true':'false');
+    if(willOpen){search.value='';refresh();setTimeout(()=>search.focus(),30)}
+  });
+
+  search.addEventListener('input',refresh);
+  select.addEventListener('change',refresh);
+  const observer=new MutationObserver(refresh);
+  observer.observe(select,{childList:true,subtree:true,attributes:true,characterData:true});
+
+  document.addEventListener('click',event=>{
+    if(!wrapper.contains(event.target)){
+      wrapper.classList.remove('open');
+      trigger.setAttribute('aria-expanded','false');
+    }
+  });
+  refresh();
+}
+document.querySelectorAll('.field select').forEach(setupCustomSelect);
 renderStage();
 </script>
 </body>
