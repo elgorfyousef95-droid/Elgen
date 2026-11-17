@@ -78,19 +78,6 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
 .photo-preview{width:135px;height:135px;border-radius:50%;object-fit:cover;border:3px solid rgba(233,185,94,.7);background:#272330;display:none;margin-bottom:13px}
 .upload-label{display:inline-flex;align-items:center;justify-content:center;min-height:43px;padding:10px 19px;border-radius:11px;background:rgba(233,185,94,.13);border:1px solid var(--line);color:var(--gold2);font-size:12px;font-weight:800;cursor:pointer}
 #profilePhoto{display:none}
-.camera-confirm-btn{margin-top:15px;min-width:220px}
-.photo-confirmed{display:none;color:var(--green);font-size:13px;font-weight:900;margin-top:11px}
-.camera-modal{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(5,5,12,.88);backdrop-filter:blur(12px)}
-.camera-modal.open{display:flex}
-.camera-panel{width:min(460px,100%);padding:18px;border:1px solid var(--line);border-radius:20px;background:#171522;box-shadow:0 20px 70px #000b;text-align:center}
-.camera-panel h3{margin:0 0 7px;font-size:18px;color:var(--gold2)}
-.camera-panel p{font-size:12px;line-height:1.8;color:var(--muted);margin:0 0 13px}
-.camera-frame{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:15px;background:#080811;border:1px solid var(--line)}
-.camera-frame video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
-.camera-guide{position:absolute;inset:12% 23%;border:2px solid rgba(255,217,139,.9);border-radius:48% 48% 44% 44%;pointer-events:none}
-.camera-status{min-height:25px;margin:12px 0;color:#f4d9a7;font-size:12px}
-.camera-actions{display:flex;gap:9px}
-.camera-actions .btn{flex:1}
 .terms-box{max-height:210px;overflow:auto;padding:14px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.035);color:#d4c9b8;font-size:12px;line-height:2}
 .terms-agree{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:12px;color:#f1dfc1}
 .terms-agree input{accent-color:var(--gold);width:18px;height:18px;flex-shrink:0;margin-top:3px}
@@ -118,7 +105,6 @@ body{margin:0;min-height:100vh;color:var(--text);font-family:'Cairo',sans-serif;
 .video-gate-error{display:none;margin-top:12px;color:#ffb6c0;font-size:12px;line-height:1.8}
 body.video-locked{overflow:hidden}
 @media(max-width:560px){.page{padding:16px 10px 25px;align-items:flex-start}.wrapper{width:min(100%,520px)}.card{padding:17px 13px;border-radius:19px}.brand h1{font-size:20px}.card-head h2{font-size:19px}.grid-two{grid-template-columns:1fr;gap:0}.steps{gap:3px}.step-dot{width:25px;height:25px;flex-basis:25px;font-size:10px}.nav-buttons .btn{padding:10px 13px}.custom-select-panel{max-height:260px}.custom-select-options{max-height:190px}}
-@media(max-width:420px){.camera-panel{padding:14px}.camera-actions{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -158,7 +144,15 @@ body.video-locked{overflow:hidden}
     <section class="stage active" data-stage="0">
       <h3 class="stage-title">بيانات حساب الطالب</h3>
       <p class="stage-desc">اكتب بيانات الحساب التي ستستخدمها للدخول إلى المنصة.</p>
-      <div class="field"><label for="studentName">اسم الطالب بالكامل</label><input id="studentName" type="text" placeholder="اكتب اسمك بالكامل" autocomplete="name"></div>
+      <div class="field">
+        <label>اسم الطالب رباعي</label>
+        <div class="grid-two">
+          <input id="studentName1" type="text" placeholder="الاسم الأول" autocomplete="given-name">
+          <input id="studentName2" type="text" placeholder="الاسم الثاني">
+          <input id="studentName3" type="text" placeholder="الاسم الثالث">
+          <input id="studentName4" type="text" placeholder="الاسم الرابع" autocomplete="family-name">
+        </div>
+      </div>
       <div class="field"><label for="studentPhone">رقم هاتف الطالب</label><input id="studentPhone" type="tel" inputmode="tel" placeholder="رقم الهاتف"></div>
       <div class="grid-two">
         <div class="field"><label for="password">كلمة المرور</label><input id="password" type="password" placeholder="كلمة المرور"></div>
@@ -170,7 +164,15 @@ body.video-locked{overflow:hidden}
     <section class="stage" data-stage="1">
       <h3 class="stage-title">بيانات ولي الأمر</h3>
       <p class="stage-desc">أدخل بيانات ولي أمرك للتواصل عند الحاجة.</p>
-      <div class="field"><label for="parentName">اسم ولي الأمر</label><input id="parentName" type="text" placeholder="اسم ولي الأمر بالكامل"></div>
+      <div class="field">
+        <label>اسم ولي الأمر رباعي</label>
+        <div class="grid-two">
+          <input id="parentName1" type="text" placeholder="الاسم الأول">
+          <input id="parentName2" type="text" placeholder="الاسم الثاني">
+          <input id="parentName3" type="text" placeholder="الاسم الثالث">
+          <input id="parentName4" type="text" placeholder="الاسم الرابع">
+        </div>
+      </div>
       <div class="field"><label for="parentPhone">رقم هاتف ولي الأمر</label><input id="parentPhone" type="tel" inputmode="tel" placeholder="رقم هاتف ولي الأمر"></div>
     </section>
 
@@ -206,19 +208,17 @@ body.video-locked{overflow:hidden}
     </section>
 
     <section class="stage" data-stage="5">
-      <h3 class="stage-title">الصورة الشخصية وتأكيدها</h3>
-      <p class="stage-desc">ارفع صورتك الشخصية، ثم أكد مطابقة وجهك بالكاميرا.</p>
+      <h3 class="stage-title">الصورة الشخصية</h3>
+      <p class="stage-desc">ارفع صورتك الشخصية التي ستظهر في ملفك على المنصة.</p>
       <div class="photo-area">
         <img id="photoPreview" class="photo-preview" alt="معاينة الصورة الشخصية">
         <div id="photoPlaceholder" style="font-size:42px;margin-bottom:8px">◎</div>
         <div style="font-size:13px;font-weight:800;margin-bottom:5px">صورتك الشخصية</div>
         <div style="font-size:11px;color:var(--muted);margin-bottom:15px">اختر صورة واضحة لك</div>
         <label for="profilePhoto" class="upload-label">اختيار الصورة</label>
-        <input id="profilePhoto" type="file" accept="image/*">
-        <button class="btn btn-primary camera-confirm-btn" id="openCameraVerify" type="button" disabled>تأكيد الصورة الشخصية بالكاميرا</button>
-        <div class="photo-confirmed" id="photoConfirmed">✓ تمت مطابقة الوجه بالكاميرا</div>
+        <input id="profilePhoto" type="file" accept="image/jpeg,image/png,image/webp">
       </div>
-      <div class="note">بعد رفع الصورة اضغط «تأكيد الصورة الشخصية بالكاميرا». لن تنتقل للمرحلة التالية إلا بعد نجاح مقارنة الوجه بالصورة المرفوعة.</div>
+      <div class="note">اختر صورة شخصية واضحة، وسيتم حفظها في ملفك عند إنشاء الحساب.</div>
     </section>
 
     <section class="stage" data-stage="6">
@@ -230,7 +230,7 @@ body.video-locked{overflow:hidden}
         2. يلتزم الطالب بالحفاظ على سرية كلمة المرور وعدم مشاركتها مع الآخرين.<br>
         3. يجب استخدام المنصة للأغراض التعليمية المخصصة لها.<br>
         4. يلتزم الطالب باحترام المعلمين والطلاب وعدم إساءة استخدام وسائل التواصل داخل المنصة.<br>
-        5. يقر الطالب بأن الصورة الشخصية التي رفعها هي الصورة التي اختارها وأكدها بنفسه.<br>
+        5. يقر الطالب بأن الصورة الشخصية التي رفعها هي الصورة التي اختارها بنفسه.<br>
         6. يوافق الطالب على حفظ بيانات حسابه وتقدمه الدراسي ونتائجه داخل المنصة لتقديم الخدمات التعليمية.<br>
         7. قد يتم تحديث الشروط عند إضافة خدمات جديدة، وسيتم عرض التحديثات داخل المنصة.
       </div>
@@ -272,19 +272,6 @@ body.video-locked{overflow:hidden}
 </div>
 </main>
 
-<div class="camera-modal" id="cameraModal" role="dialog" aria-modal="true" aria-labelledby="cameraTitle">
-  <div class="camera-panel">
-    <h3 id="cameraTitle">تأكيد الصورة الشخصية</h3>
-    <p>وجّه وجهك داخل الإطار، وانظر مباشرة إلى الكاميرا، ثم اضغط التقاط وفحص.</p>
-    <div class="camera-frame"><video id="faceCamera" autoplay muted playsinline></video><div class="camera-guide"></div></div>
-    <div class="camera-status" id="cameraStatus">جارٍ تجهيز الكاميرا...</div>
-    <div class="camera-actions">
-      <button class="btn btn-primary" id="captureFaceBtn" type="button" disabled>التقاط وفحص الوجه</button>
-      <button class="btn btn-secondary" id="closeCameraBtn" type="button">إلغاء</button>
-    </div>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 
 <div class="video-gate" id="videoGate" aria-modal="true" role="dialog">
@@ -299,7 +286,6 @@ body.video-locked{overflow:hidden}
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
-<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 /* إعداد الاتصال بقاعدة بيانات المنصة */
@@ -319,9 +305,6 @@ const toast=document.getElementById('toast');
 
 let currentStage=0;
 let photoData='';
-let photoMatchVerified=false;
-let cameraStream=null;
-let faceModelsReady=false;
 let toastTimer=null;
 
 function showToast(message,type='error'){
@@ -350,10 +333,26 @@ function value(id){
   return document.getElementById(id).value.trim();
 }
 
+function studentNameParts(){
+  return [1,2,3,4].map(n=>value('studentName'+n));
+}
+
+function parentNameParts(){
+  return [1,2,3,4].map(n=>value('parentName'+n));
+}
+
+function studentFullName(){
+  return studentNameParts().join(' ');
+}
+
+function parentFullName(){
+  return parentNameParts().join(' ');
+}
+
 function validateStage(index){
   if(index===0){
-    if(!value('studentName')||!value('studentPhone')||!value('password')||!value('confirmPassword')){
-      showToast('من فضلك أكمل جميع بيانات حساب الطالب.');return false;
+    if(studentNameParts().some(part=>!part||/\s/.test(part))||!value('studentPhone')||!value('password')||!value('confirmPassword')){
+      showToast('اكتب الاسم الرباعي للطالب، كلمة واحدة في كل خانة، وأكمل باقي البيانات.');return false;
     }
     if(value('password')!==value('confirmPassword')){
       showToast('كلمتا المرور غير متطابقتين.');return false;
@@ -366,8 +365,8 @@ function validateStage(index){
   }
 
   if(index===1){
-    if(!value('parentName')||!value('parentPhone')){
-      showToast('أدخل اسم ولي الأمر ورقم هاتفه.');return false;
+    if(parentNameParts().some(part=>!part||/\s/.test(part))||!value('parentPhone')){
+      showToast('اكتب اسم ولي الأمر رباعيًا، كلمة واحدة في كل خانة، وأدخل رقم هاتفه.');return false;
     }
     try{normalizeEgyptPhone(value('parentPhone'))}
     catch(e){showToast('رقم هاتف ولي الأمر غير صحيح.');return false}
@@ -382,9 +381,8 @@ function validateStage(index){
   if(index===4&&(!value('center')||!value('village')||(value('village')==='أخرى'&&!value('villageOther')))){
     showToast('حدد المركز والقرية أو اختر «أخرى» واكتب اسم منطقتك.');return false;
   }
-  if(index===5){
-    if(!photoData){showToast('اختر صورتك الشخصية أولًا.');return false}
-    if(!photoMatchVerified){showToast('يجب تأكيد الصورة من خلال الكاميرا أولًا.');return false}
+  if(index===5&&!photoData){
+    showToast('اختر صورتك الشخصية أولًا.');return false;
   }
   if(index===6&&!document.getElementById('agreeTerms').checked){
     showToast('يجب الموافقة على الشروط والأحكام للمتابعة.');return false;
@@ -407,16 +405,16 @@ function buildReview(){
   const education=document.querySelector('input[name="educationType"]:checked').value;
   const selectedVillage=value('village')==='أخرى'?value('villageOther'):value('village');
   document.getElementById('reviewData').innerHTML=`
-    <strong style="color:var(--gold2)">اسم الطالب:</strong> ${safe(value('studentName'))}<br>
+    <strong style="color:var(--gold2)">اسم الطالب:</strong> ${safe(studentFullName())}<br>
     <strong style="color:var(--gold2)">رقم الهاتف:</strong> ${safe(value('studentPhone'))}<br>
-    <strong style="color:var(--gold2)">ولي الأمر:</strong> ${safe(value('parentName'))}<br>
+    <strong style="color:var(--gold2)">ولي الأمر:</strong> ${safe(parentFullName())}<br>
     <strong style="color:var(--gold2)">هاتف ولي الأمر:</strong> ${safe(value('parentPhone'))}<br>
     <strong style="color:var(--gold2)">نوع التعليم:</strong> ${safe(education)}<br>
     <strong style="color:var(--gold2)">الصف الدراسي:</strong> ${safe(value('schoolGrade'))}<br>
     <strong style="color:var(--gold2)">المحافظة:</strong> ${safe(value('governorate'))}<br>
     <strong style="color:var(--gold2)">المركز:</strong> ${safe(value('center'))}<br>
     <strong style="color:var(--gold2)">القرية أو المنطقة:</strong> ${safe(selectedVillage)}<br>
-    <strong style="color:var(--green)">الصورة الشخصية:</strong> تم تأكيد مطابقة الوجه ✓
+    <strong style="color:var(--green)">الصورة الشخصية:</strong> تم اختيار الصورة ✓
   `;
 }
 
@@ -510,22 +508,17 @@ document.getElementById('village').addEventListener('change',()=>{
 /* الصورة الشخصية */
 const photoInput=document.getElementById('profilePhoto');
 const photoPreview=document.getElementById('photoPreview');
-const photoConfirmed=document.getElementById('photoConfirmed');
-const openCameraVerify=document.getElementById('openCameraVerify');
-const cameraModal=document.getElementById('cameraModal');
-const faceCamera=document.getElementById('faceCamera');
-const cameraStatus=document.getElementById('cameraStatus');
-const captureFaceBtn=document.getElementById('captureFaceBtn');
 
 photoInput.addEventListener('change',()=>{
   const file=photoInput.files[0];
   if(!file)return;
 
-  if(!file.type.startsWith('image/')){
-    showToast('الملف المختار ليس صورة.');
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)){
+    showToast('اختر صورة بصيغة JPG أو PNG أو WebP.');
     photoInput.value='';
     return;
   }
+
   if(file.size>5*1024*1024){
     showToast('حجم الصورة يجب ألا يتجاوز 5 ميجابايت.');
     photoInput.value='';
@@ -538,114 +531,8 @@ photoInput.addEventListener('change',()=>{
     photoPreview.src=photoData;
     photoPreview.style.display='block';
     document.getElementById('photoPlaceholder').style.display='none';
-    photoMatchVerified=false;
-    openCameraVerify.disabled=false;
-    photoConfirmed.style.display='none';
   };
   reader.readAsDataURL(file);
-});
-
-/* فحص تطابق الصورة مع الوجه أمام الكاميرا */
-async function loadFaceModels(){
-  if(faceModelsReady)return;
-  if(!window.faceapi)throw new Error('تعذر تحميل مكتبة فحص الوجه.');
-  const modelUrl='https://cdn.jsdelivr.net/gh/cgarciagl/face-api.js@0.22.2/weights';
-  await Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri(modelUrl),
-    faceapi.nets.faceLandmark68Net.loadFromUri(modelUrl),
-    faceapi.nets.faceRecognitionNet.loadFromUri(modelUrl)
-  ]);
-  faceModelsReady=true;
-}
-
-function stopCamera(){
-  if(cameraStream){
-    cameraStream.getTracks().forEach(track=>track.stop());
-    cameraStream=null;
-  }
-  faceCamera.srcObject=null;
-}
-
-function closeCamera(){
-  stopCamera();
-  cameraModal.classList.remove('open');
-  captureFaceBtn.disabled=true;
-  openCameraVerify.disabled=false;
-}
-
-document.getElementById('closeCameraBtn').addEventListener('click',closeCamera);
-
-openCameraVerify.addEventListener('click',async()=>{
-  if(!photoData){showToast('ارفع صورتك الشخصية أولًا.');return}
-  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
-    showToast('الكاميرا غير متاحة. افتح الموقع عبر HTTPS واسمح باستخدام الكاميرا.');
-    return;
-  }
-
-  cameraModal.classList.add('open');
-  cameraStatus.textContent='جارٍ تحميل نظام فحص الوجه...';
-  openCameraVerify.disabled=true;
-
-  try{
-    await loadFaceModels();
-    cameraStream=await navigator.mediaDevices.getUserMedia({
-      audio:false,
-      video:{facingMode:'user',width:{ideal:640},height:{ideal:480}}
-    });
-    faceCamera.srcObject=cameraStream;
-
-    await new Promise((resolve,reject)=>{
-      faceCamera.onloadedmetadata=resolve;
-      faceCamera.onerror=()=>reject(new Error('تعذر تشغيل الكاميرا.'));
-    });
-
-    await faceCamera.play();
-    cameraStatus.textContent='ضع وجهك داخل الإطار، ثم اضغط التقاط وفحص الوجه.';
-    captureFaceBtn.disabled=false;
-  }catch(error){
-    stopCamera();
-    cameraStatus.textContent='تعذر تشغيل التحقق: '+(error.message||'خطأ غير معروف')+'؛ اسمح للمتصفح باستخدام الكاميرا ثم حاول مرة أخرى.';
-    captureFaceBtn.disabled=true;
-    openCameraVerify.disabled=false;
-  }
-});
-
-captureFaceBtn.addEventListener('click',async()=>{
-  captureFaceBtn.disabled=true;
-  cameraStatus.textContent='جارٍ مقارنة الوجه بالصورة الشخصية...';
-
-  try{
-const options=new faceapi.TinyFaceDetectorOptions({
-  inputSize:416,
-  scoreThreshold:0.25
-});
-    const uploadedFaces=await faceapi.detectAllFaces(photoPreview,options).withFaceLandmarks().withFaceDescriptors();
-
-    if(uploadedFaces.length!==1){
-      throw new Error(uploadedFaces.length===0?'لم يتم العثور على وجه واضح في الصورة المرفوعة.':'الصورة المرفوعة تحتوي على أكثر من وجه.');
-    }
-
-    const liveFaces=await faceapi.detectAllFaces(faceCamera,options).withFaceLandmarks().withFaceDescriptors();
-
-    if(liveFaces.length!==1){
-      throw new Error(liveFaces.length===0?'لم يتم اكتشاف وجه واضح أمام الكاميرا.':'يجب أن يظهر وجه واحد فقط أمام الكاميرا.');
-    }
-
-    const distance=faceapi.euclideanDistance(uploadedFaces[0].descriptor,liveFaces[0].descriptor);
-
-    if(distance>0.52){
-      throw new Error('الوجه أمام الكاميرا لا يطابق الصورة المرفوعة. حاول مرة أخرى.');
-    }
-
-    photoMatchVerified=true;
-    photoConfirmed.style.display='block';
-    showToast('تمت مطابقة الوجه بنجاح.','success');
-    closeCamera();
-
-  }catch(error){
-    cameraStatus.textContent=error.message||'لم تنجح مطابقة الوجه. حاول مرة أخرى.';
-    captureFaceBtn.disabled=false;
-  }
 });
 
 /* إنشاء الحساب وحفظ بيانات الطالب والصورة في Supabase */
@@ -668,7 +555,6 @@ async function createStudentAccount(){
     const photoFile=photoInput.files[0];
 
     if(!photoFile)throw new Error('الصورة الشخصية غير موجودة. اختر الصورة مرة أخرى.');
-    if(!photoMatchVerified)throw new Error('يجب تأكيد مطابقة الصورة بالكاميرا قبل إنشاء الحساب.');
 
     /* إنشاء حساب Auth برقم الهاتف وكلمة المرور */
     const {data,error}=await supabaseClient.auth.signUp({
@@ -676,8 +562,8 @@ async function createStudentAccount(){
       password:value('password'),
       options:{
         data:{
-          full_name:value('studentName'),
-          parent_name:value('parentName'),
+          full_name:studentFullName(),
+          parent_name:parentFullName(),
           parent_phone:parentPhone,
           education_type:education,
           school_grade:value('schoolGrade'),
@@ -691,10 +577,6 @@ async function createStudentAccount(){
     if(error)throw error;
     if(!data.user)throw new Error('لم يتم إنشاء حساب المستخدم. حاول مرة أخرى.');
 
-    /*
-      يجب أن تكون جلسة المستخدم موجودة.
-      إذا لم توجد، فهذا يعني غالبًا أن تأكيد الهاتف ما زال مطلوبًا.
-    */
     if(!data.session){
       throw new Error('طلب التسجيل وصل إلى Supabase، لكن لم يتم تسجيل الدخول تلقائيًا. يجب مراجعة إعداد Phone Confirmations في إعدادات المشروع وإيقاف تأكيد الهاتف إذا كان المطلوب التسجيل دون رمز SMS. لا تعِد التسجيل بنفس الرقم قبل مراجعة الحساب.');
     }
@@ -703,7 +585,7 @@ async function createStudentAccount(){
     const extension=(photoFile.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
     const photoPath=userId+'/profile.'+extension;
 
-    /* رفع نفس الصورة التي اختارها الطالب وأكدها بالكاميرا */
+    /* رفع الصورة الشخصية التي اختارها الطالب */
     const {error:uploadError}=await supabaseClient.storage
       .from('student-avatars')
       .upload(photoPath,photoFile,{
@@ -719,13 +601,12 @@ async function createStudentAccount(){
       .from('student-avatars')
       .getPublicUrl(photoPath);
 
-    /* تحديث الملف الشخصي بالصورة ومسارها وتاريخ تأكيدها */
+    /* تحديث الملف الشخصي بالصورة ومسارها */
     const {error:updateError}=await supabaseClient
       .from('profiles')
       .update({
         avatar_url:publicData.publicUrl,
-        photo_path:photoPath,
-        face_match_checked_at:new Date().toISOString()
+        photo_path:photoPath
       })
       .eq('id',userId);
 
@@ -745,7 +626,7 @@ async function createStudentAccount(){
 
     /* عرض بيانات الحساب المحفوظة */
     document.getElementById('finalPhoto').src=profile.avatar_url||photoData;
-    document.getElementById('finalName').textContent=profile.full_name||value('studentName');
+    document.getElementById('finalName').textContent=profile.full_name||studentFullName();
     document.getElementById('finalId').textContent=profile.user_code;
 
     const qr=document.getElementById('qrcode');
