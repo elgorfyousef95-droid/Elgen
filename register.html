@@ -189,8 +189,7 @@ button{cursor:pointer}
  font:inherit;font-size:11px;font-weight:900;
 }
 .grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-.grid-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.name-input{padding-right:13px!important;text-align:center}
+.grid-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.name-input{padding-right:13px!important;text-align:center}
 .helper{color:#9292a5;font-size:10px;line-height:1.8;margin:7px 2px 0}
 .info-box{
  display:flex;align-items:flex-start;gap:10px;padding:10px 12px;
@@ -349,9 +348,7 @@ button{cursor:pointer}
 .profile-photo-row .final-photo{margin:0}
 .profile-status-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border:1px solid #42d6a077;border-radius:999px;background:#42d6a018;color:#8ff0c6;font-size:10px;font-weight:900}
 .video-inner{max-height:100%;display:flex;flex-direction:column;justify-content:center}
-.video-inner video{width:100%;height:auto;max-height:calc(100dvh - 100px);aspect-ratio:16/9;object-fit:contain}
-
-/* إعدادات العرض على الهاتف */
+.video-inner video{width:100%;height:auto;max-height:calc(100dvh - 100px);aspect-ratio:16/9;object-fit:contain}/* إعدادات العرض على الهاتف */
 @media(max-width:520px){
  .page{padding:12px 9px max(14px,env(safe-area-inset-bottom))}
  .wrapper{width:100%;max-width:100%}
@@ -481,9 +478,7 @@ button,input,select,textarea{touch-action:manipulation}
  .select-layer{align-items:center;padding:8px}.select-dialog{height:min(88dvh,480px);min-height:220px;border-radius:18px}
  .select-options{min-height:0}.video-inner video{max-height:78dvh}
 }
-@media(prefers-reduced-motion:reduce){.select-dialog{animation:none!important}}
-
-/* ضبط حجم نافذة الاختيارات */
+@media(prefers-reduced-motion:reduce){.select-dialog{animation:none!important}}/* ضبط حجم نافذة الاختيارات */
 .select-layer{
   align-items:center;
   justify-content:center;
@@ -584,7 +579,71 @@ button,input,select,textarea{touch-action:manipulation}
   min-height:210px!important;
   border-radius:18px!important;
  }
-}</head><body>
+}
+/* تحسين احترافي لواجهة التسجيل - مع الحفاظ الكامل على الخلفية الأصلية */
+.wrapper{width:min(680px,100%)}
+.brand{margin-bottom:18px}
+.brand-logo{width:64px;height:64px;border-radius:21px;box-shadow:0 14px 42px #d9a34b30,inset 0 1px #fff3}
+.card{border:1px solid #f0ca8040;border-radius:26px;background:linear-gradient(155deg,rgba(27,27,43,.96),rgba(17,18,31,.97));box-shadow:0 24px 70px #0006,inset 0 1px #ffffff12;overflow:hidden}
+.card:before{height:3px;background:linear-gradient(90deg,transparent,#e9b95e,#fff0c2,#e9b95e,transparent)}
+.card-head{padding:25px 25px 17px}
+.card-head h2{font-size:clamp(21px,4vw,27px);line-height:1.45}
+.card-head p{line-height:1.9}
+.progress-area{padding:0 25px 19px}
+.progress-track{height:7px;border-radius:20px;background:#ffffff12;overflow:hidden}
+.progress-fill{border-radius:20px;box-shadow:0 0 14px #e9b95e66}
+.steps{gap:7px}
+.step-circle{width:32px;height:32px;border:1px solid #ffffff24;background:#ffffff0a}
+.step.active .step-circle,.step.done .step-circle{box-shadow:0 0 0 4px #e9b95e18,0 5px 18px #0003}
+.stage{padding:4px 25px 25px}
+.stage-heading{margin-bottom:19px}
+.stage-title{font-size:19px;font-weight:900}
+.stage-desc{line-height:1.85}
+.field{margin-bottom:17px}
+.field label.main-label{font-weight:800;margin-bottom:8px}
+.input-wrap{border:1px solid #ffffff20;border-radius:15px;background:#ffffff08;transition:border-color .2s,box-shadow .2s,background .2s}
+.input-wrap:focus-within{border-color:#e9b95eaa;background:#ffffff0d;box-shadow:0 0 0 4px #e9b95e18}
+.field input,.field select{min-height:51px}
+.field input::placeholder{color:#aaaabd99}
+.select-launcher{min-height:51px!important;border-radius:15px!important;border:1px solid #ffffff20!important;background:#ffffff08!important}
+.select-launcher:focus-visible{outline:2px solid #e9b95e!important;outline-offset:2px}
+.info-box,.terms-box{border-radius:16px;border:1px solid #e9b95e35;background:linear-gradient(135deg,#e9b95e12,#ffffff05);line-height:1.9}
+.choice{border-radius:17px}
+.choice label{border:1px solid #ffffff1c;border-radius:17px;background:#ffffff06;transition:.2s}
+.choice input:checked+label{border-color:#e9b95e;background:linear-gradient(135deg,#e9b95e20,#ffffff08);box-shadow:0 0 0 3px #e9b95e12}
+.photo-box{border:1px dashed #e9b95e70;border-radius:19px;background:#ffffff06}
+.nav-buttons{gap:12px;padding-top:10px}
+.btn{min-height:49px;border-radius:15px;font-weight:900;transition:transform .18s,filter .18s,box-shadow .18s}
+.btn:active{transform:scale(.985)}
+.btn-primary{box-shadow:0 9px 24px #dca54a26}
+.btn-primary:hover{filter:brightness(1.08);box-shadow:0 12px 30px #dca54a35}
+.review-list{border-radius:17px;overflow:hidden;border:1px solid #ffffff18}
+.review-item{padding:12px 14px;background:#ffffff05}
+.review-item+.review-item{border-top:1px solid #ffffff10}
+.select-layer{background:rgba(4,5,12,.08)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;align-items:center!important;justify-content:center!important;padding:12px!important}
+.select-dialog{width:min(430px,calc(100vw - 28px))!important;height:min(68dvh,540px)!important;min-height:min(290px,calc(100dvh - 24px))!important;max-height:calc(100dvh - 24px)!important;border-radius:21px!important;padding-bottom:0!important}
+.select-dialog-head,.select-dialog-foot{flex:0 0 auto!important}
+.select-options{flex:1 1 auto!important;height:auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-y:contain!important;touch-action:pan-y!important}
+@media(max-width:600px){
+ .page{padding-left:11px;padding-right:11px}
+ .brand{margin-bottom:13px}
+ .brand-logo{width:58px;height:58px}
+ .card{border-radius:22px}
+ .card-head{padding:20px 17px 14px}
+ .progress-area{padding:0 17px 16px}
+ .stage{padding:3px 17px 20px}
+ .stage-heading{margin-bottom:15px}
+ .field{margin-bottom:14px}
+ .select-dialog{width:min(430px,calc(100vw - 24px))!important;height:min(68dvh,540px)!important;min-height:min(290px,calc(100dvh - 24px))!important;max-height:calc(100dvh - 24px)!important;border-radius:20px!important}
+ .select-dialog-head{padding:10px 13px!important}
+ .select-options{padding:7px 9px!important}
+ .select-option{min-height:43px!important;padding:9px 12px!important}
+ .select-dialog-foot{padding:9px 12px!important}
+}
+@media(orientation:landscape) and (max-height:520px){
+ .select-dialog{width:min(430px,calc(100vw - 28px))!important;height:min(84dvh,420px)!important;min-height:210px!important;border-radius:18px!important}
+}
+</style></head><body>
 <img class="background" src="./86.jpg" alt="">
 <div class="overlay"></div>
 
@@ -833,7 +892,6 @@ button,input,select,textarea{touch-action:manipulation}
      </svg>
      <select id="center"><option value="">اختر المحافظة أولًا</option></select>
     </div>
-   </div>    </div>
    </div>
 
    <div class="field">
@@ -861,9 +919,7 @@ button,input,select,textarea{touch-action:manipulation}
     </svg>
     <span>لو لم تجد اسم المركز أو القرية، اختر «أخرى» واكتب الاسم بنفسك.</span>
    </div>
-  </section>
-
-  <!-- المرحلة السادسة -->
+  </section>  <!-- المرحلة السادسة -->
   <section class="stage" data-stage="5">
    <div class="stage-heading">
     <div class="stage-icon">
@@ -1011,8 +1067,9 @@ button,input,select,textarea{touch-action:manipulation}
    <button class="btn btn-primary" id="retryVideo" type="button" style="margin-top:9px">إعادة تشغيل الفيديو</button>
   </div>
  </div>
-</div><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script>
-const ACCESS_URL="https://iirrwfativrsrxluxmwp.supabase.co/functions/v1/student-phone-access";
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>const ACCESS_URL="https://iirrwfativrsrxluxmwp.supabase.co/functions/v1/student-phone-access";
 const PUBLIC_KEY="sb_publishable_cDCIPKxT6-2NgbLmnTy1Lw_pW84RMam";
 
 const $=id=>document.getElementById(id);
@@ -1096,41 +1153,8 @@ function validateStage(index){
   catch(e){showToast("رقم هاتف ولي الأمر غير صحيح.");return false}
  }
 
- if(index===2){
-  if(!document.querySelector('input[name="educationType"]:checked')||!value("schoolGrade")){
-   showToast("اختر نوع التعليم والصف الدراسي.");return false;
-  }
- }
-
- if(index===3&&!value("governorate")){
-  showToast("اختر المحافظة.");return false;
- }
-
- if(index===4){
-  if(!value("center")||(value("center")==="أخرى"&&!value("centerOther"))){
-   showToast("اختر المركز أو اكتب اسمه.");return false;
-  }
-  if(!value("village")||(value("village")==="أخرى"&&!value("villageOther"))){
-   showToast("اختر القرية أو اكتب اسمها.");return false;
-  }
- }
-
- if(index===5&&!photoData){
-  showToast("اختر صورتك الشخصية أولًا.");return false;
- }
-
- if(index===6&&!$("agreeTerms").checked){
-  showToast("يجب الموافقة على الشروط والأحكام.");return false;
- }
-
- return true;
- }  catch(e){showToast("رقم هاتف ولي الأمر غير صحيح.");return false}
- }
-
- if(index===2){
-  if(!document.querySelector('input[name="educationType"]:checked')||!value("schoolGrade")){
-   showToast("اختر نوع التعليم والصف الدراسي.");return false;
-  }
+ if(index===2&&(!document.querySelector('input[name="educationType"]:checked')||!value("schoolGrade"))){
+  showToast("اختر نوع التعليم والصف الدراسي.");return false;
  }
 
  if(index===3&&!value("governorate")){
@@ -1191,9 +1215,7 @@ const governorates=[
  "الوادي الجديد","مطروح"
 ];
 
-governorates.forEach(name=>$("governorate").add(new Option(name,name)));
-
-/* المراكز */
+governorates.forEach(name=>$("governorate").add(new Option(name,name)));/* المراكز */
 const centers={
  "المنوفية":["شبين الكوم","قويسنا","منوف","أشمون","الباجور","تلا","بركة السبع","السادات","الشهداء","سرس الليان"],
  "القاهرة":["القاهرة"],
@@ -1351,9 +1373,7 @@ async function callAccess(payload){
  }
 
  return result;
-}
-
-/* إنشاء الحساب */
+                                }/* إنشاء الحساب */
 async function createStudentAccount(){
  if(creating||!validateStage(7))return;
 
@@ -1403,253 +1423,9 @@ async function createStudentAccount(){
   const accountVerified=
    user.is_verified===true||
    user.verified===true||
-   user.face_verified===true;$("nextBtn").addEventListener("click",()=>{
- if(!validateStage(currentStage))return;
- if(currentStage===6)buildReview();
- currentStage++;
- renderStage();
-});
+   user.face_verified===true;
 
-$("backBtn").addEventListener("click",()=>{
- if(currentStage>0){
-  currentStage--;
-  renderStage();
- }
-});
-
-/* الصف الدراسي */
-document.querySelectorAll('input[name="educationType"]').forEach(radio=>{
- radio.addEventListener("change",()=>{
-  $("schoolGrade").innerHTML='<option value="">اختر الصف الدراسي</option>';
-  ["أولى ثانوي","تانية ثانوي","تالتة ثانوي"].forEach(item=>{
-   $("schoolGrade").add(new Option(item,item));
-  });
- });
-});
-
-/* المحافظات */
-const governorates=[
- "القاهرة","الجيزة","الإسكندرية","القليوبية","المنوفية",
- "الغربية","كفر الشيخ","البحيرة","الدقهلية","دمياط",
- "الشرقية","بورسعيد","الإسماعيلية","السويس","شمال سيناء",
- "جنوب سيناء","الفيوم","بني سويف","المنيا","أسيوط",
- "سوهاج","قنا","الأقصر","أسوان","البحر الأحمر",
- "الوادي الجديد","مطروح"
-];
-
-governorates.forEach(name=>$("governorate").add(new Option(name,name)));
-
-/* المراكز */
-const centers={
- "المنوفية":["شبين الكوم","قويسنا","منوف","أشمون","الباجور","تلا","بركة السبع","السادات","الشهداء","سرس الليان"],
- "القاهرة":["القاهرة"],
- "الجيزة":["الجيزة","أكتوبر","الشيخ زايد","البدرشين","العياط","أوسيم"],
- "الإسكندرية":["الإسكندرية","برج العرب"],
- "القليوبية":["بنها","قليوب","شبرا الخيمة","قها","طوخ","الخانكة","الخصوص"],
- "الغربية":["طنطا","المحلة الكبرى","زفتى","كفر الزيات","السنطة","بسيون","قطور"],
- "الدقهلية":["المنصورة","طلخا","ميت غمر","أجا","السنبلاوين","دكرنس","بلقاس"],
- "الشرقية":["الزقازيق","بلبيس","منيا القمح","فاقوس","أبو كبير","ههيا"],
- "البحيرة":["دمنهور","كفر الدوار","رشيد","إيتاي البارود","أبو حمص"],
- "كفر الشيخ":["كفر الشيخ","دسوق","فوه","مطوبس","بلطيم"],
- "دمياط":["دمياط","فارسكور","الزرقا","كفر سعد"],
- "الفيوم":["الفيوم","سنورس","إطسا","طامية"],
- "بني سويف":["بني سويف","الواسطى","ناصر","إهناسيا"],
- "المنيا":["المنيا","ملوي","مغاغة","سمالوط"],
- "أسيوط":["أسيوط","ديروط","القوصية","أبنوب"],
- "سوهاج":["سوهاج","أخميم","جرجا","طهطا"],
- "قنا":["قنا","نجع حمادي","دشنا"],
- "الأقصر":["الأقصر","إسنا","أرمنت"],
- "أسوان":["أسوان","إدفو","كوم أمبو"],
- "بورسعيد":["بورسعيد"],
- "الإسماعيلية":["الإسماعيلية","فايد","التل الكبير"],
- "السويس":["السويس"],
- "مطروح":["مرسى مطروح","الحمام","العلمين"],
- "البحر الأحمر":["الغردقة","سفاجا","القصير"],
- "شمال سيناء":["العريش","بئر العبد"],
- "جنوب سيناء":["شرم الشيخ","الطور","دهب"],
- "الوادي الجديد":["الخارجة","الداخلة"]
-};
-
-/* القرى والمناطق المتاحة */
-const villages={
- "بركة السبع":[
-  "مدينة بركة السبع","أبو مشهور","الشهيد فكري","الروضة",
-  "كفر الحمادية","جنزور","منشأة الرافعي","شنتنا الحجر",
-  "ميت أم صالح","الغوري","ميت فارس","كفر مليج",
-  "طوخ طنبشا","كفر عليم","طنبشا","الدبايبة","هورين",
-  "كفر هورين","الحلامشة","كفر هلال","كفر الشيخ طعيمة",
-  "كفر نفرة البحري","زوير","سلكا","ميت الموز","ميت عافية",
-  "كفر سبع الرجال"
- ],
- "طنطا":["طنطا","سبرباي","محلة مرحوم","شوني","فيشا سليم","دفرة","كفر عصام"],
- "المحلة الكبرى":["المحلة الكبرى","سمنود","محلة أبو علي","بشبيش"],
- "قويسنا":["قويسنا","ميت برة","أم خنان","عرب الرمل"],
- "شبين الكوم":["شبين الكوم","ميت خاقان","شنوان","البقاشين"],
- "منوف":["منوف","فيشا الكبرى","برهيم","كفر السنابسة"],
- "أشمون":["أشمون","ساقية أبو شعرة","سمادون","طليا"],
- "الباجور":["الباجور","مشيرف","كفر الباجور"],
- "تلا":["تلا","كفر السكرية","زاوية بمم"],
- "السادات":["مدينة السادات","كفر داود","الخطاطبة"]
-};
-
-function resetVillages(){
- $("village").innerHTML='<option value="">اختر القرية أو المنطقة</option>';
- $("village").add(new Option("أخرى - اكتب المنطقة","أخرى"));
- $("villageOtherWrap").classList.add("hidden");
- $("villageOther").value="";
-}
-
-$("governorate").addEventListener("change",()=>{
- const center=$("center");
- center.innerHTML='<option value="">اختر المركز أو المدينة</option>';
- (centers[value("governorate")]||[]).forEach(name=>{
-  center.add(new Option(name,name));
- });
- center.add(new Option("أخرى - اكتب المركز","أخرى"));
- $("centerOtherWrap").classList.add("hidden");
- $("centerOther").value="";
- resetVillages();
-});
-
-$("center").addEventListener("change",()=>{
- const chosen=value("center");
- $("centerOtherWrap").classList.toggle("hidden",chosen!=="أخرى");
- resetVillages();
- (villages[chosen]||[]).forEach(name=>{
-  $("village").add(new Option(name,name));
- });
-});
-
-$("village").addEventListener("change",()=>{
- const other=value("village")==="أخرى";
- $("villageOtherWrap").classList.toggle("hidden",!other);
- if(other)$("villageOther").focus();
-});
-
-/* الصورة الشخصية */
-$("profilePhoto").addEventListener("change",()=>{
- const file=$("profilePhoto").files[0];
- if(!file)return;
-
- if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
-  showToast("اختر صورة JPG أو PNG أو WebP.");
-  $("profilePhoto").value="";
-  return;
- }
-
- if(file.size>5*1024*1024){
-  showToast("حجم الصورة يجب ألا يتجاوز 5 ميجابايت.");
-  $("profilePhoto").value="";
-  return;
- }
-
- const reader=new FileReader();
- reader.onload=e=>{
-  photoData=e.target.result;
-  $("photoPreview").src=photoData;
-  $("photoPreview").style.display="block";
-  $("photoPlaceholder").style.display="none";
-  showToast("تم اختيار الصورة بنجاح.","success");
- };
- reader.readAsDataURL(file);
-});
-
-/* مراجعة البيانات */
-function buildReview(){
- const selectedEducation=document.querySelector('input[name="educationType"]:checked');
- const education=selectedEducation?selectedEducation.value:"";
- const center=value("center")==="أخرى"?value("centerOther"):value("center");
- const village=value("village")==="أخرى"?value("villageOther"):value("village");
-
- const rows=[
-  ["اسم الطالب",studentFullName()],
-  ["رقم الهاتف",value("studentPhone")],
-  ["اسم ولي الأمر",parentFullName()],
-  ["هاتف ولي الأمر",value("parentPhone")],
-  ["نوع التعليم",education],
-  ["الصف الدراسي",value("schoolGrade")],
-  ["المحافظة",value("governorate")],
-  ["المركز أو المدينة",center],
-  ["القرية أو المنطقة",village],
-  ["الصورة الشخصية","تم اختيار الصورة ✓"]
- ];
-
- $("reviewData").innerHTML=rows.map(([label,val])=>
-  '<div class="review-item"><span>'+safe(label)+'</span><strong>'+safe(val)+'</strong></div>'
- ).join("");
-}
-
-/* الاتصال بخدمة الحسابات */
-async function callAccess(payload){
- const response=await fetch(ACCESS_URL,{
-  method:"POST",
-  headers:{
-   "Content-Type":"application/json",
-   "apikey":PUBLIC_KEY
-  },
-  body:JSON.stringify(payload)
- });
-
- const result=await response.json().catch(()=>({}));
-
- if(!response.ok||!result.ok){
-  throw new Error(result.error||"تعذر الاتصال بخدمة الحسابات.");
- }
-
- return result;
-}
-
-/* إنشاء الحساب */
-async function createStudentAccount(){
- if(creating||!validateStage(7))return;
-
- creating=true;
- const button=$("createAccount");
- button.disabled=true;
- button.textContent="جارٍ إنشاء الحساب وحفظ البيانات...";
-
- try{
-  const selectedEducation=document.querySelector('input[name="educationType"]:checked');
-  if(!selectedEducation)throw new Error("اختر نوع التعليم.");
-
-  const education=selectedEducation.value;
-  const center=value("center")==="أخرى"?value("centerOther"):value("center");
-  const village=value("village")==="أخرى"?value("villageOther"):value("village");
-
-  const result=await callAccess({
-   action:"register",
-   phone:normalizeEgyptPhone(value("studentPhone")),
-   password:value("password"),
-   full_name:studentFullName(),
-   parent_name:parentFullName(),
-   parent_phone:normalizeEgyptPhone(value("parentPhone")),
-   education_type:education,
-   school_grade:value("schoolGrade"),
-   governorate:value("governorate"),
-   education_center:center,
-   village:village,
-   photo_base64:photoData
-  });
-
-  const user=result.user||{};
-
-  if(!user.user_code){
-   throw new Error("لم يصل رقم الطالب من قاعدة البيانات. لا تحاول التسجيل مرة أخرى قبل مراجعة الإدارة.");
-  }
-
-  if(result.session&&result.session.token){
-   localStorage.setItem("elgen_student_session",result.session.token);
-  }
-
-  localStorage.setItem("elgen_student_account",JSON.stringify(user));
-
-  $("finalPhoto").src=user.avatar_url||photoData;
-  $("finalName").textContent=user.full_name||studentFullName();
-
-  const accountVerified=
-   user.is_verified===true||
-   user.verified===true||
-   user.face_verified===true;  $("finalVerificationBadge").classList.toggle("hidden",!accountVerified);
+  $("finalVerificationBadge").classList.toggle("hidden",!accountVerified);
   $("finalId").textContent=user.user_code;
 
   $("qrcode").innerHTML="";
