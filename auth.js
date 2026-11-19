@@ -5,8 +5,8 @@
   const ACCESS_URL =
     "https://iirrwfativrsrxluxmwp.supabase.co/functions/v1/student-phone-access";
 
-  const PUBLIC_KEY =
-    "sb_publishable_cDCIPKx6-2NgbLmnTy1Lw_pW84RMam";
+  const PUBLIC_KEY ="sb_publishable_cDCIPKxT6-2NgbLmnTy1Lw_p84RMam";
+   
 
   const SESSION_KEY = "elgen_student_session";
   const ACCOUNT_KEY = "elgen_student_account";
