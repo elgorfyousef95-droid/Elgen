@@ -598,6 +598,76 @@ select,
 textarea {
   touch-action: manipulation;
 }
+ /* ===== تصغير نوافذ القوائم ===== */
+
+.select-layer {
+  padding: 8px !important;
+  align-items: center !important;
+  background: rgba(4,5,12,.30) !important;
+  backdrop-filter: blur(3px) !important;
+}
+
+.select-dialog {
+  width: min(340px, 88vw) !important;
+  height: auto !important;
+  max-height: 42dvh !important;
+  min-height: 0 !important;
+  border-radius: 16px !important;
+}
+
+.select-dialog-head {
+  padding: 9px 12px !important;
+}
+
+.select-dialog-title {
+  font-size: 13px !important;
+  margin: 3px 0 7px !important;
+}
+
+.select-search {
+  height: 37px !important;
+  font-size: 11px !important;
+}
+
+.select-options {
+  max-height: 25dvh !important;
+  min-height: 0 !important;
+  padding: 4px !important;
+  overflow-y: auto !important;
+}
+
+.select-option {
+  min-height: 35px !important;
+  padding: 6px 10px !important;
+  margin: 2px 0 !important;
+  font-size: 10px !important;
+  border-radius: 9px !important;
+}
+
+.select-dialog-foot {
+  padding: 6px 10px !important;
+}
+
+.select-close {
+  min-height: 32px !important;
+  padding: 5px 13px !important;
+  font-size: 10px !important;
+}
+
+.select-drag-area {
+  height: 15px !important;
+}
+
+@media(max-width:520px) {
+  .select-dialog {
+    width: min(340px, 88vw) !important;
+    max-height: 40dvh !important;
+  }
+
+  .select-options {
+    max-height: 23dvh !important;
+  }
+}
 </style>
 </head>
 
