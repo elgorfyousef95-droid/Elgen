@@ -4,253 +4,820 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#10101b">
+<meta name="theme-color" content="#10111d">
 <title>إنشاء حساب الطالب | منصة الدكتور محمود الجنايني</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#e9b95e;--gold2:#ffd98b;--orange:#e98736;--bg:#10101b;--text:#fff8ec;--muted:#b9b1a5;--line:#e9b95e55;--green:#38d99b;--red:#ff687b}
+:root{
+ --bg:#10111d;
+ --panel:#191a2a;
+ --panel2:#202135;
+ --gold:#e9b95e;
+ --gold2:#ffdda0;
+ --text:#fffaf0;
+ --muted:#aaaabd;
+ --line:#ffffff18;
+ --green:#42d6a0;
+ --red:#ff7185;
+}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;overscroll-behavior:none}
-body{height:100vh;height:100svh;background:var(--bg);color:var(--text);font-family:Cairo,sans-serif}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{
+ font-family:Cairo,sans-serif;
+ color:var(--text);
+ background:var(--bg);
+}
 button,input,select{font:inherit}
 button{cursor:pointer}
-.background{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;pointer-events:none}
-.overlay{position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 50% 15%,#e0973728,transparent 55%),linear-gradient(135deg,#070811d9,#0d0c22cc)}
-.page{width:100%;height:100vh;height:100svh;padding:max(14px,env(safe-area-inset-top)) 12px max(16px,env(safe-area-inset-bottom));display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#8f7045 transparent}
-.wrapper{width:min(650px,100%);margin:auto}
-.brand{text-align:center;margin-bottom:15px}
-.brand-mark{width:55px;height:55px;margin:0 auto 8px;border:1px solid #ffd78c99;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,#ecaf5345,#1e192ddd);box-shadow:0 8px 28px #e9b95e20}
-.brand-mark svg{width:33px;height:33px}
-.brand h1{font-size:clamp(17px,4vw,22px);margin:0;font-weight:900;color:var(--gold2)}
-.brand p{font-size:11px;color:var(--muted);margin:3px 0 0}
-.card{border:1px solid var(--line);border-radius:24px;padding:clamp(15px,3vw,23px);background:linear-gradient(145deg,#191927f5,#10101bf5);backdrop-filter:blur(18px);box-shadow:0 22px 65px #0009,inset 0 1px #ffffff0b}
-.card-head{text-align:center;margin-bottom:18px}
-.card-head h2{font-size:20px;margin:0 0 5px}
-.card-head p{font-size:11px;color:var(--muted);margin:0;line-height:1.8}
-.progress-wrap{margin-bottom:17px}
-.progress-top{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:8px}
-.progress-top strong{color:var(--gold2)}
-.progress-track{height:7px;border-radius:20px;background:#ffffff18;overflow:hidden}
-.progress-fill{height:100%;width:12.5%;border-radius:20px;background:linear-gradient(90deg,var(--orange),var(--gold2));transition:width .25s}
-.steps{display:flex;justify-content:space-between;gap:4px;margin-bottom:19px}
-.step-dot{width:27px;height:27px;flex:0 0 27px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:800;color:#aaa;background:#ffffff0b;border:1px solid #ffffff24}
-.step-dot.active,.step-dot.done{color:#21170c;background:linear-gradient(135deg,var(--gold2),var(--orange));border-color:var(--gold2)}
-.stage{display:none}
-.stage.active{display:block}
-.stage-title{font-size:17px;font-weight:900;margin:0 0 5px;color:#ffe0ad}
-.stage-desc{font-size:11px;color:var(--muted);margin:0 0 15px;line-height:1.8}
-.field{margin-bottom:12px;min-width:0}
-.field label{display:block;font-size:12px;font-weight:800;color:#f4d9a7;margin-bottom:6px}
-.field input,.field select{width:100%;height:48px;border-radius:13px;border:1px solid #ffffff2b;background:#ffffff0a;color:white;padding:0 12px;font-size:12px;outline:none;min-width:0}
-.field input:focus,.field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px #e9b95e17;background:#ffffff10}
-.field input::placeholder{color:#99919a}
-.field select option{background:#201e2a;color:white}
-.grid-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.note{padding:11px 13px;border-radius:13px;border:1px solid var(--line);background:#e9b95e12;color:#e8d6b6;font-size:11px;line-height:1.9;margin:10px 0}
-.choice-row{display:flex;gap:10px;flex-wrap:wrap}
-.choice{flex:1;min-width:120px;position:relative}
-.choice input{position:absolute;opacity:0}
-.choice label{display:flex;align-items:center;justify-content:center;min-height:50px;padding:10px;border-radius:13px;border:1px solid var(--line);background:#ffffff0b;cursor:pointer;font-size:12px;font-weight:800}
-.choice input:checked+label{border-color:var(--gold);background:#e9b95e20;color:var(--gold2)}
-.nav-buttons{display:flex;gap:9px;margin-top:19px}
-.btn{border:0;border-radius:13px;min-height:47px;padding:9px 17px;font-size:12px;font-weight:900;transition:background .2s,opacity .2s}
-.btn-primary{flex:1;color:#21170c;background:linear-gradient(110deg,#d99a43,#ffe0a0,#e5a34c);box-shadow:0 9px 25px #e9a64f24}
-.btn-secondary{color:#f4d9a7;border:1px solid var(--line);background:#ffffff0b}
-.btn:disabled{opacity:.5;cursor:wait}
-.photo-area{display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 12px;border:1px dashed #e9b95e77;background:#ffffff08;border-radius:17px}
-.photo-preview{width:125px;height:125px;border-radius:50%;object-fit:cover;border:3px solid #e9b95eb3;background:#272330;display:none;margin-bottom:12px}
-.upload-label{display:inline-flex;align-items:center;justify-content:center;min-height:43px;padding:9px 20px;border-radius:12px;background:#e9b95e20;border:1px solid var(--line);color:var(--gold2);font-size:12px;font-weight:800;cursor:pointer}
-#profilePhoto{display:none}
-.terms-box{max-height:200px;overflow:auto;padding:13px;border:1px solid var(--line);border-radius:13px;background:#ffffff08;color:#d4c9b8;font-size:11px;line-height:2}
-.terms-agree{display:flex;gap:9px;align-items:flex-start;margin-top:14px;font-size:11px;color:#f1dfc1}
-.terms-agree input{accent-color:var(--gold);width:18px;height:18px;flex-shrink:0;margin-top:3px}
-.hidden{display:none!important}
-.success-view{text-align:center;display:none}
-.success-icon{width:68px;height:68px;margin:0 auto 13px;border-radius:50%;display:grid;place-items:center;color:#17241e;background:linear-gradient(135deg,#6af0bd,#23b77f);box-shadow:0 10px 30px #23b77f25}
-.success-icon svg{width:35px;height:35px}
-.profile-card{margin:17px auto;padding:19px;border-radius:19px;border:1px solid var(--line);background:linear-gradient(145deg,#ffffff12,#ffffff05);max-width:390px;box-shadow:inset 0 1px #ffffff0b}
-.final-photo{width:96px;height:96px;object-fit:cover;border-radius:50%;border:3px solid var(--gold);display:block;margin:0 auto 10px;background:#252333}
-.final-name{font-size:18px;font-weight:900}
-.profile-id{font-size:18px;color:var(--gold2);font-weight:900;margin-top:8px;direction:ltr;letter-spacing:1px}
-#qrcode{display:flex;justify-content:center;margin:14px auto}
-#qrcode img,#qrcode canvas{border:7px solid white;border-radius:9px}
-.copy-id{margin-top:10px;padding:10px 20px;border:1px solid var(--line);border-radius:11px;background:#e9b95e16;color:var(--gold2);font-size:11px;font-weight:800}
-.toast{position:fixed;z-index:3000;bottom:max(18px,env(safe-area-inset-bottom));left:50%;width:min(92%,420px);padding:13px 16px;border-radius:14px;border:1px solid #ffffff28;background:#211e2a;box-shadow:0 15px 40px #0009;color:white;text-align:center;font-size:12px;line-height:1.8;opacity:0;transform:translate(-50%,18px);pointer-events:none;transition:opacity .22s,transform .22s}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-.toast.error{border-color:#ff687b88}
-.toast.success{border-color:#38d99b88}
-.login-link{text-align:center;margin-top:15px;color:var(--muted);font-size:11px}
-.login-link a{color:var(--gold2);text-decoration:none;font-weight:800}
-.video-gate{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:14px;background:#05050cf7}
-.video-gate.active{display:flex}
-.video-gate-inner{width:min(900px,100%);text-align:center}
-.video-gate-message{margin:0 auto 13px;padding:11px;border:1px solid #e9b95e70;border-radius:12px;background:#211e2a;color:#ffe2a5;font-size:13px;font-weight:900}
-.video-gate video{display:block;width:100%;max-height:78vh;background:black;border:1px solid #e9b95e55;border-radius:13px;object-fit:contain}
-.video-error{display:none;margin-top:12px;color:#ffb6c0;font-size:12px;line-height:1.8}
-body.video-locked{overflow:hidden}
-@media(max-width:560px){
- .page{padding-left:9px;padding-right:9px}
- .wrapper{width:100%}
- .card{padding:16px 13px;border-radius:19px}
- .grid-two{grid-template-columns:1fr 1fr;gap:9px}
- .steps{gap:3px}
- .step-dot{width:24px;height:24px;flex-basis:24px}
- .video-gate video{max-height:72vh}
+.background{
+ position:fixed;inset:0;width:100%;height:100%;
+ object-fit:cover;z-index:-3;pointer-events:none;
 }
-@media(max-width:350px){.grid-two{grid-template-columns:1fr}.card{padding:14px 10px}}
-@media(max-height:650px){.brand{margin-bottom:9px}.brand-mark{width:43px;height:43px}.brand-mark svg{width:27px;height:27px}.card{padding-top:13px;padding-bottom:13px}.card-head{margin-bottom:12px}.steps{margin-bottom:12px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.overlay{
+ position:fixed;inset:0;z-index:-2;
+ background:
+ radial-gradient(ellipse at 50% 0%,#dca54a25,transparent 48%),
+ radial-gradient(ellipse at 100% 100%,#6052a51c,transparent 50%),
+ linear-gradient(135deg,#090a13ed,#10111de8);
+}
+.page{
+ width:100%;height:100vh;height:100svh;
+ overflow-y:auto;overflow-x:hidden;
+ padding:max(18px,env(safe-area-inset-top)) 13px max(20px,env(safe-area-inset-bottom));
+ scrollbar-width:thin;
+ scrollbar-color:#8d7045 transparent;
+}
+.wrapper{width:min(720px,100%);margin:0 auto}
+.brand{text-align:center;margin:0 auto 17px}
+.brand-logo{
+ width:65px;height:65px;margin:0 auto 9px;
+ display:grid;place-items:center;
+ border:1px solid #f4ca7c77;border-radius:21px;
+ background:linear-gradient(145deg,#e9b95e30,#252034);
+ box-shadow:0 12px 40px #d9a34b22,inset 0 1px #fff2;
+}
+.brand-logo svg{width:37px;height:37px}
+.brand h1{font-size:clamp(17px,4vw,23px);margin:0;font-weight:900;color:var(--gold2)}
+.brand p{font-size:11px;color:var(--muted);margin:4px 0 0}
+.card{
+ position:relative;overflow:hidden;
+ border:1px solid #e9b95e42;border-radius:25px;
+ padding:clamp(17px,4vw,27px);
+ background:linear-gradient(145deg,#1d1e30f7,#131421fa);
+ box-shadow:0 25px 80px #0008,inset 0 1px #ffffff0a;
+ backdrop-filter:blur(20px);
+}
+.card:before{
+ content:"";position:absolute;top:0;right:12%;left:12%;height:1px;
+ background:linear-gradient(90deg,transparent,#ffe1a4,transparent);
+}
+.card-head{text-align:center;margin-bottom:21px}
+.card-head .eyebrow{
+ display:inline-flex;align-items:center;gap:7px;
+ color:var(--gold2);font-size:10px;font-weight:800;
+ border:1px solid #e9b95e40;background:#e9b95e0e;
+ border-radius:30px;padding:5px 12px;margin-bottom:9px;
+}
+.card-head h2{font-size:21px;margin:0 0 5px;font-weight:900}
+.card-head p{font-size:11px;color:var(--muted);margin:0;line-height:1.9}
+.progress-area{margin-bottom:21px}
+.progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;font-size:11px;color:var(--muted)}
+.progress-meta strong{color:var(--gold2)}
+.progress-track{height:7px;border-radius:20px;background:#ffffff12;overflow:hidden}
+.progress-fill{
+ height:100%;width:12.5%;border-radius:20px;
+ background:linear-gradient(90deg,#d68c37,#ffe0a0,#d99a42);
+ box-shadow:0 0 15px #e9b95e55;transition:width .3s ease;
+}
+.steps{
+ display:grid;grid-template-columns:repeat(8,1fr);
+ gap:5px;margin:0 0 23px;
+}
+.step{
+ min-width:0;display:flex;flex-direction:column;
+ align-items:center;gap:6px;color:#77778a;
+ font-size:9px;font-weight:700;
+}
+.step-circle{
+ width:29px;height:29px;border-radius:50%;
+ display:grid;place-items:center;
+ border:1px solid #ffffff20;background:#ffffff08;
+ color:#a9a9b8;font-size:11px;font-weight:900;
+ transition:.2s;
+}
+.step.active{color:var(--gold2)}
+.step.active .step-circle,.step.done .step-circle{
+ color:#20180d;border-color:var(--gold2);
+ background:linear-gradient(135deg,#ffe3a6,#d99c48);
+ box-shadow:0 0 18px #e9b95e2b;
+}
+.stage{display:none}
+.stage.active{display:block;animation:showStage .22s ease}
+@keyframes showStage{from{opacity:.5}to{opacity:1}}
+.stage-heading{display:flex;align-items:center;gap:12px;margin-bottom:17px}
+.stage-icon{
+ width:46px;height:46px;flex:0 0 46px;
+ display:grid;place-items:center;
+ border-radius:15px;color:var(--gold2);
+ border:1px solid #e9b95e42;background:#e9b95e12;
+}
+.stage-icon svg{width:23px;height:23px}
+.stage-title{font-size:17px;font-weight:900;margin:0 0 3px}
+.stage-desc{font-size:10px;color:var(--muted);margin:0;line-height:1.8}
+.field{margin-bottom:15px;min-width:0}
+.field label.main-label{
+ display:flex;align-items:center;gap:7px;
+ color:#f3d9aa;font-size:12px;font-weight:800;margin-bottom:8px;
+}
+.field label.main-label .required{color:var(--red)}
+.input-wrap{position:relative}
+.input-wrap .field-icon{
+ position:absolute;right:14px;top:50%;transform:translateY(-50%);
+ width:18px;height:18px;color:#c3a66f;pointer-events:none;
+}
+.field input,.field select{
+ display:block;width:100%;height:52px;
+ padding:0 43px 0 14px;
+ border:1px solid #ffffff20;border-radius:14px;
+ outline:none;color:#fff8ec;background:#ffffff08;
+ font-size:12px;font-weight:600;
+ transition:border-color .2s,box-shadow .2s,background .2s;
+}
+.field input::placeholder{color:#777789;font-weight:500}
+.field input:focus,.field select:focus{
+ border-color:var(--gold);background:#ffffff0d;
+ box-shadow:0 0 0 4px #e9b95e16;
+}
+.field select{
+ appearance:none;-webkit-appearance:none;
+ padding-left:43px;
+ background-color:#202033;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23e9b95e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+ background-repeat:no-repeat;background-position:15px center;
+}
+.field select option{background:#202033;color:white}
+.grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.grid-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.name-input{
+ padding-right:13px!important;text-align:center;
+}
+.helper{
+ color:#9292a5;font-size:10px;line-height:1.8;margin:7px 2px 0;
+}
+.info-box{
+ display:flex;align-items:flex-start;gap:10px;
+ padding:12px 14px;border:1px solid #e9b95e30;
+ border-radius:14px;background:linear-gradient(110deg,#e9b95e12,#e9b95e05);
+ color:#d7c8ae;font-size:10px;line-height:1.9;margin-top:13px;
+}
+.info-box svg{width:18px;height:18px;flex:0 0 18px;color:var(--gold2);margin-top:2px}
+.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.choice{position:relative;min-width:0}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice label{
+ min-height:135px;padding:15px 10px;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ gap:8px;text-align:center;cursor:pointer;
+ border:1px solid #ffffff20;border-radius:19px;
+ background:linear-gradient(145deg,#25263a,#1a1b2b);
+ transition:border-color .2s,background .2s,box-shadow .2s;
+}
+.choice-art{
+ width:46px;height:46px;border-radius:15px;
+ display:grid;place-items:center;
+ color:var(--gold2);background:#e9b95e13;
+ border:1px solid #e9b95e35;
+}
+.choice-art svg{width:25px;height:25px}
+.choice-title{font-size:13px;font-weight:900;color:#f8f1e7}
+.choice-subtitle{font-size:9px;color:#aaa8b8}
+.choice-check{
+ position:absolute;top:10px;left:10px;
+ width:19px;height:19px;border:1px solid #77768a;
+ border-radius:50%;display:grid;place-items:center;
+ color:transparent;font-size:11px;
+}
+.choice input:checked+label{
+ border-color:var(--gold);
+ background:linear-gradient(145deg,#403626,#262337);
+ box-shadow:0 0 0 3px #e9b95e16,0 12px 30px #0003;
+}
+.choice input:checked+label .choice-check{
+ background:var(--gold);border-color:var(--gold);color:#24190c;
+}
+.choice input:checked+label .choice-title{color:var(--gold2)}
+.choice input:focus-visible+label{outline:2px solid var(--gold2);outline-offset:3px}
+.photo-box{
+ border:1px dashed #d9ae6577;border-radius:20px;
+ background:linear-gradient(145deg,#e9b95e0b,#ffffff04);
+ padding:23px 15px;text-align:center;
+}
+.photo-preview{
+ width:120px;height:120px;border-radius:50%;
+ object-fit:cover;border:3px solid var(--gold);
+ display:none;margin:0 auto 13px;background:#252638;
+ box-shadow:0 8px 25px #0005;
+}
+.photo-placeholder{
+ width:100px;height:100px;border-radius:50%;
+ display:grid;place-items:center;margin:0 auto 13px;
+ color:var(--gold2);background:#e9b95e13;
+ border:1px solid #e9b95e55;
+}
+.photo-placeholder svg{width:40px;height:40px}
+.photo-title{font-size:13px;font-weight:900;margin-bottom:5px}
+.photo-desc{font-size:10px;color:var(--muted);line-height:1.8;margin-bottom:15px}
+.upload-btn{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;
+ min-height:44px;padding:9px 20px;border-radius:13px;
+ color:#2a1d0d;background:linear-gradient(110deg,#d99a43,#ffe0a0);
+ font-size:11px;font-weight:900;cursor:pointer;
+}
+.upload-btn svg{width:17px;height:17px}
+#profilePhoto{display:none}
+.terms-box{
+ max-height:235px;overflow:auto;
+ padding:15px 17px;border:1px solid #ffffff1b;
+ border-radius:16px;background:#ffffff07;
+ color:#d3cddd;font-size:11px;line-height:2.2;
+}
+.terms-box strong{color:var(--gold2);font-size:13px}
+.terms-agree{
+ display:flex;align-items:flex-start;gap:10px;
+ padding:13px;margin-top:13px;
+ border:1px solid #e9b95e35;border-radius:13px;
+ background:#e9b95e0b;color:#f3e3c7;
+ font-size:11px;line-height:1.9;cursor:pointer;
+}
+.terms-agree input{
+ width:19px;height:19px;flex:0 0 19px;
+ accent-color:var(--gold);margin-top:2px;
+}
+.review-list{display:grid;gap:8px}
+.review-item{
+ display:flex;justify-content:space-between;align-items:flex-start;
+ gap:12px;padding:11px 13px;
+ border:1px solid #ffffff12;border-radius:12px;background:#ffffff06;
+ font-size:10px;
+}
+.review-item span{color:var(--muted);flex:0 0 auto}
+.review-item strong{color:#fff0d2;text-align:left;overflow-wrap:anywhere}
+.nav-buttons{display:flex;gap:10px;margin-top:22px}
+.btn{
+ min-height:50px;border:0;border-radius:14px;
+ padding:10px 19px;font-size:12px;font-weight:900;
+ transition:filter .2s,opacity .2s,transform .2s;
+}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-primary{
+ flex:1;color:#261b0d;
+ background:linear-gradient(110deg,#d9953e,#ffe0a0,#dda04b);
+ box-shadow:0 9px 25px #e9a64f22;
+}
+.btn-secondary{
+ color:#f4d9a7;background:#ffffff09;
+ border:1px solid #e9b95e48;
+}
+.btn-primary:hover{filter:brightness(1.07)}
+.hidden{display:none!important}
+.success-view{display:none;text-align:center}
+.success-icon{
+ width:76px;height:76px;margin:0 auto 14px;
+ display:grid;place-items:center;border-radius:50%;
+ color:#09251a;background:linear-gradient(135deg,#72f1bd,#24b77f);
+ box-shadow:0 12px 35px #23b77f30;
+}
+.success-icon svg{width:39px;height:39px}
+.success-title{font-size:22px;font-weight:900;margin:0 0 6px}
+.success-desc{font-size:11px;color:var(--muted);margin:0;line-height:1.9}
+.profile-card{
+ max-width:410px;margin:20px auto;padding:22px 17px;
+ border:1px solid #e9b95e55;border-radius:21px;
+ background:linear-gradient(145deg,#292638,#1a1b2b);
+ box-shadow:0 15px 45px #0004,inset 0 1px #fff1;
+}
+.final-photo{
+ width:104px;height:104px;object-fit:cover;
+ border:3px solid var(--gold);border-radius:50%;
+ display:block;margin:0 auto 12px;background:#252638;
+}
+.final-name{font-size:17px;font-weight:900;color:#fff0d0}
+.final-caption{font-size:10px;color:var(--muted);margin-top:9px}
+.profile-id{
+ direction:ltr;letter-spacing:1.4px;
+ font-size:21px;font-weight:900;color:var(--gold2);margin-top:4px;
+}
+.copy-id{
+ min-height:39px;padding:7px 17px;margin-top:10px;
+ border:1px solid #e9b95e60;border-radius:11px;
+ color:var(--gold2);background:#e9b95e12;font-size:10px;font-weight:900;
+}
+#qrcode{display:flex;justify-content:center;margin:17px auto 8px}
+#qrcode img,#qrcode canvas{border:7px solid white;border-radius:10px}
+.qr-caption{font-size:9px;color:var(--muted)}
+.login-link{text-align:center;margin:15px 0 0;color:var(--muted);font-size:11px}
+.login-link a{color:var(--gold2);font-weight:900;text-decoration:none}
+.toast{
+ position:fixed;z-index:3000;bottom:max(18px,env(safe-area-inset-bottom));
+ left:50%;width:min(92%,430px);
+ padding:13px 16px;border:1px solid #ffffff25;border-radius:15px;
+ background:#242437;color:white;text-align:center;
+ box-shadow:0 15px 45px #0009;font-size:11px;line-height:1.8;
+ opacity:0;transform:translate(-50%,18px);pointer-events:none;
+ transition:opacity .2s,transform .2s;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.error{border-color:#ff718577}
+.toast.success{border-color:#42d6a077}
+.video-gate{
+ position:fixed;inset:0;z-index:2000;display:none;
+ align-items:center;justify-content:center;padding:15px;
+ background:#05050cf7;
+}
+.video-gate.active{display:flex}
+.video-inner{width:min(900px,100%);text-align:center}
+.video-message{
+ margin:0 auto 13px;padding:12px;
+ border:1px solid #e9b95e70;border-radius:13px;
+ background:#211e2a;color:#ffe2a5;font-size:12px;font-weight:900;
+}
+.video-inner video{
+ display:block;width:100%;max-height:78vh;
+ background:black;border:1px solid #e9b95e55;
+ border-radius:14px;object-fit:contain;
+}
+.video-error{display:none;margin-top:12px;color:#ffb6c0;font-size:11px;line-height:1.9}
+@media(max-width:520px){
+ .page{padding-left:9px;padding-right:9px}
+ .card{padding:17px 13px;border-radius:20px}
+ .brand{margin-bottom:12px}
+ .brand-logo{width:55px;height:55px;border-radius:18px}
+ .steps{gap:2px;margin-bottom:18px}
+ .step{font-size:8px}
+ .step-circle{width:25px;height:25px;font-size:10px}
+ .grid-three{gap:7px}
+ .grid-two{gap:8px}
+ .field input,.field select{height:49px;font-size:11px}
+ .choice label{min-height:122px;padding:12px 7px}
+ .choice-art{width:41px;height:41px}
+ .stage-title{font-size:15px}
+ .video-inner video{max-height:70vh}
+}
+@media(max-width:360px){
+ .grid-three{grid-template-columns:1fr}
+ .step span:last-child{display:none}
+ .choice label{min-height:110px}
+ .card-head h2{font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation:none!important;transition:none!important}
+}
 </style>
 </head>
+
 <body>
 <img class="background" src="./86.jpg" alt="">
 <div class="overlay"></div>
+
 <main class="page" id="pageScroller">
 <div class="wrapper">
+
 <header class="brand">
-<div class="brand-mark">
-<svg viewBox="0 0 64 64" fill="none" stroke="#f2c879" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M24 8h16M28 8v17L15 48a6 6 0 0 0 5 9h24a6 6 0 0 0 5-9L36 25V8"/><path d="M21 43h22M26 36h12"/>
-<circle cx="29" cy="47" r="2" fill="#f2c879" stroke="none"/><circle cx="38" cy="41" r="2" fill="#f2c879" stroke="none"/>
-</svg>
-</div>
-<h1>منصة الدكتور محمود الجنايني</h1>
-<p>رحلتك نحو التفوق في الكيمياء تبدأ من هنا</p>
+ <div class="brand-logo">
+  <svg viewBox="0 0 64 64" fill="none" stroke="#f2c879" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M24 8h16M28 8v17L15 48a6 6 0 0 0 5 9h24a6 6 0 0 0 5-9L36 25V8"/>
+   <path d="M21 43h22M26 36h12"/>
+   <circle cx="29" cy="47" r="2" fill="#f2c879" stroke="none"/>
+   <circle cx="38" cy="41" r="2" fill="#f2c879" stroke="none"/>
+  </svg>
+ </div>
+ <h1>منصة الدكتور محمود الجنايني</h1>
+ <p>رحلتك نحو التفوق في الكيمياء تبدأ من هنا</p>
 </header>
 
 <section class="card">
-<div class="card-head"><h2>إنشاء حساب طالب جديد</h2><p>أكمل بياناتك بالترتيب لإنشاء ملفك على المنصة</p></div>
-<div id="wizard">
-<div class="progress-wrap">
-<div class="progress-top"><span id="stepCaption">المرحلة 1 من 8</span><strong id="stepPercent">13%</strong></div>
-<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-</div>
-<div class="steps">
-<span class="step-dot active">1</span><span class="step-dot">2</span><span class="step-dot">3</span><span class="step-dot">4</span><span class="step-dot">5</span><span class="step-dot">6</span><span class="step-dot">7</span><span class="step-dot">8</span>
-</div>
+ <div class="card-head">
+  <div class="eyebrow">✦ بوابة الطلاب</div>
+  <h2>إنشاء حساب طالب جديد</h2>
+  <p>أنشئ حسابك وابدأ رحلتك التعليمية معنا</p>
+ </div>
 
-<section class="stage active" data-stage="0">
-<h3 class="stage-title">بيانات حساب الطالب</h3><p class="stage-desc">اكتب بيانات الحساب التي ستستخدمها للدخول إلى المنصة.</p>
-<div class="field"><label>اسم الطالب ثلاثي</label><div class="grid-two">
-<input id="studentName1" placeholder="الاسم الأول" autocomplete="given-name"><input id="studentName2" placeholder="الاسم الثاني"><input id="studentName3" placeholder="الاسم الثالث">
-</div></div>
-<div class="field"><label for="studentPhone">رقم هاتف الطالب</label><input id="studentPhone" type="tel" inputmode="tel" placeholder="رقم الهاتف" autocomplete="tel"></div>
-<div class="grid-two">
-<div class="field"><label for="password">كلمة المرور</label><input id="password" type="password" placeholder="كلمة المرور" autocomplete="new-password"></div>
-<div class="field"><label for="confirmPassword">تأكيد كلمة المرور</label><input id="confirmPassword" type="password" placeholder="أعد كتابة كلمة المرور" autocomplete="new-password"></div>
-</div>
-<div class="note">احتفظ برقم الهاتف وكلمة المرور؛ ستحتاج إليهما عند تسجيل الدخول.</div>
+ <div id="wizard">
+  <div class="progress-area">
+   <div class="progress-meta">
+    <span id="stepCaption">المرحلة 1 من 8</span>
+    <strong id="stepPercent">13%</strong>
+   </div>
+   <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="steps">
+   <div class="step active"><div class="step-circle">1</div><span>الحساب</span></div>
+   <div class="step"><div class="step-circle">2</div><span>ولي الأمر</span></div>
+   <div class="step"><div class="step-circle">3</div><span>الدراسة</span></div>
+   <div class="step"><div class="step-circle">4</div><span>المحافظة</span></div>
+   <div class="step"><div class="step-circle">5</div><span>العنوان</span></div>
+   <div class="step"><div class="step-circle">6</div><span>الصورة</span></div>
+   <div class="step"><div class="step-circle">7</div><span>الشروط</span></div>
+   <div class="step"><div class="step-circle">8</div><span>التأكيد</span></div>
+  </div>
+
+  <!-- المرحلة الأولى -->
+  <section class="stage active" data-stage="0">
+   <div class="stage-heading">
+    <div class="stage-icon">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>
+     </svg>
+    </div>
+    <div>
+     <h3 class="stage-title">بيانات حساب الطالب</h3>
+     <p class="stage-desc">اكتب بياناتك الأساسية لإنشاء حسابك الشخصي.</p>
+    </div>
+   </div>
+
+   <div class="field">
+    <label class="main-label">الاسم الثلاثي للطالب <span class="required">*</span></label>
+    <div class="grid-three">
+     <input class="name-input" id="studentName1" placeholder="الاسم الأول" autocomplete="given-name">
+     <input class="name-input" id="studentName2" placeholder="الاسم الثاني">
+     <input class="name-input" id="studentName3" placeholder="الاسم الثالث">
+    </div>
+    <p class="helper">اكتب كل اسم في خانة منفصلة، دون اختصارات.</p>
+   </div>
+
+   <div class="field">
+    <label class="main-label" for="studentPhone">رقم هاتف الطالب <span class="required">*</span></label>
+    <div class="input-wrap">
+     <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/>
+      <path d="M8 6h8M9 18h6"/>
+     </svg>
+     <input id="studentPhone" type="tel" inputmode="tel" placeholder="01XXXXXXXXX" autocomplete="tel">
+    </div>
+   </div>
+
+   <div class="grid-two">
+    <div class="field">
+     <label class="main-label" for="password">كلمة المرور <span class="required">*</span></label>
+     <input id="password" type="password" placeholder="6 أحرف أو أرقام على الأقل" autocomplete="new-password" style="padding-right:13px">
+    </div>
+    <div class="field">
+     <label class="main-label" for="confirmPassword">تأكيد كلمة المرور <span class="required">*</span></label>
+     <input id="confirmPassword" type="password" placeholder="أعد كتابة كلمة المرور" autocomplete="new-password" style="padding-right:13px">
+    </div>
+   </div>
+
+   <div class="info-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+     <circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>
+    </svg>
+    <span>رقم الهاتف وكلمة المرور هما بيانات الدخول الأساسية. احتفظ بهما ولا تشاركهما مع أي شخص.</span>
+   </div>
+  </section>
+
+  <!-- المرحلة الثانية -->
+  <section class="stage" data-stage="1">
+   <div class="stage-heading">
+    <div class="stage-icon">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <circle cx="9" cy="8" r="3.5"/><path d="M2.5 20v-1.5a6.5 6.5 0 0 1 13 0V20M16 5.5a3.5 3.5 0 0 1 0 6.8M18 15a5 5 0 0 1 3.5 4.8"/>
+     </svg>
+    </div>
+    <div>
+     <h3 class="stage-title">بيانات ولي الأمر</h3>
+     <p class="stage-desc">بيانات للتواصل مع ولي أمرك عند الحاجة.</p>
+    </div>
+   </div>
+
+   <div class="field">
+    <label class="main-label">اسم ولي الأمر الثنائي <span class="required">*</span></label>
+    <div class="grid-two">
+     <input class="name-input" id="parentName1" placeholder="الاسم الأول">
+     <input class="name-input" id="parentName2" placeholder="الاسم الثاني">
+    </div>
+   </div>
+
+   <div class="field">
+    <label class="main-label" for="parentPhone">رقم هاتف ولي الأمر <span class="required">*</span></label>
+    <div class="input-wrap">
+     <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/>
+      <path d="M8 6h8M9 18h6"/>
+     </svg>
+     <input id="parentPhone" type="tel" inputmode="tel" placeholder="رقم هاتف ولي الأمر">
+    </div>
+   </div>
+
+   <div class="info-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+     <circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>
+    </svg>
+    <span>تأكد من كتابة رقم صحيح يمكن التواصل من خلاله في الحالات الضرورية.</span>
+   </div>
+  </section>
+
+  <!-- المرحلة الثالثة -->
+  <section class="stage" data-stage="2">
+   <div class="stage-heading">
+    <div class="stage-icon">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="m3 10 9-6 9 6-9 6-9-6Z"/><path d="M7 13v5c3 2.5 7 2.5 10 0v-5M21 10v7"/>
+     </svg>
+    </div>
+    <div>
+     <h3 class="stage-title">المرحلة التعليمية</h3>
+     <p class="stage-desc">اختر نوع التعليم والصف الدراسي الحالي.</p>
+    </div>
+   </div>
+
+   <div class="field">
+    <label class="main-label">نوع التعليم <span class="required">*</span></label>
+    <div class="choice-grid">
+     <div class="choice">
+      <input type="radio" name="educationType" id="general" value="عام">
+      <label for="general">
+       <span class="choice-check">✓</span>
+       <span class="choice-art">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+         <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5M9 9h.01M15 9h.01M9 12h.01M15 12h.01"/>
+        </svg>
+       </span>
+       <span class="choice-title">التعليم العام</span>
+       <span class="choice-subtitle">الثانوية العامة</span>
+      </label>
+     </div>
+     <div class="choice">
+      <input type="radio" name="educationType" id="azhar" value="أزهري">
+      <label for="azhar">
+       <span class="choice-check">✓</span>
+       <span class="choice-art">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+         <path d="m2 10 10-6 10 6-10 6-10-6Z"/><path d="M6 12v5c3 3 9 3 12 0v-5M22 10v7"/>
+        </svg>
+       </span>
+       <span class="choice-title">التعليم الأزهري</span>
+       <span class="choice-subtitle">المعاهد الأزهرية</span>
+      </label>
+     </div>
+    </div>
+   </div>
+
+   <div class="field">
+    <label class="main-label" for="schoolGrade">الصف الدراسي <span class="required">*</span></label>
+    <div class="input-wrap">
+     <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h5"/>
+     </svg>
+     <select id="schoolGrade"><option value="">اختر نوع التعليم أولًا</option></select>
+    </div>
+   </div>
+  </section>
+
+  <!-- المرحلة الرابعة -->
+  <section class="stage" data-stage="3">
+   <div class="stage-heading">
+    <div class="stage-icon">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>
+     </svg>
+    </div>
+    <div>
+     <h3 class="stage-title">محافظة الإقامة</h3>
+     <p class="stage-desc">حدد المحافظة التي تقيم بها حاليًا.</p>
+    </div>
+   </div>
+
+   <div class="field">
+    <label class="main-label" for="governorate">المحافظة <span class="required">*</span></label>
+    <div class="input-wrap">
+     <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-7h6v7"/>
+     </svg>
+     <select id="governorate"><option value="">اختر المحافظة</option></select>
+    </div>
+   </div>
+   <div class="info-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+     <circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>
+    </svg>
+    <span>اختيار المحافظة يساعدنا على تحديد المراكز والمناطق التابعة لها.</span>
+   </div>
+  </section>
+
+  <!-- المرحلة الخامسة -->
+  <section class="stage" data-stage="4">
+   <div class="stage-heading">
+    <div class="stage-icon">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5"/>
+     </svg>
+    </div>
+    <div>
+     <h3 class="stage-title">المركز والمنطقة</h3>
+     <p class="stage-desc">حدد المركز أو المدينة والقرية التي تقيم بها.</p>
+    </div>
+   </div>
+
+   <div class="field">
+    <label class="main-label" for="center">المركز أو المدينة <span class="required">*</span></label>
+    <div class="input-wrap">
+     <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5"/>
+     </svg>
+     <select id="center"><option value="">اختر المحافظة أولًا</option></select>
+    </div>
+   </div>
+
+   <div class="field">
+    <label class="main-label" for="village">القرية أو المنطقة <span class="required">*</span></label>
+    <div class="input-wrap">
+     <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M3 21h18M4 11l8-7 8 7M6 10v11M18 10v11M10 21v-6h4v6"/>
+     </svg>
+     <select id="village"><option value="">اختر المركز أولًا</option></select>
+    </div>
+   </div>
+
+   <div class="field hidden" id="centerOtherWrap">
+    <label class="main-label" for="centerOther">اكتب اسم المركز أو المدينة</label>
+    <input id="centerOther" placeholder="اسم المركز أو المدينة" style="padding-right:13px">
+   </div>
+   <div class="field hidden" id="villageOtherWrap">
+    <label class="main-label" for="villageOther">اكتب اسم القرية أو المنطقة</label>
+    <input id="villageOther" placeholder="اسم القرية أو المنطقة" style="padding-right:13px">
+   </div>
+
+   <div class="info-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+     <circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>
+    </svg>
+    <span>لو لم تجد اسم المركز أو القرية، اختر «أخرى» واكتب الاسم بنفسك.</span>
+   </div>
+  </section>
+
+  <!-- المرحلة السادسة -->
+  <section class="stage" data-stage="5">
+   <div class="stage-heading">
+    <div class="stage-icon">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+     </svg>
+    </div>
+    <div>
+     <h3 class="stage-title">صورتك الشخصية</h3>
+     <p class="stage-desc">أضف صورة واضحة لتظهر في ملفك الشخصي.</p>
+    </div>
+   </div>
+
+   <div class="photo-box">
+    <img id="photoPreview" class="photo-preview" alt="معاينة الصورة الشخصية">
+    <div class="photo-placeholder" id="photoPlaceholder">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>
+     </svg>
+    </div>
+    <div class="photo-title">الصورة الشخصية للطالب</div>
+    <div class="photo-desc">اختر صورة واضحة بصيغة JPG أو PNG أو WebP<br>الحد الأقصى لحجم الصورة 5 ميجابايت</div>
+    <label class="upload-btn" for="profilePhoto">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 16V4M7 9l5-5 5 5M4 16v4h16v-4"/>
+     </svg>
+     اختيار صورة من الجهاز
+    </label>
+    <input id="profilePhoto" type="file" accept="image/jpeg,image/png,image/webp">
+   </div>
+  </section>
+
+  <!-- المرحلة السابعة -->
+  <section class="stage" data-stage="6">
+   <div class="stage-heading">
+    <div class="stage-icon">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/>
+     </svg>
+    </div>
+    <div>
+     <h3 class="stage-title">الشروط والأحكام</h3>
+     <p class="stage-desc">يرجى قراءة الشروط قبل إنشاء الحساب.</p>
+    </div>
+   </div>
+
+   <div class="terms-box">
+    <strong>شروط استخدام منصة الدكتور محمود الجنايني</strong><br>
+    1. يلتزم الطالب بإدخال بيانات صحيحة تخصه.<br>
+    2. يلتزم الطالب بالحفاظ على سرية كلمة المرور وعدم مشاركتها مع الآخرين.<br>
+    3. يجب استخدام المنصة للأغراض التعليمية المخصصة لها.<br>
+    4. يلتزم الطالب باحترام المعلمين والطلاب وعدم إساءة استخدام وسائل التواصل داخل المنصة.<br>
+    5. يقر الطالب بأن الصورة الشخصية التي رفعها هي الصورة التي اختارها بنفسه.<br>
+    6. يوافق الطالب على حفظ بيانات حسابه وتقدمه الدراسي ونتائجه داخل المنصة لتقديم الخدمات التعليمية.<br>
+    7. قد يتم تحديث الشروط عند إضافة خدمات جديدة، وسيتم عرض التحديثات داخل المنصة.
+   </div>
+
+   <label class="terms-agree">
+    <input type="checkbox" id="agreeTerms">
+    <span>قرأت الشروط والأحكام وأوافق عليها، وأقر بصحة البيانات التي أدخلتها.</span>
+   </label>
+  </section>
+
+  <!-- المرحلة الثامنة -->
+  <section class="stage" data-stage="7">
+   <div class="stage-heading">
+    <div class="stage-icon">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M8 4h13v17H8zM3 8h13M3 8v13h13M11 12h6M11 16h6"/>
+     </svg>
+    </div>
+    <div>
+     <h3 class="stage-title">مراجعة بيانات الحساب</h3>
+     <p class="stage-desc">راجع المعلومات التالية قبل إرسالها وإنشاء حسابك.</p>
+    </div>
+   </div>
+
+   <div class="review-list" id="reviewData"></div>
+   <div class="info-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+     <circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>
+    </svg>
+    <span>بعد إنشاء الحساب سيظهر لك رقم الطالب الخاص بك. احتفظ به لاستخدامه في تسجيل الدخول.</span>
+   </div>
+   <button class="btn btn-primary" id="createAccount" type="button" style="width:100%;margin-top:17px">
+    إنشاء حسابي الآن
+   </button>
+  </section>
+
+  <div class="nav-buttons" id="navigation">
+   <button class="btn btn-secondary" id="backBtn" type="button" disabled>السابق</button>
+   <button class="btn btn-primary" id="nextBtn" type="button">التالي</button>
+  </div>
+ </div>
+
+ <!-- بطاقة النجاح -->
+ <div class="success-view" id="successView">
+  <div class="success-icon">
+   <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m10 25 9 9L38 14"/>
+   </svg>
+  </div>
+  <h2 class="success-title">تم إنشاء حسابك بنجاح</h2>
+  <p class="success-desc">أهلًا بك في منصة الدكتور محمود الجنايني.<br>تم تسجيل بيانات حسابك بنجاح.</p>
+
+  <div class="profile-card">
+   <img id="finalPhoto" class="final-photo" alt="الصورة الشخصية">
+   <div class="final-name" id="finalName"></div>
+   <div class="final-caption">رقم الطالب الخاص بك</div>
+   <div class="profile-id" id="finalId"></div>
+   <button type="button" class="copy-id" id="copyIdButton">نسخ رقم الطالب</button>
+   <div id="qrcode"></div>
+   <div class="qr-caption">رمز QR الخاص بحسابك</div>
+  </div>
+
+  <div class="info-box" style="text-align:right">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+    <circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>
+   </svg>
+   <span>احتفظ برقم الطالب ورقم هاتفك وكلمة المرور. ستحتاج إلى رقم الطالب عند تسجيل الدخول.</span>
+  </div>
+  <button type="button" id="enterPlatformButton" class="btn btn-primary" style="width:100%;margin-top:17px">
+   متابعة إلى المنصة
+  </button>
+ </div>
 </section>
 
-<section class="stage" data-stage="1">
-<h3 class="stage-title">بيانات ولي الأمر</h3><p class="stage-desc">أدخل بيانات ولي أمرك للتواصل عند الحاجة.</p>
-<div class="field"><label>اسم ولي الأمر ثنائي</label><div class="grid-two">
-<input id="parentName1" placeholder="الاسم الأول"><input id="parentName2" placeholder="الاسم الثاني">
-</div></div>
-<div class="field"><label for="parentPhone">رقم هاتف ولي الأمر</label><input id="parentPhone" type="tel" inputmode="tel" placeholder="رقم هاتف ولي الأمر"></div>
-</section>
-
-<section class="stage" data-stage="2">
-<h3 class="stage-title">نوع التعليم والصف الدراسي</h3><p class="stage-desc">حدد نوع تعليمك والصف الذي تدرس فيه.</p>
-<div class="field"><label>نوع التعليم</label><div class="choice-row">
-<div class="choice"><input type="radio" name="educationType" id="general" value="عام"><label for="general">تعليم عام</label></div>
-<div class="choice"><input type="radio" name="educationType" id="azhar" value="أزهري"><label for="azhar">تعليم أزهري</label></div>
-</div></div>
-<div class="field"><label for="schoolGrade">الصف الدراسي</label><select id="schoolGrade"><option value="">اختر نوع التعليم أولًا</option></select></div>
-</section>
-
-<section class="stage" data-stage="3">
-<h3 class="stage-title">المحافظة</h3><p class="stage-desc">اختر المحافظة التي تقيم بها.</p>
-<div class="field"><label for="governorate">المحافظة</label><select id="governorate"><option value="">اختر المحافظة</option></select></div>
-</section>
-
-<section class="stage" data-stage="4">
-<h3 class="stage-title">المركز والقرية</h3><p class="stage-desc">حدد المركز ثم اختر القرية أو المنطقة التي تقيم بها.</p>
-<div class="field"><label for="center">المركز أو المدينة</label><select id="center"><option value="">اختر المحافظة أولًا</option></select></div>
-<div class="field"><label for="village">القرية أو المنطقة</label><select id="village"><option value="">اختر القرية أو المنطقة</option></select></div>
-<div class="field hidden" id="villageOtherWrap"><label for="villageOther">اسم القرية أو المنطقة</label><input id="villageOther" placeholder="اكتب اسم المنطقة"></div>
-<div class="field hidden" id="centerOtherWrap"><label for="centerOther">اسم المركز أو المدينة</label><input id="centerOther" placeholder="اكتب اسم المركز"></div>
-<div class="note">إذا لم تجد المركز أو القرية في القائمة، اختر «أخرى» واكتب الاسم بنفسك.</div>
-</section>
-
-<section class="stage" data-stage="5">
-<h3 class="stage-title">الصورة الشخصية</h3><p class="stage-desc">ارفع صورتك الشخصية التي ستظهر في ملفك على المنصة.</p>
-<div class="photo-area">
-<img id="photoPreview" class="photo-preview" alt="معاينة الصورة الشخصية">
-<div id="photoPlaceholder" style="font-size:40px;margin-bottom:8px">◎</div>
-<div style="font-size:13px;font-weight:800;margin-bottom:5px">صورتك الشخصية</div>
-<div style="font-size:11px;color:var(--muted);margin-bottom:14px">JPG أو PNG أو WebP — بحد أقصى 5 ميجابايت</div>
-<label for="profilePhoto" class="upload-label">اختيار الصورة</label>
-<input id="profilePhoto" type="file" accept="image/jpeg,image/png,image/webp">
+<div class="login-link" id="loginLink">
+ لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
 </div>
-</section>
-
-<section class="stage" data-stage="6">
-<h3 class="stage-title">الشروط والأحكام</h3><p class="stage-desc">اقرأ الشروط التالية قبل إتمام إنشاء حسابك.</p>
-<div class="terms-box">
-<strong style="color:var(--gold2)">شروط استخدام المنصة</strong><br>
-1. يلتزم الطالب بإدخال بيانات صحيحة تخصه.<br>
-2. يلتزم الطالب بالحفاظ على سرية كلمة المرور وعدم مشاركتها مع الآخرين.<br>
-3. يجب استخدام المنصة للأغراض التعليمية المخصصة لها.<br>
-4. يلتزم الطالب باحترام المعلمين والطلاب وعدم إساءة استخدام وسائل التواصل داخل المنصة.<br>
-5. يقر الطالب بأن الصورة الشخصية التي رفعها هي الصورة التي اختارها بنفسه.<br>
-6. يوافق الطالب على حفظ بيانات حسابه وتقدمه الدراسي ونتائجه داخل المنصة لتقديم الخدمات التعليمية.<br>
-7. قد يتم تحديث الشروط عند إضافة خدمات جديدة، وسيتم عرض التحديثات داخل المنصة.
-</div>
-<label class="terms-agree"><input type="checkbox" id="agreeTerms"><span>قرأت الشروط والأحكام وأوافق عليها.</span></label>
-</section>
-
-<section class="stage" data-stage="7">
-<h3 class="stage-title">مراجعة وإنشاء الحساب</h3><p class="stage-desc">راجع بياناتك ثم اضغط على إنشاء الحساب.</p>
-<div class="note" id="reviewData" style="line-height:2.2"></div>
-<button class="btn btn-primary" id="createAccount" type="button" style="width:100%">إنشاء حسابي الآن</button>
-</section>
-
-<div class="nav-buttons" id="navigation">
-<button class="btn btn-secondary" id="backBtn" type="button" disabled>السابق</button>
-<button class="btn btn-primary" id="nextBtn" type="button">المرحلة التالية</button>
-</div>
-</div>
-
-<div class="success-view" id="successView">
-<div class="success-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m10 25 9 9L38 14"/></svg></div>
-<h2 style="margin:0 0 5px;font-size:22px">تم إنشاء حسابك بنجاح</h2>
-<p style="color:var(--muted);font-size:12px;margin:0">تم حفظ بيانات حسابك وصورتك في قاعدة البيانات.</p>
-<div class="profile-card">
-<img id="finalPhoto" class="final-photo" alt="الصورة الشخصية">
-<div class="final-name" id="finalName"></div>
-<div style="font-size:11px;color:var(--muted);margin-top:5px">رقم الطالب الخاص بك</div>
-<div class="profile-id" id="finalId"></div>
-<button type="button" class="copy-id" id="copyIdButton">نسخ رقم الـ ID</button>
-<div id="qrcode"></div>
-<div style="font-size:10px;color:var(--muted)">رمز QR الخاص برقم الطالب</div>
-</div>
-<div class="note">احتفظ برقم الـ ID ورقم هاتفك وكلمة المرور. ستحتاج إلى رقم الـ ID عند تسجيل الدخول.</div>
-<button type="button" id="enterPlatformButton" class="btn btn-primary" style="display:block;width:100%;padding:13px">الدخول إلى المنصة</button>
-</div>
-</section>
-
-<div class="login-link" id="loginLink">لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></div>
 </div>
 </main>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <div class="video-gate" id="videoGate" role="dialog" aria-modal="true">
-<div class="video-gate-inner">
-<div class="video-gate-message">جارٍ تحويلك إلى المنصة بعد انتهاء الفيديو</div>
-<video id="welcomeVideo" playsinline preload="auto" controlslist="nodownload noplaybackrate noremoteplayback"></video>
-<div class="video-error" id="videoError">تعذر تشغيل الفيديو 89.mp4. تأكد من وجوده بجانب ملفات الموقع.<br><button class="btn btn-primary" id="retryVideo" type="button">إعادة تشغيل الفيديو</button></div>
-</div>
+ <div class="video-inner">
+  <div class="video-message">أهلًا بك في منصة الدكتور محمود الجنايني</div>
+  <video id="welcomeVideo" playsinline preload="auto" controlslist="nodownload noplaybackrate noremoteplayback"></video>
+  <div class="video-error" id="videoError">
+   تعذر تشغيل الفيديو 89.mp4. تأكد من وجود الملف بجانب ملفات الموقع.<br>
+   <button class="btn btn-primary" id="retryVideo" type="button" style="margin-top:9px">إعادة تشغيل الفيديو</button>
+  </div>
+ </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 const ACCESS_URL="https://iirrwfativrsrxluxmwp.supabase.co/functions/v1/student-phone-access";
 const PUBLIC_KEY="sb_publishable_cDCIPKxT6-2NgbLmnTy1Lw_pW84RMam";
+
 const $=id=>document.getElementById(id);
 const stages=[...document.querySelectorAll(".stage")];
-const dots=[...document.querySelectorAll(".step-dot")];
-let currentStage=0,photoData="",toastTimer=null,creating=false;
+const steps=[...document.querySelectorAll(".step")];
+
+let currentStage=0;
+let photoData="";
+let toastTimer=null;
+let creating=false;
 
 function showToast(message,type="error"){
  const box=$("toast");
@@ -259,11 +826,13 @@ function showToast(message,type="error"){
  clearTimeout(toastTimer);
  toastTimer=setTimeout(()=>box.className="toast",4000);
 }
+
 function value(id){return $(id).value.trim()}
 function studentParts(){return [1,2,3].map(n=>value("studentName"+n))}
 function parentParts(){return [1,2].map(n=>value("parentName"+n))}
 function studentFullName(){return studentParts().join(" ")}
 function parentFullName(){return parentParts().join(" ")}
+
 function normalizeEgyptPhone(raw){
  let p=String(raw||"").replace(/[\s().-]/g,"");
  if(/^01[0125]\d{8}$/.test(p))return "+20"+p.slice(1);
@@ -271,16 +840,22 @@ function normalizeEgyptPhone(raw){
  if(/^\+201[0125]\d{8}$/.test(p))return p;
  throw new Error("رقم الهاتف المصري غير صحيح. استخدم رقمًا يبدأ بـ 010 أو 011 أو 012 أو 015.");
 }
+
 function safe(str){
- return String(str).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ return String(str).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
 }
+
 function renderStage(){
  stages.forEach((stage,i)=>stage.classList.toggle("active",i===currentStage));
- dots.forEach((dot,i)=>{
-  dot.classList.toggle("active",i===currentStage);
-  dot.classList.toggle("done",i<currentStage);
-  dot.textContent=i<currentStage?"✓":i+1;
+
+ steps.forEach((step,i)=>{
+  step.classList.toggle("active",i===currentStage);
+  step.classList.toggle("done",i<currentStage);
+  step.querySelector(".step-circle").textContent=i<currentStage?"✓":i+1;
  });
+
  const percent=Math.round(((currentStage+1)/8)*100);
  $("progressFill").style.width=percent+"%";
  $("stepCaption").textContent="المرحلة "+(currentStage+1)+" من 8";
@@ -289,63 +864,100 @@ function renderStage(){
  $("nextBtn").classList.toggle("hidden",currentStage===7);
  $("pageScroller").scrollTop=0;
 }
+
 function validateStage(index){
  if(index===0){
-  if(studentParts().some(p=>!p||/\s/.test(p))||!value("studentPhone")||!value("password")||!value("confirmPassword")){
-   showToast("اكتب الاسم الثلاثي ورقم الهاتف وكلمة المرور.");return false;
+  if(studentParts().some(p=>!p||/\s/.test(p))){
+   showToast("اكتب الاسم الثلاثي، كل اسم في خانة منفصلة.");return false;
   }
-  if(value("password")!==value("confirmPassword")){showToast("كلمتا المرور غير متطابقتين.");return false}
-  if(value("password").length<6){showToast("كلمة المرور يجب ألا تقل عن 6 أحرف أو أرقام.");return false}
-  try{normalizeEgyptPhone(value("studentPhone"))}catch(e){showToast(e.message);return false}
+  if(!value("studentPhone")||!value("password")||!value("confirmPassword")){
+   showToast("أكمل رقم الهاتف وكلمة المرور.");return false;
+  }
+  if(value("password")!==value("confirmPassword")){
+   showToast("كلمتا المرور غير متطابقتين.");return false;
+  }
+  if(value("password").length<6){
+   showToast("كلمة المرور يجب ألا تقل عن 6 أحرف أو أرقام.");return false;
+  }
+  try{normalizeEgyptPhone(value("studentPhone"))}
+  catch(e){showToast(e.message);return false}
  }
+
  if(index===1){
-  if(parentParts().some(p=>!p||/\s/.test(p))||!value("parentPhone")){showToast("أكمل اسم ولي الأمر ثنائيًا ورقم هاتفه.");return false}
-  try{normalizeEgyptPhone(value("parentPhone"))}catch(e){showToast("رقم هاتف ولي الأمر غير صحيح.");return false}
+  if(parentParts().some(p=>!p||/\s/.test(p))||!value("parentPhone")){
+   showToast("أكمل اسم ولي الأمر الثنائي ورقم هاتفه.");return false;
+  }
+  try{normalizeEgyptPhone(value("parentPhone"))}
+  catch(e){showToast("رقم هاتف ولي الأمر غير صحيح.");return false}
  }
- if(index===2&&(!document.querySelector('input[name="educationType"]:checked')||!value("schoolGrade"))){showToast("اختر نوع التعليم والصف الدراسي.");return false}
- if(index===3&&!value("governorate")){showToast("اختر المحافظة.");return false}
- if(index===4){
-  if(!value("center")||(value("center")==="أخرى"&&!value("centerOther"))||!value("village")||(value("village")==="أخرى"&&!value("villageOther"))){
-   showToast("أكمل اختيار المركز والقرية أو اكتب بيانات «أخرى».");return false;
+
+ if(index===2){
+  if(!document.querySelector('input[name="educationType"]:checked')||!value("schoolGrade")){
+   showToast("اختر نوع التعليم والصف الدراسي.");return false;
   }
  }
- if(index===5&&!photoData){showToast("اختر صورتك الشخصية أولًا.");return false}
- if(index===6&&!$("agreeTerms").checked){showToast("يجب الموافقة على الشروط والأحكام.");return false}
+
+ if(index===3&&!value("governorate")){
+  showToast("اختر المحافظة.");return false;
+ }
+
+ if(index===4){
+  if(!value("center")||(value("center")==="أخرى"&&!value("centerOther"))){
+   showToast("اختر المركز أو اكتب اسمه.");return false;
+  }
+  if(!value("village")||(value("village")==="أخرى"&&!value("villageOther"))){
+   showToast("اختر القرية أو اكتب اسمها.");return false;
+  }
+ }
+
+ if(index===5&&!photoData){
+  showToast("اختر صورتك الشخصية أولًا.");return false;
+ }
+
+ if(index===6&&!$("agreeTerms").checked){
+  showToast("يجب الموافقة على الشروط والأحكام.");return false;
+ }
+
  return true;
 }
+
 $("nextBtn").addEventListener("click",()=>{
  if(!validateStage(currentStage))return;
  if(currentStage===6)buildReview();
- currentStage++;renderStage();
+ currentStage++;
+ renderStage();
 });
+
 $("backBtn").addEventListener("click",()=>{
- if(currentStage>0){currentStage--;renderStage()}
+ if(currentStage>0){
+  currentStage--;
+  renderStage();
+ }
 });
-function buildReview(){
- const education=document.querySelector('input[name="educationType"]:checked').value;
- const center=value("center")==="أخرى"?value("centerOther"):value("center");
- const village=value("village")==="أخرى"?value("villageOther"):value("village");
- $("reviewData").innerHTML=
-  "<strong>اسم الطالب:</strong> "+safe(studentFullName())+"<br>"+
-  "<strong>رقم الهاتف:</strong> "+safe(value("studentPhone"))+"<br>"+
-  "<strong>ولي الأمر:</strong> "+safe(parentFullName())+"<br>"+
-  "<strong>هاتف ولي الأمر:</strong> "+safe(value("parentPhone"))+"<br>"+
-  "<strong>نوع التعليم:</strong> "+safe(education)+"<br>"+
-  "<strong>الصف:</strong> "+safe(value("schoolGrade"))+"<br>"+
-  "<strong>المحافظة:</strong> "+safe(value("governorate"))+"<br>"+
-  "<strong>المركز:</strong> "+safe(center)+"<br>"+
-  "<strong>القرية أو المنطقة:</strong> "+safe(village)+"<br>"+
-  "<strong>الصورة الشخصية:</strong> تم اختيار الصورة ✓";
-}
+
+/* الصف الدراسي */
 document.querySelectorAll('input[name="educationType"]').forEach(radio=>{
  radio.addEventListener("change",()=>{
   $("schoolGrade").innerHTML='<option value="">اختر الصف الدراسي</option>';
-  ["أولى ثانوي","تانية ثانوي","تالتة ثانوي"].forEach(item=>$("schoolGrade").add(new Option(item,item)));
+  ["أولى ثانوي","تانية ثانوي","تالتة ثانوي"].forEach(item=>{
+   $("schoolGrade").add(new Option(item,item));
+  });
  });
 });
 
-const governorates=["القاهرة","الجيزة","الإسكندرية","القليوبية","المنوفية","الغربية","كفر الشيخ","البحيرة","الدقهلية","دمياط","الشرقية","بورسعيد","الإسماعيلية","السويس","شمال سيناء","جنوب سيناء","الفيوم","بني سويف","المنيا","أسيوط","سوهاج","قنا","الأقصر","أسوان","البحر الأحمر","الوادي الجديد","مطروح"];
+/* المحافظات */
+const governorates=[
+ "القاهرة","الجيزة","الإسكندرية","القليوبية","المنوفية",
+ "الغربية","كفر الشيخ","البحيرة","الدقهلية","دمياط",
+ "الشرقية","بورسعيد","الإسماعيلية","السويس","شمال سيناء",
+ "جنوب سيناء","الفيوم","بني سويف","المنيا","أسيوط",
+ "سوهاج","قنا","الأقصر","أسوان","البحر الأحمر",
+ "الوادي الجديد","مطروح"
+];
+
 governorates.forEach(name=>$("governorate").add(new Option(name,name)));
+
+/* المراكز */
 const centers={
  "المنوفية":["شبين الكوم","قويسنا","منوف","أشمون","الباجور","تلا","بركة السبع","السادات","الشهداء","سرس الليان"],
  "القاهرة":["القاهرة"],
@@ -356,73 +968,168 @@ const centers={
  "الدقهلية":["المنصورة","طلخا","ميت غمر","أجا","السنبلاوين","دكرنس","بلقاس"],
  "الشرقية":["الزقازيق","بلبيس","منيا القمح","فاقوس","أبو كبير","ههيا"],
  "البحيرة":["دمنهور","كفر الدوار","رشيد","إيتاي البارود","أبو حمص"],
- "كفر الشيخ":["كفر الشيخ","دسوق","فوه","مطوبس","بلطيم"]
+ "كفر الشيخ":["كفر الشيخ","دسوق","فوه","مطوبس","بلطيم"],
+ "دمياط":["دمياط","فارسكور","الزرقا","كفر سعد"],
+ "الفيوم":["الفيوم","سنورس","إطسا","طامية"],
+ "بني سويف":["بني سويف","الواسطى","ناصر","إهناسيا"],
+ "المنيا":["المنيا","ملوي","مغاغة","سمالوط"],
+ "أسيوط":["أسيوط","ديروط","القوصية","أبنوب"],
+ "سوهاج":["سوهاج","أخميم","جرجا","طهطا"],
+ "قنا":["قنا","نجع حمادي","دشنا"],
+ "الأقصر":["الأقصر","إسنا","أرمنت"],
+ "أسوان":["أسوان","إدفو","كوم أمبو"],
+ "بورسعيد":["بورسعيد"],
+ "الإسماعيلية":["الإسماعيلية","فايد","التل الكبير"],
+ "السويس":["السويس"],
+ "مطروح":["مرسى مطروح","الحمام","العلمين"],
+ "البحر الأحمر":["الغردقة","سفاجا","القصير"],
+ "شمال سيناء":["العريش","بئر العبد"],
+ "جنوب سيناء":["شرم الشيخ","الطور","دهب"],
+ "الوادي الجديد":["الخارجة","الداخلة"]
 };
+
+/* القرى والمناطق المتاحة */
 const villages={
- "بركة السبع":["مدينة بركة السبع","أبو مشهور","الشهيد فكري","الروضة","كفر الحمادية","جنزور","منشأة الرافعي","شنتنا الحجر","ميت أم صالح","الغوري","ميت فارس","كفر مليج","طوخ طنبشا","كفر عليم","طنبشا","الدبايبة","هورين","كفر هورين","الحلامشة","كفر هلال","كفر الشيخ طعيمة","كفر نفرة البحري","زوير","سلكا","ميت الموز","ميت عافية","كفر سبع الرجال"]
+ "بركة السبع":[
+  "مدينة بركة السبع","أبو مشهور","الشهيد فكري","الروضة",
+  "كفر الحمادية","جنزور","منشأة الرافعي","شنتنا الحجر",
+  "ميت أم صالح","الغوري","ميت فارس","كفر مليج",
+  "طوخ طنبشا","كفر عليم","طنبشا","الدبايبة","هورين",
+  "كفر هورين","الحلامشة","كفر هلال","كفر الشيخ طعيمة",
+  "كفر نفرة البحري","زوير","سلكا","ميت الموز","ميت عافية",
+  "كفر سبع الرجال"
+ ],
+ "طنطا":["طنطا","سبرباي","محلة مرحوم","شوني","فيشا سليم","دفرة","كفر عصام"],
+ "المحلة الكبرى":["المحلة الكبرى","سمنود","محلة أبو علي","بشبيش"],
+ "قويسنا":["قويسنا","ميت برة","أم خنان","عرب الرمل"],
+ "شبين الكوم":["شبين الكوم","ميت خاقان","شنوان","البقاشين"],
+ "منوف":["منوف","فيشا الكبرى","برهيم","كفر السنابسة"],
+ "أشمون":["أشمون","ساقية أبو شعرة","سمادون","طليا"],
+ "الباجور":["الباجور","مشيرف","كفر الباجور"],
+ "تلا":["تلا","كفر السكرية","زاوية بمم"],
+ "السادات":["مدينة السادات","كفر داود","الخطاطبة"]
 };
-$("governorate").addEventListener("change",()=>{
- const center=$("center");
- center.innerHTML='<option value="">اختر المركز أو المدينة</option>';
- (centers[value("governorate")]||[]).forEach(name=>center.add(new Option(name,name)));
- center.add(new Option("أخرى - اكتب المركز","أخرى"));
- $("centerOtherWrap").classList.add("hidden");
- resetVillages();
-});
+
 function resetVillages(){
  $("village").innerHTML='<option value="">اختر القرية أو المنطقة</option>';
  $("village").add(new Option("أخرى - اكتب المنطقة","أخرى"));
  $("villageOtherWrap").classList.add("hidden");
  $("villageOther").value="";
 }
+
+$("governorate").addEventListener("change",()=>{
+ const center=$("center");
+ center.innerHTML='<option value="">اختر المركز أو المدينة</option>';
+ (centers[value("governorate")]||[]).forEach(name=>{
+  center.add(new Option(name,name));
+ });
+ center.add(new Option("أخرى - اكتب المركز","أخرى"));
+ $("centerOtherWrap").classList.add("hidden");
+ $("centerOther").value="";
+ resetVillages();
+});
+
 $("center").addEventListener("change",()=>{
  const chosen=value("center");
  $("centerOtherWrap").classList.toggle("hidden",chosen!=="أخرى");
  resetVillages();
- const list=villages[chosen]||[];
- list.forEach(name=>$("village").add(new Option(name,name)));
+ (villages[chosen]||[]).forEach(name=>{
+  $("village").add(new Option(name,name));
+ });
 });
+
 $("village").addEventListener("change",()=>{
  const other=value("village")==="أخرى";
  $("villageOtherWrap").classList.toggle("hidden",!other);
  if(other)$("villageOther").focus();
 });
 
+/* الصورة الشخصية */
 $("profilePhoto").addEventListener("change",()=>{
  const file=$("profilePhoto").files[0];
  if(!file)return;
- if(!["image/jpeg","image/png","image/webp"].includes(file.type)){showToast("اختر صورة JPG أو PNG أو WebP.");$("profilePhoto").value="";return}
- if(file.size>5*1024*1024){showToast("حجم الصورة يجب ألا يتجاوز 5 ميجابايت.");$("profilePhoto").value="";return}
+
+ if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
+  showToast("اختر صورة JPG أو PNG أو WebP.");
+  $("profilePhoto").value="";
+  return;
+ }
+
+ if(file.size>5*1024*1024){
+  showToast("حجم الصورة يجب ألا يتجاوز 5 ميجابايت.");
+  $("profilePhoto").value="";
+  return;
+ }
+
  const reader=new FileReader();
  reader.onload=e=>{
   photoData=e.target.result;
   $("photoPreview").src=photoData;
   $("photoPreview").style.display="block";
   $("photoPlaceholder").style.display="none";
+  showToast("تم اختيار الصورة بنجاح.","success");
  };
  reader.readAsDataURL(file);
 });
 
+/* مراجعة البيانات */
+function buildReview(){
+ const education=document.querySelector('input[name="educationType"]:checked').value;
+ const center=value("center")==="أخرى"?value("centerOther"):value("center");
+ const village=value("village")==="أخرى"?value("villageOther"):value("village");
+
+ const rows=[
+  ["اسم الطالب",studentFullName()],
+  ["رقم الهاتف",value("studentPhone")],
+  ["اسم ولي الأمر",parentFullName()],
+  ["هاتف ولي الأمر",value("parentPhone")],
+  ["نوع التعليم",education],
+  ["الصف الدراسي",value("schoolGrade")],
+  ["المحافظة",value("governorate")],
+  ["المركز أو المدينة",center],
+  ["القرية أو المنطقة",village],
+  ["الصورة الشخصية","تم اختيار الصورة ✓"]
+ ];
+
+ $("reviewData").innerHTML=rows.map(([label,val])=>
+  '<div class="review-item"><span>'+safe(label)+'</span><strong>'+safe(val)+'</strong></div>'
+ ).join("");
+}
+
+/* الاتصال بخدمة الحسابات */
 async function callAccess(payload){
  const response=await fetch(ACCESS_URL,{
   method:"POST",
-  headers:{"Content-Type":"application/json","apikey":PUBLIC_KEY},
+  headers:{
+   "Content-Type":"application/json",
+   "apikey":PUBLIC_KEY
+  },
   body:JSON.stringify(payload)
  });
+
  const result=await response.json().catch(()=>({}));
- if(!response.ok||!result.ok)throw new Error(result.error||"تعذر الاتصال بخدمة الحسابات.");
+
+ if(!response.ok||!result.ok){
+  throw new Error(result.error||"تعذر الاتصال بخدمة الحسابات.");
+ }
+
  return result;
 }
+
+/* إنشاء الحساب */
 async function createStudentAccount(){
  if(creating||!validateStage(7))return;
+
  creating=true;
  const button=$("createAccount");
  button.disabled=true;
  button.textContent="جارٍ إنشاء الحساب وحفظ البيانات...";
+
  try{
   const education=document.querySelector('input[name="educationType"]:checked').value;
   const center=value("center")==="أخرى"?value("centerOther"):value("center");
   const village=value("village")==="أخرى"?value("villageOther"):value("village");
+
   const result=await callAccess({
    action:"register",
    phone:normalizeEgyptPhone(value("studentPhone")),
@@ -437,21 +1144,43 @@ async function createStudentAccount(){
    village:village,
    photo_base64:photoData
   });
+
   const user=result.user||{};
-  if(!user.user_code)throw new Error("تم إنشاء الحساب لكن لم يصل رقم الطالب من قاعدة البيانات. تواصل مع الإدارة قبل إعادة التسجيل.");
-  if(result.session&&result.session.token)localStorage.setItem("elgen_student_session",result.session.token);
+
+  if(!user.user_code){
+   throw new Error("لم يصل رقم الطالب من قاعدة البيانات. لا تحاول التسجيل مرة أخرى قبل مراجعة الإدارة.");
+  }
+
+  if(result.session&&result.session.token){
+   localStorage.setItem("elgen_student_session",result.session.token);
+  }
+
   localStorage.setItem("elgen_student_account",JSON.stringify(user));
+
   $("finalPhoto").src=user.avatar_url||photoData;
   $("finalName").textContent=user.full_name||studentFullName();
   $("finalId").textContent=user.user_code;
+
   $("qrcode").innerHTML="";
-  if(window.QRCode)new QRCode($("qrcode"),{text:user.user_code,width:120,height:120,colorDark:"#15121b",colorLight:"#ffffff"});
-  else $("qrcode").textContent=user.user_code;
+  if(window.QRCode){
+   new QRCode($("qrcode"),{
+    text:user.user_code,
+    width:125,
+    height:125,
+    colorDark:"#15121b",
+    colorLight:"#ffffff"
+   });
+  }else{
+   $("qrcode").textContent=user.user_code;
+  }
+
   $("wizard").style.display="none";
   $("successView").style.display="block";
   $("loginLink").style.display="none";
-  showToast("تم إنشاء حسابك وحفظ بياناتك وصورتك بنجاح.","success");
   $("pageScroller").scrollTop=0;
+
+  showToast("تم إنشاء حسابك بنجاح.","success");
+
  }catch(error){
   showToast(error.message||"حدث خطأ أثناء إنشاء الحساب.");
  }finally{
@@ -460,34 +1189,53 @@ async function createStudentAccount(){
   button.textContent="إنشاء حسابي الآن";
  }
 }
+
 $("createAccount").addEventListener("click",createStudentAccount);
+
+/* نسخ رقم الطالب */
 $("copyIdButton").addEventListener("click",async()=>{
+ const id=$("finalId").textContent;
  try{
-  await navigator.clipboard.writeText($("finalId").textContent);
-  showToast("تم نسخ رقم الـ ID. احتفظ به لاستخدامه عند تسجيل الدخول.","success");
+  await navigator.clipboard.writeText(id);
+  showToast("تم نسخ رقم الطالب بنجاح.","success");
  }catch(e){
-  const range=document.createRange();range.selectNodeContents($("finalId"));
-  const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);
+  const range=document.createRange();
+  range.selectNodeContents($("finalId"));
+  const selection=window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
   showToast("حدد الرقم وانسخه يدويًا.");
  }
 });
 
-const videoGate=$("videoGate"),video=$("welcomeVideo");
+/* فيديو الترحيب ثم الانتقال للمنصة */
+const videoGate=$("videoGate");
+const video=$("welcomeVideo");
+
 function startWelcomeVideo(){
  videoGate.classList.add("active");
- document.body.classList.add("video-locked");
  $("videoError").style.display="none";
  video.src="./89.mp4";
  video.load();
- video.play().catch(()=>{$("videoError").style.display="block"});
+ video.play().catch(()=>{
+  $("videoError").style.display="block";
+ });
 }
+
 $("enterPlatformButton").addEventListener("click",startWelcomeVideo);
+
 $("retryVideo").addEventListener("click",()=>{
  $("videoError").style.display="none";
  video.currentTime=0;
- video.play().catch(()=>$("videoError").style.display="block");
+ video.play().catch(()=>{
+  $("videoError").style.display="block";
+ });
 });
-video.addEventListener("ended",()=>window.location.replace("platform.html"));
+
+video.addEventListener("ended",()=>{
+ window.location.replace("platform.html");
+});
+
 video.addEventListener("contextmenu",e=>e.preventDefault());
 
 renderStage();
