@@ -158,7 +158,8 @@ button{cursor:pointer}
 .select-launcher:focus-visible{outline:2px solid #ffdda0;outline-offset:3px}
 .select-launcher .select-value{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .select-launcher.is-placeholder{color:#9292a5}
-.select-launcher:disabled{opacity:.45;cursor:not-allowed}.select-dialog-title{margin:5px 0 12px;color:#fff2d8;font-size:17px;font-weight:900}
+.select-launcher:disabled{opacity:.45;cursor:not-allowed}
+.select-dialog-title{margin:5px 0 12px;color:#fff2d8;font-size:17px;font-weight:900}
 .select-search{
  width:100%;height:44px;padding:0 15px;border:1px solid #ffffff20;
  border-radius:13px;background:#ffffff0a;color:#fff;font:inherit;font-size:12px;outline:none;
@@ -348,7 +349,7 @@ button{cursor:pointer}
 .profile-photo-row .final-photo{margin:0}
 .profile-status-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border:1px solid #42d6a077;border-radius:999px;background:#42d6a018;color:#8ff0c6;font-size:10px;font-weight:900}
 .video-inner{max-height:100%;display:flex;flex-direction:column;justify-content:center}
-.video-inner video{width:100%;height:auto;max-height:calc(100dvh - 100px);aspect-ratio:16/9;object-fit:contain;border-radius:16px}
+.video-inner video{width:100%;height:auto;max-height:calc(100dvh - 100px);aspect-ratio:16/9;object-fit:contain}
 
 /* إعدادات العرض على الهاتف */
 @media(max-width:520px){
@@ -481,6 +482,7 @@ button,input,select,textarea{touch-action:manipulation}
  .select-options{min-height:0}.video-inner video{max-height:78dvh}
 }
 @media(prefers-reduced-motion:reduce){.select-dialog{animation:none!important}}
+
 /* ضبط حجم نافذة الاختيارات */
 .select-layer{
   align-items:center;
@@ -529,9 +531,60 @@ button,input,select,textarea{touch-action:manipulation}
     min-height:220px;
     border-radius:18px;
   }
-                 }
-</style>
-</head><body>
+}
+
+/* FINAL SELECT WINDOW: centered, compact, scrollable; preserve original background */
+.select-layer{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ padding:12px!important;
+ background:rgba(4,5,12,.10)!important;
+ -webkit-backdrop-filter:none!important;
+ backdrop-filter:none!important;
+}
+.select-dialog{
+ width:min(430px,calc(100vw - 28px))!important;
+ height:min(68dvh,540px)!important;
+ min-height:min(290px,calc(100dvh - 24px))!important;
+ max-height:calc(100dvh - 24px)!important;
+ border-radius:21px!important;
+ padding-bottom:0!important;
+}
+.select-dialog-head,.select-dialog-foot{flex:0 0 auto!important}
+.select-options{
+ flex:1 1 auto!important;
+ height:auto!important;
+ min-height:0!important;
+ max-height:none!important;
+ overflow-y:auto!important;
+ overflow-x:hidden!important;
+ -webkit-overflow-scrolling:touch!important;
+ overscroll-behavior-y:contain!important;
+ touch-action:pan-y!important;
+}
+@media(max-width:520px){
+ .select-layer{align-items:center!important;justify-content:center!important;padding:12px!important}
+ .select-dialog{
+  width:min(430px,calc(100vw - 24px))!important;
+  height:min(68dvh,540px)!important;
+  min-height:min(290px,calc(100dvh - 24px))!important;
+  max-height:calc(100dvh - 24px)!important;
+  border-radius:20px!important;
+ }
+ .select-dialog-head{padding:10px 13px!important}
+ .select-options{padding:7px 9px!important}
+ .select-option{min-height:43px!important;padding:9px 12px!important}
+ .select-dialog-foot{padding:9px 12px!important}
+}
+@media(orientation:landscape) and (max-height:520px){
+ .select-dialog{
+  width:min(430px,calc(100vw - 28px))!important;
+  height:min(84dvh,420px)!important;
+  min-height:210px!important;
+  border-radius:18px!important;
+ }
+}</head><body>
 <img class="background" src="./86.jpg" alt="">
 <div class="overlay"></div>
 
@@ -665,7 +718,8 @@ button,input,select,textarea{touch-action:manipulation}
     </div>
    </div>
 
-   <div class="info-box">    <span>تأكد من كتابة رقم صحيح يمكن التواصل من خلاله في الحالات الضرورية.</span>
+   <div class="info-box">
+    <span>تأكد من كتابة رقم صحيح يمكن التواصل من خلاله في الحالات الضرورية.</span>
    </div>
   </section>
 
@@ -779,6 +833,7 @@ button,input,select,textarea{touch-action:manipulation}
      </svg>
      <select id="center"><option value="">اختر المحافظة أولًا</option></select>
     </div>
+   </div>    </div>
    </div>
 
    <div class="field">
@@ -1069,6 +1124,37 @@ function validateStage(index){
  }
 
  return true;
+ }  catch(e){showToast("رقم هاتف ولي الأمر غير صحيح.");return false}
+ }
+
+ if(index===2){
+  if(!document.querySelector('input[name="educationType"]:checked')||!value("schoolGrade")){
+   showToast("اختر نوع التعليم والصف الدراسي.");return false;
+  }
+ }
+
+ if(index===3&&!value("governorate")){
+  showToast("اختر المحافظة.");return false;
+ }
+
+ if(index===4){
+  if(!value("center")||(value("center")==="أخرى"&&!value("centerOther"))){
+   showToast("اختر المركز أو اكتب اسمه.");return false;
+  }
+  if(!value("village")||(value("village")==="أخرى"&&!value("villageOther"))){
+   showToast("اختر القرية أو اكتب اسمها.");return false;
+  }
+ }
+
+ if(index===5&&!photoData){
+  showToast("اختر صورتك الشخصية أولًا.");return false;
+ }
+
+ if(index===6&&!$("agreeTerms").checked){
+  showToast("يجب الموافقة على الشروط والأحكام.");return false;
+ }
+
+ return true;
 }
 
 $("nextBtn").addEventListener("click",()=>{
@@ -1317,9 +1403,253 @@ async function createStudentAccount(){
   const accountVerified=
    user.is_verified===true||
    user.verified===true||
-   user.face_verified===true;
+   user.face_verified===true;$("nextBtn").addEventListener("click",()=>{
+ if(!validateStage(currentStage))return;
+ if(currentStage===6)buildReview();
+ currentStage++;
+ renderStage();
+});
 
-  $("finalVerificationBadge").classList.toggle("hidden",!accountVerified);
+$("backBtn").addEventListener("click",()=>{
+ if(currentStage>0){
+  currentStage--;
+  renderStage();
+ }
+});
+
+/* الصف الدراسي */
+document.querySelectorAll('input[name="educationType"]').forEach(radio=>{
+ radio.addEventListener("change",()=>{
+  $("schoolGrade").innerHTML='<option value="">اختر الصف الدراسي</option>';
+  ["أولى ثانوي","تانية ثانوي","تالتة ثانوي"].forEach(item=>{
+   $("schoolGrade").add(new Option(item,item));
+  });
+ });
+});
+
+/* المحافظات */
+const governorates=[
+ "القاهرة","الجيزة","الإسكندرية","القليوبية","المنوفية",
+ "الغربية","كفر الشيخ","البحيرة","الدقهلية","دمياط",
+ "الشرقية","بورسعيد","الإسماعيلية","السويس","شمال سيناء",
+ "جنوب سيناء","الفيوم","بني سويف","المنيا","أسيوط",
+ "سوهاج","قنا","الأقصر","أسوان","البحر الأحمر",
+ "الوادي الجديد","مطروح"
+];
+
+governorates.forEach(name=>$("governorate").add(new Option(name,name)));
+
+/* المراكز */
+const centers={
+ "المنوفية":["شبين الكوم","قويسنا","منوف","أشمون","الباجور","تلا","بركة السبع","السادات","الشهداء","سرس الليان"],
+ "القاهرة":["القاهرة"],
+ "الجيزة":["الجيزة","أكتوبر","الشيخ زايد","البدرشين","العياط","أوسيم"],
+ "الإسكندرية":["الإسكندرية","برج العرب"],
+ "القليوبية":["بنها","قليوب","شبرا الخيمة","قها","طوخ","الخانكة","الخصوص"],
+ "الغربية":["طنطا","المحلة الكبرى","زفتى","كفر الزيات","السنطة","بسيون","قطور"],
+ "الدقهلية":["المنصورة","طلخا","ميت غمر","أجا","السنبلاوين","دكرنس","بلقاس"],
+ "الشرقية":["الزقازيق","بلبيس","منيا القمح","فاقوس","أبو كبير","ههيا"],
+ "البحيرة":["دمنهور","كفر الدوار","رشيد","إيتاي البارود","أبو حمص"],
+ "كفر الشيخ":["كفر الشيخ","دسوق","فوه","مطوبس","بلطيم"],
+ "دمياط":["دمياط","فارسكور","الزرقا","كفر سعد"],
+ "الفيوم":["الفيوم","سنورس","إطسا","طامية"],
+ "بني سويف":["بني سويف","الواسطى","ناصر","إهناسيا"],
+ "المنيا":["المنيا","ملوي","مغاغة","سمالوط"],
+ "أسيوط":["أسيوط","ديروط","القوصية","أبنوب"],
+ "سوهاج":["سوهاج","أخميم","جرجا","طهطا"],
+ "قنا":["قنا","نجع حمادي","دشنا"],
+ "الأقصر":["الأقصر","إسنا","أرمنت"],
+ "أسوان":["أسوان","إدفو","كوم أمبو"],
+ "بورسعيد":["بورسعيد"],
+ "الإسماعيلية":["الإسماعيلية","فايد","التل الكبير"],
+ "السويس":["السويس"],
+ "مطروح":["مرسى مطروح","الحمام","العلمين"],
+ "البحر الأحمر":["الغردقة","سفاجا","القصير"],
+ "شمال سيناء":["العريش","بئر العبد"],
+ "جنوب سيناء":["شرم الشيخ","الطور","دهب"],
+ "الوادي الجديد":["الخارجة","الداخلة"]
+};
+
+/* القرى والمناطق المتاحة */
+const villages={
+ "بركة السبع":[
+  "مدينة بركة السبع","أبو مشهور","الشهيد فكري","الروضة",
+  "كفر الحمادية","جنزور","منشأة الرافعي","شنتنا الحجر",
+  "ميت أم صالح","الغوري","ميت فارس","كفر مليج",
+  "طوخ طنبشا","كفر عليم","طنبشا","الدبايبة","هورين",
+  "كفر هورين","الحلامشة","كفر هلال","كفر الشيخ طعيمة",
+  "كفر نفرة البحري","زوير","سلكا","ميت الموز","ميت عافية",
+  "كفر سبع الرجال"
+ ],
+ "طنطا":["طنطا","سبرباي","محلة مرحوم","شوني","فيشا سليم","دفرة","كفر عصام"],
+ "المحلة الكبرى":["المحلة الكبرى","سمنود","محلة أبو علي","بشبيش"],
+ "قويسنا":["قويسنا","ميت برة","أم خنان","عرب الرمل"],
+ "شبين الكوم":["شبين الكوم","ميت خاقان","شنوان","البقاشين"],
+ "منوف":["منوف","فيشا الكبرى","برهيم","كفر السنابسة"],
+ "أشمون":["أشمون","ساقية أبو شعرة","سمادون","طليا"],
+ "الباجور":["الباجور","مشيرف","كفر الباجور"],
+ "تلا":["تلا","كفر السكرية","زاوية بمم"],
+ "السادات":["مدينة السادات","كفر داود","الخطاطبة"]
+};
+
+function resetVillages(){
+ $("village").innerHTML='<option value="">اختر القرية أو المنطقة</option>';
+ $("village").add(new Option("أخرى - اكتب المنطقة","أخرى"));
+ $("villageOtherWrap").classList.add("hidden");
+ $("villageOther").value="";
+}
+
+$("governorate").addEventListener("change",()=>{
+ const center=$("center");
+ center.innerHTML='<option value="">اختر المركز أو المدينة</option>';
+ (centers[value("governorate")]||[]).forEach(name=>{
+  center.add(new Option(name,name));
+ });
+ center.add(new Option("أخرى - اكتب المركز","أخرى"));
+ $("centerOtherWrap").classList.add("hidden");
+ $("centerOther").value="";
+ resetVillages();
+});
+
+$("center").addEventListener("change",()=>{
+ const chosen=value("center");
+ $("centerOtherWrap").classList.toggle("hidden",chosen!=="أخرى");
+ resetVillages();
+ (villages[chosen]||[]).forEach(name=>{
+  $("village").add(new Option(name,name));
+ });
+});
+
+$("village").addEventListener("change",()=>{
+ const other=value("village")==="أخرى";
+ $("villageOtherWrap").classList.toggle("hidden",!other);
+ if(other)$("villageOther").focus();
+});
+
+/* الصورة الشخصية */
+$("profilePhoto").addEventListener("change",()=>{
+ const file=$("profilePhoto").files[0];
+ if(!file)return;
+
+ if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
+  showToast("اختر صورة JPG أو PNG أو WebP.");
+  $("profilePhoto").value="";
+  return;
+ }
+
+ if(file.size>5*1024*1024){
+  showToast("حجم الصورة يجب ألا يتجاوز 5 ميجابايت.");
+  $("profilePhoto").value="";
+  return;
+ }
+
+ const reader=new FileReader();
+ reader.onload=e=>{
+  photoData=e.target.result;
+  $("photoPreview").src=photoData;
+  $("photoPreview").style.display="block";
+  $("photoPlaceholder").style.display="none";
+  showToast("تم اختيار الصورة بنجاح.","success");
+ };
+ reader.readAsDataURL(file);
+});
+
+/* مراجعة البيانات */
+function buildReview(){
+ const selectedEducation=document.querySelector('input[name="educationType"]:checked');
+ const education=selectedEducation?selectedEducation.value:"";
+ const center=value("center")==="أخرى"?value("centerOther"):value("center");
+ const village=value("village")==="أخرى"?value("villageOther"):value("village");
+
+ const rows=[
+  ["اسم الطالب",studentFullName()],
+  ["رقم الهاتف",value("studentPhone")],
+  ["اسم ولي الأمر",parentFullName()],
+  ["هاتف ولي الأمر",value("parentPhone")],
+  ["نوع التعليم",education],
+  ["الصف الدراسي",value("schoolGrade")],
+  ["المحافظة",value("governorate")],
+  ["المركز أو المدينة",center],
+  ["القرية أو المنطقة",village],
+  ["الصورة الشخصية","تم اختيار الصورة ✓"]
+ ];
+
+ $("reviewData").innerHTML=rows.map(([label,val])=>
+  '<div class="review-item"><span>'+safe(label)+'</span><strong>'+safe(val)+'</strong></div>'
+ ).join("");
+}
+
+/* الاتصال بخدمة الحسابات */
+async function callAccess(payload){
+ const response=await fetch(ACCESS_URL,{
+  method:"POST",
+  headers:{
+   "Content-Type":"application/json",
+   "apikey":PUBLIC_KEY
+  },
+  body:JSON.stringify(payload)
+ });
+
+ const result=await response.json().catch(()=>({}));
+
+ if(!response.ok||!result.ok){
+  throw new Error(result.error||"تعذر الاتصال بخدمة الحسابات.");
+ }
+
+ return result;
+}
+
+/* إنشاء الحساب */
+async function createStudentAccount(){
+ if(creating||!validateStage(7))return;
+
+ creating=true;
+ const button=$("createAccount");
+ button.disabled=true;
+ button.textContent="جارٍ إنشاء الحساب وحفظ البيانات...";
+
+ try{
+  const selectedEducation=document.querySelector('input[name="educationType"]:checked');
+  if(!selectedEducation)throw new Error("اختر نوع التعليم.");
+
+  const education=selectedEducation.value;
+  const center=value("center")==="أخرى"?value("centerOther"):value("center");
+  const village=value("village")==="أخرى"?value("villageOther"):value("village");
+
+  const result=await callAccess({
+   action:"register",
+   phone:normalizeEgyptPhone(value("studentPhone")),
+   password:value("password"),
+   full_name:studentFullName(),
+   parent_name:parentFullName(),
+   parent_phone:normalizeEgyptPhone(value("parentPhone")),
+   education_type:education,
+   school_grade:value("schoolGrade"),
+   governorate:value("governorate"),
+   education_center:center,
+   village:village,
+   photo_base64:photoData
+  });
+
+  const user=result.user||{};
+
+  if(!user.user_code){
+   throw new Error("لم يصل رقم الطالب من قاعدة البيانات. لا تحاول التسجيل مرة أخرى قبل مراجعة الإدارة.");
+  }
+
+  if(result.session&&result.session.token){
+   localStorage.setItem("elgen_student_session",result.session.token);
+  }
+
+  localStorage.setItem("elgen_student_account",JSON.stringify(user));
+
+  $("finalPhoto").src=user.avatar_url||photoData;
+  $("finalName").textContent=user.full_name||studentFullName();
+
+  const accountVerified=
+   user.is_verified===true||
+   user.verified===true||
+   user.face_verified===true;  $("finalVerificationBadge").classList.toggle("hidden",!accountVerified);
   $("finalId").textContent=user.user_code;
 
   $("qrcode").innerHTML="";
