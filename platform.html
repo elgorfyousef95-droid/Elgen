@@ -11,350 +11,237 @@
 
 <style>
 :root{
-  --gold:#e9b95e;
-  --gold2:#ffe5b2;
-  --ink:#100d0a;
-  --glass:rgba(23,19,15,.88);
-  --stroke:rgba(233,185,94,.22);
-  --muted:#b9ad9d;
+  --gold:#e6bd78;
+  --gold-light:#f7dfb2;
+  --text:#fffaf2;
+  --muted:#c2b5a3;
+  --line:rgba(230,189,120,.23);
+  --glass:rgba(25,20,16,.84);
 }
 *{box-sizing:border-box}
-body{overflow-x:hidden}
+body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--text)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .app-shell{min-height:100vh}
-.main-area{min-width:0}
-.page-content{
-  width:100%;
-  max-width:1600px;
-  margin-inline:auto;
-  padding:24px clamp(13px,2.5vw,38px) 45px;
-}
-
-/* SIDEBAR */
 .sidebar{
-  width:270px;
-  z-index:120;
-  background:rgba(17,14,11,.97);
-  border-left:1px solid var(--stroke);
-  backdrop-filter:blur(22px);
+  position:fixed;right:0;top:0;bottom:0;width:270px;z-index:120;
+  display:flex;flex-direction:column;overflow-y:auto;
+  background:rgba(17,14,11,.96);border-left:1px solid var(--line);
+  backdrop-filter:blur(22px);transition:transform .28s ease;
 }
-.brand{padding:22px 18px}
+.brand{display:flex;align-items:center;gap:12px;padding:22px 18px;border-bottom:1px solid var(--line)}
 .brand-logo{
-  width:49px;height:49px;flex:0 0 49px;
-  border-radius:16px;
-  display:grid;place-items:center;
-  color:#251807;
+  width:49px;height:49px;flex:0 0 49px;border-radius:16px;
+  display:grid;place-items:center;color:#251807;
   background:linear-gradient(145deg,#fff0c9,#c58a3d);
-  box-shadow:0 8px 28px rgba(233,185,94,.2);
+  box-shadow:0 8px 28px rgba(233,185,94,.2)
 }
 .brand-logo svg{width:29px;height:29px}
 .brand-name{font-size:13px;font-weight:900}
 .brand-subtitle{font-size:8px;letter-spacing:1.4px;color:var(--gold)}
-.nav-heading{
-  padding:16px 20px 8px;
-  color:#9b8b76;font-size:9px;font-weight:900;
-}
+.nav-heading{padding:17px 20px 8px;color:#b29a78;font-size:10px;font-weight:900}
 .side-nav{padding:0 11px}
 .side-link{
-  min-height:45px;
-  display:flex;align-items:center;gap:12px;
-  padding:9px 12px;margin:3px 0;
-  border:1px solid transparent;border-radius:12px;
-  color:#c9bdad;font-size:11px;font-weight:700;
-  transition:.2s ease;
+  min-height:45px;display:flex;align-items:center;gap:12px;
+  padding:9px 12px;margin:3px 0;border:1px solid transparent;
+  border-radius:12px;color:#d4c7b6;font-size:11px;font-weight:700;
+  transition:.2s
 }
-.side-link svg{
-  width:19px;height:19px;flex:0 0 19px;
-  fill:none;stroke:currentColor;stroke-width:1.7;
-  stroke-linecap:round;stroke-linejoin:round;
-}
+.side-link svg{width:19px;height:19px;flex:0 0 19px}
 .side-link:hover,.side-link.active{
-  color:var(--gold2);
-  border-color:var(--stroke);
-  background:linear-gradient(100deg,rgba(233,185,94,.14),rgba(233,185,94,.035));
+  color:var(--gold-light);border-color:var(--line);
+  background:linear-gradient(100deg,rgba(233,185,94,.16),rgba(233,185,94,.035))
 }
-.sidebar-account{
-  padding:12px;
-  border-top:1px solid var(--stroke);
-  background:rgba(10,8,6,.45);
-}
+.sidebar-account{margin-top:auto;padding:13px;border-top:1px solid var(--line);background:#100d0a}
 .account-mini{display:flex;align-items:center;gap:10px}
-.account-mini .avatar{width:39px;height:39px;flex:0 0 39px}
-.account-mini strong{font-size:11px}
+.avatar-placeholder{
+  width:39px;height:39px;flex:0 0 39px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(230,189,120,.16);
+  border:1px solid var(--line);color:var(--gold-light);font-weight:900
+}
+.account-mini strong{display:block;font-size:11px}
 .account-mini small{font-size:9px;color:var(--gold)}
-
-/* TOPBAR */
+.main-area{min-height:100vh;margin-right:270px;min-width:0}
 .topbar{
-  min-height:76px;
-  position:sticky;top:0;z-index:80;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:12px;padding:10px clamp(13px,2.5vw,34px);
-  background:rgba(16,13,10,.88);
-  border-bottom:1px solid var(--stroke);
-  backdrop-filter:blur(20px);
+  min-height:74px;position:sticky;top:0;z-index:80;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px clamp(13px,2.5vw,34px);
+  background:rgba(16,13,10,.86);border-bottom:1px solid var(--line);
+  backdrop-filter:blur(22px)
 }
-.topbar-start,.topbar-end,.topbar-actions{
-  display:flex;align-items:center;gap:11px;min-width:0;
+.topbar-start,.topbar-end,.topbar-actions{display:flex;align-items:center;gap:10px;min-width:0}
+.menu-button,.icon-button,.topbar-support{
+  width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;
+  border:1px solid var(--line);border-radius:13px;
+  color:var(--gold-light);background:rgba(255,255,255,.04)
 }
-.menu-button{
-  width:43px;height:43px;flex:0 0 43px;
-  display:grid;place-items:center;
-  border:1px solid var(--stroke);border-radius:14px;
-  color:var(--gold2);background:rgba(255,255,255,.035);
-}
-.menu-button svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
-.page-heading strong{font-size:13px}
+.menu-button svg{width:23px;height:23px}
+.page-heading strong{display:block;font-size:13px}
 .page-heading small{font-size:9px;color:var(--muted)}
-.topbar-actions .icon-button,.topbar-support{
-  width:42px;height:42px;flex:0 0 42px;
-  display:grid;place-items:center;
-  position:relative;
-  border:1px solid var(--stroke);border-radius:13px;
-  color:var(--gold2);background:rgba(255,255,255,.035);
-}
-.topbar-actions svg,.topbar-support svg{
-  width:20px;height:20px;fill:none;stroke:currentColor;
-  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
-}
-.notification-dot{
-  position:absolute;top:7px;right:7px;
-  width:7px;height:7px;border-radius:50%;
-  background:#e87979;border:1px solid var(--ink);
-}
+.notification-button{position:relative}
+.notification-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:#e87979}
 .profile-shortcut{
-  max-width:210px;display:flex;align-items:center;gap:9px;
-  padding:5px 10px 5px 6px;
-  border:1px solid var(--stroke);border-radius:14px;
-  background:rgba(255,255,255,.035);
+  display:flex;align-items:center;gap:8px;max-width:190px;padding:5px 10px;
+  border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.04)
 }
-.profile-shortcut .avatar{width:34px;height:34px;flex:0 0 34px}
 .profile-shortcut span{font-size:10px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.page-content{width:100%;max-width:1550px;margin:auto;padding:25px clamp(13px,2.5vw,38px) 45px}
+.welcome-line{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:3px 0 19px}
+.welcome-line h1{font-size:clamp(20px,2.5vw,29px);font-weight:900;margin:0}
+.welcome-line p{margin:7px 0 0;color:var(--muted);font-size:11px}
+.date-chip{padding:9px 14px;border:1px solid var(--line);border-radius:30px;color:var(--gold-light);background:rgba(20,16,12,.7);font-size:10px;white-space:nowrap}
 
-/* MAIN PROFILE */
-.welcome-line{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:12px;margin:4px 0 16px;
-}
-.welcome-line h1{font-size:clamp(19px,2.5vw,27px);margin:0;font-weight:900}
-.welcome-line p{margin:5px 0 0;color:var(--muted);font-size:10px}
-.date-chip{
-  padding:8px 12px;border:1px solid var(--stroke);
-  border-radius:30px;color:var(--gold2);
-  background:rgba(20,16,12,.7);font-size:9px;white-space:nowrap;
-}
-.student-overview{
-  position:relative;overflow:hidden;
-  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);
-  gap:20px;padding:clamp(18px,3vw,30px);
-  border:1px solid rgba(233,185,94,.32);
-  border-radius:25px;
+/* صورة الدكتور في مقدمة الصفحة */
+.teacher-hero{
+  position:relative;min-height:285px;overflow:hidden;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:clamp(22px,4vw,42px);
+  border:1px solid rgba(230,189,120,.34);border-radius:25px;
   background:
-    linear-gradient(110deg,rgba(15,12,9,.96),rgba(32,24,15,.91)),
+    linear-gradient(100deg,rgba(15,12,9,.94),rgba(28,21,15,.78)),
     url("./1795124002624.jpg") center/cover;
-  box-shadow:0 18px 55px rgba(0,0,0,.3);
+  box-shadow:0 20px 55px rgba(0,0,0,.3)
 }
-.student-overview:before{
-  content:"";position:absolute;width:300px;height:300px;
-  border-radius:50%;top:-190px;right:25%;
-  background:rgba(233,185,94,.09);filter:blur(10px);
+.teacher-hero:before{
+  content:"";position:absolute;width:300px;height:300px;border-radius:50%;
+  top:-190px;right:35%;background:rgba(230,189,120,.12);filter:blur(15px)
+}
+.teacher-copy{position:relative;z-index:2;max-width:620px}
+.teacher-kicker{font-size:10px;font-weight:900;color:var(--gold);letter-spacing:1px}
+.teacher-copy h2{font-size:clamp(22px,3.5vw,36px);line-height:1.5;margin:10px 0;color:#fff1d7}
+.teacher-copy p{font-size:12px;line-height:2;color:#d4c7b6;max-width:520px;margin:0}
+.teacher-image-wrap{
+  position:absolute;left:3%;bottom:0;height:94%;width:min(36%,390px);
+  display:flex;align-items:flex-end;justify-content:center;z-index:1
+}
+.teacher-image{
+  display:block;width:100%;height:100%;object-fit:contain;object-position:bottom center;
+  filter:drop-shadow(0 14px 25px rgba(0,0,0,.5))
+}
+
+/* بطاقة الطالب */
+.student-overview{
+  position:relative;overflow:hidden;display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);
+  gap:20px;padding:clamp(18px,3vw,30px);margin-top:18px;
+  border:1px solid var(--line);border-radius:23px;
+  background:linear-gradient(110deg,rgba(15,12,9,.9),rgba(32,24,15,.83)),url("./1795124002624.jpg") center/cover;
+  box-shadow:0 18px 50px rgba(0,0,0,.24)
 }
 .student-main,.study-summary{position:relative;z-index:1;min-width:0}
-.student-main{display:flex;align-items:center;gap:19px}
-.student-photo-wrap{position:relative;flex:0 0 auto}
+.student-main{display:flex;align-items:center;gap:18px}
+.student-photo-wrap{flex:0 0 auto}
 .student-photo{
-  width:clamp(82px,10vw,112px);height:clamp(82px,10vw,112px);
-  border-radius:50%;object-fit:cover;
-  border:3px solid var(--gold);
-  background:#211a12;
-  box-shadow:0 0 0 6px rgba(233,185,94,.09),0 12px 30px #0007;
+  width:clamp(76px,9vw,105px);height:clamp(76px,9vw,105px);
+  display:grid;place-items:center;border-radius:50%;
+  border:2px solid var(--gold);background:rgba(230,189,120,.13);
+  color:var(--gold-light);font-size:30px;font-weight:900;
+  box-shadow:0 0 0 6px rgba(230,189,120,.08)
 }
-.online-indicator{
-  position:absolute;bottom:5px;right:6px;
-  width:14px;height:14px;border-radius:50%;
-  background:#62c99b;border:3px solid #211a12;
-}
-.student-identity{min-width:0}
-.student-label{
-  color:var(--gold);font-size:9px;font-weight:900;
-  letter-spacing:.5px;
-}
-.student-name{
-  margin:5px 0 7px;font-size:clamp(17px,2.2vw,24px);
-  font-weight:900;overflow-wrap:anywhere;
-}
+.student-label{color:var(--gold);font-size:10px;font-weight:900}
+.student-name{margin:6px 0 7px;font-size:clamp(17px,2.2vw,24px);font-weight:900;overflow-wrap:anywhere}
 .verify-label{
-  display:none;align-items:center;gap:5px;
-  width:max-content;margin:0 0 9px;
-  color:#6ed6aa;font-size:9px;font-weight:900;
+  display:none;align-items:center;gap:5px;width:max-content;margin:0 0 9px;
+  color:#6ed6aa;font-size:10px;font-weight:900
 }
-.verify-label svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2}
-.student-id{
-  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-  color:#d5c7b4;font-size:10px;
-}
-.student-id strong{
-  color:var(--gold2);font-size:11px;
-  direction:ltr;unicode-bidi:plaintext;
-}
-.id-copy{
-  padding:5px 9px;border:1px solid var(--stroke);
-  border-radius:8px;color:var(--gold2);
-  background:rgba(233,185,94,.08);font-size:9px;
-}
-.student-meta{margin-top:10px;color:var(--muted);font-size:9px;line-height:1.9}
-
-/* STUDY SUMMARY */
-.study-summary{
-  padding:19px;border:1px solid rgba(255,255,255,.09);
-  border-radius:19px;background:rgba(0,0,0,.2);
-  display:flex;flex-direction:column;justify-content:center;
-}
-.summary-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.verify-label svg{width:15px;height:15px}
+.student-id{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:#d5c7b4;font-size:10px}
+.student-id strong{color:var(--gold-light);font-size:11px;direction:ltr;unicode-bidi:plaintext}
+.id-copy{padding:5px 9px;border:1px solid var(--line);border-radius:8px;color:var(--gold-light);background:rgba(230,189,120,.08);font-size:9px}
+.student-meta{margin-top:9px;color:var(--muted);font-size:10px;line-height:1.9}
+.study-summary{padding:19px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(0,0,0,.23);display:flex;flex-direction:column;justify-content:center}
+.summary-heading{display:flex;justify-content:space-between;gap:10px}
 .summary-heading strong{font-size:12px}
 .summary-heading span{color:var(--gold);font-size:9px}
-.summary-number{margin:15px 0 5px;font-size:24px;font-weight:900;color:var(--gold2)}
-.summary-caption{font-size:9px;color:var(--muted);line-height:1.9}
-.progress-track{
-  height:7px;margin:13px 0 8px;overflow:hidden;
-  border-radius:20px;background:rgba(255,255,255,.1);
-}
+.summary-number{margin:13px 0 5px;font-size:24px;font-weight:900;color:var(--gold-light)}
+.summary-caption,.progress-note{font-size:10px;color:var(--muted);line-height:1.9}
+.progress-track{height:7px;margin:12px 0 8px;overflow:hidden;border-radius:20px;background:rgba(255,255,255,.1)}
 .progress-fill{height:100%;width:0;border-radius:20px;background:linear-gradient(90deg,#a96e2d,#ffe5a8)}
-.progress-note{font-size:9px;color:#b9ad9d}
 
-/* QUICK STATS */
-.stats-grid{
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:13px;margin-top:17px;
+/* الإحصائيات والاختصارات */
+.stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:17px}
+.stat-card,.quick-link,.panel{
+  min-width:0;border:1px solid var(--line);border-radius:17px;
+  background:linear-gradient(145deg,rgba(34,27,19,.9),rgba(20,17,14,.92));
+  box-shadow:0 12px 32px rgba(0,0,0,.15);backdrop-filter:blur(12px)
 }
-.stat-card{
-  min-width:0;padding:16px;
-  border:1px solid var(--stroke);border-radius:17px;
-  background:linear-gradient(145deg,rgba(34,27,19,.94),rgba(20,17,14,.94));
-}
+.stat-card{padding:16px}
 .stat-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.stat-icon{
-  width:37px;height:37px;display:grid;place-items:center;
-  border:1px solid var(--stroke);border-radius:12px;
-  color:var(--gold2);background:rgba(233,185,94,.09);
+.stat-card small{font-size:10px;color:var(--muted)}
+.stat-icon,.quick-icon,.empty-icon{
+  display:grid;place-items:center;border:1px solid var(--line);
+  border-radius:12px;color:var(--gold-light);background:rgba(230,189,120,.09)
 }
-.stat-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.stat-card small{color:var(--muted);font-size:9px}
-.stat-card strong{display:block;margin-top:11px;font-size:21px;color:var(--gold2)}
-.stat-card p{margin:3px 0 0;color:#958878;font-size:9px}
-
-/* SECTIONS */
-.home-section{margin-top:27px}
-.section-heading{
-  display:flex;align-items:end;justify-content:space-between;
-  gap:12px;margin:0 0 14px;
-}
-.section-heading h2{margin:0;font-size:16px;font-weight:900}
-.section-heading p{margin:4px 0 0;color:var(--muted);font-size:9px}
-.section-link{
-  color:var(--gold2);font-size:10px;font-weight:800;
-  padding:8px 12px;border:1px solid var(--stroke);border-radius:10px;
-}
-.tiles-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.quick-link{
-  min-width:0;min-height:104px;
-  display:flex;align-items:center;gap:13px;
-  padding:16px;border:1px solid var(--stroke);
-  border-radius:17px;color:var(--text);
-  background:linear-gradient(145deg,rgba(34,27,19,.94),rgba(20,17,14,.94));
-  transition:transform .2s,border-color .2s;
-}
-.quick-link:hover{transform:translateY(-3px);border-color:rgba(233,185,94,.6)}
-.quick-icon{
-  width:44px;height:44px;flex:0 0 44px;
-  display:grid;place-items:center;
-  border:1px solid var(--stroke);border-radius:14px;
-  color:var(--gold2);background:rgba(233,185,94,.09);
-}
-.quick-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.stat-icon{width:37px;height:37px}
+.stat-card strong{display:block;margin-top:11px;font-size:22px;color:var(--gold-light)}
+.stat-card p{margin:4px 0 0;color:#a99a87;font-size:9px}
+.home-section{margin-top:28px}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px}
+.section-heading h2{margin:0;font-size:17px;font-weight:900;color:#fff0d6}
+.section-heading p{margin:5px 0 0;color:var(--muted);font-size:10px}
+.section-link{padding:8px 12px;border:1px solid var(--line);border-radius:10px;color:var(--gold-light);font-size:10px}
+.tiles-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.quick-link{min-height:100px;display:flex;align-items:center;gap:12px;padding:15px;transition:.2s}
+.quick-link:hover{transform:translateY(-3px);border-color:rgba(230,189,120,.55)}
+.quick-icon{width:44px;height:44px;flex:0 0 44px}
 .quick-link strong{display:block;font-size:11px}
 .quick-link small{display:block;margin-top:5px;color:var(--muted);font-size:9px;line-height:1.8}
-
-/* EMPTY / NOTICES */
-.panel{
-  padding:20px;border:1px solid var(--stroke);
-  border-radius:18px;background:rgba(24,20,16,.88);
-}
-.empty-state{
-  display:flex;align-items:center;gap:14px;
-  padding:15px;border:1px dashed rgba(233,185,94,.28);
-  border-radius:14px;color:var(--muted);
-  font-size:10px;line-height:1.9;
-}
-.empty-icon{
-  width:43px;height:43px;flex:0 0 43px;
-  display:grid;place-items:center;border-radius:13px;
-  color:var(--gold2);background:rgba(233,185,94,.09);
-}
-.empty-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7}
-.page-footer{padding:30px 0 8px;text-align:center;color:#958878;font-size:9px}
-
-/* MOBILE MENU */
-.menu-overlay{
-  display:none;position:fixed;inset:0;z-index:110;
-  background:rgba(0,0,0,.7);backdrop-filter:blur(4px);
-}
-.toast{
-  position:fixed;right:50%;bottom:22px;z-index:300;
-  transform:translate(50%,20px);opacity:0;pointer-events:none;
-  padding:12px 18px;border:1px solid var(--stroke);
-  border-radius:12px;color:var(--text);background:#211a12;
-  box-shadow:0 12px 40px #0008;font-size:11px;transition:.25s;
-}
+.panel{padding:19px}
+.empty-state{display:flex;align-items:center;gap:13px;padding:14px;border:1px dashed var(--line);border-radius:13px;color:var(--muted);font-size:11px;line-height:1.9}
+.empty-icon{width:43px;height:43px;flex:0 0 43px}
+.page-footer{padding:30px 0 8px;text-align:center;color:#a99a87;font-size:10px}
+.menu-overlay{display:none;position:fixed;inset:0;z-index:110;background:rgba(0,0,0,.68);backdrop-filter:blur(4px)}
+.toast{position:fixed;right:50%;bottom:22px;z-index:300;transform:translate(50%,20px);opacity:0;pointer-events:none;padding:12px 18px;border:1px solid var(--line);border-radius:12px;color:var(--text);background:#211a12;box-shadow:0 12px 40px #0008;font-size:11px;transition:.25s}
 .toast.show{opacity:1;transform:translate(50%,0)}
 
-/* RESPONSIVE */
 @media(max-width:1100px){
-  .student-overview{grid-template-columns:1fr  .8fr}
+  .student-overview{grid-template-columns:1fr .8fr}
   .tiles-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:700px){
-  .sidebar{
-    width:min(300px,88vw);
-    transform:translateX(105%);
-    box-shadow:-20px 0 60px #0009;
-  }
+  .sidebar{width:min(310px,88vw);transform:translateX(105%);box-shadow:-20px 0 60px #0009}
   body.menu-open .sidebar{transform:translateX(0)}
   body.menu-open .menu-overlay{display:block}
-  .main-area{margin-right:0}
-  .topbar{min-height:65px;padding:8px 12px}
+  body.menu-open{overflow:hidden}
+  .main-area{margin-right:0;width:100%}
+  .topbar{min-height:64px;padding:8px 11px;gap:7px}
   .topbar-start,.topbar-end,.topbar-actions{gap:7px}
-  .menu-button{width:40px;height:40px;flex-basis:40px}
+  .menu-button,.icon-button,.topbar-support{width:39px;height:39px;flex-basis:39px}
   .page-heading strong{font-size:11px}
   .page-heading small{font-size:8px}
-  .topbar-actions .icon-button,.topbar-support{width:38px;height:38px;flex-basis:38px}
-  .profile-shortcut{max-width:45px;padding:3px}
+  .profile-shortcut{max-width:43px;padding:4px}
   .profile-shortcut span{display:none}
-  .page-content{padding:17px 12px 32px}
+  .page-content{padding:16px 12px 34px}
   .welcome-line{align-items:flex-start}
-  .welcome-line h1{font-size:19px}
-  .date-chip{font-size:8px;padding:7px 9px}
-  .student-overview{grid-template-columns:1fr;gap:14px;padding:17px;border-radius:20px}
-  .student-main{gap:14px}
-  .student-photo{width:78px;height:78px}
-  .student-name{font-size:17px}
-  .study-summary{padding:15px}
-  .summary-number{margin:8px 0 2px;font-size:21px}
-  .progress-track{margin:9px 0 6px}
-  .stats-grid{gap:9px;margin-top:12px}
+  .welcome-line h1{font-size:20px}
+  .date-chip{font-size:9px}
+  .teacher-hero{min-height:260px;padding:20px;border-radius:19px}
+  .teacher-copy{max-width:70%;align-self:flex-start}
+  .teacher-copy h2{font-size:22px}
+  .teacher-copy p{font-size:10px}
+  .teacher-image-wrap{left:0;width:43%;height:78%}
+  .student-overview{grid-template-columns:1fr;gap:13px;padding:16px;border-radius:19px}
+  .student-photo{width:72px;height:72px;font-size:24px}
+  .stats-grid{gap:9px}
   .stat-card{padding:12px}
   .stat-card strong{font-size:19px}
-  .stat-icon{width:33px;height:33px}
   .tiles-grid{gap:9px}
-  .quick-link{min-height:92px;padding:11px;gap:9px}
+  .quick-link{min-height:90px;padding:11px;gap:9px}
   .quick-icon{width:38px;height:38px;flex-basis:38px}
   .quick-link strong{font-size:10px}
   .quick-link small{font-size:8px}
+  .panel{padding:14px}
 }
 @media(max-width:390px){
+  .page-content{padding-inline:10px}
   .tiles-grid{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .student-id{font-size:9px}
-  .topbar-actions{gap:5px}
+  .teacher-hero{min-height:240px}
+  .teacher-copy{max-width:68%}
+  .teacher-copy h2{font-size:19px}
+  .teacher-image-wrap{width:45%}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
@@ -368,10 +255,7 @@ body{overflow-x:hidden}
 <aside class="sidebar" id="sidebar">
   <div class="brand">
     <div class="brand-logo">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2.8 20 7v10l-8 4.2L4 17V7z"/>
-        <path d="m8 12 2.5 2.5L16.5 8"/>
-      </svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2.8 20 7v10l-8 4.2L4 17V7z"/><path d="m8 12 2.5 2.5L16.5 8"/></svg>
     </div>
     <div>
       <div class="brand-name">منصة الجنايني التعليمية</div>
@@ -381,59 +265,32 @@ body{overflow-x:hidden}
 
   <div class="nav-heading">القائمة الرئيسية</div>
   <nav class="side-nav">
-    <a class="side-link active" href="./platform.html">
-      <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>الرئيسية</span>
-    </a>
-    <a class="side-link" href="./courses.html">
-      <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M4 5.5v13A2.5 2.5 0 0 1 6.5 16H20"/></svg><span>الكورسات والاشتراكات</span>
-    </a>
-    <a class="side-link" href="./lessons.html">
-      <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m10 8 6 4-6 4z"/></svg><span>الدروس</span>
-    </a>
-    <a class="side-link" href="./exams.html">
-      <svg viewBox="0 0 24 24"><path d="M8 4h12v17H4V4h4"/><path d="M9 2h6v4H9z"/><path d="m8 12 2 2 5-5"/></svg><span>الاختبارات</span>
-    </a>
-    <a class="side-link" href="./lectures.html">
-      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m10 8 5 2.5-5 2.5zM8 21h8m-4-4v4"/></svg><span>المحاضرات</span>
-    </a>
-    <a class="side-link" href="./progress.html">
-      <svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 6-7"/></svg><span>تقدمي الدراسي</span>
-    </a>
+    <a class="side-link active" href="./platform.html"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>الرئيسية</span></a>
+    <a class="side-link" href="./courses.html"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/></svg><span>الكورسات والاشتراكات</span></a>
+    <a class="side-link" href="./lessons.html"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m10 8 6 4-6 4z"/></svg><span>الدروس</span></a>
+    <a class="side-link" href="./exams.html"><svg viewBox="0 0 24 24"><path d="M8 4h12v17H4V4h4"/><path d="M9 2h6v4H9z"/><path d="m8 12 2 2 5-5"/></svg><span>الاختبارات</span></a>
+    <a class="side-link" href="./lectures.html"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m10 8 5 2.5-5 2.5z"/></svg><span>المحاضرات</span></a>
+    <a class="side-link" href="./progress.html"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 6-7"/></svg><span>تقدمي الدراسي</span></a>
   </nav>
 
   <div class="nav-heading">التواصل والمتابعة</div>
   <nav class="side-nav">
-    <a class="side-link" href="./announcements.html">
-      <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg><span>الإعلانات</span>
-    </a>
-    <a class="side-link" href="./notifications.html">
-      <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg><span>الإشعارات</span>
-    </a>
-    <a class="side-link" href="./support.html">
-      <svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="12" width="4" height="7" rx="2"/><rect x="17" y="12" width="4" height="7" rx="2"/><path d="M17 19a5 5 0 0 1-5 3h-2"/></svg><span>خدمة العملاء</span>
-    </a>
+    <a class="side-link" href="./announcements.html"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg><span>الإعلانات</span></a>
+    <a class="side-link" href="./notifications.html"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg><span>الإشعارات</span></a>
+    <a class="side-link" href="./support.html"><svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="12" width="4" height="7" rx="2"/><rect x="17" y="12" width="4" height="7" rx="2"/></svg><span>خدمة العملاء</span></a>
   </nav>
 
   <div class="nav-heading">الحساب</div>
   <nav class="side-nav">
-    <a class="side-link" href="./profile.html">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>ملفي الشخصي</span>
-    </a>
-    <a class="side-link" href="./settings.html">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a8 8 0 0 0 0-6l1.5-1.2-1.5-2.6-1.8.6a8 8 0 0 0-5.2-2L12 2H9l-.4 1.8a8 8 0 0 0-3 1.8l-1.8-.6-1.5 2.6L3.8 9a8 8 0 0 0 0 6l-1.5 1.2 1.5 2.6 1.8-.6a8 8 0 0 0 5.2 2L11 22h3l.4-1.8a8 8 0 0 0 3-1.8l1.8.6 1.5-2.6z"/></svg><span>الإعدادات</span>
-    </a>
-    <a class="side-link" href="./help.html">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 4.2 1.8c-1.1 1-1.7 1.3-1.7 2.7M12 17h.01"/></svg><span>المساعدة</span>
-    </a>
+    <a class="side-link" href="./profile.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>ملفي الشخصي</span></a>
+    <a class="side-link" href="./settings.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a8 8 0 0 0 0-6l1.5-1.2-1.5-2.6-1.8.6a8 8 0 0 0-5.2-2L12 2H9l-.4 1.8"/></svg><span>الإعدادات</span></a>
+    <a class="side-link" href="./help.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 4.2 1.8c-1.1 1-1.7 1.3-1.7 2.7M12 17h.01"/></svg><span>المساعدة</span></a>
   </nav>
 
   <div class="sidebar-account">
     <a class="account-mini" href="./profile.html">
-      <img class="avatar" id="sideAvatar" src="./85.jpg" alt="صورة الحساب">
-      <div style="min-width:0">
-        <strong id="sideName">حساب الطالب</strong>
-        <small id="sideCode">ملفي الشخصي</small>
-      </div>
+      <span class="avatar-placeholder" id="sideAvatar">ط</span>
+      <div style="min-width:0"><strong id="sideName">حساب الطالب</strong><small id="sideCode">ملفي الشخصي</small></div>
     </a>
   </div>
 </aside>
@@ -443,34 +300,21 @@ body{overflow-x:hidden}
 <div class="main-area">
 <header class="topbar">
   <div class="topbar-start">
-    <button class="menu-button" id="menuBtn" type="button" aria-label="فتح القائمة">
+    <button class="menu-button" id="menuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false">
       <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
-    <div class="page-heading">
-      <strong id="pageTitle">الرئيسية</strong>
-      <small>منصة الجنايني التعليمية</small>
-    </div>
+    <div class="page-heading"><strong id="pageTitle">الرئيسية</strong><small>منصة الجنايني التعليمية</small></div>
   </div>
-
   <div class="topbar-end">
     <div class="topbar-actions">
-      <a class="icon-button notification-button" href="./notifications.html" aria-label="الإشعارات">
-        <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
-        <span class="notification-dot" aria-hidden="true"></span>
-      </a>
-      <a class="topbar-support" href="./support.html" aria-label="خدمة العملاء">
-        <svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="12" width="4" height="7" rx="2"/><rect x="17" y="12" width="4" height="7" rx="2"/><path d="M17 19a5 5 0 0 1-5 3h-2"/></svg>
-      </a>
+      <a class="icon-button notification-button" href="./notifications.html" aria-label="الإشعارات"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg><span class="notification-dot"></span></a>
+      <a class="topbar-support" href="./support.html" aria-label="خدمة العملاء"><svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="12" width="4" height="7" rx="2"/><rect x="17" y="12" width="4" height="7" rx="2"/></svg></a>
     </div>
-    <a class="profile-shortcut" href="./profile.html">
-      <img class="avatar" id="topAvatar" src="./85.jpg" alt="صورة الحساب">
-      <span id="topName">حسابي</span>
-    </a>
+    <a class="profile-shortcut" href="./profile.html"><span class="avatar-placeholder" id="topAvatar" style="width:34px;height:34px;flex-basis:34px">ط</span><span id="topName">حسابي</span></a>
   </div>
 </header>
 
 <main class="page-content">
-
   <div class="welcome-line">
     <div>
       <h1 id="welcomeText">أهلاً بك في منصة الجنايني</h1>
@@ -479,138 +323,64 @@ body{overflow-x:hidden}
     <div class="date-chip">بوابتك نحو التفوق</div>
   </div>
 
-  <!-- بطاقة الحساب الرئيسية: البروفايل والـ ID في مكان واحد -->
+  <section class="teacher-hero">
+    <div class="teacher-copy">
+      <div class="teacher-kicker">ELGEN EDUCATION PLATFORM</div>
+      <h2>رحلتك نحو التفوق تبدأ من هنا</h2>
+      <p>تابع دروسك ومحاضراتك واختباراتك، وراقب تقدمك الدراسي من مكان واحد.</p>
+    </div>
+    <div class="teacher-image-wrap">
+      <img class="teacher-image" src="./85.jpg" alt="الدكتور محمود الجنايني" loading="eager">
+    </div>
+  </section>
+
   <section class="student-overview">
     <div class="student-main">
-      <div class="student-photo-wrap">
-        <img class="student-photo" id="profileAvatar" src="./85.jpg" alt="الصورة الشخصية">
-        <span class="online-indicator" aria-hidden="true"></span>
-      </div>
+      <div class="student-photo-wrap"><div class="student-photo" id="profileAvatar" aria-label="الصورة الشخصية">ط</div></div>
       <div class="student-identity">
         <div class="student-label">حساب الطالب</div>
         <h2 class="student-name" id="profileName">حساب الطالب</h2>
-        <div class="verify-label" id="verifiedBadge">
-          <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>
-          حساب موثّق
-        </div>
-        <div class="student-id">
-          <span>رقم الطالب ID:</span>
-          <strong id="profileCode">—</strong>
-          <button class="id-copy" id="copyStudentId" type="button">نسخ ID</button>
-        </div>
+        <div class="verify-label" id="verifiedBadge"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>حساب موثّق</div>
+        <div class="student-id"><span>رقم الطالب ID:</span><strong id="profileCode">—</strong><button class="id-copy" id="copyStudentId" type="button">نسخ ID</button></div>
         <div class="student-meta" id="studentMeta">بيانات حسابك التعليمية تظهر هنا.</div>
       </div>
     </div>
-
     <div class="study-summary">
-      <div class="summary-heading">
-        <strong>ملخص تقدمك الدراسي</strong>
-        <span>إنجازاتك</span>
-      </div>
+      <div class="summary-heading"><strong>ملخص تقدمك الدراسي</strong><span>إنجازاتك</span></div>
       <div class="summary-number" id="progressValue">—</div>
-      <div class="summary-caption" id="progressCaption">
-        سيتم عرض نسبة تقدمك الفعلية بعد تحميل بيانات الدروس والاختبارات من حسابك.
-      </div>
+      <div class="summary-caption" id="progressCaption">سيتم عرض تقدمك الفعلي بعد تحميل بيانات الدروس والاختبارات.</div>
       <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
       <div class="progress-note" id="progressNote">لا توجد بيانات تقدم محمّلة بعد.</div>
     </div>
   </section>
 
-  <!-- أرقام الحساب: لا نضع أرقامًا تجريبية -->
   <section class="stats-grid">
-    <article class="stat-card">
-      <div class="stat-top">
-        <small>الكورسات المشترك بها</small>
-        <span class="stat-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M4 5.5v13A2.5 2.5 0 0 1 6.5 16H20"/></svg></span>
-      </div>
-      <strong id="coursesCount">—</strong>
-      <p>اشتراكات مفعّلة</p>
-    </article>
-    <article class="stat-card">
-      <div class="stat-top">
-        <small>الدروس المكتملة</small>
-        <span class="stat-icon"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
-      </div>
-      <strong id="lessonsCount">—</strong>
-      <p>من سجل دراستك</p>
-    </article>
-    <article class="stat-card">
-      <div class="stat-top">
-        <small>الاختبارات المنجزة</small>
-        <span class="stat-icon"><svg viewBox="0 0 24 24"><path d="M8 4h12v17H4V4h4"/><path d="M9 2h6v4H9z"/><path d="m8 12 2 2 5-5"/></svg></span>
-      </div>
-      <strong id="examsCount">—</strong>
-      <p>اختباراتك المسجلة</p>
-    </article>
-    <article class="stat-card">
-      <div class="stat-top">
-        <small>النقاط</small>
-        <span class="stat-icon"><svg viewBox="0 0 24 24"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></span>
-      </div>
-      <strong id="pointsCount">—</strong>
-      <p>رصيد نقاطك</p>
-    </article>
+    <article class="stat-card"><div class="stat-top"><small>الكورسات المشترك بها</small><span class="stat-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/></svg></span></div><strong id="coursesCount">—</strong><p>اشتراكات مفعّلة</p></article>
+    <article class="stat-card"><div class="stat-top"><small>الدروس المكتملة</small><span class="stat-icon"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span></div><strong id="lessonsCount">—</strong><p>من سجل دراستك</p></article>
+    <article class="stat-card"><div class="stat-top"><small>الاختبارات المنجزة</small><span class="stat-icon"><svg viewBox="0 0 24 24"><path d="M8 4h12v17H4V4h4"/><path d="m8 12 2 2 5-5"/></svg></span></div><strong id="examsCount">—</strong><p>اختباراتك المسجلة</p></article>
+    <article class="stat-card"><div class="stat-top"><small>النقاط</small><span class="stat-icon"><svg viewBox="0 0 24 24"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></span></div><strong id="pointsCount">—</strong><p>رصيد نقاطك</p></article>
   </section>
 
-  <!-- الاختصارات -->
   <section class="home-section">
-    <div class="section-heading">
-      <div><h2>الوصول السريع</h2><p>انتقل إلى القسم الذي تحتاجه مباشرة</p></div>
-    </div>
+    <div class="section-heading"><div><h2>الوصول السريع</h2><p>انتقل إلى القسم الذي تحتاجه مباشرة</p></div></div>
     <div class="tiles-grid">
-      <a class="quick-link" href="./courses.html">
-        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M4 5.5v13A2.5 2.5 0 0 1 6.5 16H20"/></svg></span>
-        <span><strong>الكورسات</strong><small>كورساتك واشتراكاتك المفعّلة</small></span>
-      </a>
-      <a class="quick-link" href="./lessons.html">
-        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m10 8 6 4-6 4z"/></svg></span>
-        <span><strong>الدروس</strong><small>تابع دروسك التعليمية</small></span>
-      </a>
-      <a class="quick-link" href="./exams.html">
-        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M8 4h12v17H4V4h4"/><path d="M9 2h6v4H9z"/><path d="m8 12 2 2 5-5"/></svg></span>
-        <span><strong>الاختبارات</strong><small>اختبر مستواك وتابع نتائجك</small></span>
-      </a>
-      <a class="quick-link" href="./lectures.html">
-        <span class="quick-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m10 8 5 2.5-5 2.5zM8 21h8m-4-4v4"/></svg></span>
-        <span><strong>المحاضرات</strong><small>المحاضرات المسجلة والمباشرة</small></span>
-      </a>
-      <a class="quick-link" href="./progress.html">
-        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 6-7"/></svg></span>
-        <span><strong>تقدمي الدراسي</strong><small>تفاصيل تقدمك وإنجازاتك</small></span>
-      </a>
-      <a class="quick-link" href="./support.html">
-        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="12" width="4" height="7" rx="2"/><rect x="17" y="12" width="4" height="7" rx="2"/><path d="M17 19a5 5 0 0 1-5 3h-2"/></svg></span>
-        <span><strong>خدمة العملاء</strong><small>راسل فريق الدعم وتابع طلباتك</small></span>
-      </a>
+      <a class="quick-link" href="./courses.html"><span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/></svg></span><span><strong>الكورسات</strong><small>كورساتك واشتراكاتك المفعّلة</small></span></a>
+      <a class="quick-link" href="./lessons.html"><span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m10 8 6 4-6 4z"/></svg></span><span><strong>الدروس</strong><small>تابع دروسك التعليمية</small></span></a>
+      <a class="quick-link" href="./exams.html"><span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M8 4h12v17H4V4h4"/><path d="m8 12 2 2 5-5"/></svg></span><span><strong>الاختبارات</strong><small>اختبر مستواك وتابع نتائجك</small></span></a>
+      <a class="quick-link" href="./lectures.html"><span class="quick-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m10 8 5 2.5-5 2.5z"/></svg></span><span><strong>المحاضرات</strong><small>المحاضرات المسجلة والمباشرة</small></span></a>
+      <a class="quick-link" href="./progress.html"><span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 6-7"/></svg></span><span><strong>تقدمي الدراسي</strong><small>تفاصيل تقدمك وإنجازاتك</small></span></a>
+      <a class="quick-link" href="./support.html"><span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="12" width="4" height="7" rx="2"/><rect x="17" y="12" width="4" height="7" rx="2"/></svg></span><span><strong>خدمة العملاء</strong><small>راسل فريق الدعم وتابع طلباتك</small></span></a>
     </div>
   </section>
 
-  <!-- كورسات الطالب -->
   <section class="home-section">
-    <div class="section-heading">
-      <div><h2>كورساتي</h2><p>الكورسات التي فُعّل اشتراكك بها</p></div>
-      <a class="section-link" href="./courses.html">عرض الكل</a>
-    </div>
-    <div class="panel">
-      <div class="empty-state">
-        <span class="empty-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M4 5.5v13A2.5 2.5 0 0 1 6.5 16H20"/></svg></span>
-        <span>ستظهر هنا الكورسات التي فعّلت الإدارة اشتراكك فيها، ولن يتم عرض كورسات غير مخصصة لحسابك.</span>
-      </div>
-    </div>
+    <div class="section-heading"><div><h2>كورساتي</h2><p>الكورسات التي فُعّل اشتراكك بها</p></div><a class="section-link" href="./courses.html">عرض الكل</a></div>
+    <div class="panel"><div class="empty-state"><span class="empty-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/></svg></span><span>ستظهر هنا الكورسات التي فعّلت الإدارة اشتراكك فيها، ولن يتم عرض كورسات غير مخصصة لحسابك.</span></div></div>
   </section>
 
-  <!-- الإشعارات -->
   <section class="home-section">
-    <div class="section-heading">
-      <div><h2>آخر الإشعارات</h2><p>التنبيهات والرسائل الخاصة بحسابك</p></div>
-      <a class="section-link" href="./notifications.html">كل الإشعارات</a>
-    </div>
-    <div class="panel">
-      <div class="empty-state">
-        <span class="empty-icon"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg></span>
-        <span>ستظهر إشعاراتك الحقيقية هنا بمجرد ربطها بحسابك.</span>
-      </div>
-    </div>
+    <div class="section-heading"><div><h2>آخر الإشعارات</h2><p>التنبيهات والرسائل الخاصة بحسابك</p></div><a class="section-link" href="./notifications.html">كل الإشعارات</a></div>
+    <div class="panel"><div class="empty-state"><span class="empty-icon"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg></span><span>ستظهر إشعاراتك الحقيقية هنا بمجرد ربطها بحسابك.</span></div></div>
   </section>
 
   <footer class="page-footer">جميع الحقوق محفوظة لمنصة الجنايني التعليمية © <span class="year">2026</span></footer>
@@ -631,56 +401,87 @@ body{overflow-x:hidden}
     }catch{return {}}
   };
   const account=readAccount();
-  const name=account.full_name||account.name||account.student_name;
-  const code=account.user_code||account.student_code||account.code;
-  const photo=account.avatar_url||account.photo_url||account.profile_image||account.image_url;
+  const name=account.full_name||account.name||account.student_name||"حساب الطالب";
+  const code=account.user_code||account.student_code||account.code||"";
+  const photo=account.avatar_url||account.photo_url||account.profile_image||account.image_url||"";
   const set=(id,value)=>{const el=$(id);if(el&&value)el.textContent=value};
-  set("profileName",name||"حساب الطالب");
-  set("sideName",name||"حساب الطالب");
-  set("topName",name||"حسابي");
+
+  set("profileName",name);
+  set("sideName",name);
+  set("topName",name);
   set("profileCode",code||"—");
   set("sideCode",code||"ملفي الشخصي");
-  if(name)set("welcomeText","أهلاً يا "+name);
+  if(name!=="حساب الطالب")set("welcomeText","أهلاً يا "+name);
+
+  const initial=(name.trim().charAt(0)||"ط").toUpperCase();
+  ["profileAvatar","sideAvatar","topAvatar"].forEach(id=>{
+    const el=$(id);if(el)el.textContent=initial;
+  });
+
   const meta=[
     account.school_grade||account.grade_name,
     account.governorate,
     account.education_center
   ].filter(Boolean).join(" • ");
   if(meta)set("studentMeta",meta);
+
   if(photo&&/^https?:\/\//i.test(photo)){
-    ["profileAvatar","sideAvatar","topAvatar"].forEach(id=>{
-      const img=$(id);if(img){img.src=photo;img.onerror=()=>{img.src="./85.jpg"}}
-    });
+    const profile=$("profileAvatar");
+    if(profile){
+      const img=document.createElement("img");
+      img.src=photo;img.alt="الصورة الشخصية";
+      img.style.cssText="width:100%;height:100%;object-fit:cover;border-radius:50%";
+      img.onerror=()=>img.remove();
+      profile.textContent="";
+      profile.appendChild(img);
+    }
   }
-  if(account.is_verified===true||account.verified===true){
-    const badge=$("verifiedBadge");if(badge)badge.style.display="inline-flex";
+
+  if(account.is_verified===true){
+    const badge=$("verifiedBadge");
+    if(badge)badge.style.display="inline-flex";
   }
+
+  const toast=(message)=>{
+    const el=$("toast");if(!el)return;
+    el.textContent=message;el.classList.add("show");
+    setTimeout(()=>el.classList.remove("show"),1900);
+  };
+
   const copy=$("copyStudentId");
   if(copy)copy.addEventListener("click",async()=>{
-    const value=code||"";
-    if(!value){if($("toast")){$("toast").textContent="رقم الطالب غير متاح";$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2000)}return}
+    if(!code){toast("رقم الطالب غير متاح");return}
     try{
-      await navigator.clipboard.writeText(value);
-      copy.textContent="تم النسخ";
-      setTimeout(()=>copy.textContent="نسخ ID",1600);
+      await navigator.clipboard.writeText(code);
+      toast("تم نسخ رقم الطالب");
     }catch{
-      const input=document.createElement("textarea");
-      input.value=value;document.body.appendChild(input);
-      input.select();document.execCommand("copy");input.remove();
-      copy.textContent="تم النسخ";
-      setTimeout(()=>copy.textContent="نسخ ID",1600);
+      const field=document.createElement("textarea");
+      field.value=code;document.body.appendChild(field);
+      field.select();document.execCommand("copy");field.remove();
+      toast("تم نسخ رقم الطالب");
     }
   });
+
   const menu=$("menuBtn"),overlay=$("overlay");
-  if(menu)menu.addEventListener("click",()=>document.body.classList.toggle("menu-open"));
-  if(overlay)overlay.addEventListener("click",()=>document.body.classList.remove("menu-open"));
-  document.addEventListener("keydown",e=>{if(e.key==="Escape")document.body.classList.remove("menu-open")});
+  const closeMenu=()=>{
+    document.body.classList.remove("menu-open");
+    if(menu)menu.setAttribute("aria-expanded","false");
+  };
+  if(menu)menu.addEventListener("click",()=>{
+    const opened=document.body.classList.toggle("menu-open");
+    menu.setAttribute("aria-expanded",String(opened));
+  });
+  if(overlay)overlay.addEventListener("click",closeMenu);
+  document.addEventListener("keydown",event=>{
+    if(event.key==="Escape")closeMenu();
+  });
   document.querySelectorAll(".side-link").forEach(link=>{
-    if(link.href===location.href)link.classList.add("active");
+    if(new URL(link.href).pathname===location.pathname)link.classList.add("active");
+    link.addEventListener("click",closeMenu);
   });
   document.querySelectorAll(".year").forEach(el=>el.textContent=new Date().getFullYear());
 })();
 </script>
-  <script src="./auth.js"></script>
+<script src="./auth.js"></script>
 </body>
 </html>
