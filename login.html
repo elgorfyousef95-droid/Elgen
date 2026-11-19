@@ -3,404 +3,232 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090d17">
-<title>تسجيل الدخول | Dr. Mahmoud El-Genainy</title>
-
+<title>تسجيل الدخول | منصة الدكتور محمود الجنايني</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --gold:#f4bd70;
-  --gold-light:#ffe0ad;
-  --navy:#0a1020;
-  --white:#fff;
-  --muted:#c4c5ce;
-}
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-html{
-  width:100%;
-  min-height:100%;
-  overflow-x:hidden;
-  touch-action:pan-y;
-}
-body{
-  width:100%;
-  min-height:100vh;
-  min-height:100svh;
-  font-family:'Cairo',sans-serif;
-  color:var(--white);
-  background:var(--navy);
-  overflow-x:hidden;
-  touch-action:pan-y;
-}
-button,input,a{
-  font:inherit;
-}
-button{
-  cursor:pointer;
-}
-.page{
-  position:relative;
-  isolation:isolate;
-  min-height:100vh;
-  min-height:100svh;
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:
-    max(24px,env(safe-area-inset-top))
-    max(16px,env(safe-area-inset-right))
-    max(24px,env(safe-area-inset-bottom))
-    max(16px,env(safe-area-inset-left));
-}
-.background{
-  position:fixed;
-  inset:0;
-  z-index:-3;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-}
-.overlay{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  background:
-    linear-gradient(90deg,rgba(5,9,18,.72),rgba(5,9,18,.48)),
-    linear-gradient(180deg,rgba(5,9,18,.28),rgba(5,9,18,.78));
-}
-.ambient{
-  position:fixed;
-  z-index:-1;
-  width:min(90vw,650px);
-  height:min(90vw,650px);
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(225,153,69,.13),transparent 68%);
-  pointer-events:none;
-}
-.login-layout{
-  width:min(100%,470px);
-  margin:auto;
-  animation:enter .8s ease both;
-}
-.brand{
-  text-align:center;
-  margin-bottom:24px;
-}
-.brand-mark{
-  width:65px;
-  height:65px;
-  margin:0 auto 13px;
-  display:grid;
-  place-items:center;
-  border-radius:22px;
-  border:1px solid rgba(255,207,145,.52);
-  background:linear-gradient(145deg,rgba(75,48,25,.65),rgba(15,19,29,.82));
-  box-shadow:0 0 30px rgba(230,158,74,.18),inset 0 1px rgba(255,255,255,.13);
-}
-.brand-mark svg{
-  width:39px;
-  height:39px;
-  fill:none;
-  stroke:var(--gold-light);
-  stroke-width:2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-.brand-name{
-  font-size:clamp(20px,5vw,27px);
-  font-weight:900;
-  color:var(--gold-light);
-  letter-spacing:.3px;
-}
-.brand-subtitle{
-  margin-top:3px;
-  color:#e6d3b8;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:1.3px;
-  direction:ltr;
-}
-.card{
-  width:100%;
-  padding:clamp(23px,5vw,36px);
-  border:1px solid rgba(255,202,132,.27);
-  border-radius:27px;
-  background:linear-gradient(145deg,rgba(13,20,34,.91),rgba(9,13,24,.88));
-  box-shadow:0 24px 80px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.07);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-}
-.heading{
-  text-align:center;
-  margin-bottom:25px;
-}
-.heading h1{
-  font-size:clamp(23px,5vw,29px);
-  font-weight:900;
-  color:#fff3df;
-}
-.heading p{
-  margin-top:6px;
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.8;
-}
-.field{
-  margin-bottom:18px;
-}
-.field label{
-  display:block;
-  margin-bottom:8px;
-  color:#f5d7ad;
-  font-size:14px;
-  font-weight:800;
-}
-.input-wrap{
-  position:relative;
-  display:flex;
-  align-items:center;
-  min-height:57px;
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:15px;
-  background:rgba(255,255,255,.055);
-  transition:border-color .2s,background .2s,box-shadow .2s;
-}
-.input-wrap:focus-within{
-  border-color:rgba(244,189,112,.75);
-  background:rgba(255,255,255,.085);
-  box-shadow:0 0 0 3px rgba(244,189,112,.09);
-}
-.field-icon{
-  flex:0 0 48px;
-  display:grid;
-  place-items:center;
-  color:var(--gold);
-}
-.field-icon svg{
-  width:21px;
-  height:21px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:1.8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-.input-wrap input{
-  width:100%;
-  min-width:0;
-  height:55px;
-  padding:0 5px 0 14px;
-  border:0;
-  outline:0;
-  background:transparent;
-  color:#fff;
-  font-size:15px;
-  direction:rtl;
-}
-.input-wrap input::placeholder{
-  color:#9296a5;
-  font-size:13px;
-}
-.password-toggle{
-  flex:0 0 46px;
-  height:48px;
-  border:0;
-  color:#d8b889;
-  background:transparent;
-  display:grid;
-  place-items:center;
-}
-.password-toggle svg{
-  width:21px;
-  height:21px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:1.8;
-}
-.form-options{
-  display:flex;
-  justify-content:flex-start;
-  margin:1px 0 22px;
-}
-.text-link{
-  color:var(--gold);
-  text-decoration:none;
-  font-size:13px;
-  font-weight:700;
-}
-.text-link:active{
-  opacity:.7;
-}
-.submit{
-  width:100%;
-  min-height:57px;
-  border:1px solid rgba(255,226,179,.65);
-  border-radius:15px;
-  color:#211407;
-  font-size:16px;
-  font-weight:900;
-  background:linear-gradient(110deg,#b97935,#f5c47c,#e9a64f);
-  box-shadow:0 9px 25px rgba(195,126,53,.2),inset 0 1px rgba(255,255,255,.45);
-  transition:transform .2s,filter .2s;
-}
-.submit:active{
-  transform:scale(.985);
-  filter:brightness(1.08);
-}
-.register{
-  margin-top:23px;
-  text-align:center;
-  color:#c6c6cf;
-  font-size:13px;
-  line-height:2;
-}
-.register a{
-  color:var(--gold-light);
-  font-weight:900;
-  text-decoration:none;
-  margin-right:4px;
-}
-.bottom-note{
-  text-align:center;
-  margin-top:18px;
-  color:rgba(255,255,255,.57);
-  font-size:11px;
-}
-@keyframes enter{
-  from{opacity:0;transform:translateY(18px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@media(max-width:380px){
-  .page{padding-left:12px;padding-right:12px}
-  .card{padding:21px 17px;border-radius:22px}
-  .brand{margin-bottom:17px}
-  .brand-mark{width:57px;height:57px}
-  .heading{margin-bottom:19px}
-  .input-wrap,.input-wrap input{min-height:53px;height:53px}
-}
-@media(max-height:700px){
-  .page{align-items:flex-start}
-  .login-layout{margin:auto}
-  .brand{margin-bottom:13px}
-  .brand-mark{width:48px;height:48px;margin-bottom:7px;border-radius:16px}
-  .brand-mark svg{width:30px;height:30px}
-  .card{padding:19px 24px}
-  .heading{margin-bottom:15px}
-  .field{margin-bottom:12px}
-  .form-options{margin-bottom:15px}
-  .register{margin-top:13px}
-  .bottom-note{margin-top:9px}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
-}
+:root{--gold:#f4bd70;--gold2:#ffe0ad;--navy:#0a1020;--muted:#c4c5ce}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;min-height:100%;overflow-x:hidden}
+body{min-height:100vh;min-height:100svh;background:var(--navy);color:white;font-family:Cairo,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+.page{min-height:100vh;min-height:100svh;width:100%;display:flex;align-items:center;justify-content:center;padding:max(20px,env(safe-area-inset-top)) 14px max(20px,env(safe-area-inset-bottom));position:relative;isolation:isolate}
+.background{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}
+.overlay{position:fixed;inset:0;z-index:-2;background:linear-gradient(90deg,#050912bb,#05091288),linear-gradient(180deg,#05091255,#050912dd)}
+.layout{width:min(100%,470px);margin:auto;animation:enter .5s ease}
+.brand{text-align:center;margin-bottom:20px}
+.brand-mark{width:60px;height:60px;margin:auto auto 9px;border-radius:19px;border:1px solid #ffcf9180;background:linear-gradient(145deg,#4b301f99,#0f131ddd);display:grid;place-items:center}
+.brand-mark svg{width:38px;height:38px;fill:none;stroke:var(--gold2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.brand-name{font-size:clamp(18px,5vw,25px);font-weight:900;color:var(--gold2)}
+.brand-sub{font-size:11px;color:#e6d3b8;direction:ltr;letter-spacing:1px}
+.card{width:100%;padding:clamp(20px,5vw,34px);border:1px solid #ffca8445;border-radius:25px;background:linear-gradient(145deg,#0d1422ed,#090d17ed);box-shadow:0 24px 70px #0008;backdrop-filter:blur(18px)}
+.heading{text-align:center;margin-bottom:23px}
+.heading h1{font-size:25px;margin:0;color:#fff3df;font-weight:900}
+.heading p{font-size:12px;color:var(--muted);line-height:1.8;margin:6px 0 0}
+.field{margin-bottom:16px}
+.field label{display:block;margin-bottom:7px;color:#f5d7ad;font-size:13px;font-weight:800}
+.input-wrap{display:flex;align-items:center;min-height:55px;border:1px solid #ffffff25;border-radius:14px;background:#ffffff0d}
+.input-wrap:focus-within{border-color:#f4bd70bb;box-shadow:0 0 0 3px #f4bd7018}
+.field-icon{width:46px;flex:0 0 46px;text-align:center;color:var(--gold)}
+.field-icon svg{width:21px;height:21px;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.8}
+.input-wrap input{width:100%;min-width:0;height:53px;border:0;outline:0;background:transparent;color:white;padding:0 5px 0 12px;font-size:14px}
+.input-wrap input::placeholder{color:#9296a5;font-size:12px}
+.password-toggle{width:44px;height:48px;flex:0 0 44px;border:0;background:transparent;color:#d8b889}
+.password-toggle svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8}
+.submit{width:100%;min-height:55px;border:1px solid #ffe2b3a6;border-radius:14px;color:#211407;font-size:15px;font-weight:900;background:linear-gradient(110deg,#b97935,#f5c47c,#e9a64f);box-shadow:0 9px 25px #c37e3533}
+.submit:disabled{opacity:.55;cursor:wait}
+.register{text-align:center;margin-top:20px;color:#c6c6cf;font-size:12px}
+.register a{color:var(--gold2);font-weight:900;text-decoration:none;margin-right:4px}
+.bottom-note{text-align:center;margin-top:17px;color:#ffffff80;font-size:10px}
+.account-step{display:none;margin-top:4px}
+.account-profile{display:flex;align-items:center;gap:13px;padding:14px;border:1px solid #ffca8445;border-radius:16px;background:#ffffff0b;margin-bottom:17px}
+.account-avatar{width:70px;height:70px;flex:0 0 70px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:#222}
+.account-name{font-size:16px;font-weight:900;color:#fff3df;line-height:1.7}
+.account-details{font-size:11px;color:#c9cbd4;line-height:1.9;overflow-wrap:anywhere}
+.id-note{font-size:12px;color:#e8d8c1;line-height:1.9;text-align:center;margin:0 0 13px}
+#studentId{direction:ltr;text-align:center;letter-spacing:1.5px;text-transform:uppercase;font-weight:900}
+.secondary{width:100%;min-height:46px;margin-top:10px;border:1px solid #ffffff2b;border-radius:13px;color:#f4d5a9;background:#ffffff0a;font-weight:800}
+.toast{position:fixed;z-index:1000;bottom:max(18px,env(safe-area-inset-bottom));left:50%;width:min(92%,420px);padding:13px 16px;border:1px solid #ffffff24;border-radius:15px;background:#171d2c;color:white;text-align:center;font-size:12px;line-height:1.8;box-shadow:0 14px 40px #0009;opacity:0;transform:translate(-50%,18px);pointer-events:none;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.error{border-color:#ff687b99}
+.toast.success{border-color:#38d99b99}
+@keyframes enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(max-height:690px){.page{align-items:flex-start}.layout{margin:auto}.brand{margin-bottom:12px}.brand-mark{width:47px;height:47px}.card{padding:18px}.heading{margin-bottom:15px}.field{margin-bottom:11px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
-
 <body>
 <main class="page">
-  <img class="background" src="./login-bg.png" alt="">
-  <div class="overlay"></div>
-  <div class="ambient"></div>
+<img class="background" src="./login-bg.png" alt="">
+<div class="overlay"></div>
+<section class="layout">
+<header class="brand">
+<div class="brand-mark">
+<svg viewBox="0 0 64 64"><path d="M23 7h18M27 7v18L12 49a5 5 0 0 0 4 8h32a5 5 0 0 0 4-8L37 25V7"/><path d="M19 43h26"/><circle cx="27" cy="35" r="2"/><circle cx="37" cy="48" r="2"/></svg>
+</div>
+<div class="brand-name">DR. MAHMOUD EL-GENAINY</div>
+<div class="brand-sub">CHEMISTRY HAS ONE KING</div>
+</header>
 
-  <section class="login-layout">
-    <header class="brand">
-      <div class="brand-mark">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M23 7h18M27 7v18L12 49a5 5 0 0 0 4 8h32a5 5 0 0 0 4-8L37 25V7"/>
-          <path d="M19 43h26"/>
-          <circle cx="27" cy="35" r="2"/>
-          <circle cx="37" cy="48" r="2"/>
-          <circle cx="35" cy="31" r="2"/>
-        </svg>
-      </div>
-      <div class="brand-name">DR. MAHMOUD EL-GENAINY</div>
-      <div class="brand-subtitle">CHEMISTRY HAS ONE KING</div>
-    </header>
+<section class="card">
+<div class="heading" id="loginHeading">
+<h1>تسجيل الدخول</h1>
+<p>أدخل رقم هاتفك وكلمة المرور للمتابعة إلى حسابك</p>
+</div>
 
-    <section class="card">
-      <div class="heading">
-        <h1>تسجيل الدخول</h1>
-        <p>أدخل بيانات حسابك للمتابعة</p>
-      </div>
+<form id="loginForm" autocomplete="on">
+<div class="field">
+<label for="phone">رقم الهاتف</label>
+<div class="input-wrap">
+<span class="field-icon">☎</span>
+<input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="أدخل رقم هاتفك" required>
+</div>
+</div>
+<div class="field">
+<label for="password">كلمة المرور</label>
+<div class="input-wrap">
+<span class="field-icon">⌑</span>
+<input id="password" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور" required>
+<button class="password-toggle" id="togglePassword" type="button" aria-label="إظهار كلمة المرور">
+<svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+</button>
+</div>
+</div>
+<button class="submit" id="loginButton" type="submit">تسجيل الدخول</button>
+</form>
 
-      <form id="loginForm" autocomplete="on">
-        <div class="field">
-          <label for="phone">رقم الهاتف</label>
-          <div class="input-wrap">
-            <span class="field-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>
-                <path d="M8 6h8M9 18h6"/>
-              </svg>
-            </span>
-            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="أدخل رقم هاتفك" required>
-          </div>
-        </div>
+<section class="account-step" id="accountStep">
+<div class="heading">
+<h1 style="font-size:21px">تأكيد الحساب</h1>
+<p>راجع بيانات حسابك، ثم اكتب رقم الـ ID الخاص بك</p>
+</div>
+<div class="account-profile">
+<img class="account-avatar" id="accountAvatar" src="./85.jpg" alt="الصورة الشخصية">
+<div>
+<div class="account-name" id="accountName">—</div>
+<div class="account-details" id="accountDetails"></div>
+</div>
+</div>
+<p class="id-note">اكتب رقم الـ ID الذي حصلت عليه عند إنشاء الحساب. الرقم لن يظهر هنا؛ يجب أن تكتبه بنفسك.</p>
+<div class="field">
+<label for="studentId">رقم الطالب ID</label>
+<div class="input-wrap">
+<span class="field-icon">#</span>
+<input id="studentId" type="text" autocomplete="off" autocapitalize="characters" placeholder="اكتب رقم الـ ID" required>
+</div>
+</div>
+<button class="submit" id="verifyIdButton" type="button">تأكيد الـ ID والدخول</button>
+<button class="secondary" id="backToLogin" type="button">العودة لتسجيل الدخول</button>
+</section>
 
-        <div class="field">
-          <label for="password">كلمة المرور</label>
-          <div class="input-wrap">
-            <span class="field-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="4" y="10" width="16" height="11" rx="2"/>
-                <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>
-              </svg>
-            </span>
-            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور" required>
-            <button class="password-toggle" id="togglePassword" type="button" aria-label="إظهار كلمة المرور">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="form-options">
-          <a class="text-link" href="forgot-password.html">نسيت كلمة المرور؟</a>
-        </div>
-
-        <button class="submit" type="submit">تسجيل الدخول</button>
-      </form>
-
-      <div class="register">
-        ليس لديك حساب؟
-        <a href="register.html">إنشاء حساب جديد</a>
-      </div>
-    </section>
-
-    <div class="bottom-note">DR. MAHMOUD EL-GENAINY · CHEMISTRY</div>
-  </section>
+<div class="register" id="registerLink">ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a></div>
+</section>
+<div class="bottom-note">DR. MAHMOUD EL-GENAINY · CHEMISTRY</div>
+</section>
 </main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-const passwordInput = document.getElementById("password");
-const togglePassword = document.getElementById("togglePassword");
+const ACCESS_URL="https://iirrwfativrsrxluxmwp.supabase.co/functions/v1/student-phone-access";
+const PUBLIC_KEY="sb_publishable_cDCIPKxT6-2NgbLmnTy1Lw_pW84RMam";
+const $=id=>document.getElementById(id);
+let sessionToken="";
+let toastTimer;
 
-togglePassword.addEventListener("click", function () {
-  const showing = passwordInput.type === "text";
-  passwordInput.type = showing ? "password" : "text";
-  togglePassword.setAttribute(
-    "aria-label",
-    showing ? "إظهار كلمة المرور" : "إخفاء كلمة المرور"
-  );
+function notify(message,type="error"){
+ const box=$("toast");
+ box.textContent=message;
+ box.className="toast show "+type;
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>box.className="toast",3800);
+}
+function normalizePhone(raw){
+ let p=String(raw||"").replace(/[\s().-]/g,"");
+ if(/^01[0125]\d{8}$/.test(p))return "+20"+p.slice(1);
+ if(/^201[0125]\d{8}$/.test(p))return "+"+p;
+ if(/^\+201[0125]\d{8}$/.test(p))return p;
+ throw new Error("رقم الهاتف المصري غير صحيح. اكتب رقمًا يبدأ بـ 010 أو 011 أو 012 أو 015.");
+}
+async function access(payload){
+ const response=await fetch(ACCESS_URL,{
+  method:"POST",
+  headers:{"Content-Type":"application/json","apikey":PUBLIC_KEY},
+  body:JSON.stringify(payload)
+ });
+ const data=await response.json().catch(()=>({}));
+ if(!response.ok||!data.ok)throw new Error(data.error||"تعذر الاتصال بالخدمة. حاول مرة أخرى.");
+ return data;
+}
+$("togglePassword").addEventListener("click",()=>{
+ const input=$("password");
+ input.type=input.type==="password"?"text":"password";
 });
-
-document.getElementById("loginForm").addEventListener("submit", function(event){
-  event.preventDefault();
-  // ربط التحقق الفعلي من الهاتف وكلمة المرور بقاعدة البيانات في مرحلة الربط.
+$("loginForm").addEventListener("submit",async event=>{
+ event.preventDefault();
+ const button=$("loginButton");
+ if(button.disabled)return;
+ const old=button.textContent;
+ button.disabled=true;
+ button.textContent="جارٍ التحقق من الحساب...";
+ try{
+  const phone=normalizePhone($("phone").value);
+  const result=await access({action:"login",phone,password:$("password").value});
+  sessionToken=result.session.token;
+  localStorage.setItem("elgen_student_session",sessionToken);
+  const user=result.user||{};
+  $("accountAvatar").src=user.avatar_url||"./85.jpg";
+  $("accountName").textContent=user.full_name||"طالب مسجل";
+  const details=[user.education_type,user.school_grade,user.governorate,user.education_center,user.village].filter(Boolean);
+  if(user.phone)details.push("الهاتف: "+user.phone);
+  $("accountDetails").textContent=details.join(" • ");
+  $("loginForm").style.display="none";
+  $("loginHeading").style.display="none";
+  $("registerLink").style.display="none";
+  $("accountStep").style.display="block";
+  $("studentId").value="";
+  $("studentId").focus();
+  notify("تم العثور على حسابك. اكتب رقم الـ ID للمتابعة.","success");
+ }catch(error){
+  notify(error.message||"تعذر تسجيل الدخول.");
+ }finally{
+  button.disabled=false;
+  button.textContent=old;
+ }
+});
+async function verifyStudentId(){
+ const code=$("studentId").value.trim().toUpperCase();
+ if(!code){notify("يجب كتابة رقم الـ ID قبل الدخول.");$("studentId").focus();return}
+ const button=$("verifyIdButton");
+ button.disabled=true;
+ button.textContent="جارٍ التحقق من رقم الطالب...";
+ try{
+  const result=await access({action:"verify_id",session_token:sessionToken,user_code:code});
+  localStorage.setItem("elgen_student_account",JSON.stringify(result.user));
+  notify("تم تأكيد الحساب بنجاح.","success");
+  window.location.replace("platform.html");
+ }catch(error){
+  notify(error.message||"رقم الـ ID غير صحيح.");
+ }finally{
+  button.disabled=false;
+  button.textContent="تأكيد الـ ID والدخول";
+ }
+}
+$("verifyIdButton").addEventListener("click",verifyStudentId);
+$("studentId").addEventListener("keydown",event=>{
+ if(event.key==="Enter"){event.preventDefault();verifyStudentId()}
+});
+$("backToLogin").addEventListener("click",()=>{
+ sessionToken="";
+ localStorage.removeItem("elgen_student_session");
+ $("accountStep").style.display="none";
+ $("loginForm").style.display="block";
+ $("loginHeading").style.display="block";
+ $("registerLink").style.display="block";
+ $("password").value="";
+ $("studentId").value="";
 });
 </script>
 </body>
