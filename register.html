@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -354,9 +353,7 @@ select:disabled{
 
 .hidden{
   display:none!important;
-}
-
-/* أزرار التنقل */
+}/* أزرار التنقل */
 .nav-buttons{
   display:flex;
   gap:10px;
@@ -405,7 +402,6 @@ select:disabled{
 }
 
 .login-link a{
-  color:var(--primary);
   text-decoration:none;
   font-weight:900;
 }
@@ -783,8 +779,136 @@ select:disabled{
     grid-template-columns:1fr;
     gap:0;
   }
+  }/* القوائم المنسدلة المخصصة مع الاحتفاظ بعناصر select الأصلية */
+select.native-select-source{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:0!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important;
 }
-  
+
+.custom-select{
+  position:relative;
+  width:100%;
+}
+
+.custom-select-trigger{
+  width:100%;
+  min-height:49px;
+  padding:0 14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fafaff;
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:700;
+  text-align:right;
+  cursor:pointer;
+}
+
+.custom-select-trigger:focus{
+  outline:none;
+  border-color:var(--primary);
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(117,87,223,.1);
+}
+
+.custom-select-trigger:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.custom-select-value.placeholder{
+  color:#a8aabb;
+  font-weight:500;
+}
+
+.custom-select-arrow{
+  width:9px;
+  height:9px;
+  flex:0 0 9px;
+  border-left:2px solid #85839a;
+  border-bottom:2px solid #85839a;
+  transform:rotate(-45deg) translateY(-2px);
+  transition:transform .18s;
+}
+
+.custom-select.open .custom-select-arrow{
+  transform:rotate(135deg) translate(-2px,-2px);
+}
+
+.custom-select-menu{
+  position:absolute;
+  z-index:150;
+  top:calc(100% + 7px);
+  right:0;
+  left:0;
+  padding:9px;
+  border:1px solid rgba(117,87,223,.2);
+  border-radius:14px;
+  background:rgba(255,255,255,.99);
+  box-shadow:0 14px 35px rgba(30,25,70,.18);
+}
+
+.custom-select-search{
+  width:100%!important;
+  height:40px!important;
+  margin-bottom:7px;
+  border-radius:9px!important;
+  background:#f7f6fc!important;
+  font-size:12px!important;
+}
+
+.custom-select-options{
+  max-height:190px;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+
+.custom-select-option{
+  width:100%;
+  min-height:39px;
+  padding:8px 10px;
+  border:0;
+  border-radius:8px;
+  background:transparent;
+  color:#343951;
+  font-family:inherit;
+  font-size:12px;
+  font-weight:700;
+  text-align:right;
+  cursor:pointer;
+}
+
+.custom-select-option:hover,
+.custom-select-option[aria-selected=true]{
+  background:#f0edff;
+  color:var(--primary);
+}
+
+.custom-select-empty{
+  padding:12px 8px;
+  color:var(--muted);
+  font-size:11px;
+  text-align:center;
+}
+
+/* منع تحديث الصفحة عند السحب من أعلى أو أسفل */
+html,body{
+  overscroll-behavior-y:none;
+}
 
 </style>
 </head>
@@ -953,8 +1077,7 @@ select:disabled{
     <div class="choice">
       <input type="radio" name="educationType" id="azharEducation" value="أزهري">
       <label for="azharEducation">
-        <span class="choice-title">التعليم الأزهري</span>
-        <span class="choice-subtitle">المعاهد الأزهرية</span>
+        <span class="choice-title">التعليم الأزهري</span>        <span class="choice-subtitle">المعاهد الأزهرية</span>
       </label>
     </div>
   </div>
@@ -1173,8 +1296,7 @@ select:disabled{
     )?.value || "";
   }
 
-  function updateProgress() {
-    const percent = Math.round(
+  function updateProgress() {    const percent = Math.round(
       ((currentStage + 1) / stages.length) * 100
     );
 
@@ -1448,9 +1570,7 @@ select:disabled{
     };
 
     reader.readAsDataURL(file);
-  });
-
-  /* المحافظات المصرية */
+  });  /* المحافظات المصرية */
   const governorates = [
     "القاهرة","الجيزة","الإسكندرية","القليوبية",
     "الشرقية","الدقهلية","الغربية","المنوفية",
@@ -1469,7 +1589,7 @@ select:disabled{
     "الشرقية":["الزقازيق","بلبيس","منيا القمح","أبو حماد","فاقوس","ديرب نجم","الحسينية","العاشر من رمضان","أخرى"],
     "الدقهلية":["المنصورة","طلخا","ميت غمر","أجا","السنبلاوين","دكرنس","منية النصر","شربين","أخرى"],
     "الغربية":["طنطا","المحلة الكبرى","زفتى","كفر الزيات","بسيون","سمنود","قطور","أخرى"],
-    "المنوفية":["شبين الكوم","منوف","أشمون","الباجور","تلا","قويسنا","السادات","أخرى"],
+    "المنوفية":["شبين الكوم","منوف","أشمون","الشهداء","بركة السبع","قويسنا","تلا","الباجور","السادات","سرس الليان","أخرى"],
     "البحيرة":["دمنهور","كفر الدوار","رشيد","إدكو","أبو حمص","أبو المطامير","الدلنجات","حوش عيسى","أخرى"],
     "كفر الشيخ":["كفر الشيخ","دسوق","فوه","مطوبس","بيلا","الحامول","بلطيم","أخرى"],
     "دمياط":["دمياط","فارسكور","الزرقا","كفر سعد","رأس البر","أخرى"],
@@ -1545,10 +1665,20 @@ select:disabled{
     "طنطا":["سيجر","الجلاء","قحافة","أخرى"],
     "المنصورة":["توريل","المشاية","جديلة","أخرى"],
     "أكتوبر":["الحي الأول","الحي الثاني","الحي الثالث","الحي الرابع","أخرى"],
-    "الإسكندرية":["سيدي جابر","سموحة","محرم بك","العصافرة","أخرى"]
-  };
+    "الإسكندرية":["سيدي جابر","سموحة","محرم بك","العصافرة","أخرى"],
 
-  $("center").addEventListener("change", () => {
+    /* وحدات محلية قروية بالمنوفية وفق جدول تقسيم إداري حكومي منشور بتقرير EEAA لعام 2008؛ ليست حصرًا حديثًا لكل القرى والعزب. */
+    "شبين الكوم":["البتانون","اصطباري","المصيلحه","الماي","بخاتي","شبرا باص","مليج","شنوان","أخرى"],
+    "منوف":["الحامول","برهيم","منشأة سلطان","طملاى","زاوية رزين","فيشا الكبرى","سدود","أخرى"],
+    "أشمون":["دروة","سبك الأحد","سمادون","ساقية أبو شعرة","سنتريس","جريس","طليا","طهواى","شطانوف","شنشور","قورص البرانية","رملة الانجب","شما","البرانية","أخرى"],
+    "الشهداء":["ساحل الجوابر","دراجيل","دنشواى","زاوية الناعورة","زاوية البقلى","عشما","أخرى"],
+    "بركة السبع":["أبو مشهور","جنزور","شنشا الحجر","طوخ طنبشا","هورين","كفر هلال","أخرى"],
+    "قويسنا":["ابنهس","أم خنان","عرب الرمل","طه شبرا","بجيرم","ميت بره","شبرا بخوم","أخرى"],
+    "تلا":["بابل","طوخ دلكه","صفط جدام","زرقان","زاوية بمم","كفر السكرية","كفر ربيع","ميت ابو الكوم","أخرى"],
+    "الباجور":["اسطنها","بي العرب","جروان","سبك الضحاك","كفر الخضرة","مناوهلة","مشيرف","كفر الباجور","ميت عفيف","بهناى","فيشا الصغرى","تلوانة","أخرى"],
+    "السادات":["كفر داود","الخطاطبة","أخرى"],
+    "سرس الليان":["أخرى"]
+  };  $("center").addEventListener("change", () => {
     const center = val("center");
 
     $("centerOtherWrap").classList.toggle(
@@ -1580,6 +1710,159 @@ select:disabled{
     );
   });
 
+  /* واجهة قوائم قابلة للبحث؛ عناصر select الأصلية تظل مسؤولة عن القيم والتحقق والإرسال */
+  function installCustomSelect(select) {
+    if (!select || select.dataset.customReady === "1") return;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "custom-select";
+    select.parentNode.insertBefore(wrapper, select);
+    wrapper.appendChild(select);
+    select.classList.add("native-select-source");
+    select.dataset.customReady = "1";
+
+    const trigger = document.createElement("button");
+    trigger.type = "button";
+    trigger.className = "custom-select-trigger";
+    trigger.setAttribute("aria-haspopup", "listbox");
+    trigger.setAttribute("aria-expanded", "false");
+
+    const value = document.createElement("span");
+    value.className = "custom-select-value";
+
+    const arrow = document.createElement("span");
+    arrow.className = "custom-select-arrow";
+
+    trigger.append(value, arrow);
+    wrapper.appendChild(trigger);
+
+    const menu = document.createElement("div");
+    menu.className = "custom-select-menu hidden";
+
+    const search = document.createElement("input");
+    search.type = "search";
+    search.className = "custom-select-search";
+    search.placeholder = "ابحث في الاختيارات...";
+    search.autocomplete = "off";
+    search.setAttribute("aria-label", "بحث في الاختيارات");
+
+    const optionsBox = document.createElement("div");
+    optionsBox.className = "custom-select-options";
+    optionsBox.setAttribute("role", "listbox");
+
+    menu.append(search, optionsBox);
+    wrapper.appendChild(menu);
+
+    let isOpen = false;
+
+    function drawOptions() {
+      const query = search.value.trim().toLocaleLowerCase("ar");
+      optionsBox.replaceChildren();
+
+      const available = Array.from(select.options).filter(option =>
+        option.value !== "" &&
+        !option.disabled &&
+        option.textContent.toLocaleLowerCase("ar").includes(query)
+      );
+
+      if (!available.length) {
+        const empty = document.createElement("div");
+        empty.className = "custom-select-empty";
+        empty.textContent = "لا توجد نتائج مطابقة";
+        optionsBox.appendChild(empty);
+        return;
+      }
+
+      available.forEach(option => {
+        const item = document.createElement("button");
+        item.type = "button";
+        item.className = "custom-select-option";
+        item.textContent = option.textContent;
+        item.setAttribute("role", "option");
+        item.setAttribute("aria-selected", String(option.value === select.value));
+
+        item.addEventListener("click", () => {
+          select.value = option.value;
+          select.dispatchEvent(new Event("change", {bubbles:true}));
+          sync();
+          closeMenu();
+        });
+
+        optionsBox.appendChild(item);
+      });
+    }
+
+    function sync() {
+      const selected = select.options[select.selectedIndex];
+      const hasValue = !!(selected && selected.value);
+
+      value.textContent = selected ? selected.textContent : "اختر";
+      value.classList.toggle("placeholder", !hasValue);
+
+      trigger.disabled = select.disabled;
+      trigger.setAttribute("aria-label", selected?.textContent || "اختر");
+
+      if (isOpen) drawOptions();
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      menu.classList.add("hidden");
+      wrapper.classList.remove("open");
+      trigger.setAttribute("aria-expanded", "false");
+      search.value = "";
+      drawOptions();
+    }
+
+    function openMenu() {
+      if (select.disabled) return;
+
+      isOpen = true;
+      menu.classList.remove("hidden");
+      wrapper.classList.add("open");
+      trigger.setAttribute("aria-expanded", "true");
+
+      search.value = "";
+      drawOptions();
+      search.focus({preventScroll:true});
+    }
+
+    trigger.addEventListener("click", () => {
+      if (isOpen) closeMenu();
+      else openMenu();
+    });
+
+    search.addEventListener("input", drawOptions);
+
+    search.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeMenu();
+        trigger.focus();
+      }
+    });
+
+    document.addEventListener("click", event => {
+      if (isOpen && !wrapper.contains(event.target)) closeMenu();
+    });
+
+    select.addEventListener("change", sync);
+
+    const observer = new MutationObserver(sync);
+
+    observer.observe(select, {
+      childList:true,
+      subtree:true,
+      attributes:true,
+      attributeFilter:["disabled"]
+    });
+
+    sync();
+  }
+
+  ["schoolGrade","governorate","center","village"].forEach(id => {
+    installCustomSelect($(id));
+  });
+
   showStage(0);
 
   window.ELGEN_REGISTER = {
@@ -1595,13 +1878,12 @@ select:disabled{
     }
   };
 })();
-</script>
-
-<script>
+</script><script>
 (() => {
   "use strict";
 
   const app = window.ELGEN_REGISTER;
+
   if (!app) {
     console.error("ELGEN_REGISTER is not available");
     return;
