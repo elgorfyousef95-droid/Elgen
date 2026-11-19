@@ -317,8 +317,7 @@ button{cursor:pointer}
 #qrcode{display:flex;justify-content:center;margin:17px auto 8px}
 #qrcode img,#qrcode canvas{border:7px solid white;border-radius:10px}
 .qr-caption{font-size:9px;color:var(--muted)}
-.login-link{text-align:center;margin:15px 0 0;color:var(--muted);font-size:11px}
-.login-link a{color:var(--gold2);font-weight:900;text-decoration:none}
+.login-link{text-align:center;margin:15px 0 0;color:var(--muted);font-size:11px}.login-link a{color:var(--gold2);font-weight:900;text-decoration:none}
 .toast{
  position:fixed;z-index:3000;bottom:max(18px,env(safe-area-inset-bottom));
  left:50%;width:min(92%,430px);padding:13px 16px;
@@ -438,6 +437,51 @@ button{cursor:pointer}
 }
 html,body{touch-action:pan-y;overscroll-behavior:none}
 button,input,select,textarea{touch-action:manipulation}
+
+/* ===== Responsive refinement: preserve original background ===== */
+.page{min-height:100dvh;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));padding-bottom:max(28px,env(safe-area-inset-bottom));scroll-padding-top:14px}
+.wrapper{min-height:100%;padding-bottom:12px}.card{width:100%;min-width:0}
+.stage,.field,.grid-two,.grid-three,.choice-grid,.review-list{min-width:0}
+.field input,.field select,.select-launcher{max-width:100%;min-width:0}
+.stage-heading,.stage-heading>div:last-child{min-width:0}.stage-title,.stage-desc{overflow-wrap:anywhere}
+.steps{align-items:start}.step{min-width:0;text-align:center;line-height:1.35}.step span{max-width:100%;overflow-wrap:anywhere}
+.select-layer{padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+.select-dialog{width:min(460px,100%);height:min(72dvh,620px);min-height:min(300px,calc(100dvh - 24px));max-height:calc(100dvh - max(24px,env(safe-area-inset-top) + env(safe-area-inset-bottom)))}
+.select-dialog-head,.select-search{min-width:0}.select-search{display:block}
+.select-options{overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:#927344 transparent}
+.select-option{overflow-wrap:anywhere;text-align:right}
+.btn:focus-visible,.select-option:focus-visible,.select-close:focus-visible{outline:2px solid #ffe1a4;outline-offset:3px}
+@media(min-width:760px){
+ .page{padding-top:max(28px,env(safe-area-inset-top));padding-bottom:34px}.wrapper{width:min(680px,100%)}
+ .card{padding:clamp(22px,3vw,32px);border-radius:28px}
+ .steps{gap:7px;margin-bottom:23px}.step{font-size:10px;gap:7px}.step-circle{width:33px;height:33px;font-size:12px}
+ .stage-heading{gap:14px;margin-bottom:20px}.stage-icon{width:50px;height:50px;flex-basis:50px}
+ .stage-title{font-size:18px}.stage-desc{font-size:12px}.field{margin-bottom:17px}.field label.main-label{font-size:12px}
+ .field input,.field select,.select-launcher{height:53px;min-height:53px;font-size:13px}
+ .grid-two,.grid-three{gap:13px}.nav-buttons{margin-top:24px}.btn{min-height:54px;font-size:13px}
+ .select-layer{align-items:center}.select-dialog{width:min(480px,calc(100vw - 48px));height:min(620px,76dvh);border-radius:23px}
+}
+@media(max-width:520px){
+ .page{padding-top:max(12px,env(safe-area-inset-top));padding-left:10px;padding-right:10px}.wrapper{padding-bottom:8px}
+ .select-layer{align-items:flex-end;padding:0}
+ .select-dialog{width:100%;height:min(76dvh,640px);min-height:min(280px,calc(100dvh - 12px));max-height:calc(100dvh - env(safe-area-inset-top));border-radius:22px 22px 0 0;padding-bottom:env(safe-area-inset-bottom);animation:selectSheetIn .2s ease-out}
+ .select-drag-area{height:25px;flex-basis:25px}.select-dialog-head{padding:9px 14px 11px}
+ .select-dialog-title{font-size:16px;margin:3px 0 10px}.select-search{height:46px;font-size:13px}
+ .select-options{padding:7px 10px}.select-option{min-height:46px;padding:10px 13px;font-size:12px}.select-dialog-foot{padding:10px 14px}
+}
+@keyframes selectSheetIn{from{transform:translateY(22px);opacity:.75}to{transform:translateY(0);opacity:1}}
+@media(max-width:380px){
+ .page{padding-left:8px;padding-right:8px}.card{padding:13px 10px}.steps{gap:1px}.step-circle{width:24px;height:24px}.step{font-size:7px}
+ .grid-two{gap:7px}.grid-three{gap:5px}.name-input{font-size:10px!important}.select-dialog{height:min(78dvh,620px)}
+}
+@media(orientation:landscape) and (max-height:520px){
+ .page{padding-top:8px;padding-bottom:14px}.brand{margin-bottom:7px}.brand-logo{width:40px;height:40px;margin-bottom:3px}
+ .brand-logo svg{width:25px;height:25px}.brand p{display:none}.card{padding:12px 16px}
+ .select-layer{align-items:center;padding:8px}.select-dialog{height:min(88dvh,480px);min-height:220px;border-radius:18px}
+ .select-options{min-height:0}.video-inner video{max-height:78dvh}
+}
+@media(prefers-reduced-motion:reduce){.select-dialog{animation:none!important}}
+
 </style>
 </head><body>
 <img class="background" src="./86.jpg" alt="">
@@ -573,11 +617,7 @@ button,input,select,textarea{touch-action:manipulation}
     </div>
    </div>
 
-   <div class="info-box">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-     <circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>
-    </svg>
-    <span>تأكد من كتابة رقم صحيح يمكن التواصل من خلاله في الحالات الضرورية.</span>
+   <div class="info-box">    <span>تأكد من كتابة رقم صحيح يمكن التواصل من خلاله في الحالات الضرورية.</span>
    </div>
   </section>
 
@@ -667,7 +707,9 @@ button,input,select,textarea{touch-action:manipulation}
     </svg>
     <span>اختيار المحافظة يساعدنا على تحديد المراكز والمناطق التابعة لها.</span>
    </div>
-  </section>  <!-- المرحلة الخامسة -->
+  </section>
+
+  <!-- المرحلة الخامسة -->
   <section class="stage" data-stage="4">
    <div class="stage-heading">
     <div class="stage-icon">
@@ -866,8 +908,7 @@ button,input,select,textarea{touch-action:manipulation}
    <button class="btn btn-primary" id="retryVideo" type="button" style="margin-top:9px">إعادة تشغيل الفيديو</button>
   </div>
  </div>
-</div><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script>
+</div><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script>
 const ACCESS_URL="https://iirrwfativrsrxluxmwp.supabase.co/functions/v1/student-phone-access";
 const PUBLIC_KEY="sb_publishable_cDCIPKxT6-2NgbLmnTy1Lw_pW84RMam";
 
@@ -980,7 +1021,9 @@ function validateStage(index){
  }
 
  return true;
-}$("nextBtn").addEventListener("click",()=>{
+}
+
+$("nextBtn").addEventListener("click",()=>{
  if(!validateStage(currentStage))return;
  if(currentStage===6)buildReview();
  currentStage++;
@@ -1174,7 +1217,9 @@ async function callAccess(payload){
  }
 
  return result;
- }/* إنشاء الحساب */
+}
+
+/* إنشاء الحساب */
 async function createStudentAccount(){
  if(creating||!validateStage(7))return;
 
