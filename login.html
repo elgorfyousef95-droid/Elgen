@@ -422,6 +422,80 @@ button { cursor: pointer; }
 @media(prefers-reduced-motion:reduce) {
   * { animation: none !important; transition: none !important; }
 }
+  /* خلفية ثابتة وتمرير رأسي فقط */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  touch-action: pan-y;
+}
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 14px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+.background,
+.shade,
+.glow {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.background {
+  object-fit: cover;
+  object-position: center;
+}
+
+.layout {
+  width: min(100%, 440px);
+  flex-shrink: 0;
+  margin: auto;
+}
+
+.card {
+  width: 100%;
+  max-height: none;
+  overflow: visible;
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 18px 12px;
+  }
+
+  .layout {
+    width: 100%;
+  }
+}
+
+@media (max-height: 650px) {
+  .page {
+    justify-content: flex-start;
+  }
+
+  .layout {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+}
 </style>
 </head>
 
