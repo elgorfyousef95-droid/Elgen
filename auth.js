@@ -1,20 +1,22 @@
-
 "use strict";
 
 (() => {
+
   const ACCESS_URL =
     "https://iirrwfativrsrxluxmwp.supabase.co/functions/v1/student-phone-access";
 
+  /* نفس المفتاح الصحيح المستخدم في login.html وregister.html */
   const PUBLIC_KEY =
-    "sb_publishable_cDCIPxK6-2NgbLmnTy1Lw_pW84RMam";
+    "sb_publishable_cDCIPKxT6-2NgbLmnTy1Lw_pW84RMam";
 
   const SESSION_KEY = "elgen_student_session";
   const ACCOUNT_KEY = "elgen_student_account";
 
   const path = location.pathname.toLowerCase();
 
-  const isLoginPage = path.endsWith("/login.html") ||
-                      path.endsWith("login.html");
+  const isLoginPage =
+    path.endsWith("/login.html") ||
+    path.endsWith("login.html");
 
   let refreshPromise = null;
 
@@ -29,6 +31,7 @@
       } catch {
         return raw;
       }
+
     } catch {
       return null;
     }
@@ -90,7 +93,8 @@
   }
 
   async function requestRefresh(token) {
-    const response = await fetch(ACCESS_URL, {
+
+    const response = await fetch(ACCESS_URL,{
       method: "POST",
 
       headers: {
@@ -107,13 +111,15 @@
     const result = await response.json().catch(() => ({}));
 
     /*
-      حذف الجلسة مسموح فقط عندما يؤكد السيرفر
-      أن الجلسة غير صالحة أو أن الحساب موقوف.
+      نمسح الجلسة فقط إذا أكد السيرفر
+      أن الجلسة غير صالحة أو الحساب موقوف.
     */
 
     if (response.status === 401) {
+
       const error = new Error(
-        result.error || "انتهت جلسة الدخول أو تم إيقاف الحساب."
+        result.error ||
+        "انتهت جلسة الدخول أو تم إيقاف الحساب."
       );
 
       error.authInvalid = true;
@@ -121,13 +127,10 @@
       throw error;
     }
 
-    /*
-      أخطاء السيرفر الأخرى لا تعني أن الحساب انتهى.
-    */
-
     if (!response.ok) {
       throw new Error(
-        result.error || "الخدمة غير متاحة مؤقتًا."
+        result.error ||
+        "الخدمة غير متاحة مؤقتًا."
       );
     }
 
@@ -146,22 +149,19 @@
   }
 
   async function refreshSession() {
+
     if (refreshPromise) {
       return refreshPromise;
     }
 
     refreshPromise = (async () => {
+
       const storedSession = read(SESSION_KEY);
       const token = getToken(storedSession);
       const account = getAccount();
 
-      /*
-        في صفحة تسجيل الدخول:
-        لا نحول الطالب للمنصة إلا لو عنده
-        جلسة صالحة وحساب تم تأكيده بالفعل.
-      */
-
       if (!token || !account) {
+
         if (!isLoginPage) {
           location.replace("./login.html");
         }
@@ -172,12 +172,13 @@
       dispatch("elgen:session-checking");
 
       try {
+
         const result = await requestRefresh(token);
 
         saveSession(result.session);
         saveAccount(result.user);
 
-        dispatch("elgen:session-ready", result.user);
+        dispatch("elgen:session-ready",result.user);
 
         if (isLoginPage) {
           location.replace("./platform.html");
@@ -185,17 +186,18 @@
 
         return true;
 
-      } catch (error) {
+      } catch(error) {
 
         /*
-          لا نمسح البيانات عند انقطاع الإنترنت
-          أو أخطاء السيرفر المؤقتة.
+          لا نحذف الحساب عند انقطاع الإنترنت
+          أو حدوث خطأ مؤقت في الخدمة.
         */
 
         if (error.authInvalid === true) {
+
           clearSession();
 
-          dispatch("elgen:session-expired", {
+          dispatch("elgen:session-expired",{
             message: error.message
           });
 
@@ -206,7 +208,7 @@
           return false;
         }
 
-        dispatch("elgen:session-offline", {
+        dispatch("elgen:session-offline",{
           message: error.message || "تعذر الاتصال بالخدمة."
         });
 
@@ -222,6 +224,7 @@
   }
 
   window.ELGEN_AUTH = {
+
     refresh: refreshSession,
 
     getToken: () => {
@@ -232,17 +235,20 @@
 
     isLoggedIn: () => {
       return Boolean(
-        getToken(read(SESSION_KEY)) && getAccount()
+        getToken(read(SESSION_KEY)) &&
+        getAccount()
       );
     },
 
     logout: () => {
+
       clearSession();
 
       dispatch("elgen:logged-out");
 
       location.replace("./login.html");
     }
+
   };
 
   /*
@@ -250,13 +256,17 @@
   */
 
   if (document.readyState === "loading") {
+
     document.addEventListener(
       "DOMContentLoaded",
       refreshSession,
       { once: true }
     );
+
   } else {
+
     refreshSession();
+
   }
 
 })();
