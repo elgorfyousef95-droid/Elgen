@@ -3,41 +3,45 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#101522">
-<title>إنشاء حساب الطالب | منصة الدكتور محمود الجنايني</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#10152a">
+<title>إنشاء حساب طالب | منصة الجنايني</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --gold:#e8bd70;
-  --gold-light:#ffe4ae;
-  --bg:#101522;
-  --card:rgba(15,21,34,.88);
-  --field:rgba(255,255,255,.07);
-  --border:rgba(255,255,255,.14);
-  --text:#fff;
-  --muted:#b7bdca;
-  --green:#48d5a0;
-  --red:#ff7185;
+  --primary:#7557df;
+  --primary-dark:#5940bd;
+  --gold:#d9b66d;
+  --text:#20243a;
+  --muted:#7c8296;
+  --border:#e7e8ef;
+  --surface:#ffffff;
+  --success:#159b72;
+  --danger:#d84c62;
+  --shadow:0 18px 55px rgba(18,25,54,.16);
 }
 
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+  margin:0;
+  padding:0;
 }
 
-html,body{
-  margin:0;
+html{
   min-height:100%;
-  width:100%;
+  scroll-behavior:smooth;
 }
 
 body{
-  font-family:Cairo,sans-serif;
+  min-height:100vh;
+  font-family:"Cairo",sans-serif;
   color:var(--text);
-  background:var(--bg);
+  background:#11172c;
+  overflow-x:hidden;
 }
 
 /* الخلفية الأصلية */
@@ -49,153 +53,118 @@ body{
   object-fit:cover;
   object-position:center;
   z-index:-3;
-  pointer-events:none;
 }
 
-.background-shade{
+.background-overlay{
   position:fixed;
   inset:0;
-  z-index:-2;
   background:linear-gradient(
     135deg,
-    rgba(7,12,22,.24),
-    rgba(8,12,24,.40)
+    rgba(9,15,34,.24),
+    rgba(15,20,43,.43)
   );
-  pointer-events:none;
+  z-index:-2;
 }
 
-/* الصفحة والتمرير */
 .page{
-  position:relative;
-  min-height:100vh;
-  min-height:100dvh;
   width:100%;
-  padding:30px 16px 45px;
+  min-height:100vh;
+  padding:28px 16px 45px;
   display:flex;
-  justify-content:center;
+  flex-direction:column;
   align-items:center;
-  overflow-x:hidden;
 }
 
-.wrapper{
-  width:min(680px,100%);
-  margin:auto;
-}
-
-/* رأس المنصة */
+/* رأس الصفحة */
 .brand{
+  width:min(100%,560px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+  margin:8px auto 22px;
+  color:#fff;
   text-align:center;
-  margin-bottom:20px;
 }
 
 .brand-logo{
-  width:66px;
-  height:66px;
-  margin:0 auto 10px;
+  width:58px;
+  height:58px;
+  border-radius:18px;
   display:grid;
   place-items:center;
-  border:1px solid rgba(255,228,174,.65);
-  border-radius:21px;
-  background:linear-gradient(145deg,#f3d59b,#a87836);
-  box-shadow:0 12px 35px rgba(0,0,0,.35);
+  background:linear-gradient(145deg,#a58af8,#6145ca);
+  box-shadow:0 8px 28px rgba(91,65,190,.38);
+  border:1px solid rgba(255,255,255,.35);
+  flex-shrink:0;
 }
 
 .brand-logo svg{
-  width:36px;
-  height:36px;
+  width:34px;
+  height:34px;
+  stroke:white;
 }
 
-.brand h1{
-  margin:0;
-  font-size:clamp(19px,4vw,25px);
+.brand-text h1{
+  font-size:23px;
   font-weight:900;
-  color:var(--gold-light);
+  line-height:1.4;
 }
 
-.brand p{
-  margin:5px 0 0;
+.brand-text p{
   font-size:12px;
-  color:#fff;
+  color:rgba(255,255,255,.85);
   font-weight:600;
 }
 
-/* بطاقة التسجيل */
+/* البطاقة الرئيسية */
 .card{
+  width:min(100%,520px);
+  background:rgba(255,255,255,.97);
+  border:1px solid rgba(255,255,255,.85);
+  border-radius:23px;
+  box-shadow:var(--shadow);
+  padding:27px;
   position:relative;
-  width:100%;
-  padding:clamp(19px,4vw,30px);
   overflow:visible;
-  border:1px solid rgba(255,228,174,.42);
-  border-radius:25px;
-  background:var(--card);
-  box-shadow:0 25px 65px rgba(0,0,0,.38);
-  backdrop-filter:blur(15px);
-  -webkit-backdrop-filter:blur(15px);
 }
 
-.card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  right:12%;
-  width:76%;
-  height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-}
-
-.card-head{
+.card-top{
   text-align:center;
   margin-bottom:23px;
 }
 
-.eyebrow{
-  display:inline-block;
-  padding:6px 15px;
-  border:1px solid rgba(232,189,112,.4);
-  border-radius:30px;
-  background:rgba(232,189,112,.10);
-  color:var(--gold-light);
-  font-size:11px;
-  font-weight:800;
-  margin-bottom:10px;
-}
-
-.card-head h2{
-  margin:0 0 6px;
-  font-size:22px;
+.card-top h2{
+  font-size:23px;
   font-weight:900;
+  color:#252744;
 }
 
-.card-head p{
-  margin:0;
+.card-top p{
+  margin-top:5px;
+  font-size:13px;
   color:var(--muted);
-  font-size:12px;
-  line-height:1.9;
 }
 
-/* مؤشر المراحل */
+/* مؤشر التقدم */
 .progress-area{
-  margin-bottom:22px;
+  margin-bottom:24px;
 }
 
-.progress-meta{
+.progress-info{
   display:flex;
   justify-content:space-between;
   align-items:center;
   margin-bottom:9px;
-  color:var(--muted);
-  font-size:11px;
+  font-size:12px;
   font-weight:800;
-}
-
-.progress-meta strong{
-  color:var(--gold-light);
+  color:#626981;
 }
 
 .progress-track{
   height:7px;
+  background:#eeeef5;
   border-radius:20px;
-  background:rgba(255,255,255,.12);
   overflow:hidden;
 }
 
@@ -203,64 +172,74 @@ body{
   width:12.5%;
   height:100%;
   border-radius:20px;
-  background:linear-gradient(90deg,#b67b35,#ffe4ae);
+  background:linear-gradient(90deg,#6c50d4,#a18af4);
   transition:width .3s ease;
 }
 
-/* المراحل */
-.steps{
+/* شريط المراحل */
+.steps-bar{
   display:grid;
   grid-template-columns:repeat(8,minmax(0,1fr));
   gap:5px;
-  margin-bottom:24px;
+  margin-bottom:25px;
 }
 
 .step{
+  min-width:0;
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:5px;
-  min-width:0;
-  color:#a9afbd;
-  font-size:9px;
-  font-weight:800;
+  color:#a3a6b5;
 }
 
-.step-circle{
-  width:29px;
-  height:29px;
-  border:1px solid rgba(255,255,255,.23);
+.step-number{
+  width:27px;
+  height:27px;
   border-radius:50%;
+  background:#f0f0f5;
   display:grid;
   place-items:center;
-  background:rgba(255,255,255,.06);
   font-size:11px;
-  font-weight:900;
+  font-weight:800;
+  border:1px solid #e5e5ed;
+  transition:.2s;
 }
 
-.step.active,
-.step.done{
-  color:var(--gold-light);
+.step-label{
+  font-size:9px;
+  font-weight:700;
+  white-space:nowrap;
 }
 
-.step.active .step-circle,
-.step.done .step-circle{
-  color:#241a0d;
-  border-color:var(--gold);
-  background:linear-gradient(135deg,#ffe8b7,#d7a354);
+.step.active{
+  color:var(--primary);
 }
 
-/* عنوان كل مرحلة */
+.step.active .step-number{
+  color:white;
+  background:var(--primary);
+  border-color:var(--primary);
+  box-shadow:0 3px 12px rgba(117,87,223,.3);
+}
+
+.step.completed .step-number{
+  color:white;
+  background:var(--success);
+  border-color:var(--success);
+}
+
+/* عناوين المراحل */
 .stage{
   display:none;
+  animation:stageIn .25s ease;
 }
 
 .stage.active{
   display:block;
-  animation:stageEnter .25s ease;
 }
 
-@keyframes stageEnter{
+@keyframes stageIn{
   from{opacity:0;transform:translateY(8px)}
   to{opacity:1;transform:translateY(0)}
 }
@@ -268,105 +247,91 @@ body{
 .stage-heading{
   display:flex;
   align-items:center;
-  gap:13px;
-  margin-bottom:20px;
+  gap:12px;
+  margin-bottom:22px;
 }
 
 .stage-icon{
-  width:47px;
-  height:47px;
-  flex:0 0 47px;
+  width:43px;
+  height:43px;
+  border-radius:14px;
   display:grid;
   place-items:center;
-  border:1px solid rgba(232,189,112,.4);
-  border-radius:15px;
-  color:var(--gold-light);
-  background:rgba(232,189,112,.12);
-}
-
-.stage-icon svg{
-  width:24px;
-  height:24px;
+  background:#f0edff;
+  color:var(--primary);
+  font-size:14px;
+  font-weight:900;
+  flex-shrink:0;
 }
 
 .stage-title{
-  margin:0 0 4px;
   font-size:17px;
   font-weight:900;
+  color:#252744;
 }
 
 .stage-desc{
-  margin:0;
-  color:var(--muted);
   font-size:11px;
-  line-height:1.8;
-  font-weight:600;
+  color:var(--muted);
+  margin-top:2px;
 }
 
 /* الحقول */
 .field{
-  min-width:0;
-  margin-bottom:16px;
-}
-
-.main-label{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  margin-bottom:8px;
-  color:var(--gold-light);
-  font-size:12px;
-  font-weight:800;
-}
-
-.required{
-  color:var(--red);
-}
-
-.input-wrap{
+  width:100%;
+  margin-bottom:17px;
   position:relative;
 }
 
-.field input,
-.field select{
-  width:100%;
-  height:51px;
-  padding:0 15px;
-  outline:none;
-  border:1px solid var(--border);
-  border-radius:13px;
-  background:var(--field);
-  color:#fff;
-  font-family:inherit;
+.main-label{
+  display:block;
+  margin-bottom:7px;
   font-size:12px;
-  font-weight:700;
-  transition:border-color .2s,background .2s;
+  font-weight:800;
+  color:#41465e;
 }
 
-.field input::placeholder{
-  color:#aeb4c1;
+.required{
+  color:var(--danger);
 }
 
-.field input:focus,
-.field select:focus{
-  border-color:var(--gold);
-  background:rgba(255,255,255,.10);
-  box-shadow:0 0 0 3px rgba(232,189,112,.12);
+input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),
+select{
+  width:100%;
+  height:49px;
+  padding:0 14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fafaff;
+  color:var(--text);
+  outline:none;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:600;
+  transition:border .2s,box-shadow .2s,background .2s;
 }
 
-.field select{
-  appearance:none;
-  -webkit-appearance:none;
-  padding-left:40px;
-  background-color:#192031;
+input:focus,
+select:focus{
+  border-color:var(--primary)!important;
+  background:#fff!important;
+  box-shadow:0 0 0 3px rgba(117,87,223,.1);
 }
 
-.field select option{
-  color:#fff;
-  background:#192031;
+input::placeholder{
+  color:#a8aabb;
+  font-weight:500;
 }
 
-/* تقسيم الحقول */
+select{
+  cursor:pointer;
+}
+
+select:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
 .grid-two{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -376,128 +341,447 @@ body{
 .grid-three{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:10px;
+  gap:9px;
 }
 
 .helper{
-  margin:7px 3px 0;
   color:var(--muted);
-  font-size:10px;
+  font-size:11px;
   line-height:1.8;
-}
-
-/* أزرار التنقل */
-.nav-buttons{
-  display:flex;
-  gap:12px;
-  margin-top:24px;
-}
-
-.btn{
-  min-height:50px;
-  padding:10px 20px;
-  border:0;
-  border-radius:14px;
-  font-family:inherit;
-  font-size:13px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.btn-primary{
-  flex:1;
-  color:#241a0d;
-  background:linear-gradient(110deg,#d7a052,#ffe6b2,#e8bd70);
-  box-shadow:0 8px 22px rgba(0,0,0,.2);
-}
-
-.btn-secondary{
-  color:#fff;
-  border:1px solid rgba(232,189,112,.4);
-  background:rgba(255,255,255,.08);
-}
-
-.btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-}
-
-/* رسائل التنبيه */
-.toast{
-  position:fixed;
-  z-index:9000;
-  bottom:20px;
-  left:50%;
-  width:min(92%,440px);
-  padding:13px 17px;
-  border:1px solid rgba(255,255,255,.2);
-  border-radius:14px;
-  background:#182033;
-  color:#fff;
-  text-align:center;
-  font-size:12px;
-  font-weight:800;
-  opacity:0;
-  pointer-events:none;
-  transform:translate(-50%,15px);
-  transition:.25s;
-}
-
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
-
-.toast.error{
-  border-color:var(--red);
-}
-
-.toast.success{
-  border-color:var(--green);
+  margin-top:-7px;
+  margin-bottom:15px;
 }
 
 .hidden{
   display:none!important;
 }
 
-/* الشاشات الصغيرة */
-@media(max-width:560px){
+/* أزرار التنقل */
+.nav-buttons{
+  display:flex;
+  gap:10px;
+  margin-top:25px;
+}
+
+.btn{
+  min-height:49px;
+  padding:10px 19px;
+  border:0;
+  border-radius:12px;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:900;
+  cursor:pointer;
+  transition:transform .2s,opacity .2s,background .2s;
+}
+
+.btn:active{
+  transform:scale(.98);
+}
+
+.btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.btn-primary{
+  flex:1;
+  color:white;
+  background:linear-gradient(120deg,#795be1,#5e43c5);
+  box-shadow:0 7px 18px rgba(103,76,204,.2);
+}
+
+.btn-secondary{
+  min-width:105px;
+  color:#5c6075;
+  background:#f0f0f6;
+}
+
+.login-link{
+  text-align:center;
+  margin-top:19px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.login-link a{
+  color:var(--primary);
+  text-decoration:none;
+  font-weight:900;
+}
+
+/* إشعارات */
+.toast{
+  position:fixed;
+  bottom:22px;
+  left:50%;
+  transform:translate(-50%,20px);
+  width:max-content;
+  max-width:calc(100% - 30px);
+  padding:12px 19px;
+  border-radius:12px;
+  background:#252744;
+  color:white;
+  font-size:12px;
+  font-weight:700;
+  box-shadow:0 8px 30px rgba(0,0,0,.2);
+  opacity:0;
+  visibility:hidden;
+  z-index:1000;
+  transition:.25s;
+  text-align:center;
+}
+
+.toast.show{
+  opacity:1;
+  visibility:visible;
+  transform:translate(-50%,0);
+}
+
+/* شاشة النجاح */
+.success-view{
+  display:none;
+  text-align:center;
+}
+
+.success-icon{
+  width:66px;
+  height:66px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:white;
+  background:var(--success);
+  font-size:32px;
+  font-weight:900;
+}
+
+.success-title{
+  font-size:22px;
+  font-weight:900;
+}
+
+.success-desc{
+  margin:7px 0 22px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.profile-card{
+  padding:20px;
+  border:1px solid var(--border);
+  background:#fafaff;
+  border-radius:17px;
+  margin-bottom:20px;
+}
+
+.final-photo{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid white;
+  box-shadow:0 3px 15px rgba(0,0,0,.12);
+  margin-bottom:10px;
+}
+
+.final-name{
+  font-size:17px;
+  font-weight:900;
+}
+
+.profile-status-badge{
+  display:inline-block;
+  margin-top:7px;
+  padding:4px 12px;
+  border-radius:20px;
+  background:#e8f8f1;
+  color:#12845f;
+  font-size:10px;
+  font-weight:900;
+}
+
+.final-caption{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:17px;
+}
+
+.profile-id{
+  direction:ltr;
+  font-size:19px;
+  font-weight:900;
+  letter-spacing:1px;
+  color:var(--primary);
+  margin:6px 0 10px;
+}
+
+.copy-id{
+  border:0;
+  background:#eeeaff;
+  color:var(--primary);
+  padding:9px 18px;
+  border-radius:9px;
+  font-family:inherit;
+  font-weight:800;
+  cursor:pointer;
+}
+
+#qrcode{
+  display:flex;
+  justify-content:center;
+  margin:17px auto 8px;
+  min-height:10px;
+}
+
+.qr-caption{
+  font-size:10px;
+  color:var(--muted);
+}
+
+/* اختيار نوع التعليم */
+.choice-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.choice input{
+  position:absolute;
+  opacity:0;
+}
+
+.choice label{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  padding:17px 12px;
+  border:1px solid var(--border);
+  border-radius:13px;
+  background:#fafaff;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.choice input:checked+label{
+  border-color:var(--primary);
+  background:#f2efff;
+  box-shadow:0 0 0 2px rgba(117,87,223,.08);
+}
+
+.choice-title{
+  font-size:13px;
+  font-weight:900;
+}
+
+.choice-subtitle{
+  font-size:10px;
+  color:var(--muted);
+}
+
+/* الصورة الشخصية */
+.photo-box{
+  padding:23px 15px;
+  text-align:center;
+  border:1px dashed #c9c3e9;
+  border-radius:16px;
+  background:#faf9ff;
+}
+
+.photo-preview{
+  display:none;
+  width:115px;
+  height:115px;
+  object-fit:cover;
+  border-radius:50%;
+  margin:0 auto 12px;
+  border:4px solid white;
+  box-shadow:0 4px 18px rgba(0,0,0,.12);
+}
+
+.photo-placeholder{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:#eeeaff;
+  display:grid;
+  place-items:center;
+  margin:0 auto 12px;
+}
+
+.photo-title{
+  font-size:14px;
+  font-weight:900;
+}
+
+.photo-desc{
+  margin:6px auto 15px;
+  max-width:280px;
+  font-size:10px;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+#profilePhoto{
+  display:none;
+}
+
+.upload-btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding:10px 18px;
+  background:#eeeaff;
+  color:var(--primary);
+  border-radius:10px;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+/* الشروط والمراجعة */
+.terms-box{
+  max-height:230px;
+  overflow-y:auto;
+  padding:16px;
+  background:#fafaff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  font-size:11px;
+  line-height:2;
+}
+
+.terms-box strong{
+  display:block;
+  margin-bottom:8px;
+  font-size:13px;
+}
+
+.terms-box p{
+  margin-bottom:6px;
+}
+
+.terms-agree{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  margin-top:17px;
+  font-size:11px;
+  line-height:1.8;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.terms-agree input{
+  margin-top:5px;
+  accent-color:var(--primary);
+}
+
+.review-list{
+  border:1px solid var(--border);
+  border-radius:13px;
+  overflow:hidden;
+}
+
+.review-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:11px 13px;
+  border-bottom:1px solid var(--border);
+  font-size:11px;
+}
+
+.review-row:last-child{
+  border-bottom:0;
+}
+
+.review-label{
+  color:var(--muted);
+  flex-shrink:0;
+}
+
+.review-value{
+  text-align:left;
+  overflow-wrap:anywhere;
+  color:#343951;
+}
+
+.info-box{
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  background:#f2efff;
+  color:#6351a5;
+  font-size:11px;
+  line-height:1.8;
+}
+
+/* تصميم الهاتف */
+@media(max-width:480px){
   .page{
-    align-items:flex-start;
-    padding:18px 10px 30px;
+    padding:17px 11px 30px;
   }
 
-  .wrapper{
-    margin:0 auto;
+  .brand{
+    margin:5px auto 16px;
+  }
+
+  .brand-logo{
+    width:49px;
+    height:49px;
+    border-radius:15px;
+  }
+
+  .brand-text h1{
+    font-size:20px;
   }
 
   .card{
-    padding:18px 13px;
-    border-radius:21px;
+    padding:21px 16px;
+    border-radius:19px;
+  }
+
+  .card-top h2{
+    font-size:20px;
+  }
+
+  .grid-three{
+    gap:6px;
+  }
+
+  .grid-three input{
+    padding:0 7px!important;
+    font-size:11px!important;
+  }
+
+  .step-label{
+    font-size:8px;
+  }
+
+  .step-number{
+    width:25px;
+    height:25px;
+  }
+
+  .stage-title{
+    font-size:15px;
+  }
+}
+
+@media(max-width:350px){
+  .card{
+    padding:17px 12px;
+  }
+
+  .step-label{
+    font-size:7px;
   }
 
   .grid-two{
     grid-template-columns:1fr;
     gap:0;
-  }
-
-  .steps{
-    gap:2px;
-  }
-
-  .step{
-    font-size:8px;
-  }
-
-  .step-circle{
-    width:26px;
-    height:26px;
-  }
-}
-
-@media(max-height:620px){
-  .page{
-    align-items:flex-start;
   }
 }
 </style>
@@ -506,85 +790,108 @@ body{
 <body>
 
 <img class="background" src="./86.jpg" alt="">
-<div class="background-shade"></div>
+<div class="background-overlay"></div>
 
-<main class="page" id="pageScroller">
-<div class="wrapper">
+<main class="page">
 
 <header class="brand">
   <div class="brand-logo">
-    <svg viewBox="0 0 64 64" fill="none" stroke="#241a0d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M24 8h16M28 8v17L15 48a6 6 0 0 0 5 9h24a6 6 0 0 0 5-9L36 25V8"/>
-      <path d="M21 43h22M26 36h12"/>
-      <circle cx="29" cy="47" r="2" fill="#241a0d"/>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19V5l8 10 8-10v14"/>
+      <path d="M7 19h10"/>
     </svg>
   </div>
-  <h1>منصة الدكتور محمود الجنايني</h1>
-  <p>رحلتك التعليمية تبدأ من هنا</p>
+  <div class="brand-text">
+    <h1>منصة الجنايني التعليمية</h1>
+    <p>رحلتك نحو التفوق تبدأ من هنا</p>
+  </div>
 </header>
 
 <section class="card" id="registrationCard">
 
-<header class="card-head">
-  <div class="eyebrow">بوابة الطلاب الجديدة</div>
-  <h2>إنشاء حساب طالب جديد</h2>
-  <p>أكمل بياناتك بدقة للاستفادة من خدمات المنصة التعليمية.</p>
-</header>
-
-<div class="progress-area">
-  <div class="progress-meta">
-    <span id="progressText">المرحلة الأولى من 8</span>
-    <strong id="progressPercent">12.5%</strong>
+  <div class="card-top">
+    <h2>إنشاء حساب طالب</h2>
+    <p>أكمل بياناتك بالترتيب لإنشاء حسابك على المنصة</p>
   </div>
-  <div class="progress-track">
-    <div class="progress-fill" id="progressFill"></div>
+
+  <div class="progress-area">
+    <div class="progress-info">
+      <span id="progressText">المرحلة 1 من 8</span>
+      <span id="progressPercent">13%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
   </div>
-</div>
 
-<div class="steps" id="stepsBar">
-  <div class="step active"><div class="step-circle">1</div><span>الحساب</span></div>
-  <div class="step"><div class="step-circle">2</div><span>ولي الأمر</span></div>
-  <div class="step"><div class="step-circle">3</div><span>الدراسة</span></div>
-  <div class="step"><div class="step-circle">4</div><span>المحافظة</span></div>
-  <div class="step"><div class="step-circle">5</div><span>العنوان</span></div>
-  <div class="step"><div class="step-circle">6</div><span>الصورة</span></div>
-  <div class="step"><div class="step-circle">7</div><span>الشروط</span></div>
-  <div class="step"><div class="step-circle">8</div><span>المراجعة</span></div>
-</div>
+  <div class="steps-bar" id="stepsBar">
+    <div class="step active">
+      <span class="step-number">1</span>
+      <span class="step-label">الحساب</span>
+    </div>
+    <div class="step">
+      <span class="step-number">2</span>
+      <span class="step-label">ولي الأمر</span>
+    </div>
+    <div class="step">
+      <span class="step-number">3</span>
+      <span class="step-label">الدراسة</span>
+    </div>
+    <div class="step">
+      <span class="step-number">4</span>
+      <span class="step-label">المحافظة</span>
+    </div>
+    <div class="step">
+      <span class="step-number">5</span>
+      <span class="step-label">العنوان</span>
+    </div>
+    <div class="step">
+      <span class="step-number">6</span>
+      <span class="step-label">الصورة</span>
+    </div>
+    <div class="step">
+      <span class="step-number">7</span>
+      <span class="step-label">الشروط</span>
+    </div>
+    <div class="step">
+      <span class="step-number">8</span>
+      <span class="step-label">المراجعة</span>
+    </div>
+  </div>
 
-<!-- المرحلة الأولى: بيانات الطالب -->
+<!-- المرحلة الأولى: بيانات الحساب -->
 <section class="stage active" data-stage="0">
   <div class="stage-heading">
     <div class="stage-icon">01</div>
     <div>
       <h3 class="stage-title">بيانات الحساب الشخصي</h3>
-      <p class="stage-desc">اكتب بياناتك الأساسية لإنشاء حسابك.</p>
+      <p class="stage-desc">أدخل بياناتك الأساسية لإنشاء حسابك.</p>
     </div>
   </div>
 
   <div class="grid-three">
     <div class="field">
       <label class="main-label">الاسم الأول <span class="required">*</span></label>
-      <input id="studentName1" class="name-input" placeholder="الاسم">
+      <input id="studentName1" placeholder="الاسم">
     </div>
     <div class="field">
       <label class="main-label">الاسم الثاني <span class="required">*</span></label>
-      <input id="studentName2" class="name-input" placeholder="الأب">
+      <input id="studentName2" placeholder="الأب">
     </div>
     <div class="field">
       <label class="main-label">الاسم الثالث <span class="required">*</span></label>
-      <input id="studentName3" class="name-input" placeholder="العائلة">
+      <input id="studentName3" placeholder="العائلة">
     </div>
   </div>
 
   <div class="field">
-    <label class="main-label">رقم الهاتف <span class="required">*</span></label>
+    <label class="main-label">رقم هاتف الطالب <span class="required">*</span></label>
     <input id="studentPhone" type="tel" inputmode="numeric" placeholder="01xxxxxxxxx" dir="ltr">
   </div>
 
   <div class="field">
     <label class="main-label">كلمة المرور <span class="required">*</span></label>
-    <input id="password" type="password" placeholder="أدخل كلمة مرور قوية">
+    <input id="password" type="password" placeholder="أدخل كلمة المرور">
   </div>
 
   <div class="field">
@@ -620,17 +927,15 @@ body{
     <label class="main-label">رقم هاتف ولي الأمر <span class="required">*</span></label>
     <input id="parentPhone" type="tel" inputmode="numeric" placeholder="01xxxxxxxxx" dir="ltr">
   </div>
-
-  <div class="helper">تأكد من كتابة رقم هاتف صحيح يمكن التواصل من خلاله.</div>
 </section>
 
-<!-- المرحلة الثالثة: بيانات الدراسة -->
+<!-- المرحلة الثالثة: الدراسة -->
 <section class="stage" data-stage="2">
   <div class="stage-heading">
     <div class="stage-icon">03</div>
     <div>
       <h3 class="stage-title">المرحلة التعليمية</h3>
-      <p class="stage-desc">حدد نظام التعليم والصف الدراسي.</p>
+      <p class="stage-desc">حدد نوع التعليم والصف الدراسي.</p>
     </div>
   </div>
 
@@ -722,7 +1027,7 @@ body{
     <div class="stage-icon">06</div>
     <div>
       <h3 class="stage-title">الصورة الشخصية</h3>
-      <p class="stage-desc">أضف صورة واضحة لملفك الشخصي.</p>
+      <p class="stage-desc">اختر صورة واضحة لحسابك.</p>
     </div>
   </div>
 
@@ -730,11 +1035,11 @@ body{
     <img id="photoPreview" class="photo-preview" alt="معاينة الصورة">
 
     <div id="photoPlaceholder" class="photo-placeholder">
-      <span style="font-size:38px">👤</span>
+      <span style="font-size:36px">👤</span>
     </div>
 
     <div class="photo-title">صورتك الشخصية</div>
-    <div class="photo-desc">اختر صورة واضحة بصيغة JPG أو PNG أو WebP، بحد أقصى 5 ميجابايت.</div>
+    <div class="photo-desc">اختر صورة بصيغة JPG أو PNG أو WebP، بحد أقصى 5 ميجابايت.</div>
 
     <label class="upload-btn" for="profilePhoto">اختيار صورة من الجهاز</label>
     <input id="profilePhoto" type="file" accept="image/jpeg,image/png,image/webp">
@@ -747,7 +1052,7 @@ body{
     <div class="stage-icon">07</div>
     <div>
       <h3 class="stage-title">الشروط والأحكام</h3>
-      <p class="stage-desc">اقرأ الشروط قبل إتمام إنشاء حسابك.</p>
+      <p class="stage-desc">اقرأ الشروط قبل إنشاء حسابك.</p>
     </div>
   </div>
 
@@ -755,7 +1060,7 @@ body{
     <strong>شروط استخدام المنصة</strong>
     <p>1. يلتزم الطالب بإدخال بيانات صحيحة ودقيقة.</p>
     <p>2. يتحمل الطالب مسؤولية الحفاظ على سرية كلمة المرور.</p>
-    <p>3. يجب استخدام المنصة للأغراض التعليمية فقط.</p>
+    <p>3. يجب استخدام المنصة للأغراض التعليمية.</p>
     <p>4. يمنع مشاركة الحساب مع أشخاص آخرين دون إذن الإدارة.</p>
     <p>5. يلتزم الطالب باحترام قواعد المنصة والتعليمات التعليمية.</p>
     <p>6. قد تتواصل إدارة المنصة مع ولي الأمر عند الحاجة.</p>
@@ -773,14 +1078,14 @@ body{
     <div class="stage-icon">08</div>
     <div>
       <h3 class="stage-title">مراجعة بيانات الحساب</h3>
-      <p class="stage-desc">راجع بياناتك قبل إرسال طلب إنشاء الحساب.</p>
+      <p class="stage-desc">راجع بياناتك قبل إنشاء الحساب.</p>
     </div>
   </div>
 
   <div class="review-list" id="reviewData"></div>
 
   <div class="info-box">
-    تأكد من صحة جميع البيانات قبل الضغط على زر إنشاء الحساب.
+    تأكد من صحة البيانات قبل الضغط على زر إنشاء الحساب.
   </div>
 
   <button type="button" class="btn btn-primary" id="createAccount" style="width:100%;margin-top:20px">
@@ -808,12 +1113,20 @@ body{
   <div class="profile-card">
     <img class="final-photo" id="finalPhoto" alt="الصورة الشخصية">
     <div class="final-name" id="finalName"></div>
-    <div class="profile-status-badge hidden" id="finalVerificationBadge">حساب موثق</div>
+
+    <div class="profile-status-badge hidden" id="finalVerificationBadge">
+      حساب موثق
+    </div>
+
     <div class="final-caption">رقم الطالب الخاص بك</div>
     <div class="profile-id" id="finalId"></div>
-    <button type="button" class="copy-id" id="copyIdButton">نسخ رقم الطالب</button>
+
+    <button type="button" class="copy-id" id="copyIdButton">
+      نسخ رقم الطالب
+    </button>
+
     <div id="qrcode"></div>
-    <div class="qr-caption">احتفظ برقم الطالب لاستخدامه عند التواصل مع الإدارة.</div>
+    <div class="qr-caption">احتفظ برقم الطالب للرجوع إليه عند الحاجة.</div>
   </div>
 
   <button type="button" class="btn btn-primary" id="enterPlatformButton" style="width:100%">
@@ -821,67 +1134,51 @@ body{
   </button>
 </section>
 
-</div>
 </main>
 
 <div class="toast" id="toast"></div>
-
-<!-- شاشة فيديو الترحيب -->
-<div class="video-gate" id="videoGate">
-  <div class="video-inner">
-    <div class="video-message">مرحباً بك في منصة الدكتور محمود الجنايني</div>
-    <video id="welcomeVideo" controls playsinline controlsList="nodownload">
-      <source src="./89.mp4" type="video/mp4">
-    </video>
-    <div class="video-error" id="videoError">
-      تعذر تشغيل الفيديو.
-      <button type="button" id="retryVideo">إعادة المحاولة</button>
-    </div>
-  </div>
-</div>
+</body>
+</html>
 
 <script>
 (() => {
   "use strict";
 
   const $ = id => document.getElementById(id);
-
   const stages = [...document.querySelectorAll(".stage")];
-  const nextBtn = $("nextBtn");
-  const backBtn = $("backBtn");
-  const createBtn = $("createAccount");
-  const toast = $("toast");
 
   let currentStage = 0;
   let selectedPhoto = null;
   let photoBase64 = "";
 
-  const state = {
-    fullName: "",
-    parentName: "",
-    phone: "",
-    parentPhone: "",
-    educationType: "",
-    schoolGrade: "",
-    governorate: "",
-    center: "",
-    village: ""
-  };
-
   function notify(message) {
+    const toast = $("toast");
     toast.textContent = message;
     toast.classList.add("show");
     clearTimeout(notify.timer);
-    notify.timer = setTimeout(() => toast.classList.remove("show"), 3000);
+    notify.timer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3000);
   }
 
-  function value(id) {
+  function val(id) {
     return ($(id)?.value || "").trim();
   }
 
-  function setProgress() {
-    const percent = Math.round(((currentStage + 1) / stages.length) * 100);
-    $("progressText").textContent = `المرحلة ${currentStage + 1} من ${stages.length}`;
+  function educationType() {
+    return document.querySelector(
+      'input[name="educationType"]:checked'
+    )?.value || "";
+  }
+
+  function updateProgress() {
+    const percent = Math.round(
+      ((currentStage + 1) / stages.length) * 100
+    );
+
+    $("progressText").textContent =
+      `المرحلة ${currentStage + 1} من ${stages.length}`;
+
     $("progressPercent").textContent = percent + "%";
     $("progressFill").style.width = percent + "%";
 
@@ -892,151 +1189,170 @@ body{
   }
 
   function showStage(index) {
-    currentStage = Math.max(0, Math.min(index, stages.length - 1));
+    currentStage = Math.max(
+      0,
+      Math.min(index, stages.length - 1)
+    );
 
     stages.forEach((stage, i) => {
       stage.classList.toggle("active", i === currentStage);
     });
 
-    backBtn.classList.toggle("hidden", currentStage === 0);
-    nextBtn.classList.toggle("hidden", currentStage === stages.length - 1);
-    createBtn.disabled = false;
+    $("backBtn").classList.toggle("hidden", currentStage === 0);
+    $("nextBtn").classList.toggle("hidden", currentStage === 7);
 
-    setProgress();
+    updateProgress();
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 
-  function getEducationType() {
-    return document.querySelector('input[name="educationType"]:checked')?.value || "";
-  }
-
-  function validEgyptianPhone(phone) {
+  function validPhone(phone) {
     return /^01[0125][0-9]{8}$/.test(phone);
   }
 
-  function requireField(id, message) {
-    const element = $(id);
-    if (!element || !element.value.trim()) {
+  function required(id, message) {
+    const field = $(id);
+
+    if (!field || !field.value.trim()) {
       notify(message);
-      element?.focus();
+      field?.focus();
       return false;
     }
+
     return true;
   }
 
   function validateStage(index) {
-    switch (index) {
-      case 0: {
-        if (!requireField("studentName1", "اكتب الاسم الأول")) return false;
-        if (!requireField("studentName2", "اكتب الاسم الثاني")) return false;
-        if (!requireField("studentName3", "اكتب الاسم الثالث")) return false;
+    if (index === 0) {
+      if (!required("studentName1", "اكتب الاسم الأول")) return false;
+      if (!required("studentName2", "اكتب الاسم الثاني")) return false;
+      if (!required("studentName3", "اكتب الاسم الثالث")) return false;
 
-        const phone = value("studentPhone");
-        if (!validEgyptianPhone(phone)) {
-          notify("اكتب رقم هاتف مصري صحيح مكون من 11 رقمًا");
-          $("studentPhone").focus();
-          return false;
-        }
-
-        const password = value("password");
-        if (password.length < 6) {
-          notify("كلمة المرور يجب ألا تقل عن 6 أحرف أو أرقام");
-          $("password").focus();
-          return false;
-        }
-
-        if (password !== value("confirmPassword")) {
-          notify("كلمتا المرور غير متطابقتين");
-          $("confirmPassword").focus();
-          return false;
-        }
-        return true;
-      }
-
-      case 1: {
-        if (!requireField("parentName1", "اكتب اسم ولي الأمر")) return false;
-        if (!requireField("parentName2", "اكتب اسم العائلة لولي الأمر")) return false;
-
-        if (!validEgyptianPhone(value("parentPhone"))) {
-          notify("اكتب رقم هاتف ولي الأمر بصورة صحيحة");
-          $("parentPhone").focus();
-          return false;
-        }
-
-        if (value("parentPhone") === value("studentPhone")) {
-          notify("يجب أن يكون رقم ولي الأمر مختلفًا عن رقم الطالب");
-          return false;
-        }
-        return true;
-      }
-
-      case 2:
-        if (!getEducationType()) {
-          notify("اختر نوع التعليم");
-          return false;
-        }
-        return requireField("schoolGrade", "اختر الصف الدراسي");
-
-      case 3:
-        return requireField("governorate", "اختر المحافظة");
-
-      case 4:
-        if (!requireField("center", "اختر المركز أو المدينة")) return false;
-        if (value("center") === "أخرى" && !requireField("centerOther", "اكتب اسم المركز")) return false;
-        if (!requireField("village", "اختر القرية أو المنطقة")) return false;
-        if (value("village") === "أخرى" && !requireField("villageOther", "اكتب اسم القرية أو المنطقة")) return false;
-        return true;
-
-      case 5:
-        if (!selectedPhoto) {
-          notify("اختر صورة شخصية أولاً");
-          return false;
-        }
-        return true;
-
-      case 6:
-        if (!$("agreeTerms").checked) {
-          notify("يجب الموافقة على الشروط والأحكام");
-          return false;
-        }
-        return true;
-
-      case 7:
-        return true;
-
-      default:
+      if (!validPhone(val("studentPhone"))) {
+        notify("رقم هاتف الطالب غير صحيح");
+        $("studentPhone").focus();
         return false;
+      }
+
+      if (val("password").length < 6) {
+        notify("كلمة المرور يجب ألا تقل عن 6 أحرف أو أرقام");
+        $("password").focus();
+        return false;
+      }
+
+      if (val("password") !== val("confirmPassword")) {
+        notify("كلمتا المرور غير متطابقتين");
+        $("confirmPassword").focus();
+        return false;
+      }
+
+      return true;
     }
+
+    if (index === 1) {
+      if (!required("parentName1", "اكتب اسم ولي الأمر")) return false;
+      if (!required("parentName2", "اكتب اسم العائلة لولي الأمر")) return false;
+
+      if (!validPhone(val("parentPhone"))) {
+        notify("رقم هاتف ولي الأمر غير صحيح");
+        $("parentPhone").focus();
+        return false;
+      }
+
+      if (val("parentPhone") === val("studentPhone")) {
+        notify("رقم ولي الأمر يجب أن يكون مختلفًا عن رقم الطالب");
+        return false;
+      }
+
+      return true;
+    }
+
+    if (index === 2) {
+      if (!educationType()) {
+        notify("اختر نوع التعليم");
+        return false;
+      }
+
+      return required("schoolGrade", "اختر الصف الدراسي");
+    }
+
+    if (index === 3) {
+      return required("governorate", "اختر المحافظة");
+    }
+
+    if (index === 4) {
+      if (!required("center", "اختر المركز أو المدينة")) return false;
+
+      if (val("center") === "أخرى" &&
+          !required("centerOther", "اكتب اسم المركز")) {
+        return false;
+      }
+
+      if (!required("village", "اختر القرية أو المنطقة")) return false;
+
+      if (val("village") === "أخرى" &&
+          !required("villageOther", "اكتب اسم القرية أو المنطقة")) {
+        return false;
+      }
+
+      return true;
+    }
+
+    if (index === 5) {
+      if (!selectedPhoto || !photoBase64) {
+        notify("اختر صورتك الشخصية أولاً");
+        return false;
+      }
+
+      return true;
+    }
+
+    if (index === 6) {
+      if (!$("agreeTerms").checked) {
+        notify("يجب الموافقة على الشروط والأحكام");
+        return false;
+      }
+
+      return true;
+    }
+
+    return true;
   }
 
   function collectData() {
-    const fullName = [
-      value("studentName1"),
-      value("studentName2"),
-      value("studentName3")
-    ].join(" ");
-
-    const parentName = [
-      value("parentName1"),
-      value("parentName2")
-    ].join(" ");
-
     return {
-      phone: value("studentPhone"),
-      password: value("password"),
-      full_name: fullName,
-      parent_name: parentName,
-      parent_phone: value("parentPhone"),
-      education_type: getEducationType(),
-      school_grade: value("schoolGrade"),
-      governorate: value("governorate"),
-      education_center: value("center") === "أخرى"
-        ? value("centerOther")
-        : value("center"),
-      village: value("village") === "أخرى"
-        ? value("villageOther")
-        : value("village"),
+      phone: val("studentPhone"),
+      password: val("password"),
+
+      full_name: [
+        val("studentName1"),
+        val("studentName2"),
+        val("studentName3")
+      ].join(" "),
+
+      parent_name: [
+        val("parentName1"),
+        val("parentName2")
+      ].join(" "),
+
+      parent_phone: val("parentPhone"),
+      education_type: educationType(),
+      school_grade: val("schoolGrade"),
+      governorate: val("governorate"),
+
+      education_center:
+        val("center") === "أخرى"
+          ? val("centerOther")
+          : val("center"),
+
+      village:
+        val("village") === "أخرى"
+          ? val("villageOther")
+          : val("village"),
+
       photo_base64: photoBase64
     };
   }
@@ -1056,7 +1372,8 @@ body{
       ["القرية أو المنطقة", data.village]
     ];
 
-    $("reviewData").replaceChildren();
+    const container = $("reviewData");
+    container.replaceChildren();
 
     rows.forEach(([label, content]) => {
       const row = document.createElement("div");
@@ -1071,11 +1388,11 @@ body{
       result.textContent = content || "—";
 
       row.append(title, result);
-      $("reviewData").appendChild(row);
+      container.appendChild(row);
     });
   }
 
-  nextBtn.addEventListener("click", () => {
+  $("nextBtn").addEventListener("click", () => {
     if (!validateStage(currentStage)) return;
 
     if (currentStage === 6) {
@@ -1085,112 +1402,91 @@ body{
     showStage(currentStage + 1);
   });
 
-  backBtn.addEventListener("click", () => {
+  $("backBtn").addEventListener("click", () => {
     showStage(currentStage - 1);
   });
 
-  document.querySelectorAll('input[name="educationType"]').forEach(input => {
-    input.addEventListener("change", () => {
-      state.educationType = getEducationType();
-    });
-  });
-
-  $("profilePhoto").addEventListener("change", async event => {
+  $("profilePhoto").addEventListener("change", event => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/webp"
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
       notify("اختر صورة JPG أو PNG أو WebP");
       event.target.value = "";
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      notify("حجم الصورة يجب ألا يزيد عن 5 ميجابايت");
+      notify("حجم الصورة يجب ألا يتجاوز 5 ميجابايت");
       event.target.value = "";
       return;
     }
 
-    try {
-      const reader = new FileReader();
+    const reader = new FileReader();
 
-      reader.onload = () => {
-        photoBase64 = String(reader.result || "");
-        selectedPhoto = file;
+    reader.onload = () => {
+      photoBase64 = String(reader.result || "");
+      selectedPhoto = file;
 
-        $("photoPreview").src = photoBase64;
-        $("photoPreview").style.display = "block";
-        $("photoPlaceholder").style.display = "none";
+      $("photoPreview").src = photoBase64;
+      $("photoPreview").style.display = "block";
+      $("photoPlaceholder").style.display = "none";
 
-        notify("تم اختيار الصورة بنجاح");
-      };
+      notify("تم اختيار الصورة بنجاح");
+    };
 
-      reader.onerror = () => notify("تعذر قراءة الصورة، حاول مرة أخرى");
-      reader.readAsDataURL(file);
-    } catch (error) {
-      notify("حدث خطأ أثناء اختيار الصورة");
-    }
+    reader.onerror = () => {
+      notify("تعذرت قراءة الصورة");
+    };
+
+    reader.readAsDataURL(file);
   });
 
   /* المحافظات المصرية */
   const governorates = [
-    "القاهرة",
-    "الجيزة",
-    "الإسكندرية",
-    "القليوبية",
-    "الشرقية",
-    "الدقهلية",
-    "الغربية",
-    "المنوفية",
-    "البحيرة",
-    "كفر الشيخ",
-    "دمياط",
-    "بورسعيد",
-    "الإسماعيلية",
-    "السويس",
-    "شمال سيناء",
-    "جنوب سيناء",
-    "الفيوم",
-    "بني سويف",
-    "المنيا",
-    "أسيوط",
-    "سوهاج",
-    "قنا",
-    "الأقصر",
-    "أسوان",
-    "البحر الأحمر",
-    "الوادي الجديد",
-    "مطروح"
+    "القاهرة","الجيزة","الإسكندرية","القليوبية",
+    "الشرقية","الدقهلية","الغربية","المنوفية",
+    "البحيرة","كفر الشيخ","دمياط","بورسعيد",
+    "الإسماعيلية","السويس","شمال سيناء","جنوب سيناء",
+    "الفيوم","بني سويف","المنيا","أسيوط",
+    "سوهاج","قنا","الأقصر","أسوان",
+    "البحر الأحمر","الوادي الجديد","مطروح"
   ];
 
-  const centersByGovernorate = {
-    "القاهرة": ["مدينة نصر", "مصر الجديدة", "المعادي", "حلوان", "التجمع الخامس", "الشروق", "بدر", "السلام", "المرج", "أخرى"],
-    "الجيزة": ["الجيزة", "الهرم", "فيصل", "أكتوبر", "الشيخ زايد", "أوسيم", "إمبابة", "البدرشين", "العياط", "أخرى"],
-    "الإسكندرية": ["المنتزه", "شرق", "وسط", "غرب", "الجمرك", "العجمي", "العامرية", "برج العرب", "أخرى"],
-    "القليوبية": ["بنها", "طوخ", "قها", "قليوب", "شبرا الخيمة", "الخانكة", "الخصوص", "العبور", "كفر شكر", "أخرى"],
-    "الشرقية": ["الزقازيق", "بلبيس", "منيا القمح", "أبو حماد", "فاقوس", "ديرب نجم", "الحسينية", "العاشر من رمضان", "أخرى"],
-    "الدقهلية": ["المنصورة", "طلخا", "ميت غمر", "أجا", "السنبلاوين", "دكرنس", "منية النصر", "شربين", "أخرى"],
-    "الغربية": ["طنطا", "المحلة الكبرى", "زفتى", "كفر الزيات", "بسيون", "سمنود", "قطور", "أخرى"],
-    "المنوفية": ["شبين الكوم", "منوف", "أشمون", "الباجور", "تلا", "قويسنا", "السادات", "أخرى"],
-    "البحيرة": ["دمنهور", "كفر الدوار", "رشيد", "إدكو", "أبو حمص", "أبو المطامير", "الدلنجات", "حوش عيسى", "أخرى"],
-    "كفر الشيخ": ["كفر الشيخ", "دسوق", "فوه", "مطوبس", "بيلا", "الحامول", "بلطيم", "أخرى"],
-    "دمياط": ["دمياط", "فارسكور", "الزرقا", "كفر سعد", "رأس البر", "أخرى"],
-    "بورسعيد": ["بورسعيد", "بورفؤاد", "أخرى"],
-    "الإسماعيلية": ["الإسماعيلية", "فايد", "القنطرة شرق", "القنطرة غرب", "التل الكبير", "أبو صوير", "أخرى"],
-    "السويس": ["السويس", "الأربعين", "عتاقة", "الجناين", "فيصل", "أخرى"],
-    "شمال سيناء": ["العريش", "رفح", "الشيخ زويد", "بئر العبد", "الحسنة", "نخل", "أخرى"],
-    "جنوب سيناء": ["الطور", "شرم الشيخ", "دهب", "نويبع", "طابا", "أبو رديس", "أخرى"],
-    "الفيوم": ["الفيوم", "سنورس", "إطسا", "طامية", "أبشواي", "يوسف الصديق", "أخرى"],
-    "بني سويف": ["بني سويف", "ناصر", "إهناسيا", "ببا", "الفشن", "سمسطا", "الواسطى", "أخرى"],
-    "المنيا": ["المنيا", "مغاغة", "بني مزار", "مطاي", "سمالوط", "أبو قرقاص", "ملوي", "دير مواس", "أخرى"],
-    "أسيوط": ["أسيوط", "ديروط", "القوصية", "منفلوط", "أبنوب", "الفتح", "أبو تيج", "صدفا", "أخرى"],
-    "سوهاج": ["سوهاج", "أخميم", "جرجا", "طهطا", "المراغة", "البلينا", "المنشأة", "أخرى"],
-    "قنا": ["قنا", "نجع حمادي", "دشنا", "قفط", "قوص", "أبو تشت", "فرشوط", "أخرى"],
-    "الأقصر": ["الأقصر", "إسنا", "أرمنت", "القرنة", "البياضية", "الزينية", "أخرى"],
-    "أسوان": ["أسوان", "كوم أمبو", "إدفو", "دراو", "نصر النوبة", "أخرى"],
-    "البحر الأحمر": ["الغردقة", "رأس غارب", "سفاجا", "القصير", "مرسى علم", "الشلاتين", "أخرى"],
-    "الوادي الجديد": ["الخارجة", "الداخلة", "الفرافرة", "باريس", "بلاط", "أخرى"],
-    "مطروح": ["مرسى مطروح", "الحمام", "العلمين", "الضبعة", "سيدي براني", "السلوم", "النجيلة", "أخرى"]
+  const centers = {
+    "القاهرة":["مدينة نصر","مصر الجديدة","المعادي","حلوان","التجمع الخامس","الشروق","بدر","السلام","المرج","أخرى"],
+    "الجيزة":["الجيزة","الهرم","فيصل","أكتوبر","الشيخ زايد","أوسيم","إمبابة","البدرشين","العياط","أخرى"],
+    "الإسكندرية":["المنتزه","شرق","وسط","غرب","الجمرك","العجمي","العامرية","برج العرب","أخرى"],
+    "القليوبية":["بنها","طوخ","قها","قليوب","شبرا الخيمة","الخانكة","الخصوص","العبور","كفر شكر","أخرى"],
+    "الشرقية":["الزقازيق","بلبيس","منيا القمح","أبو حماد","فاقوس","ديرب نجم","الحسينية","العاشر من رمضان","أخرى"],
+    "الدقهلية":["المنصورة","طلخا","ميت غمر","أجا","السنبلاوين","دكرنس","منية النصر","شربين","أخرى"],
+    "الغربية":["طنطا","المحلة الكبرى","زفتى","كفر الزيات","بسيون","سمنود","قطور","أخرى"],
+    "المنوفية":["شبين الكوم","منوف","أشمون","الباجور","تلا","قويسنا","السادات","أخرى"],
+    "البحيرة":["دمنهور","كفر الدوار","رشيد","إدكو","أبو حمص","أبو المطامير","الدلنجات","حوش عيسى","أخرى"],
+    "كفر الشيخ":["كفر الشيخ","دسوق","فوه","مطوبس","بيلا","الحامول","بلطيم","أخرى"],
+    "دمياط":["دمياط","فارسكور","الزرقا","كفر سعد","رأس البر","أخرى"],
+    "بورسعيد":["بورسعيد","بورفؤاد","أخرى"],
+    "الإسماعيلية":["الإسماعيلية","فايد","القنطرة شرق","القنطرة غرب","التل الكبير","أبو صوير","أخرى"],
+    "السويس":["السويس","الأربعين","عتاقة","الجناين","فيصل","أخرى"],
+    "شمال سيناء":["العريش","رفح","الشيخ زويد","بئر العبد","الحسنة","نخل","أخرى"],
+    "جنوب سيناء":["الطور","شرم الشيخ","دهب","نويبع","طابا","أبو رديس","أخرى"],
+    "الفيوم":["الفيوم","سنورس","إطسا","طامية","أبشواي","يوسف الصديق","أخرى"],
+    "بني سويف":["بني سويف","ناصر","إهناسيا","ببا","الفشن","سمسطا","الواسطى","أخرى"],
+    "المنيا":["المنيا","مغاغة","بني مزار","مطاي","سمالوط","أبو قرقاص","ملوي","دير مواس","أخرى"],
+    "أسيوط":["أسيوط","ديروط","القوصية","منفلوط","أبنوب","الفتح","أبو تيج","صدفا","أخرى"],
+    "سوهاج":["سوهاج","أخميم","جرجا","طهطا","المراغة","البلينا","المنشأة","أخرى"],
+    "قنا":["قنا","نجع حمادي","دشنا","قفط","قوص","أبو تشت","فرشوط","أخرى"],
+    "الأقصر":["الأقصر","إسنا","أرمنت","القرنة","البياضية","الزينية","أخرى"],
+    "أسوان":["أسوان","كوم أمبو","إدفو","دراو","نصر النوبة","أخرى"],
+    "البحر الأحمر":["الغردقة","رأس غارب","سفاجا","القصير","مرسى علم","الشلاتين","أخرى"],
+    "الوادي الجديد":["الخارجة","الداخلة","الفرافرة","باريس","بلاط","أخرى"],
+    "مطروح":["مرسى مطروح","الحمام","العلمين","الضبعة","سيدي براني","السلوم","النجيلة","أخرى"]
   };
 
   function fillSelect(select, items, placeholder) {
@@ -1212,69 +1508,74 @@ body{
   fillSelect($("governorate"), governorates, "اختر المحافظة");
 
   $("governorate").addEventListener("change", () => {
-    const governorate = value("governorate");
-    const centers = centersByGovernorate[governorate] || ["أخرى"];
+    const governorate = val("governorate");
 
-    fillSelect($("center"), centers, "اختر المركز أو المدينة");
-    fillSelect($("village"), [], "اختر القرية أو المنطقة");
+    fillSelect(
+      $("center"),
+      centers[governorate] || ["أخرى"],
+      "اختر المركز أو المدينة"
+    );
+
+    fillSelect(
+      $("village"),
+      [],
+      "اختر القرية أو المنطقة"
+    );
 
     $("center").disabled = !governorate;
     $("village").disabled = true;
 
     $("centerOtherWrap").classList.add("hidden");
     $("villageOtherWrap").classList.add("hidden");
+
+    $("centerOther").value = "";
+    $("villageOther").value = "";
   });
 
+  const villages = {
+    "مدينة نصر":["الحي الأول","الحي السادس","الحي السابع","الحي العاشر","أخرى"],
+    "مصر الجديدة":["الكوربة","أرض الجولف","روكسي","الماظة","أخرى"],
+    "المعادي":["المعادي الجديدة","زهراء المعادي","حدائق المعادي","أخرى"],
+    "الشروق":["الحي الأول","الحي الثاني","الحي الثالث","الحي الرابع","الحي الخامس","الحي السادس","أخرى"],
+    "بدر":["الحي الأول","الحي الثاني","الحي الثالث","أخرى"],
+    "الزقازيق":["القومية","الغشام","الحسينية","النحال","أخرى"],
+    "بنها":["بنها البلد","كفر الجزار","دملو","أخرى"],
+    "طنطا":["سيجر","الجلاء","قحافة","أخرى"],
+    "المنصورة":["توريل","المشاية","جديلة","أخرى"],
+    "أكتوبر":["الحي الأول","الحي الثاني","الحي الثالث","الحي الرابع","أخرى"],
+    "الإسكندرية":["سيدي جابر","سموحة","محرم بك","العصافرة","أخرى"]
+  };
+
   $("center").addEventListener("change", () => {
-    const center = value("center");
+    const center = val("center");
 
-    $("centerOtherWrap").classList.toggle("hidden", center !== "أخرى");
-
-    const governorate = value("governorate");
-    const villages = {
-      "مدينة نصر": ["الحي الأول", "الحي السابع", "الحي العاشر", "الحي السادس", "أخرى"],
-      "مصر الجديدة": ["الكوربة", "أرض الجولف", "روكسي", "الماظة", "أخرى"],
-      "المعادي": ["المعادي الجديدة", "زهراء المعادي", "حدائق المعادي", "أخرى"],
-      "الشروق": ["الحي الأول", "الحي الثاني", "الحي الثالث", "الحي الرابع", "الحي الخامس", "الحي السادس", "أخرى"],
-      "بدر": ["الحي الأول", "الحي الثاني", "الحي الثالث", "أخرى"],
-      "الزقازيق": ["القومية", "الغشام", "الحسينية", "النحال", "أخرى"],
-      "بنها": ["بنها البلد", "كفر الجزار", "دملو", "أخرى"],
-      "طنطا": ["سيجر", "الجلاء", "قحافة", "أخرى"],
-      "المنصورة": ["توريل", "المشاية", "جديلة", "أخرى"],
-      "الجيزة": ["الدقي", "العجوزة", "العمرانية", "أخرى"],
-      "أكتوبر": ["الحي الأول", "الحي الثاني", "الحي الثالث", "الحي الرابع", "أخرى"],
-      "الإسكندرية": ["سيدي جابر", "سموحة", "محرم بك", "العصافرة", "أخرى"]
-    };
+    $("centerOtherWrap").classList.toggle(
+      "hidden",
+      center !== "أخرى"
+    );
 
     const list = center === "أخرى"
       ? ["أخرى"]
-      : (villages[center] || ["المدينة", "القرية الرئيسية", "أخرى"]);
+      : (villages[center] || ["المدينة","القرية الرئيسية","أخرى"]);
 
-    fillSelect($("village"), list, "اختر القرية أو المنطقة");
+    fillSelect(
+      $("village"),
+      list,
+      "اختر القرية أو المنطقة"
+    );
+
     $("village").disabled = false;
     $("villageOtherWrap").classList.add("hidden");
+    $("villageOther").value = "";
   });
 
   $("village").addEventListener("change", () => {
-    $("villageOtherWrap").classList.toggle("hidden", value("village") !== "أخرى");
-  });
+    const isOther = val("village") === "أخرى";
 
-  $("copyIdButton").addEventListener("click", async () => {
-    const id = $("finalId").textContent.trim();
-    if (!id) return;
-
-    try {
-      await navigator.clipboard.writeText(id);
-      notify("تم نسخ رقم الطالب");
-    } catch {
-      const temp = document.createElement("textarea");
-      temp.value = id;
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand("copy");
-      temp.remove();
-      notify("تم نسخ رقم الطالب");
-    }
+    $("villageOtherWrap").classList.toggle(
+      "hidden",
+      !isOther
+    );
   });
 
   showStage(0);
@@ -1282,14 +1583,11 @@ body{
   window.ELGEN_REGISTER = {
     $,
     notify,
-    value,
+    val,
     validateStage,
     collectData,
     showStage,
     buildReview,
-    get currentStage() {
-      return currentStage;
-    },
     get photoBase64() {
       return photoBase64;
     }
@@ -1303,12 +1601,11 @@ body{
 
   const app = window.ELGEN_REGISTER;
   if (!app) {
-    console.error("تعذر تحميل نظام التسجيل.");
+    console.error("ELGEN_REGISTER is not available");
     return;
   }
 
   const $ = app.$;
-  const notify = app.notify;
 
   const ACCESS_URL =
     "https://iirrwfativrsrxluxmwp.supabase.co/functions/v1/student-phone-access";
@@ -1316,12 +1613,87 @@ body{
   const PUBLIC_KEY =
     "sb_publishable_cDCIPKxT6-2NgbLmnTy1Lw_pW84RMam";
 
-  let registrationFinished = false;
+  const SESSION_KEY = "elgen_student_session";
+  const ACCOUNT_KEY = "elgen_student_account";
 
-  async function createStudentAccount() {
-    if (registrationFinished) return;
+  let submitting = false;
+
+  function showSuccess(user) {
+    const name =
+      user.full_name ||
+      app.collectData().full_name;
+
+    const userCode = user.user_code;
+
+    if (!userCode) {
+      throw new Error("لم يرجع الخادم رقم الطالب");
+    }
+
+    $("registrationCard").style.display = "none";
+    $("successView").style.display = "block";
+
+    $("finalName").textContent = name;
+    $("finalId").textContent = userCode;
+
+    if (user.photo_url) {
+      $("finalPhoto").src = user.photo_url;
+    } else if (app.photoBase64) {
+      $("finalPhoto").src = app.photoBase64;
+    }
+
+    const verified =
+      user.is_verified === true ||
+      user.verified === true;
+
+    $("finalVerificationBadge").style.display =
+      verified ? "inline-flex" : "none";
+
+    const qrContainer = $("qrcode");
+    qrContainer.replaceChildren();
+
+    const qrScript = document.createElement("script");
+    qrScript.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+
+    qrScript.onload = () => {
+      if (typeof QRCode !== "undefined") {
+        new QRCode(qrContainer, {
+          text: String(userCode),
+          width: 180,
+          height: 180,
+          colorDark: "#17152b",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      }
+    };
+
+    qrScript.onerror = () => {
+      qrContainer.textContent =
+        "تعذر تحميل رمز QR. احتفظ برقم الطالب.";
+    };
+
+    document.head.appendChild(qrScript);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  async function createAccount() {
+    if (submitting) return;
 
     if (!app.validateStage(7)) return;
+
+    const payload = app.collectData();
+
+    if (!payload.photo_base64) {
+      app.notify("الصورة الشخصية مطلوبة");
+      return;
+    }
+
+    submitting = true;
 
     const button = $("createAccount");
     const originalText = button.textContent;
@@ -1330,8 +1702,6 @@ body{
     button.textContent = "جارٍ إنشاء الحساب...";
 
     try {
-      const payload = app.collectData();
-
       const response = await fetch(ACCESS_URL, {
         method: "POST",
         headers: {
@@ -1350,10 +1720,10 @@ body{
       try {
         result = await response.json();
       } catch {
-        throw new Error("استجابة غير مفهومة من الخادم.");
+        throw new Error("استجابة الخادم غير مفهومة");
       }
 
-      if (!response.ok || !result || !result.ok) {
+      if (!response.ok || !result || result.ok !== true) {
         throw new Error(
           result?.message ||
           result?.error ||
@@ -1361,82 +1731,65 @@ body{
         );
       }
 
-      if (!result.user || !result.user.user_code) {
-        throw new Error("تم استلام رد غير مكتمل من الخادم.");
+      if (!result.user || !result.session) {
+        throw new Error("بيانات الحساب أو الجلسة غير مكتملة من الخادم");
       }
 
-      if (result.session) {
-        localStorage.setItem(
-          "elgen_student_session",
-          JSON.stringify(result.session)
-        );
+      if (!result.user.user_code) {
+        throw new Error("لم يرجع الخادم رقم الطالب");
       }
 
       localStorage.setItem(
-        "elgen_student_account",
-        JSON.stringify(result.user)
+        SESSION_KEY,
+        JSON.stringify(result.session)
       );
 
-      registrationFinished = true;
+      localStorage.setItem(
+        ACCOUNT_KEY,
+        JSON.stringify(result.user)
+      );
 
       showSuccess(result.user);
 
     } catch (error) {
-      console.error("Registration error:", error);
-      notify(error.message || "حدث خطأ أثناء التسجيل.");
-
+      console.error("ELGEN registration error:", error);
+      app.notify(error.message || "حدث خطأ أثناء التسجيل");
+    } finally {
+      submitting = false;
       button.disabled = false;
       button.textContent = originalText;
     }
   }
 
-  function showSuccess(user) {
-    const registrationCard = document.querySelector(
-      "main.page > section.card"
-    );
+  $("createAccount").addEventListener("click", createAccount);
 
-    if (registrationCard) {
-      registrationCard.style.display = "none";
+  $("copyIdButton").addEventListener("click", async () => {
+    const code = $("finalId").textContent.trim();
+
+    if (!code) {
+      app.notify("رقم الطالب غير متاح");
+      return;
     }
 
-    const success = $("successView");
-    success.style.display = "block";
+    try {
+      await navigator.clipboard.writeText(code);
+      app.notify("تم نسخ رقم الطالب");
+    } catch {
+      const field = document.createElement("textarea");
+      field.value = code;
+      document.body.appendChild(field);
+      field.select();
 
-    $("finalName").textContent =
-      user.full_name ||
-      app.collectData().full_name;
+      try {
+        document.execCommand("copy");
+        app.notify("تم نسخ رقم الطالب");
+      } catch {
+        app.notify("انسخ رقم الطالب يدويًا");
+      }
 
-    $("finalId").textContent = user.user_code;
-
-    const photo = $("finalPhoto");
-
-    if (user.photo_url) {
-      photo.src = user.photo_url;
-      photo.style.display = "block";
-    } else if (app.photoBase64) {
-      photo.src = app.photoBase64;
-      photo.style.display = "block";
+      field.remove();
     }
-
-    if (user.is_verified === true || user.verified === true) {
-      $("finalVerificationBadge").classList.remove("hidden");
-    }
-
-    const qr = $("qrcode");
-    if (qr) {
-      qr.textContent = "";
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }
-
-  $("createAccount").addEventListener(
-    "click",
-    createStudentAccount
-  );
+  });
 
   $("enterPlatformButton").addEventListener("click", () => {
     window.location.href = "./platform.html";
