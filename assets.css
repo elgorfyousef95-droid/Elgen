@@ -1208,3 +1208,624 @@ body::after {
     animation-duration: .01ms !important;
   }
 }
+
+/* =========================================
+   ELGEN PREMIUM RESPONSIVE DESIGN
+   Background-matched visual refinement
+   ========================================= */
+
+:root {
+  --gold: #e6bd78;
+  --gold-light: #f7dfb2;
+  --gold-dark: #a77b42;
+
+  --bg: #100d0b;
+  --panel: rgba(25, 20, 16, .82);
+  --panel-light: rgba(39, 31, 23, .88);
+
+  --line: rgba(230, 189, 120, .22);
+  --text: #fffaf2;
+  --muted: #c2b5a3;
+
+  --success: #70d6a8;
+  --danger: #f08080;
+
+  --sidebar-width: 270px;
+  --topbar-height: 74px;
+  --content-width: 1540px;
+
+  --radius-lg: 25px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+
+  --shadow: 0 18px 55px rgba(0,0,0,.32);
+}
+
+/* الخلفية الأصلية */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #100d0b;
+  color: var(--text);
+}
+
+body::before {
+  z-index: -2;
+  background:
+    url("./1795124002624.jpg")
+    center center / cover no-repeat;
+  transform: scale(1.015);
+}
+
+body::after {
+  z-index: -1;
+  background:
+    radial-gradient(
+      ellipse at 15% 10%,
+      rgba(185, 132, 65, .13),
+      transparent 42%
+    ),
+    linear-gradient(
+      125deg,
+      rgba(13, 10, 8, .89),
+      rgba(19, 15, 11, .82) 48%,
+      rgba(12, 10, 9, .91)
+    );
+}
+
+.app-shell {
+  position: relative;
+  z-index: 0;
+  min-height: 100vh;
+}
+
+/* تحسين الخطوط والحركة */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+.side-link,
+.category-tile,
+.quick-link,
+.image-card {
+  touch-action: manipulation;
+}
+
+button,
+a {
+  transition:
+    color .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* القائمة الجانبية */
+.sidebar {
+  background: rgba(19, 15, 12, .91) !important;
+  border-left: 1px solid rgba(230,189,120,.25) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: -12px 0 45px rgba(0,0,0,.15);
+  overscroll-behavior: contain;
+}
+
+.brand {
+  border-bottom-color: rgba(230,189,120,.22);
+}
+
+.brand-logo {
+  border: 1px solid rgba(255,239,207,.4);
+  box-shadow:
+    0 8px 28px rgba(196,145,75,.22),
+    inset 0 1px rgba(255,255,255,.45);
+}
+
+.brand-name {
+  color: #fff0d2;
+}
+
+.nav-heading {
+  color: #c4a77e;
+  letter-spacing: .2px;
+}
+
+.side-link {
+  min-height: 47px;
+  border-radius: 14px;
+  color: #e1d5c5;
+}
+
+.side-link:hover,
+.side-link.active {
+  color: #ffe9c4;
+  background:
+    linear-gradient(
+      105deg,
+      rgba(219,174,105,.19),
+      rgba(219,174,105,.055)
+    );
+  border-color: rgba(230,189,120,.29);
+  box-shadow: inset 3px 0 rgba(230,189,120,.55);
+}
+
+.sidebar-account {
+  background: rgba(17,13,10,.96);
+  border-top-color: rgba(230,189,120,.22);
+  backdrop-filter: blur(20px);
+}
+
+/* الشريط العلوي */
+.topbar {
+  min-height: var(--topbar-height);
+  background: rgba(17,13,10,.78) !important;
+  border-bottom: 1px solid rgba(230,189,120,.22) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.menu-button,
+.icon-button,
+.topbar-support {
+  border: 1px solid rgba(230,189,120,.28);
+  border-radius: 14px;
+  color: #f8dfb5;
+  background: rgba(255,255,255,.045);
+  box-shadow: inset 0 1px rgba(255,255,255,.045);
+}
+
+.menu-button:hover,
+.icon-button:hover,
+.topbar-support:hover {
+  background: rgba(230,189,120,.14);
+  border-color: rgba(230,189,120,.55);
+  transform: translateY(-1px);
+}
+
+.profile-shortcut {
+  border-color: rgba(230,189,120,.25);
+  background: rgba(255,255,255,.045);
+  backdrop-filter: blur(12px);
+}
+
+.profile-shortcut:hover {
+  border-color: rgba(230,189,120,.55);
+  background: rgba(230,189,120,.1);
+}
+
+/* المحتوى والبطاقات */
+.page-content {
+  width: 100%;
+  max-width: var(--content-width);
+  padding: clamp(17px, 2.4vw, 34px);
+  padding-bottom: max(38px, env(safe-area-inset-bottom));
+}
+
+.student-overview,
+.hero-banner {
+  border-color: rgba(230,189,120,.32) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,.28);
+}
+
+.student-overview {
+  background:
+    linear-gradient(
+      110deg,
+      rgba(17,13,10,.82),
+      rgba(36,26,17,.72)
+    ),
+    url("./1795124002624.jpg") center / cover !important;
+  backdrop-filter: blur(12px);
+}
+
+.hero-banner {
+  background:
+    linear-gradient(
+      100deg,
+      rgba(17,13,10,.86),
+      rgba(28,21,15,.66)
+    ),
+    url("./1795124002624.jpg") center / cover !important;
+}
+
+.panel,
+.stat-card,
+.quick-link,
+.category-tile,
+.image-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(37,29,21,.84),
+      rgba(19,15,12,.88)
+    ) !important;
+  border-color: rgba(230,189,120,.2) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.panel:hover,
+.stat-card:hover,
+.quick-link:hover,
+.category-tile:hover,
+.image-card:hover {
+  border-color: rgba(230,189,120,.48) !important;
+}
+
+.quick-link,
+.category-tile {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.quick-link:hover,
+.category-tile:hover,
+.image-card:hover {
+  transform: translateY(-3px);
+}
+
+.quick-icon,
+.category-icon,
+.stat-icon,
+.empty-icon {
+  background: rgba(230,189,120,.105);
+  border-color: rgba(230,189,120,.28);
+  color: #f6dfb8;
+}
+
+.section-heading h2,
+.panel-title {
+  color: #fff0d6;
+}
+
+.section-heading p,
+.panel-text,
+.category-tile p,
+.quick-link small {
+  color: #c6b9a8;
+}
+
+/* صورة الدكتور وصور الحساب */
+.teacher-image {
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 14px 28px rgba(0,0,0,.55));
+}
+
+.student-photo,
+.profile-avatar,
+.avatar {
+  object-fit: cover;
+  object-position: center;
+}
+
+.student-photo {
+  border-color: #e8c58d;
+  box-shadow:
+    0 0 0 5px rgba(230,189,120,.1),
+    0 14px 32px rgba(0,0,0,.35);
+}
+
+/* الأزرار */
+.btn-primary {
+  color: #24180d;
+  background: linear-gradient(120deg,#c99a5d,#f5dfb8);
+  box-shadow: 0 7px 22px rgba(194,145,79,.18);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.07);
+  box-shadow: 0 10px 27px rgba(194,145,79,.27);
+}
+
+.btn:not(.btn-primary):hover,
+.back-button:hover {
+  background: rgba(230,189,120,.12);
+  border-color: rgba(230,189,120,.5);
+}
+
+/* الحقول والجداول */
+.form-field input,
+.form-field select,
+.form-field textarea {
+  background: rgba(12,10,8,.48);
+  border-color: rgba(230,189,120,.23);
+  color: #fffaf2;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #a99a87;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: #e6bd78;
+  box-shadow: 0 0 0 3px rgba(230,189,120,.1);
+}
+
+.data-table th {
+  background: rgba(230,189,120,.12);
+}
+
+/* التمرير */
+.sidebar,
+.table-wrap {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(230,189,120,.38) rgba(255,255,255,.035);
+}
+
+.sidebar::-webkit-scrollbar,
+.table-wrap::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.table-wrap::-webkit-scrollbar-thumb {
+  background: rgba(230,189,120,.38);
+  border-radius: 20px;
+}
+
+/* الشاشات الكبيرة */
+@media (min-width: 1500px) {
+  .page-content {
+    padding-inline: 42px;
+  }
+
+  .student-overview,
+  .hero-banner {
+    border-radius: 28px;
+  }
+}
+
+/* التابلت */
+@media (max-width: 1100px) {
+  :root {
+    --sidebar-width: 245px;
+  }
+
+  .page-content {
+    padding: 22px;
+  }
+
+  .tiles-grid,
+  .cards-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+
+/* الموبايل */
+@media (max-width: 700px) {
+  :root {
+    --topbar-height: 64px;
+  }
+
+  body {
+    background-attachment: scroll;
+  }
+
+  .sidebar {
+    width: min(310px, 88vw);
+    padding-bottom: 100px;
+    transform: translateX(105%);
+    transition: transform .28s cubic-bezier(.2,.8,.2,1);
+  }
+
+  body.menu-open .sidebar {
+    transform: translateX(0);
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  body.menu-open .menu-overlay {
+    display: block;
+  }
+
+  .menu-overlay {
+    z-index: 90;
+    background: rgba(0,0,0,.65);
+    backdrop-filter: blur(5px);
+  }
+
+  .main-area {
+    margin-right: 0;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .topbar {
+    padding: 8px 11px;
+    gap: 7px;
+  }
+
+  .topbar-start,
+  .topbar-end {
+    gap: 7px;
+  }
+
+  .page-heading strong {
+    font-size: 11px;
+  }
+
+  .page-heading small {
+    font-size: 8px;
+  }
+
+  .menu-button,
+  .icon-button,
+  .topbar-support {
+    width: 39px;
+    height: 39px;
+    flex-basis: 39px;
+    border-radius: 12px;
+  }
+
+  .profile-shortcut {
+    max-width: 43px;
+    padding: 4px;
+  }
+
+  .profile-shortcut span {
+    display: none;
+  }
+
+  .page-content {
+    padding: 16px 12px 34px;
+  }
+
+  .student-overview {
+    grid-template-columns: minmax(0,1fr) !important;
+    gap: 14px;
+    padding: 17px;
+    border-radius: 20px;
+  }
+
+  .student-main {
+    gap: 13px;
+  }
+
+  .student-photo {
+    width: 78px;
+    height: 78px;
+  }
+
+  .student-name {
+    font-size: clamp(16px,4.5vw,20px);
+  }
+
+  .study-summary {
+    padding: 14px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 9px;
+  }
+
+  .tiles-grid,
+  .cards-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 9px;
+  }
+
+  .quick-link,
+  .category-tile {
+    min-height: 94px;
+    padding: 11px;
+    gap: 9px;
+  }
+
+  .quick-icon,
+  .category-icon {
+    width: 39px;
+    height: 39px;
+    flex-basis: 39px;
+  }
+
+  .hero-banner {
+    min-height: 320px;
+    padding: 20px;
+    align-items: flex-start;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    padding-bottom: 125px;
+  }
+
+  .hero-title {
+    font-size: clamp(21px,6vw,27px);
+  }
+
+  .teacher-image {
+    left: 8px;
+    height: 48%;
+    max-width: 48%;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+
+  .form-grid,
+  .profile-details {
+    grid-template-columns: minmax(0,1fr);
+  }
+
+  .page-footer {
+    padding-bottom: 24px;
+  }
+}
+
+/* الهواتف الصغيرة */
+@media (max-width: 390px) {
+  .page-content {
+    padding-inline: 10px;
+  }
+
+  .tiles-grid,
+  .cards-grid {
+    grid-template-columns: minmax(0,1fr);
+  }
+
+  .student-overview {
+    padding: 14px;
+  }
+
+  .student-photo {
+    width: 68px;
+    height: 68px;
+  }
+
+  .topbar-actions {
+    gap: 5px;
+  }
+
+  .welcome-line {
+    flex-wrap: wrap;
+  }
+}
+
+/* شاشات اللمس والتقليل الحركي */
+@media (hover: none) {
+  .quick-link:hover,
+  .category-tile:hover,
+  .image-card:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}
