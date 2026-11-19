@@ -36,7 +36,7 @@ html,body{
 
 body{
   min-height:100vh;
-  min-height:100svh;
+  min-height:100dvh;
   background:#f5f6fb;
   color:var(--text);
   font-family:Cairo,sans-serif;
@@ -48,19 +48,23 @@ button{cursor:pointer}
 .page{
   position:relative;
   isolation:isolate;
-  height:100vh;
-  height:100svh;
-  min-height:100svh;
   width:100%;
+  height:100vh;
+  height:100dvh;
+  min-height:100dvh;
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
   align-items:center;
-  padding:max(24px,env(safe-area-inset-top)) 14px max(24px,env(safe-area-inset-bottom));
+  padding:
+    max(20px,env(safe-area-inset-top))
+    14px
+    max(24px,env(safe-area-inset-bottom));
   overflow-x:hidden;
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
   overscroll-behavior-y:contain;
+  scroll-padding-block:24px;
 }
 
 .background{
@@ -97,7 +101,8 @@ button{cursor:pointer}
 
 .layout{
   width:min(100%,440px);
-  margin:auto;
+  margin-block:auto;
+  margin-inline:auto;
   flex:0 0 auto;
 }
 
@@ -418,24 +423,81 @@ button{cursor:pointer}
 .toast.error{border-color:#e88b9b}
 .toast.success{border-color:#7bd7b1}
 
+/* الهواتف والشاشات الضيقة */
 @media(max-width:480px){
-  .page{padding-left:12px;padding-right:12px}
-  .layout{width:100%;max-width:420px}
+  .page{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .layout{
+    width:100%;
+    max-width:420px;
+  }
+
   .brand{margin-bottom:16px}
-  .brand-mark{width:59px;height:59px;border-radius:19px}
-  .card{padding:23px 18px;border-radius:23px}
+  .brand-mark{
+    width:59px;
+    height:59px;
+    border-radius:19px;
+  }
+
+  .card{
+    padding:23px 18px;
+    border-radius:23px;
+  }
 }
 
+/* الشاشات القصيرة */
 @media(max-height:700px){
-  .page{justify-content:flex-start}
-  .layout{margin-top:12px;margin-bottom:12px}
+  .page{
+    justify-content:flex-start;
+    padding-top:max(12px,env(safe-area-inset-top));
+    padding-bottom:max(18px,env(safe-area-inset-bottom));
+  }
+
+  .layout{
+    margin-top:0;
+    margin-bottom:0;
+  }
+
   .brand{margin-bottom:12px}
-  .brand-mark{width:49px;height:49px;border-radius:16px}
-  .brand-mark svg{width:31px;height:31px}
+
+  .brand-mark{
+    width:49px;
+    height:49px;
+    border-radius:16px;
+  }
+
+  .brand-mark svg{
+    width:31px;
+    height:31px;
+  }
+
   .card{padding:18px}
   .heading{margin-bottom:16px}
   .field{margin-bottom:12px}
   .bottom-note{margin-top:10px}
+}
+
+/* الهاتف بالعرض */
+@media(orientation:landscape) and (max-height:520px){
+  .brand{margin-bottom:8px}
+
+  .brand-mark{
+    width:42px;
+    height:42px;
+    margin-bottom:6px;
+  }
+
+  .brand-mark svg{
+    width:27px;
+    height:27px;
+  }
+
+  .card{padding:15px}
+  .heading{margin-bottom:10px}
+  .field{margin-bottom:9px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -617,7 +679,6 @@ async function access(payload){
   return data;
 }
 
-/* زر الاستعادة جاهز للمرحلة القادمة */
 $("forgotPassword").addEventListener("click",()=>{
   notify("سيتم تجهيز استعادة كلمة المرور في صفحة مستقلة على مراحل.","success");
 });
@@ -690,8 +751,11 @@ $("loginForm").addEventListener("submit",async event=>{
     $("accountStep").style.display="block";
 
     $("studentId").value="";
-    $("pageScroller").scrollTop=0;
-    $("studentId").focus();
+
+    requestAnimationFrame(()=>{
+      $("pageScroller").scrollTo({top:0,behavior:"smooth"});
+      $("studentId").focus({preventScroll:true});
+    });
 
     notify("تم العثور على حسابك. اكتب رقم الـ ID للمتابعة.","success");
 
@@ -765,7 +829,7 @@ $("backToLogin").addEventListener("click",()=>{
   $("password").value="";
   $("studentId").value="";
 
-  $("pageScroller").scrollTop=0;
+  $("pageScroller").scrollTo({top:0,behavior:"smooth"});
 });
 
 /* منع التكبير مع السماح بالتمرير الرأسي */
