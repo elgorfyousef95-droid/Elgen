@@ -159,33 +159,33 @@ button{cursor:pointer}
 .select-launcher .select-value{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .select-launcher.is-placeholder{color:#9292a5}
 .select-launcher:disabled{opacity:.45;cursor:not-allowed}
-.select-dialog-title{margin:5px 0 12px;color:#fff2d8;font-size:17px;font-weight:900}
+.select-dialog-title{margin:5px 0 10px;color:#fff2d8;font-size:15px;font-weight:900}
 .select-search{
- width:100%;height:44px;padding:0 15px;border:1px solid #ffffff20;
- border-radius:13px;background:#ffffff0a;color:#fff;font:inherit;font-size:12px;outline:none;
+ width:100%;height:40px;padding:0 12px;border:1px solid #ffffff20;
+ border-radius:11px;background:#ffffff0a;color:#fff;font:inherit;font-size:11px;outline:none;
 }
 .select-search:focus{border-color:#e9b95e;box-shadow:0 0 0 3px #e9b95e1b}
-.select-options{padding:8px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;min-height:0}
+.select-options{padding:6px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;min-height:0}
 .select-option{
- width:100%;min-height:43px;padding:9px 13px;margin:3px 0;
+ width:100%;min-height:39px;padding:7px 11px;margin:2px 0;
  display:flex;align-items:center;justify-content:space-between;gap:10px;
- border:1px solid transparent;border-radius:12px;background:transparent;
- color:#e9e7f0;text-align:right;font:inherit;font-size:12px;font-weight:700;
+ border:1px solid transparent;border-radius:10px;background:transparent;
+ color:#e9e7f0;text-align:right;font:inherit;font-size:11px;font-weight:700;
 }
 .select-option:hover,.select-option:focus-visible{
  background:#ffffff0c;border-color:#ffffff18;outline:none;
 }
 .select-option.selected{color:#ffdda0;background:#e9b95e16;border-color:#e9b95e55}
 .select-option.selected:after{content:"✓";color:#ffdda0;font-weight:900}
-.select-empty{padding:25px 12px;text-align:center;color:#a8a7b8;font-size:12px}
+.select-empty{padding:20px 12px;text-align:center;color:#a8a7b8;font-size:11px}
 .select-dialog-foot{
- padding:10px 15px;border-top:1px solid #ffffff13;
+ padding:8px 13px;border-top:1px solid #ffffff13;
  display:flex;justify-content:space-between;align-items:center;
 }
 .select-count{font-size:10px;color:#9998aa}
 .select-close{
- min-height:38px;padding:7px 17px;border:1px solid #e9b95e55;
- border-radius:11px;background:#e9b95e12;color:#ffdda0;
+ min-height:34px;padding:5px 15px;border:1px solid #e9b95e55;
+ border-radius:10px;background:#e9b95e12;color:#ffdda0;
  font:inherit;font-size:11px;font-weight:900;
 }
 .grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
@@ -348,70 +348,28 @@ button{cursor:pointer}
 .profile-photo-row .final-photo{margin:0}
 .profile-status-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border:1px solid #42d6a077;border-radius:999px;background:#42d6a018;color:#8ff0c6;font-size:10px;font-weight:900}
 .video-inner{max-height:100%;display:flex;flex-direction:column;justify-content:center}
-.video-inner video{width:100%;height:auto;max-height:calc(100dvh - 100px);aspect-ratio:16/9;object-fit:contain}/* إعدادات العرض على الهاتف */
-@media(max-width:520px){
- .page{padding:12px 9px max(14px,env(safe-area-inset-bottom))}
- .wrapper{width:100%;max-width:100%}
- .card{padding:14px 11px;border-radius:19px}
- .brand{margin-bottom:10px}
- .brand-logo{width:50px;height:50px;border-radius:16px}
- .steps{gap:2px;margin-bottom:14px}
- .step{font-size:7px}
- .step-circle{width:25px;height:25px}
- .grid-two{gap:8px}
- .grid-three{gap:7px}
- .choice label{min-height:115px;padding:11px 7px}
- .choice-art{width:41px;height:41px}
- .stage-title{font-size:15px}
- .video-inner video{max-height:calc(100dvh - 105px);aspect-ratio:9/16}
-}
-@media(max-width:360px){
- .grid-three{grid-template-columns:1fr}
- .step span:last-child{display:none}
- .choice label{min-height:108px}
- .card-head h2{font-size:18px}
-}
-@media(max-height:650px){
- .brand-logo{width:42px;height:42px;margin-bottom:5px}
- .brand-logo svg{width:27px;height:27px}
- .brand{margin-bottom:7px}
- .brand p{display:none}
- .card-head{margin-bottom:10px}
- .card-head h2{font-size:18px}
- .progress-area,.steps{margin-bottom:10px}
- .stage-heading{margin-bottom:10px}
- .field{margin-bottom:8px}
- .field input,.field select,.select-launcher{height:42px;min-height:42px}
- .nav-buttons{margin-top:10px}
-}
-@media(prefers-reduced-motion:reduce){
- *,*:before,*:after{animation:none!important;transition:none!important}
-}
+.video-inner video{width:100%;height:auto;max-height:calc(100dvh - 100px);aspect-ratio:16/9;object-fit:contain}
 
-/* قائمة موحدة: طويلة، قابلة للتمرير، وخلفيتها خفيفة */
+/* نافذة الاختيارات المعدلة: أصغر حجماً وتتحرك/تتصفح بسهولة */
 .select-layer{
  position:fixed;inset:0;z-index:5000;display:none;
  align-items:center;justify-content:center;padding:12px;
- background:rgba(4,5,12,.30);
- backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+ background:rgba(4,5,12,.45);
+ backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
 }
 .select-layer.open{display:flex}
 .select-dialog{
- width:min(410px,92vw);
- height:min(68dvh,590px);
- min-height:min(300px,calc(100dvh - 24px));
- max-height:calc(100dvh - 24px);
+ width:min(380px,90vw);
+ height:min(52dvh,450px);
+ min-height:240px;
+ max-height:calc(100dvh - 40px);
  display:flex;flex-direction:column;overflow:hidden;
- background:#171827;border:1px solid #d9ad625c;border-radius:21px;
+ background:#171827;border:1px solid #d9ad625c;border-radius:18px;
  box-shadow:0 24px 70px #0009,inset 0 1px #ffffff10;
  animation:selectPop .18s ease-out;
 }
-.select-drag-area{
- height:21px;flex:0 0 21px;display:flex;align-items:center;
- justify-content:center;touch-action:none;cursor:grab;
-}
-.select-drag-handle{width:42px;height:4px;border-radius:9px;background:#ffffff66}
-.select-dialog-head{flex:0 0 auto;padding:12px 15px 10px;border-bottom:1px solid #ffffff13}
+@keyframes selectPop{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+.select-dialog-head{flex:0 0 auto;padding:10px 12px 8px;border-bottom:1px solid #ffffff13}
 .select-dialog-foot{flex:0 0 auto}
 .select-options{
  flex:1 1 auto;height:auto;min-height:0;max-height:none;
@@ -419,240 +377,28 @@ button{cursor:pointer}
  -webkit-overflow-scrolling:touch;
  overscroll-behavior:contain;touch-action:pan-y;
 }
-.select-option{min-height:43px}
-@media(max-width:520px){
- .select-layer{padding:10px}
- .select-dialog{
-  width:min(410px,100%);
-  height:min(68dvh,590px);
-  max-height:calc(100dvh - 20px);
-  border-radius:20px;
- } .select-dialog-head{padding:10px 12px 9px}
- .select-options{padding:5px}
- .select-option{min-height:41px;font-size:11px}
- .select-dialog-foot{padding:8px 11px}
-}
+.select-option{min-height:39px}
+
 html,body{touch-action:pan-y;overscroll-behavior:none}
 button,input,select,textarea{touch-action:manipulation}
 
-/* ===== Responsive refinement: preserve original background ===== */
 .page{min-height:100dvh;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));padding-bottom:max(28px,env(safe-area-inset-bottom));scroll-padding-top:14px}
 .wrapper{min-height:100%;padding-bottom:12px}.card{width:100%;min-width:0}
 .stage,.field,.grid-two,.grid-three,.choice-grid,.review-list{min-width:0}
 .field input,.field select,.select-launcher{max-width:100%;min-width:0}
 .stage-heading,.stage-heading>div:last-child{min-width:0}.stage-title,.stage-desc{overflow-wrap:anywhere}
 .steps{align-items:start}.step{min-width:0;text-align:center;line-height:1.35}.step span{max-width:100%;overflow-wrap:anywhere}
-.select-layer{padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
-.select-dialog{width:min(460px,100%);height:min(72dvh,620px);min-height:min(300px,calc(100dvh - 24px));max-height:calc(100dvh - max(24px,env(safe-area-inset-top) + env(safe-area-inset-bottom)))}
-.select-dialog-head,.select-search{min-width:0}.select-search{display:block}
-.select-options{overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:#927344 transparent}
-.select-option{overflow-wrap:anywhere;text-align:right}
 .btn:focus-visible,.select-option:focus-visible,.select-close:focus-visible{outline:2px solid #ffe1a4;outline-offset:3px}
-@media(min-width:760px){
- .page{padding-top:max(28px,env(safe-area-inset-top));padding-bottom:34px}.wrapper{width:min(680px,100%)}
- .card{padding:clamp(22px,3vw,32px);border-radius:28px}
- .steps{gap:7px;margin-bottom:23px}.step{font-size:10px;gap:7px}.step-circle{width:33px;height:33px;font-size:12px}
- .stage-heading{gap:14px;margin-bottom:20px}.stage-icon{width:50px;height:50px;flex-basis:50px}
- .stage-title{font-size:18px}.stage-desc{font-size:12px}.field{margin-bottom:17px}.field label.main-label{font-size:12px}
- .field input,.field select,.select-launcher{height:53px;min-height:53px;font-size:13px}
- .grid-two,.grid-three{gap:13px}.nav-buttons{margin-top:24px}.btn{min-height:54px;font-size:13px}
- .select-layer{align-items:center}.select-dialog{width:min(480px,calc(100vw - 48px));height:min(620px,76dvh);border-radius:23px}
-}
-@media(max-width:520px){
- .page{padding-top:max(12px,env(safe-area-inset-top));padding-left:10px;padding-right:10px}.wrapper{padding-bottom:8px}
- .select-layer{align-items:flex-end;padding:0}
- .select-dialog{width:100%;height:min(76dvh,640px);min-height:min(280px,calc(100dvh - 12px));max-height:calc(100dvh - env(safe-area-inset-top));border-radius:22px 22px 0 0;padding-bottom:env(safe-area-inset-bottom);animation:selectSheetIn .2s ease-out}
- .select-drag-area{height:25px;flex-basis:25px}.select-dialog-head{padding:9px 14px 11px}
- .select-dialog-title{font-size:16px;margin:3px 0 10px}.select-search{height:46px;font-size:13px}
- .select-options{padding:7px 10px}.select-option{min-height:46px;padding:10px 13px;font-size:12px}.select-dialog-foot{padding:10px 14px}
-}
-@keyframes selectSheetIn{from{transform:translateY(22px);opacity:.75}to{transform:translateY(0);opacity:1}}
-@media(max-width:380px){
- .page{padding-left:8px;padding-right:8px}.card{padding:13px 10px}.steps{gap:1px}.step-circle{width:24px;height:24px}.step{font-size:7px}
- .grid-two{gap:7px}.grid-three{gap:5px}.name-input{font-size:10px!important}.select-dialog{height:min(78dvh,620px)}
-}
-@media(orientation:landscape) and (max-height:520px){
- .page{padding-top:8px;padding-bottom:14px}.brand{margin-bottom:7px}.brand-logo{width:40px;height:40px;margin-bottom:3px}
- .brand-logo svg{width:25px;height:25px}.brand p{display:none}.card{padding:12px 16px}
- .select-layer{align-items:center;padding:8px}.select-dialog{height:min(88dvh,480px);min-height:220px;border-radius:18px}
- .select-options{min-height:0}.video-inner video{max-height:78dvh}
-}
-@media(prefers-reduced-motion:reduce){.select-dialog{animation:none!important}}/* ضبط حجم نافذة الاختيارات */
-.select-layer{
-  align-items:center;
-  justify-content:center;
-  padding:12px;
-}
-.select-dialog{
-  width:min(430px,calc(100vw - 28px));
-  height:min(70dvh,560px);
-  min-height:min(300px,calc(100dvh - 28px));
-  max-height:calc(100dvh - 24px);
-  border-radius:21px;
-}
-.select-options{
-  flex:1 1 auto;
-  min-height:0;
-  overflow-y:auto;
-  overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
-  overscroll-behavior-y:contain;
-  touch-action:pan-y;
-}
-@media(max-width:520px){
-  .select-layer{
-    align-items:center;
-    justify-content:center;
-    padding:12px;
-  }
-  .select-dialog{
-    width:min(430px,calc(100vw - 24px));
-    height:min(70dvh,560px);
-    min-height:min(300px,calc(100dvh - 24px));
-    max-height:calc(100dvh - 24px);
-    border-radius:20px;
-    padding-bottom:0;
-  }
-  .select-dialog-head{padding:10px 13px}
-  .select-options{padding:7px 9px}
-  .select-option{min-height:44px;padding:9px 12px}
-  .select-dialog-foot{padding:9px 12px}
-}
-@media(orientation:landscape) and (max-height:520px){
-  .select-dialog{
-    width:min(430px,calc(100vw - 28px));
-    height:min(84dvh,430px);
-    min-height:220px;
-    border-radius:18px;
-  }
-}
 
-/* FINAL SELECT WINDOW: centered, compact, scrollable; preserve original background */
-.select-layer{
- display:flex!important;
- align-items:center!important;
- justify-content:center!important;
- padding:12px!important;
- background:rgba(4,5,12,.10)!important;
- -webkit-backdrop-filter:none!important;
- backdrop-filter:none!important;
-}
-.select-dialog{
- width:min(430px,calc(100vw - 28px))!important;
- height:min(68dvh,540px)!important;
- min-height:min(290px,calc(100dvh - 24px))!important;
- max-height:calc(100dvh - 24px)!important;
- border-radius:21px!important;
- padding-bottom:0!important;
-}
-.select-dialog-head,.select-dialog-foot{flex:0 0 auto!important}
-.select-options{
- flex:1 1 auto!important;
- height:auto!important;
- min-height:0!important;
- max-height:none!important;
- overflow-y:auto!important;
- overflow-x:hidden!important;
- -webkit-overflow-scrolling:touch!important;
- overscroll-behavior-y:contain!important;
- touch-action:pan-y!important;
-}
-@media(max-width:520px){
- .select-layer{align-items:center!important;justify-content:center!important;padding:12px!important}
- .select-dialog{
-  width:min(430px,calc(100vw - 24px))!important;
-  height:min(68dvh,540px)!important;
-  min-height:min(290px,calc(100dvh - 24px))!important;
-  max-height:calc(100dvh - 24px)!important;
-  border-radius:20px!important;
- }
- .select-dialog-head{padding:10px 13px!important}
- .select-options{padding:7px 9px!important}
- .select-option{min-height:43px!important;padding:9px 12px!important}
- .select-dialog-foot{padding:9px 12px!important}
-}
-@media(orientation:landscape) and (max-height:520px){
- .select-dialog{
-  width:min(430px,calc(100vw - 28px))!important;
-  height:min(84dvh,420px)!important;
-  min-height:210px!important;
-  border-radius:18px!important;
- }
-}
-/* تحسين احترافي لواجهة التسجيل - مع الحفاظ الكامل على الخلفية الأصلية */
-.wrapper{width:min(680px,100%)}
-.brand{margin-bottom:18px}
-.brand-logo{width:64px;height:64px;border-radius:21px;box-shadow:0 14px 42px #d9a34b30,inset 0 1px #fff3}
-.card{border:1px solid #f0ca8040;border-radius:26px;background:linear-gradient(155deg,rgba(27,27,43,.96),rgba(17,18,31,.97));box-shadow:0 24px 70px #0006,inset 0 1px #ffffff12;overflow:hidden}
-.card:before{height:3px;background:linear-gradient(90deg,transparent,#e9b95e,#fff0c2,#e9b95e,transparent)}
-.card-head{padding:25px 25px 17px}
-.card-head h2{font-size:clamp(21px,4vw,27px);line-height:1.45}
-.card-head p{line-height:1.9}
-.progress-area{padding:0 25px 19px}
-.progress-track{height:7px;border-radius:20px;background:#ffffff12;overflow:hidden}
-.progress-fill{border-radius:20px;box-shadow:0 0 14px #e9b95e66}
-.steps{gap:7px}
-.step-circle{width:32px;height:32px;border:1px solid #ffffff24;background:#ffffff0a}
-.step.active .step-circle,.step.done .step-circle{box-shadow:0 0 0 4px #e9b95e18,0 5px 18px #0003}
-.stage{padding:4px 25px 25px}
-.stage-heading{margin-bottom:19px}
-.stage-title{font-size:19px;font-weight:900}
-.stage-desc{line-height:1.85}
-.field{margin-bottom:17px}
-.field label.main-label{font-weight:800;margin-bottom:8px}
-.input-wrap{border:1px solid #ffffff20;border-radius:15px;background:#ffffff08;transition:border-color .2s,box-shadow .2s,background .2s}
-.input-wrap:focus-within{border-color:#e9b95eaa;background:#ffffff0d;box-shadow:0 0 0 4px #e9b95e18}
-.field input,.field select{min-height:51px}
-.field input::placeholder{color:#aaaabd99}
-.select-launcher{min-height:51px!important;border-radius:15px!important;border:1px solid #ffffff20!important;background:#ffffff08!important}
-.select-launcher:focus-visible{outline:2px solid #e9b95e!important;outline-offset:2px}
-.info-box,.terms-box{border-radius:16px;border:1px solid #e9b95e35;background:linear-gradient(135deg,#e9b95e12,#ffffff05);line-height:1.9}
-.choice{border-radius:17px}
-.choice label{border:1px solid #ffffff1c;border-radius:17px;background:#ffffff06;transition:.2s}
-.choice input:checked+label{border-color:#e9b95e;background:linear-gradient(135deg,#e9b95e20,#ffffff08);box-shadow:0 0 0 3px #e9b95e12}
-.photo-box{border:1px dashed #e9b95e70;border-radius:19px;background:#ffffff06}
-.nav-buttons{gap:12px;padding-top:10px}
-.btn{min-height:49px;border-radius:15px;font-weight:900;transition:transform .18s,filter .18s,box-shadow .18s}
-.btn:active{transform:scale(.985)}
-.btn-primary{box-shadow:0 9px 24px #dca54a26}
-.btn-primary:hover{filter:brightness(1.08);box-shadow:0 12px 30px #dca54a35}
-.review-list{border-radius:17px;overflow:hidden;border:1px solid #ffffff18}
-.review-item{padding:12px 14px;background:#ffffff05}
-.review-item+.review-item{border-top:1px solid #ffffff10}
-.select-layer{background:rgba(4,5,12,.08)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;align-items:center!important;justify-content:center!important;padding:12px!important}
-.select-dialog{width:min(430px,calc(100vw - 28px))!important;height:min(68dvh,540px)!important;min-height:min(290px,calc(100dvh - 24px))!important;max-height:calc(100dvh - 24px)!important;border-radius:21px!important;padding-bottom:0!important}
-.select-dialog-head,.select-dialog-foot{flex:0 0 auto!important}
-.select-options{flex:1 1 auto!important;height:auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-y:contain!important;touch-action:pan-y!important}
-@media(max-width:600px){
- .page{padding-left:11px;padding-right:11px}
- .brand{margin-bottom:13px}
- .brand-logo{width:58px;height:58px}
- .card{border-radius:22px}
- .card-head{padding:20px 17px 14px}
- .progress-area{padding:0 17px 16px}
- .stage{padding:3px 17px 20px}
- .stage-heading{margin-bottom:15px}
- .field{margin-bottom:14px}
- .select-dialog{width:min(430px,calc(100vw - 24px))!important;height:min(68dvh,540px)!important;min-height:min(290px,calc(100dvh - 24px))!important;max-height:calc(100dvh - 24px)!important;border-radius:20px!important}
- .select-dialog-head{padding:10px 13px!important}
- .select-options{padding:7px 9px!important}
- .select-option{min-height:43px!important;padding:9px 12px!important}
- .select-dialog-foot{padding:9px 12px!important}
-}
-@media(orientation:landscape) and (max-height:520px){
- .select-dialog{width:min(430px,calc(100vw - 28px))!important;height:min(84dvh,420px)!important;min-height:210px!important;border-radius:18px!important}
-}
-
-/* FINAL: clear original 86.jpg background, centered registration card, full vertical scrolling */
 html,body{height:100%;min-height:100%;overflow:hidden}
 .background{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;z-index:-3!important}
 .overlay{position:fixed!important;inset:0!important;z-index:-2!important;background:linear-gradient(135deg,rgba(8,9,18,.10),rgba(13,14,25,.16))!important}
 .page{position:relative!important;width:100%!important;height:100vh!important;height:100svh!important;height:100dvh!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;padding:max(22px,env(safe-area-inset-top)) 14px max(28px,env(safe-area-inset-bottom))!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-y:contain!important;scrollbar-width:thin}
 .wrapper{width:min(700px,100%)!important;min-height:max-content!important;height:auto!important;margin:auto!important;padding:0 0 12px!important;flex:0 0 auto!important}
 .card{width:100%!important;max-width:100%!important;margin:0 auto!important;background:rgba(17,18,31,.84)!important;border:1px solid rgba(233,185,94,.55)!important;border-radius:25px!important;box-shadow:0 24px 70px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.12)!important;-webkit-backdrop-filter:blur(9px)!important;backdrop-filter:blur(9px)!important}
-@media(max-width:600px){.page{padding:14px 10px max(20px,env(safe-area-inset-bottom))!important}.wrapper{width:100%!important;margin:auto!important}.card{border-radius:21px!important}}
-@media(max-height:650px){.page{justify-content:flex-start!important}.wrapper{margin:0 auto!important}}
-</style></head><body>
+</style>
+</head>
+<body>
 <img class="background" src="./86.jpg" alt="">
 <div class="overlay"></div>
 
@@ -877,7 +623,9 @@ html,body{height:100%;min-height:100%;overflow:hidden}
     </svg>
     <span>اختيار المحافظة يساعدنا على تحديد المراكز والمناطق التابعة لها.</span>
    </div>
-  </section>  <!-- المرحلة الخامسة -->
+  </section>
+
+  <!-- المرحلة الخامسة -->
   <section class="stage" data-stage="4">
    <div class="stage-heading">
     <div class="stage-icon">
@@ -926,7 +674,9 @@ html,body{height:100%;min-height:100%;overflow:hidden}
     </svg>
     <span>لو لم تجد اسم المركز أو القرية، اختر «أخرى» واكتب الاسم بنفسك.</span>
    </div>
-  </section>  <!-- المرحلة السادسة -->
+  </section>
+
+  <!-- المرحلة السادسة -->
   <section class="stage" data-stage="5">
    <div class="stage-heading">
     <div class="stage-icon">
@@ -1202,7 +952,6 @@ $("backBtn").addEventListener("click",()=>{
  }
 });
 
-/* الصف الدراسي */
 document.querySelectorAll('input[name="educationType"]').forEach(radio=>{
  radio.addEventListener("change",()=>{
   $("schoolGrade").innerHTML='<option value="">اختر الصف الدراسي</option>';
@@ -1212,7 +961,6 @@ document.querySelectorAll('input[name="educationType"]').forEach(radio=>{
  });
 });
 
-/* المحافظات */
 const governorates=[
  "القاهرة","الجيزة","الإسكندرية","القليوبية","المنوفية",
  "الغربية","كفر الشيخ","البحيرة","الدقهلية","دمياط",
@@ -1222,7 +970,7 @@ const governorates=[
  "الوادي الجديد","مطروح"
 ];
 
-governorates.forEach(name=>$("governorate").add(new Option(name,name)));/* المراكز */
+governorates.forEach(name=>$("governorate").add(new Option(name,name)));
 const centers={
  "المنوفية":["شبين الكوم","قويسنا","منوف","أشمون","الباجور","تلا","بركة السبع","السادات","الشهداء","سرس الليان"],
  "القاهرة":["القاهرة"],
@@ -1251,7 +999,7 @@ const centers={
  "شمال سيناء":["العريش","بئر العبد"],
  "جنوب سيناء":["شرم الشيخ","الطور","دهب"],
  "الوادي الجديد":["الخارجة","الداخلة"]
-};/* القرى والمناطق المتاحة */
+};
 const villages={
  "بركة السبع":[
   "مدينة بركة السبع","أبو مشهور","الشهيد فكري","الروضة",
@@ -1307,7 +1055,6 @@ $("village").addEventListener("change",()=>{
  if(other)$("villageOther").focus();
 });
 
-/* الصورة الشخصية */
 $("profilePhoto").addEventListener("change",()=>{
  const file=$("profilePhoto").files[0];
  if(!file)return;
@@ -1335,7 +1082,6 @@ $("profilePhoto").addEventListener("change",()=>{
  reader.readAsDataURL(file);
 });
 
-/* مراجعة البيانات */
 function buildReview(){
  const selectedEducation=document.querySelector('input[name="educationType"]:checked');
  const education=selectedEducation?selectedEducation.value:"";
@@ -1360,7 +1106,6 @@ function buildReview(){
  ).join("");
 }
 
-/* الاتصال بخدمة الحسابات */
 async function callAccess(payload){
  const response=await fetch(ACCESS_URL,{
   method:"POST",
@@ -1378,7 +1123,8 @@ async function callAccess(payload){
  }
 
  return result;
-                                }/* إنشاء الحساب */
+}
+
 async function createStudentAccount(){
  if(creating||!validateStage(7))return;
 
@@ -1464,7 +1210,6 @@ async function createStudentAccount(){
 
 $("createAccount").addEventListener("click",createStudentAccount);
 
-/* نسخ رقم الطالب */
 $("copyIdButton").addEventListener("click",async()=>{
  const id=$("finalId").textContent;
  try{
@@ -1480,7 +1225,6 @@ $("copyIdButton").addEventListener("click",async()=>{
  }
 });
 
-/* فيديو الترحيب ثم الانتقال للمنصة */
 const videoGate=$("videoGate");
 const video=$("welcomeVideo");
 
@@ -1523,7 +1267,6 @@ video.addEventListener("ended",()=>{
 
 video.addEventListener("contextmenu",e=>e.preventDefault());
 
-/* القوائم الاحترافية */
 (function setupPremiumSelects(){
  const configs=[
   ["schoolGrade","اختر الصف الدراسي"],
@@ -1538,11 +1281,7 @@ video.addEventListener("contextmenu",e=>e.preventDefault());
 
  layer.innerHTML=`
   <section class="select-dialog" role="dialog" aria-modal="true" aria-labelledby="premiumSelectTitle">
-   <div class="select-drag-area" id="selectDragArea" aria-label="اسحب لأسفل لإغلاق القائمة">
-    <span class="select-drag-handle"></span>
-   </div>
    <header class="select-dialog-head">
-    <div class="select-dialog-kicker">منصة الدكتور محمود الجنايني</div>
     <h3 class="select-dialog-title" id="premiumSelectTitle">اختر من القائمة</h3>
     <input class="select-search" id="premiumSelectSearch" type="search" placeholder="ابحث عن اختيار..." autocomplete="off">
    </header>
@@ -1565,39 +1304,6 @@ video.addEventListener("contextmenu",e=>e.preventDefault());
  const controls={};
  let active=null;
  let activeButton=null;
-
- /* السحب لأسفل لإغلاق القائمة */
- const dragArea=layer.querySelector("#selectDragArea");
- let dragStartY=null;
- let dragDelta=0;
-
- dragArea.addEventListener("pointerdown",e=>{
-  dragStartY=e.clientY;
-  dragDelta=0;
-  dragArea.setPointerCapture(e.pointerId);
- });
-
- dragArea.addEventListener("pointermove",e=>{
-  if(dragStartY===null)return;
-  dragDelta=Math.max(0,e.clientY-dragStartY);
-  dialog.style.transform="translateY("+dragDelta+"px)";
- });
-
- function finishDrag(){
-  if(dragStartY===null)return;
-
-  if(dragDelta>75){
-   close();
-  }else{
-   dialog.style.transform="";
-  }
-
-  dragStartY=null;
-  dragDelta=0;
- }
-
- dragArea.addEventListener("pointerup",finishDrag);
- dragArea.addEventListener("pointercancel",finishDrag);
 
  function refresh(select){
   const item=controls[select.id];
