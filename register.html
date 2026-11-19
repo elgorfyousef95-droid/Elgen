@@ -532,6 +532,72 @@ html,body{width:100%;height:100%;overflow:hidden}
  .select-dialog{max-height:56dvh !important}
  .select-options{max-height:32dvh !important}
 }
+ /* ===== تثبيت الخلفية والتحكم في طول صفحة التسجيل ===== */
+
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: pan-y;
+  overscroll-behavior: none;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: pan-y;
+  overscroll-behavior: none;
+}
+
+/* الخلفية ثابتة تمامًا */
+.background {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  pointer-events: none !important;
+  transform: none !important;
+}
+
+/* طبقة الخلفية ثابتة */
+.overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+}
+
+/* صفحة التسجيل تتحرك لأعلى وأسفل */
+.page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  min-height: 0;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
+  scrollbar-width: thin;
+}
+
+/* المحتوى يأخذ طوله الطبيعي */
+.wrapper {
+  width: min(640px, 100%);
+  min-height: max-content;
+  margin-inline: auto;
+}
+
+/* منع تكبير عناصر الصفحة باللمس */
+button,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
 </style>
 </head>
 
