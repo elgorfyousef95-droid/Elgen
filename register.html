@@ -481,7 +481,55 @@ button,input,select,textarea{touch-action:manipulation}
  .select-options{min-height:0}.video-inner video{max-height:78dvh}
 }
 @media(prefers-reduced-motion:reduce){.select-dialog{animation:none!important}}
-
+/* ضبط حجم نافذة الاختيارات */
+.select-layer{
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+}
+.select-dialog{
+  width:min(430px,calc(100vw - 28px));
+  height:min(70dvh,560px);
+  min-height:min(300px,calc(100dvh - 28px));
+  max-height:calc(100dvh - 24px);
+  border-radius:21px;
+}
+.select-options{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-y:contain;
+  touch-action:pan-y;
+}
+@media(max-width:520px){
+  .select-layer{
+    align-items:center;
+    justify-content:center;
+    padding:12px;
+  }
+  .select-dialog{
+    width:min(430px,calc(100vw - 24px));
+    height:min(70dvh,560px);
+    min-height:min(300px,calc(100dvh - 24px));
+    max-height:calc(100dvh - 24px);
+    border-radius:20px;
+    padding-bottom:0;
+  }
+  .select-dialog-head{padding:10px 13px}
+  .select-options{padding:7px 9px}
+  .select-option{min-height:44px;padding:9px 12px}
+  .select-dialog-foot{padding:9px 12px}
+}
+@media(orientation:landscape) and (max-height:520px){
+  .select-dialog{
+    width:min(430px,calc(100vw - 28px));
+    height:min(84dvh,430px);
+    min-height:220px;
+    border-radius:18px;
+  }
+                 }
 </style>
 </head><body>
 <img class="background" src="./86.jpg" alt="">
