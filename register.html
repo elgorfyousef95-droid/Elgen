@@ -398,6 +398,38 @@ button{cursor:pointer}
 @media(prefers-reduced-motion:reduce){
  *,*:before,*:after{animation:none!important;transition:none!important}
 }
+ 
+/* ضبط حجم القوائم المنسدلة */
+.select-layer {
+  background: rgba(4, 5, 12, .42) !important;
+  backdrop-filter: blur(7px);
+  padding: 10px !important;
+  align-items: center !important;
+}
+
+.select-dialog {
+  width: min(430px, 100%) !important;
+  max-height: 52dvh !important;
+  border-radius: 20px !important;
+}
+
+.select-options {
+  min-height: 0 !important;
+  max-height: 30dvh !important;
+  overflow-y: auto !important;
+  padding: 6px !important;
+}
+
+@media (min-width: 521px) {
+  .select-dialog {
+    max-height: min(56dvh, 520px) !important;
+  }
+
+  .select-options {
+    max-height: 34dvh !important;
+  }
+}
+
 </style>
 </head>
 
