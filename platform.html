@@ -4,313 +4,458 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#090b13">
+<meta name="theme-color" content="#10100e">
 <title>الرئيسية | منصة الجنايني التعليمية</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="manifest" href="./manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <style>
 :root{
- --bg:#090b13;--surface:#111522;--surface2:#171d2d;
- --line:rgba(160,177,221,.14);--text:#f5f7ff;
- --muted:#9ca8c2;--blue:#7795ff;--cyan:#56d6e8;
- --green:#63d8ad;
+  --bg:#10100e;
+  --panel:#191916;
+  --panel2:#20201b;
+  --panel3:#25251f;
+  --gold:#d7b66b;
+  --gold2:#f0d99e;
+  --text:#f4f0e7;
+  --muted:#aaa497;
+  --line:rgba(215,182,107,.17);
+  --green:#75c9a1;
+  --red:#e17c75;
+  --radius:20px;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--text);font-family:Cairo,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
- background:
- radial-gradient(ellipse at 78% 0%,#1c2850 0,transparent 34%),
- radial-gradient(ellipse at 0% 85%,#17243b 0,transparent 35%),var(--bg)
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Cairo,sans-serif;
 }
 button,input,textarea{font:inherit}
-button,a{touch-action:manipulation}
+button,a{-webkit-tap-highlight-color:transparent}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
-svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--gold);outline-offset:3px
+}
 
-.app{height:100dvh;display:flex;overflow:hidden}
+/* الهيكل العام */
+.app{min-height:100vh;display:flex}
 .sidebar{
- width:270px;flex:0 0 270px;height:100%;
- display:flex;flex-direction:column;overflow-y:auto;
- background:rgba(10,13,23,.94);
- border-left:1px solid var(--line);z-index:100;
- backdrop-filter:blur(20px);transition:transform .25s
+  width:260px;flex:0 0 260px;
+  min-height:100vh;
+  position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;
+  background:#151512;
+  border-left:1px solid var(--line);
+  z-index:50;
+  transition:transform .25s;
 }
-.brand{padding:24px 20px;display:flex;align-items:center;gap:13px;border-bottom:1px solid var(--line)}
+.brand{
+  padding:25px 21px;
+  display:flex;align-items:center;gap:13px;
+  border-bottom:1px solid var(--line);
+}
 .brand-mark{
- width:48px;height:48px;display:grid;place-items:center;
- border-radius:16px;color:#07101d;
- background:linear-gradient(140deg,#a9c2ff,#62dbea);
- box-shadow:0 8px 30px #6d9aff35
+  width:48px;height:48px;flex:0 0 48px;
+  display:grid;place-items:center;
+  border-radius:15px;
+  color:#17140c;
+  background:linear-gradient(145deg,#f0d99e,#b58c43);
+  box-shadow:0 8px 25px #d7b66b24;
 }
-.brand-mark svg{width:27px;height:27px}
+.brand-mark svg{width:27px;height:27px;stroke:#17140c}
 .brand-title{font-size:13px;font-weight:900}
-.brand-sub{font-size:9px;color:#91a8e9;letter-spacing:1px;margin-top:3px}
-.nav-label{padding:22px 20px 8px;color:#7f91bd;font-size:10px;font-weight:900}
+.brand-sub{margin-top:3px;color:var(--gold);font-size:9px;letter-spacing:1px}
+
+.nav-label{
+  padding:22px 21px 9px;
+  color:#777268;font-size:9px;font-weight:800;
+}
 .nav-list{padding:0 12px}
 .nav-link{
- min-height:47px;padding:10px 13px;margin:4px 0;
- display:flex;align-items:center;gap:12px;
- border:1px solid transparent;border-radius:13px;
- color:#b4bfd6;font-size:11px;font-weight:800;transition:.2s
+  min-height:46px;margin:4px 0;padding:9px 13px;
+  display:flex;align-items:center;gap:12px;
+  border:1px solid transparent;border-radius:12px;
+  color:#aaa69b;font-size:11px;font-weight:700;
+  transition:.2s;
 }
-.nav-link svg{width:18px;color:#8190b4}
+.nav-link svg{width:18px;height:18px;color:#918b7d}
 .nav-link:hover,.nav-link.active{
- color:#fff;background:linear-gradient(100deg,#668cff28,#6cdaea0c);
- border-color:#809dff38
+  color:var(--gold2);
+  background:linear-gradient(90deg,#d7b66b12,#d7b66b05);
+  border-color:#d7b66b25;
 }
-.nav-link.active svg{color:#91aaff}
-.sidebar-bottom{margin-top:auto;padding:16px;border-top:1px solid var(--line)}
-.side-user{display:flex;align-items:center;gap:10px;min-width:0}
+.nav-link.active svg{color:var(--gold)}
+.sidebar-bottom{
+  margin-top:auto;padding:17px;
+  border-top:1px solid var(--line);
+}
+.side-user{display:flex;align-items:center;gap:11px;min-width:0}
 .avatar{
- width:42px;height:42px;flex:0 0 42px;display:grid;
- place-items:center;overflow:hidden;border:1px solid #8ea9ff70;
- border-radius:50%;background:#202943;color:#d9e4ff;font-weight:900
+  width:43px;height:43px;flex:0 0 43px;
+  display:grid;place-items:center;overflow:hidden;
+  border:1px solid #d7b66b55;border-radius:50%;
+  background:#29271f;color:var(--gold2);font-weight:900;
 }
 .avatar img{width:100%;height:100%;object-fit:cover}
-.side-user strong{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.side-user small{font-size:9px;color:var(--muted)}
+.side-user strong{display:block;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.side-user small{display:block;color:var(--muted);font-size:9px}
 
-.main{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;overflow:hidden}
+/* المحتوى */
+.main{flex:1;min-width:0}
 .topbar{
- min-height:72px;padding:10px 28px;display:flex;align-items:center;
- justify-content:space-between;gap:14px;
- background:#0b0e18bd;border-bottom:1px solid var(--line);
- backdrop-filter:blur(18px)
+  min-height:76px;padding:12px clamp(15px,3vw,40px);
+  display:flex;align-items:center;justify-content:space-between;gap:15px;
+  position:sticky;top:0;z-index:30;
+  background:#10100eeb;
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(16px);
 }
-.top-start,.top-end,.top-actions{display:flex;align-items:center;gap:11px;min-width:0}
+.top-start,.top-end,.top-actions{display:flex;align-items:center;gap:12px}
 .menu-btn,.top-icon{
- width:42px;height:42px;display:grid;place-items:center;
- border:1px solid var(--line);border-radius:13px;
- background:#171d2c;color:#b9caff
+  width:41px;height:41px;display:grid;place-items:center;
+  border:1px solid var(--line);border-radius:12px;
+  background:var(--panel);color:var(--gold2);
 }
-.heading strong{display:block;font-size:14px}
+.menu-btn{display:none}
+.heading strong{display:block;font-size:13px}
 .heading small{display:block;color:var(--muted);font-size:9px}
 .profile-btn{
- padding:5px 10px;display:flex;align-items:center;gap:9px;
- border:1px solid var(--line);border-radius:14px;background:#151b29
+  display:flex;align-items:center;gap:9px;
+  padding:5px 11px;
+  border:1px solid var(--line);border-radius:13px;
+  background:var(--panel);
 }
-.profile-btn .avatar{width:36px;height:36px;flex-basis:36px}
-.profile-btn strong{display:block;font-size:10px;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.profile-btn small{font-size:9px;color:var(--muted)}
+.profile-btn .avatar{width:35px;height:35px;flex-basis:35px}
+.profile-btn strong{display:block;font-size:10px}
+.profile-btn small{display:block;color:var(--muted);font-size:8px}
 
 .content{
- flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;
- overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
- padding:27px clamp(14px,3vw,42px) 48px;
- scrollbar-width:thin;scrollbar-color:#52699f transparent
+  width:100%;max-width:1500px;margin:auto;
+  padding:30px clamp(15px,3vw,43px) 55px;
 }
-.content::-webkit-scrollbar,.sidebar::-webkit-scrollbar{width:5px}
-.content::-webkit-scrollbar-thumb,.sidebar::-webkit-scrollbar-thumb{background:#52699f88;border-radius:20px}
+.welcome{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:15px;margin-bottom:22px;
+}
+.welcome h1{margin:0;font-size:clamp(23px,3vw,34px);font-weight:900}
+.welcome p{margin:6px 0 0;color:var(--muted);font-size:11px}
+.today-chip{
+  padding:9px 14px;border:1px solid var(--line);
+  border-radius:30px;background:var(--panel);
+  color:var(--gold2);font-size:10px;white-space:nowrap;
+}
 
-.welcome{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:20px}
-.welcome h1{margin:0;font-size:clamp(23px,2.5vw,32px);font-weight:900;letter-spacing:-.5px}
-.welcome p{margin:6px 0 0;color:#aab6d0;font-size:11px}
-.today-chip{padding:9px 14px;border:1px solid var(--line);border-radius:30px;background:#151b2b;color:#b9caff;font-size:10px;white-space:nowrap}
-
-.search-area{position:relative;max-width:700px;margin-bottom:20px}
+/* البحث */
+.search-area{position:relative;max-width:620px;margin-bottom:23px}
 .search-box{
- height:49px;padding:0 15px;display:flex;align-items:center;gap:11px;
- border:1px solid var(--line);border-radius:14px;background:#131a29c9
+  height:49px;padding:0 15px;
+  display:flex;align-items:center;gap:11px;
+  border:1px solid var(--line);border-radius:13px;
+  background:var(--panel);
 }
-.search-box svg{color:#8daaff}
-.search-box input{width:100%;border:0;outline:0;background:transparent;color:#fff;font-size:11px}
-.search-box input::placeholder{color:#8190ac}
+.search-box svg{color:var(--gold)}
+.search-box input{
+  width:100%;border:0;outline:0;background:transparent;
+  color:var(--text);font-size:11px;
+}
+.search-box input::placeholder{color:#777368}
 .search-results{
- display:none;position:absolute;z-index:80;top:55px;right:0;left:0;
- padding:8px;border:1px solid var(--line);border-radius:14px;
- background:#171e2e;box-shadow:0 18px 40px #0009
+  display:none;position:absolute;top:55px;right:0;left:0;
+  z-index:40;padding:8px;
+  border:1px solid var(--line);border-radius:13px;
+  background:#22211c;box-shadow:0 18px 45px #0009;
 }
 .search-results.show{display:block}
-.search-result{display:flex;align-items:center;gap:10px;padding:11px;border-radius:9px;font-size:11px}
-.search-result:hover{background:#8ba7ff18}
+.search-result{display:flex;gap:10px;padding:11px;border-radius:9px;font-size:11px}
+.search-result:hover{background:#d7b66b12}
 
+/* الواجهة الترحيبية */
 .hero{
- position:relative;isolation:isolate;min-height:320px;overflow:hidden;
- display:flex;align-items:center;padding:clamp(22px,4vw,48px);
- border:1px solid #91aaff35;border-radius:25px;
- background:linear-gradient(105deg,#111a31f5 0%,#182849d9 52%,#1a3650a8 100%),url("./1795124002624.jpg") center/cover;
- box-shadow:0 22px 60px #0005
+  min-height:330px;position:relative;isolation:isolate;overflow:hidden;
+  display:flex;align-items:center;
+  padding:clamp(24px,4vw,55px);
+  border:1px solid #d7b66b35;border-radius:25px;
+  background:
+    linear-gradient(90deg,#15140fe8 0%,#17150fe8 48%,#17150f99 100%),
+    url("./1795124002624.jpg") center/cover;
+  box-shadow:0 25px 65px #0005;
 }
-.hero:before{
- content:"";position:absolute;inset:0;z-index:-1;
- background:radial-gradient(circle at 75% 45%,#7c9fff26,transparent 34%)
+.hero:after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(circle at 15% 50%,#d7b66b1a,transparent 42%);
 }
-.hero-copy{position:relative;z-index:3;max-width:620px}
-.hero-kicker{display:inline-flex;align-items:center;gap:8px;color:#a9c1ff;font-size:10px;font-weight:900;letter-spacing:1px}
-.hero-kicker:before{content:"";width:22px;height:2px;background:var(--cyan)}
-.hero h2{margin:13px 0 10px;font-size:clamp(26px,3.5vw,43px);line-height:1.5;font-weight:900}
-.hero p{max-width:510px;margin:0;color:#c6d1e8;font-size:12px;line-height:2.1}
-.hero-image{
- position:absolute;z-index:2;left:2%;bottom:0;width:min(35%,390px);
- height:96%;display:flex;align-items:flex-end;justify-content:center;pointer-events:none
+.hero-copy{position:relative;z-index:3;max-width:600px}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:9px;
+  color:var(--gold2);font-size:10px;font-weight:800;
 }
-.hero-image img{width:100%;height:100%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 15px 25px #0008)}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:19px}
+.hero-kicker:before{content:"";width:25px;height:1px;background:var(--gold)}
+.hero h2{margin:15px 0 12px;font-size:clamp(28px,4vw,45px);line-height:1.55;font-weight:900}
+.hero p{max-width:500px;margin:0;color:#d0c8b7;font-size:12px;line-height:2.1}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 .btn-primary,.btn-secondary{
- min-height:43px;padding:10px 17px;display:inline-flex;align-items:center;
- justify-content:center;gap:8px;border-radius:11px;font-size:10px;font-weight:900
+  min-height:44px;padding:10px 19px;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:11px;font-size:10px;font-weight:900;
 }
-.btn-primary{color:#08101d;background:linear-gradient(130deg,#b8ceff,#69d9e8);box-shadow:0 8px 24px #6d9fff30}
-.btn-secondary{color:#d8e2ff;border:1px solid #a9bfff50;background:#0a1225a8}
+.btn-primary{
+  color:#17140c;background:linear-gradient(130deg,#f0d99e,#c5a45c);
+  box-shadow:0 9px 25px #d7b66b24;
+}
+.btn-secondary{color:var(--gold2);border:1px solid #d7b66b66;background:#15140cb8}
+.hero-image{
+  position:absolute;z-index:2;left:2%;bottom:0;
+  width:min(34%,390px);height:96%;
+  display:flex;align-items:flex-end;justify-content:center;
+  pointer-events:none;
+}
+.hero-image img{
+  width:100%;height:100%;object-fit:contain;object-position:bottom;
+  filter:drop-shadow(0 15px 25px #0009);
+}
 
+/* بطاقة الحساب */
 .overview{
- display:grid;grid-template-columns:1.1fr .9fr;gap:15px;margin-top:16px;
- padding:20px;border:1px solid var(--line);border-radius:20px;
- background:linear-gradient(120deg,#141b2bdf,#101624e8)
+  display:grid;grid-template-columns:1.1fr .9fr;gap:15px;
+  margin-top:17px;padding:20px;
+  border:1px solid var(--line);border-radius:19px;
+  background:var(--panel);
 }
-.student-info{display:flex;align-items:center;gap:15px;min-width:0}
+.student-info{display:flex;align-items:center;gap:16px;min-width:0}
 .student-info .avatar{
- width:76px;height:76px;flex-basis:76px;border-width:2px;
- font-size:24px;box-shadow:0 0 0 6px #8caaff0c
+  width:76px;height:76px;flex-basis:76px;
+  border:2px solid #d7b66b80;font-size:24px;
 }
-.student-label{color:#8faaff;font-size:10px;font-weight:800}
+.student-label{color:var(--gold);font-size:10px;font-weight:800}
 .student-name{margin:5px 0;font-size:clamp(17px,2vw,23px);font-weight:900;overflow-wrap:anywhere}
-.verified{display:none;align-items:center;gap:5px;margin:3px 0 6px;color:var(--green);font-size:10px;font-weight:900}
+.verified{display:none;align-items:center;gap:5px;color:var(--green);font-size:10px;font-weight:900}
 .verified svg{width:15px;height:15px}
 .student-code{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:10px}
-.student-code b{color:#d7e2ff;direction:ltr}
-.copy-btn{padding:5px 9px;border:1px solid var(--line);border-radius:8px;color:#c3d2ff;background:#202b42;font-size:9px}
-.student-meta{margin-top:6px;color:#98a6c1;font-size:9px;line-height:1.8}
-.progress-box{padding:16px;border:1px solid #a8bbff1c;border-radius:15px;background:#0c1220b8}
+.student-code b{color:var(--gold2);direction:ltr}
+.copy-btn{
+  padding:5px 9px;border:1px solid var(--line);border-radius:8px;
+  background:#28261e;color:var(--gold2);font-size:9px;
+}
+.student-meta{margin-top:6px;color:#999386;font-size:9px;line-height:1.8}
+.progress-box{
+  padding:17px;border:1px solid #d7b66b20;
+  border-radius:15px;background:#12120f;
+}
 .progress-title{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:800}
-.progress-title span{color:#9cb5ff;font-size:9px}
-.progress-value{margin:9px 0 3px;color:#c3d5ff;font-size:30px;font-weight:900}
+.progress-title span{color:var(--gold);font-size:9px}
+.progress-value{margin:9px 0 3px;color:var(--gold2);font-size:30px;font-weight:900}
 .progress-desc{color:var(--muted);font-size:9px;line-height:1.8}
-.progress-track{height:7px;margin:11px 0 7px;overflow:hidden;border-radius:20px;background:#ffffff17}
-.progress-fill{width:0;height:100%;border-radius:20px;background:linear-gradient(90deg,#718cff,#5bd8e7);transition:width .5s}
+.progress-track{height:7px;margin:12px 0 8px;overflow:hidden;border-radius:20px;background:#ffffff16}
+.progress-fill{width:0;height:100%;border-radius:20px;background:linear-gradient(90deg,#a9823b,#f0d99e);transition:width .5s}
 
+/* الإحصائيات */
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:15px}
-.stat{min-width:0;padding:15px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#171e2f,#101624)}
-.stat-head{display:flex;align-items:center;justify-content:space-between;gap:7px;color:#aebbd4;font-size:9px}
-.stat-icon{width:37px;height:37px;display:grid;place-items:center;border:1px solid #8eaaff25;border-radius:11px;color:#a9c0ff;background:#8eaaff12}
+.stat{
+  min-width:0;padding:17px;
+  border:1px solid var(--line);border-radius:16px;
+  background:var(--panel);
+  transition:transform .2s,border-color .2s;
+}
+.stat:hover{transform:translateY(-3px);border-color:#d7b66b55}
+.stat-head{display:flex;align-items:center;justify-content:space-between;gap:7px;color:#b8b1a3;font-size:9px}
+.stat-icon{
+  width:36px;height:36px;display:grid;place-items:center;
+  border:1px solid #d7b66b30;border-radius:11px;
+  color:var(--gold);background:#d7b66b0d;
+}
 .stat-icon svg{width:17px;height:17px}
-.stat strong{display:block;margin-top:9px;color:#e3ebff;font-size:24px;font-weight:900}
-.stat small{display:block;margin-top:3px;color:#8492ad;font-size:9px}
+.stat strong{display:block;margin-top:10px;color:var(--text);font-size:25px;font-weight:900}
+.stat small{display:block;margin-top:3px;color:#827d72;font-size:9px}
 
-.section{margin-top:31px;scroll-margin-top:12px}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:13px}
+/* الأقسام */
+.section{margin-top:32px;scroll-margin-top:90px}
+.section-head{
+  display:flex;align-items:end;justify-content:space-between;
+  gap:12px;margin-bottom:14px;
+}
 .section-head h2{margin:0;font-size:18px;font-weight:900}
-.section-head p{margin:4px 0 0;color:#8f9db8;font-size:9px}
-.section-link{padding:8px 11px;border:1px solid var(--line);border-radius:9px;color:#b9caff;font-size:9px}
-.quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.section-head p{margin:4px 0 0;color:#898477;font-size:9px}
+.section-link{
+  padding:8px 12px;border:1px solid var(--line);
+  border-radius:9px;color:var(--gold2);font-size:9px;
+}
+.quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .quick-card{
- min-height:96px;padding:14px;display:flex;align-items:center;gap:12px;
- border:1px solid var(--line);border-radius:16px;
- background:linear-gradient(110deg,#141c2def,#17243bdf),url("./1795124002624.jpg") center/cover;
- transition:.2s
+  min-height:100px;padding:16px;
+  display:flex;align-items:center;gap:13px;
+  border:1px solid var(--line);border-radius:16px;
+  background:var(--panel);
+  transition:.2s;
 }
-.quick-card:hover{transform:translateY(-2px);border-color:#8daaff66;box-shadow:0 12px 28px #0005}
+.quick-card:hover{transform:translateY(-3px);border-color:#d7b66b55;background:#201f19}
 .quick-icon{
- width:43px;height:43px;flex:0 0 43px;display:grid;place-items:center;
- border:1px solid #8eaaff2b;border-radius:13px;color:#bfd0ff;background:#8eaaff13;font-size:17px
+  width:44px;height:44px;flex:0 0 44px;
+  display:grid;place-items:center;
+  border:1px solid #d7b66b30;border-radius:13px;
+  color:var(--gold);background:#d7b66b0d;
 }
-.quick-card strong{display:block;font-size:10px}
-.quick-card small{display:block;margin-top:4px;color:#9caac4;font-size:9px;line-height:1.8}
+.quick-card strong{display:block;font-size:11px}
+.quick-card small{display:block;margin-top:4px;color:#999386;font-size:9px;line-height:1.8}
 
-.panel{min-width:0;padding:17px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#151c2c,#101624)}
-.empty{
- min-height:88px;padding:14px;display:flex;align-items:center;gap:11px;
- border:1px dashed #8eaaff40;border-radius:12px;color:#aab6ce;font-size:10px;line-height:2
+.panel{
+  min-width:0;padding:17px;
+  border:1px solid var(--line);border-radius:17px;
+  background:var(--panel);
 }
-.empty-icon{width:39px;height:39px;flex:0 0 39px;display:grid;place-items:center;border-radius:11px;color:#b9caff;background:#8eaaff14;font-size:16px}
+.empty{
+  min-height:85px;padding:15px;
+  display:flex;align-items:center;gap:12px;
+  border:1px dashed #d7b66b35;border-radius:12px;
+  color:#aaa497;font-size:10px;line-height:2;
+}
+.empty-icon{
+  width:39px;height:39px;flex:0 0 39px;
+  display:grid;place-items:center;border-radius:11px;
+  color:var(--gold);background:#d7b66b12;
+}
 .course-list,.activity-list,.notice-list{display:grid;gap:9px}
 .course-item,.activity-item,.notice-item{
- min-width:0;padding:13px;display:flex;align-items:center;gap:11px;
- border:1px solid #ffffff12;border-radius:12px;background:#ffffff08
+  min-width:0;padding:14px;
+  display:flex;align-items:center;gap:12px;
+  border:1px solid #ffffff10;border-radius:12px;
+  background:#ffffff05;
 }
+.course-item:hover{border-color:#d7b66b55;background:#d7b66b09}
 .item-copy{min-width:0;flex:1}
 .item-copy strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px}
 .item-copy small{display:block;margin-top:4px;color:var(--muted);font-size:9px;line-height:1.8}
-.item-action{color:#b9caff;font-size:9px;white-space:nowrap}
+.item-action{color:var(--gold2);font-size:9px;white-space:nowrap}
 .notice-item{align-items:flex-start}
-.notice-item p{margin:5px 0 0;color:#aab6ce;font-size:9px;line-height:1.9}
-.notice-item time{display:block;margin-top:5px;color:#7f8da8;font-size:8px}
+.notice-item p{margin:5px 0 0;color:#aaa497;font-size:9px;line-height:1.9}
+.notice-item time{display:block;margin-top:5px;color:#777268;font-size:8px}
 
 .feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.feature-card{min-width:0;padding:18px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#171f31,#101624)}
-.feature-title{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+.feature-card{
+  min-width:0;padding:19px;
+  border:1px solid var(--line);border-radius:17px;
+  background:var(--panel);
+}
+.feature-title{display:flex;align-items:center;gap:11px;margin-bottom:10px}
 .feature-title .quick-icon{width:39px;height:39px;flex-basis:39px}
 .feature-title strong{font-size:11px}
-.feature-card p{margin:0;color:#95a3bd;font-size:9px;line-height:2}
-.feature-status{margin-top:11px;padding:10px;border:1px dashed var(--line);border-radius:10px;color:#aebbd2;font-size:9px;line-height:1.9}
-.points-value{margin:9px 0;color:#c5d7ff;font-size:27px;font-weight:900}
+.feature-card p{margin:0;color:#999386;font-size:9px;line-height:2}
+.feature-status{
+  margin-top:12px;padding:11px;
+  border:1px dashed var(--line);border-radius:10px;
+  color:#b5ad9d;font-size:9px;line-height:1.9;
+}
+.points-value{margin:9px 0;color:var(--gold2);font-size:27px;font-weight:900}
 .study-card{grid-column:1/-1}
 .study-card textarea{
- width:100%;min-height:145px;margin-top:12px;padding:13px;resize:vertical;
- border:1px solid var(--line);border-radius:11px;outline:0;color:#fff;
- background:#0a0f1b;font-size:11px;line-height:2
+  width:100%;min-height:145px;margin-top:12px;padding:14px;resize:vertical;
+  border:1px solid var(--line);border-radius:11px;outline:0;
+  color:var(--text);background:#11110e;font-size:11px;line-height:2;
 }
-.study-card textarea:focus{border-color:#829eff}
+.study-card textarea:focus{border-color:var(--gold)}
 .study-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
 .action-btn{
- min-height:38px;padding:8px 13px;display:inline-flex;align-items:center;
- justify-content:center;border:1px solid #8eaaff40;border-radius:9px;
- color:#d2deff;background:#8eaaff15;font-size:9px;font-weight:800
+  min-height:39px;padding:8px 15px;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  border:1px solid #d7b66b50;border-radius:9px;
+  color:#17140c;background:linear-gradient(130deg,#f0d99e,#c5a45c);
+  font-size:9px;font-weight:900;
 }
+.action-btn:disabled{opacity:.6;cursor:wait}
 .study-tools small{color:var(--muted);font-size:9px}
-.footer{padding:28px 0 8px;text-align:center;color:#7785a0;font-size:9px}
+.footer{padding:30px 0 10px;text-align:center;color:#777268;font-size:9px}
 
-.overlay{display:none;position:fixed;inset:0;z-index:90;background:#02040bcc;backdrop-filter:blur(4px)}
+/* رسائل التنبيه */
+.overlay{display:none;position:fixed;inset:0;z-index:45;background:#000b;backdrop-filter:blur(4px)}
 .toast{
- position:fixed;z-index:300;right:50%;bottom:18px;transform:translate(50%,20px);
- padding:12px 16px;border:1px solid var(--line);border-radius:12px;
- color:white;background:#1b2436;font-size:10px;opacity:0;pointer-events:none;transition:.2s
+  position:fixed;z-index:100;right:50%;bottom:22px;
+  transform:translate(50%,20px);
+  padding:12px 17px;border:1px solid var(--line);border-radius:12px;
+  color:var(--text);background:#24231d;font-size:10px;
+  opacity:0;pointer-events:none;transition:.2s;
 }
 .toast.show{opacity:1;transform:translate(50%,0)}
 
+/* الشاشات المتوسطة */
 @media(max-width:1050px){
- .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
- .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sidebar{width:235px;flex-basis:235px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:760px){
- .sidebar{
-  position:fixed;right:0;top:0;bottom:0;width:min(310px,88vw);
-  height:100dvh;transform:translateX(105%);padding-bottom:env(safe-area-inset-bottom)
- }
- body.menu-open .sidebar{transform:translateX(0)}
- body.menu-open .overlay{display:block}
- .topbar{min-height:60px;padding:7px 10px;padding-top:max(7px,env(safe-area-inset-top))}
- .menu-btn,.top-icon{width:38px;height:38px}
- .heading strong{font-size:11px}.heading small{font-size:8px}
- .profile-btn{max-width:43px;padding:3px}
- .profile-btn .profile-text{display:none}
- .content{padding:16px 11px max(25px,env(safe-area-inset-bottom))}
- .welcome{align-items:flex-start}
- .welcome h1{font-size:21px}.welcome p{font-size:9px}
- .today-chip{padding:7px 9px;font-size:8px}
- .hero{min-height:265px;padding:19px;border-radius:18px}
- .hero-copy{max-width:72%;align-self:flex-start}
- .hero h2{font-size:22px}.hero p{font-size:9px}
- .hero-image{left:0;width:43%;height:78%}
- .hero-kicker{font-size:8px}
- .btn-primary,.btn-secondary{min-height:37px;padding:8px 10px;font-size:8px}
- .overview{grid-template-columns:1fr;padding:14px;gap:12px}
- .student-info .avatar{width:65px;height:65px;flex-basis:65px}
- .stats{gap:8px}.stat{padding:11px}.stat strong{font-size:20px}
- .quick-grid{gap:8px}
- .quick-card{min-height:82px;padding:10px;gap:8px}
- .quick-icon{width:37px;height:37px;flex-basis:37px}
- .feature-grid{grid-template-columns:1fr}
- .section{margin-top:25px}.section-head h2{font-size:16px}
+  .sidebar{
+    position:fixed;right:0;top:0;bottom:0;
+    width:min(300px,88vw);height:100dvh;
+    transform:translateX(105%);
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  body.menu-open .sidebar{transform:translateX(0)}
+  body.menu-open .overlay{display:block}
+  .menu-btn{display:grid}
+  .topbar{min-height:62px;padding:8px 11px;padding-top:max(8px,env(safe-area-inset-top))}
+  .top-actions{gap:7px}
+  .top-icon,.menu-btn{width:38px;height:38px}
+  .heading strong{font-size:11px}
+  .heading small{font-size:8px}
+  .profile-btn{max-width:43px;padding:3px}
+  .profile-btn .profile-text{display:none}
+  .content{padding:18px 12px max(85px,env(safe-area-inset-bottom))}
+  .welcome{align-items:flex-start}
+  .welcome h1{font-size:22px}
+  .welcome p{font-size:9px}
+  .today-chip{padding:7px 9px;font-size:8px}
+  .hero{min-height:265px;padding:20px;border-radius:18px}
+  .hero-copy{max-width:73%;align-self:flex-start}
+  .hero h2{font-size:23px}
+  .hero p{font-size:9px}
+  .hero-image{left:0;width:43%;height:78%}
+  .hero-kicker{font-size:8px}
+  .btn-primary,.btn-secondary{min-height:37px;padding:8px 10px;font-size:8px}
+  .overview{grid-template-columns:1fr;padding:14px;gap:12px}
+  .student-info .avatar{width:65px;height:65px;flex-basis:65px}
+  .stats{gap:8px}
+  .stat{padding:12px}
+  .stat strong{font-size:21px}
+  .quick-grid{gap:8px}
+  .quick-card{min-height:85px;padding:11px;gap:9px}
+  .quick-icon{width:38px;height:38px;flex-basis:38px}
+  .feature-grid{grid-template-columns:1fr}
+  .section{margin-top:26px}
+  .section-head h2{font-size:16px}
+  .bottom-nav{
+    position:fixed;right:10px;left:10px;bottom:max(9px,env(safe-area-inset-bottom));
+    z-index:35;min-height:61px;padding:6px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:4px;
+    border:1px solid var(--line);border-radius:17px;
+    background:#1a1915f2;backdrop-filter:blur(18px);
+    box-shadow:0 12px 35px #0009;
+  }
+  .bottom-nav a{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    border-radius:11px;color:#a9a294;font-size:8px;
+  }
+  .bottom-nav a svg{width:18px;height:18px}
+  .bottom-nav a.active{color:var(--gold2);background:#d7b66b12}
 }
+@media(min-width:761px){.bottom-nav{display:none}}
 @media(max-width:390px){
- .content{padding-inline:9px}
- .welcome{flex-wrap:wrap}
- .hero{min-height:240px}
- .hero h2{font-size:19px}
- .hero-image{width:46%}
- .quick-grid{grid-template-columns:1fr}
- .study-card{grid-column:auto}
- .top-actions{gap:6px}
+  .content{padding-inline:9px}
+  .welcome{flex-wrap:wrap}
+  .hero{min-height:240px}
+  .hero h2{font-size:20px}
+  .hero-image{width:46%}
+  .quick-grid{grid-template-columns:1fr}
+  .study-card{grid-column:auto}
+  .top-start,.top-end{gap:6px}
 }
 @media(prefers-reduced-motion:reduce){
- *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
 }
 </style>
 </head>
@@ -319,240 +464,320 @@ svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
 <div class="app">
 
 <aside class="sidebar" id="sidebar">
- <div class="brand">
-  <div class="brand-mark">
-   <svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M7 11.5V16c3.3 2.5 6.7 2.5 10 0v-4.5"/><path d="M21 9v6"/></svg>
+  <div class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M7 11.5V16c3.3 2.5 6.7 2.5 10 0v-4.5"/><path d="M21 9v6"/></svg>
+    </div>
+    <div>
+      <div class="brand-title">منصة الجنايني التعليمية</div>
+      <div class="brand-sub">ELGEN LEARNING</div>
+    </div>
   </div>
-  <div>
-   <div class="brand-title">منصة الجنايني التعليمية</div>
-   <div class="brand-sub">ELGEN LEARNING EXPERIENCE</div>
+
+  <div class="nav-label">القائمة الرئيسية</div>
+  <nav class="nav-list">
+    <a class="nav-link active" href="#home">
+      <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg>
+      <span>الرئيسية</span>
+    </a>
+    <a class="nav-link" href="#courses">
+      <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20M8 7h8M8 10h6"/></svg>
+      <span>كورساتي</span>
+    </a>
+    <a class="nav-link" href="#progress">
+      <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h17"/><path d="m7 15 4-4 3 2 6-7"/></svg>
+      <span>إنجازاتي وتقدمي</span>
+    </a>
+    <a class="nav-link" href="#notes">
+      <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4z"/></svg>
+      <span>دفتر الملاحظات</span>
+    </a>
+  </nav>
+
+  <div class="nav-label">المتابعة</div>
+  <nav class="nav-list">
+    <a class="nav-link" href="#announcements">
+      <svg viewBox="0 0 24 24"><path d="m4 11 16-6v14L4 13z"/><path d="m7 14 2 6h4l-2-5"/></svg>
+      <span>إعلانات المنصة</span>
+    </a>
+    <a class="nav-link" href="#notifications">
+      <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
+      <span>إشعاراتي</span>
+    </a>
+    <a class="nav-link" href="#wallet">
+      <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="M3 9h18M16 15h2"/></svg>
+      <span>رصيد النقاط</span>
+    </a>
+    <a class="nav-link" href="#competitions">
+      <svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4"/></svg>
+      <span>المسابقات</span>
+    </a>
+  </nav>
+
+  <div class="nav-label">حساب الطالب</div>
+  <nav class="nav-list">
+    <a class="nav-link" href="#student-account">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      <span>ملفي الشخصي</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <a class="side-user" href="#student-account">
+      <span class="avatar" id="sideAvatar">ط</span>
+      <span style="min-width:0">
+        <strong id="sideName">حساب الطالب</strong>
+        <small id="sideCode">ملفي الشخصي</small>
+      </span>
+    </a>
   </div>
- </div>
-
- <div class="nav-label">مساحة التعلم</div>
- <nav class="nav-list">
-  <a class="nav-link active" href="#home">⌂ <span>الرئيسية</span></a>
-  <a class="nav-link" href="#courses">▤ <span>كورساتي</span></a>
-  <a class="nav-link" href="#progress">↗ <span>إنجازاتي وتقدمي</span></a>
-  <a class="nav-link" href="#notes">✎ <span>دفتر الملاحظات</span></a>
- </nav>
-
- <div class="nav-label">تابع كل جديد</div>
- <nav class="nav-list">
-  <a class="nav-link" href="#announcements">◇ <span>إعلانات المنصة</span></a>
-  <a class="nav-link" href="#notifications">◉ <span>إشعاراتي</span></a>
-  <a class="nav-link" href="#wallet">◈ <span>رصيد النقاط</span></a>
-  <a class="nav-link" href="#competitions">☆ <span>المسابقات</span></a>
- </nav>
-
- <div class="nav-label">حسابك</div>
- <nav class="nav-list">
-  <a class="nav-link" href="./profile.html">◎ <span>الملف الشخصي</span></a>
-  <a class="nav-link" href="./support.html">؟ <span>الدعم والمساعدة</span></a>
-  <a class="nav-link" href="./settings.html">⚙ <span>الإعدادات</span></a>
- </nav>
-
- <div class="sidebar-bottom">
-  <a class="side-user" href="./profile.html">
-   <span class="avatar" id="sideAvatar">ط</span>
-   <span style="min-width:0">
-    <strong id="sideName">حساب الطالب</strong>
-    <small id="sideCode">الملف الشخصي</small>
-   </span>
-  </a>
- </div>
 </aside>
 
 <div class="overlay" id="overlay"></div>
 
 <div class="main">
 <header class="topbar">
- <div class="top-start">
-  <button class="menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false">
-   <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-  </button>
-  <div class="heading">
-   <strong id="pageTitle">لوحة التعلم</strong>
-   <small>منصة الجنايني التعليمية</small>
+  <div class="top-start">
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <div class="heading">
+      <strong id="pageTitle">مساحة التعلم</strong>
+      <small>منصة الجنايني التعليمية</small>
+    </div>
   </div>
- </div>
 
- <div class="top-end">
-  <div class="top-actions">
-   <a class="top-icon" href="#notifications" aria-label="الإشعارات">
-    <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
-   </a>
-   <a class="top-icon" href="./support.html" aria-label="الدعم">
-    <svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="12" width="4" height="7" rx="2"/><rect x="17" y="12" width="4" height="7" rx="2"/></svg>
-   </a>
+  <div class="top-end">
+    <div class="top-actions">
+      <a class="top-icon" href="#notifications" aria-label="الإشعارات">
+        <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
+      </a>
+    </div>
+    <a class="profile-btn" href="#student-account">
+      <span class="avatar" id="topAvatar">ط</span>
+      <span class="profile-text">
+        <strong id="topName">حساب الطالب</strong>
+        <small>حسابي الشخصي</small>
+      </span>
+    </a>
   </div>
-  <a class="profile-btn" href="./profile.html">
-   <span class="avatar" id="topAvatar">ط</span>
-   <span class="profile-text">
-    <strong id="topName">حساب الطالب</strong>
-    <small>حسابي الشخصي</small>
-   </span>
-  </a>
- </div>
 </header>
 
 <main class="content" id="home">
-
- <div class="welcome">
-  <div>
-   <h1>مساحتك للتميّز تبدأ من هنا</h1>
-   <p id="welcomeText">أهلاً بك في منصة الجنايني التعليمية.</p>
-  </div>
-  <div class="today-chip" id="todayDate">رحلتك التعليمية</div>
- </div>
-
- <div class="search-area">
-  <div class="search-box">
-   <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
-   <input id="platformSearch" type="search" placeholder="ابحث في أقسام المنصة..." autocomplete="off">
-  </div>
-  <div class="search-results" id="searchResults"></div>
- </div>
-
- <section class="hero">
-  <div class="hero-copy">
-   <div class="hero-kicker">رحلتك العلمية — خطوة بخطوة</div>
-   <h2>افهم الكيمياء،<br>وابنِ مستقبلك بثقة.</h2>
-   <p>كل ما تحتاجه لمتابعة دراستك وتنظيم تقدمك في مكان واحد. ابدأ من حيث توقفت، واجعل كل يوم خطوة جديدة نحو هدفك.</p>
-   <div class="hero-actions">
-    <a class="btn-primary" href="#courses">استكشف كورساتي</a>
-    <a class="btn-secondary" href="#progress">تابع إنجازك</a>
-   </div>
-  </div>
-  <div class="hero-image">
-   <img src="./85.jpg" alt="الدكتور محمود الجنايني" onerror="this.style.display='none'">
-  </div>
- </section>
-
- <section class="overview">
-  <div class="student-info">
-   <span class="avatar" id="profileAvatar">ط</span>
-   <div style="min-width:0">
-    <div class="student-label">ملف الطالب</div>
-    <div class="student-name" id="profileName">حساب الطالب</div>
-    <div class="verified" id="verifiedBadge">✓ حساب موثّق</div>
-    <div class="student-code">
-     كود الطالب: <b id="profileCode">—</b>
-     <button class="copy-btn" id="copyStudentId" type="button">نسخ الكود</button>
+  <div class="welcome">
+    <div>
+      <h1>أهلاً بك في مساحتك التعليمية</h1>
+      <p id="welcomeText">هنا تبدأ خطواتك نحو التفوق والتميز.</p>
     </div>
-    <div class="student-meta" id="studentMeta">بيانات حسابك التعليمية.</div>
-   </div>
+    <div class="today-chip" id="todayDate">رحلتك التعليمية</div>
   </div>
 
-  <div class="progress-box" id="progress">
-   <div class="progress-title">ملخص تقدمك الدراسي <span>تحديث من حسابك</span></div>
-   <div class="progress-value" id="progressValue">—</div>
-   <div class="progress-desc" id="progressCaption">سيظهر تقدمك هنا عند توفر بيانات الدراسة.</div>
-   <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
-   <div class="progress-desc" id="progressNote">لا توجد بيانات تقدم مسجلة بعد.</div>
-  </div>
- </section>
-
- <section class="stats">
-  <div class="stat">
-   <div class="stat-head"><span>الكورسات النشطة</span><span class="stat-icon">▤</span></div>
-   <strong id="coursesCount">—</strong>
-   <small>الكورسات المرتبطة بحسابك</small>
-  </div>
-  <div class="stat">
-   <div class="stat-head"><span>الدروس المكتملة</span><span class="stat-icon">✓</span></div>
-   <strong id="lessonsCount">—</strong>
-   <small>إنجازاتك المسجلة</small>
-  </div>
-  <div class="stat">
-   <div class="stat-head"><span>متوسط التقدم</span><span class="stat-icon">↗</span></div>
-   <strong id="averageProgress">—</strong>
-   <small>من بيانات تقدمك الفعلية</small>
-  </div>
-  <div class="stat">
-   <div class="stat-head"><span>رصيد النقاط</span><span class="stat-icon">◈</span></div>
-   <strong id="pointsCount">—</strong>
-   <small>رصيد حسابك الحالي</small>
-  </div>
- </section>
-
- <section class="section">
-  <div class="section-head">
-   <div><h2>اختصارات سريعة</h2><p>انتقل مباشرة إلى الجزء الذي تحتاجه</p></div>
-  </div>
-  <div class="quick-grid">
-   <a class="quick-card" href="#courses"><span class="quick-icon">▤</span><span><strong>كورساتي</strong><small>تابع المحتوى المتاح لك</small></span></a>
-   <a class="quick-card" href="#progress"><span class="quick-icon">↗</span><span><strong>تقدمي الدراسي</strong><small>راجع إنجازاتك المسجلة</small></span></a>
-   <a class="quick-card" href="#announcements"><span class="quick-icon">◇</span><span><strong>إعلانات المنصة</strong><small>اعرف آخر المستجدات</small></span></a>
-  </div>
- </section>
-
- <section class="section" id="courses">
-  <div class="section-head"><div><h2>كورساتي</h2><p>المحتوى التعليمي المرتبط بحسابك</p></div></div>
-  <div class="panel"><div class="course-list" id="coursesList"><div class="empty">جاري تحميل كورساتك...</div></div></div>
- </section>
-
- <section class="section">
-  <div class="section-head"><div><h2>آخر نشاط دراسي</h2><p>ملخص ما تم تسجيله في حسابك</p></div></div>
-  <div class="panel"><div class="activity-list" id="activityList"><div class="empty">جاري تحميل نشاطك...</div></div></div>
- </section>
-
- <section class="section" id="announcements">
-  <div class="section-head"><div><h2>إعلانات المنصة</h2><p>الأخبار والتنبيهات العامة المنشورة</p></div></div>
-  <div class="panel"><div class="notice-list" id="announcementsList"><div class="empty">جاري تحميل الإعلانات...</div></div></div>
- </section>
-
- <section class="section" id="notifications">
-  <div class="section-head"><div><h2>إشعاراتك</h2><p>التنبيهات المرتبطة بحسابك</p></div></div>
-  <div class="panel"><div class="notice-list" id="notificationsList"><div class="empty">جاري تحميل الإشعارات...</div></div></div>
- </section>
-
- <section class="section feature-grid">
-  <div class="feature-card" id="wallet">
-   <div class="feature-title"><span class="quick-icon">◈</span><strong>محفظة النقاط</strong></div>
-   <div class="points-value" id="pointsSummary">—</div>
-   <p id="pointsStatus">سيظهر رصيدك عند توفر بيانات المحفظة.</p>
+  <div class="search-area">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+      <input id="platformSearch" type="search" placeholder="ابحث في أقسام منصتك..." autocomplete="off">
+    </div>
+    <div class="search-results" id="searchResults"></div>
   </div>
 
-  <div class="feature-card" id="competitions">
-   <div class="feature-title"><span class="quick-icon">☆</span><strong>المسابقات</strong></div>
-   <p>تابع مشاركاتك ونتائجك عند توفرها في حسابك.</p>
-   <div class="feature-status" id="competitionsStatus">لا توجد مشاركات مسابقات مسجلة حاليًا.</div>
-  </div>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="hero-kicker">رحلتك العلمية تبدأ بخطوة</div>
+      <h2>العلم طريقك<br>إلى مستقبل أفضل.</h2>
+      <p>تابع دروسك، راجع تقدمك، ونظّم رحلتك التعليمية في مكان واحد. كل إنجاز صغير يقربك من هدفك الكبير.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#courses">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          ابدأ التعلم
+        </a>
+        <a class="btn-secondary" href="#progress">شاهد تقدمك</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="./85.jpg" alt="الدكتور محمود الجنايني" onerror="this.style.display='none'">
+    </div>
+  </section>
 
-  <div class="feature-card">
-   <div class="feature-title"><span class="quick-icon">✓</span><strong>حالة التوثيق</strong></div>
-   <p>حالة التوثيق الظاهرة مرتبطة ببيانات حسابك الفعلية.</p>
-   <div class="feature-status" id="verificationStatus">جارٍ التحقق من حالة الحساب.</div>
-  </div>
+  <section class="overview" id="student-account">
+    <div class="student-info">
+      <span class="avatar" id="profileAvatar">ط</span>
+      <div style="min-width:0">
+        <div class="student-label">حساب الطالب</div>
+        <div class="student-name" id="profileName">حساب الطالب</div>
+        <div class="verified" id="verifiedBadge">
+          <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/><circle cx="12" cy="12" r="10"/></svg>
+          حساب موثّق
+        </div>
+        <div class="student-code">
+          كود الطالب: <b id="profileCode">—</b>
+          <button class="copy-btn" id="copyStudentId" type="button">نسخ الكود</button>
+        </div>
+        <div class="student-meta" id="studentMeta">بيانات حسابك التعليمية.</div>
+      </div>
+    </div>
 
-  <div class="feature-card">
-   <div class="feature-title"><span class="quick-icon">◎</span><strong>حسابك التعليمي</strong></div>
-   <p>بياناتك الشخصية والتعليمية تظهر وفق المعلومات المسجلة في ملفك.</p>
-   <div class="feature-status">يمكنك مراجعة بياناتك من صفحة الملف الشخصي.</div>
-  </div>
+    <div class="progress-box" id="progress">
+      <div class="progress-title">ملخص تقدمك الدراسي <span>حسابك الحالي</span></div>
+      <div class="progress-value" id="progressValue">—</div>
+      <div class="progress-desc" id="progressCaption">سيظهر تقدمك هنا عند توفر بيانات الدراسة.</div>
+      <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+      <div class="progress-desc" id="progressNote">لا توجد بيانات تقدم مسجلة بعد.</div>
+    </div>
+  </section>
 
-  <div class="feature-card study-card" id="notes">
-   <div class="feature-title"><span class="quick-icon">✎</span><strong>دفتر ملاحظاتك</strong></div>
-   <p>اكتب ملاحظاتك الدراسية واحفظها داخل حسابك.</p>
-   <textarea id="studyNotes" placeholder="اكتب ملاحظاتك هنا..."></textarea>
-   <div class="study-tools">
-    <button class="action-btn" id="saveNotes" type="button">حفظ الملاحظات</button>
-    <small id="notesStatus">لم تحفظ ملاحظات بعد.</small>
-   </div>
-  </div>
- </section>
+  <section class="stats">
+    <div class="stat">
+      <div class="stat-head"><span>الكورسات النشطة</span><span class="stat-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/></svg></span></div>
+      <strong id="coursesCount">—</strong>
+      <small>الكورسات المرتبطة بحسابك</small>
+    </div>
+    <div class="stat">
+      <div class="stat-head"><span>الدروس المكتملة</span><span class="stat-icon"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span></div>
+      <strong id="lessonsCount">—</strong>
+      <small>إنجازاتك المسجلة</small>
+    </div>
+    <div class="stat">
+      <div class="stat-head"><span>متوسط التقدم</span><span class="stat-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h17M7 15l4-4 3 2 6-7"/></svg></span></div>
+      <strong id="averageProgress">—</strong>
+      <small>من بيانات تقدمك الفعلية</small>
+    </div>
+    <div class="stat">
+      <div class="stat-head"><span>رصيد النقاط</span><span class="stat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9H10a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H9"/></svg></span></div>
+      <strong id="pointsCount">—</strong>
+      <small>رصيد حسابك الحالي</small>
+    </div>
+  </section>
 
- <footer class="footer">© <span id="year"></span> منصة الجنايني التعليمية — جميع الحقوق محفوظة</footer>
+  <section class="section">
+    <div class="section-head">
+      <div><h2>وصول سريع</h2><p>كل ما تحتاجه على بُعد خطوة</p></div>
+    </div>
+    <div class="quick-grid">
+      <a class="quick-card" href="#courses">
+        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/><path d="M8 7h8M8 10h6"/></svg></span>
+        <span><strong>كورساتي</strong><small>تابع المحتوى التعليمي المتاح لك</small></span>
+      </a>
+      <a class="quick-card" href="#progress">
+        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h17M7 15l4-4 3 2 6-7"/></svg></span>
+        <span><strong>تقدمي الدراسي</strong><small>راجع إنجازاتك ونسب تقدمك</small></span>
+      </a>
+      <a class="quick-card" href="#announcements">
+        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="m4 11 16-6v14L4 13z"/><path d="m7 14 2 6h4l-2-5"/></svg></span>
+        <span><strong>إعلانات المنصة</strong><small>تابع آخر الأخبار والتنبيهات</small></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="courses">
+    <div class="section-head">
+      <div><h2>كورساتي</h2><p>المحتوى التعليمي المرتبط بحسابك</p></div>
+    </div>
+    <div class="panel"><div class="course-list" id="coursesList"><div class="empty">جاري تحميل كورساتك...</div></div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div><h2>آخر نشاط دراسي</h2><p>ملخص ما تم تسجيله في حسابك</p></div>
+    </div>
+    <div class="panel"><div class="activity-list" id="activityList"><div class="empty">جاري تحميل نشاطك...</div></div></div>
+  </section>
+
+  <section class="section" id="announcements">
+    <div class="section-head">
+      <div><h2>إعلانات المنصة</h2><p>الأخبار والتنبيهات العامة المنشورة</p></div>
+    </div>
+    <div class="panel"><div class="notice-list" id="announcementsList"><div class="empty">جاري تحميل الإعلانات...</div></div></div>
+  </section>
+
+  <section class="section" id="notifications">
+    <div class="section-head">
+      <div><h2>إشعاراتك</h2><p>التنبيهات المرتبطة بحسابك</p></div>
+    </div>
+    <div class="panel"><div class="notice-list" id="notificationsList"><div class="empty">جاري تحميل الإشعارات...</div></div></div>
+  </section>
+
+  <section class="section feature-grid">
+    <div class="feature-card" id="wallet">
+      <div class="feature-title">
+        <span class="quick-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="M3 9h18M16 15h2"/></svg></span>
+        <strong>رصيد النقاط</strong>
+      </div>
+      <div class="points-value" id="pointsSummary">—</div>
+      <p id="pointsStatus">سيظهر رصيدك عند توفر بيانات المحفظة.</p>
+    </div>
+
+    <div class="feature-card" id="competitions">
+      <div class="feature-title">
+        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4"/></svg></span>
+        <strong>المسابقات</strong>
+      </div>
+      <p>تابع مشاركاتك ونتائجك عند توفرها في حسابك.</p>
+      <div class="feature-status" id="competitionsStatus">لا توجد مشاركات مسابقات مسجلة حاليًا.</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-title">
+        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/><circle cx="12" cy="12" r="10"/></svg></span>
+        <strong>حالة التوثيق</strong>
+      </div>
+      <p>حالة التوثيق الظاهرة مرتبطة ببيانات حسابك الفعلية.</p>
+      <div class="feature-status" id="verificationStatus">جارٍ التحقق من حالة الحساب.</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-title">
+        <span class="quick-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+        <strong>حسابك التعليمي</strong>
+      </div>
+      <p>بياناتك الشخصية والتعليمية تظهر وفق المعلومات المسجلة في ملفك.</p>
+      <div class="feature-status">يمكنك مراجعة بياناتك من بطاقة حسابك بالأعلى.</div>
+    </div>
+
+    <div class="feature-card study-card" id="notes">
+      <div class="feature-title">
+        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4z"/></svg></span>
+        <strong>دفتر ملاحظاتك</strong>
+      </div>
+      <p>اكتب ملاحظاتك الدراسية واحفظها داخل حسابك.</p>
+      <textarea id="studyNotes" placeholder="اكتب ملاحظاتك هنا..."></textarea>
+      <div class="study-tools">
+        <button class="action-btn" id="saveNotes" type="button">
+          <svg viewBox="0 0 24 24"><path d="M5 3h12l4 4v14H3V3z"/><path d="M7 3v6h10V3M7 21v-8h10v8"/></svg>
+          حفظ الملاحظات
+        </button>
+        <small id="notesStatus">لم تحفظ ملاحظات بعد.</small>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">© <span id="year"></span> منصة الجنايني التعليمية — جميع الحقوق محفوظة</footer>
 </main>
 </div>
 </div>
+
+<nav class="bottom-nav" aria-label="التنقل السريع">
+  <a class="active" href="#home">
+    <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg>
+    الرئيسية
+  </a>
+  <a href="#courses">
+    <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/></svg>
+    كورساتي
+  </a>
+  <a href="#progress">
+    <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h17M7 15l4-4 3 2 6-7"/></svg>
+    إنجازاتي
+  </a>
+  <a href="#student-account">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+    حسابي
+  </a>
+</nav>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="./supabase-config.js"></script>
 <script src="./offline.js" defer></script>
-
 <script>
 (function(){
 "use strict";
@@ -561,543 +786,534 @@ const $=id=>document.getElementById(id);
 const CONFIG=window.ELGEN_SUPABASE;
 const DASHBOARD_URL=CONFIG?CONFIG.projectUrl+"/functions/v1/student-dashboard":"";
 
-let dashboardData=null,studentCode="—",toastTimer=null;
+let dashboardData=null;
+let studentCode="—";
+let toastTimer=null;
 
 function toast(message){
- const box=$("toast");
- if(!box)return;
- box.textContent=message;
- box.classList.add("show");
- clearTimeout(toastTimer);
- toastTimer=setTimeout(()=>box.classList.remove("show"),2400);
+  const box=$("toast");
+  if(!box)return;
+  box.textContent=message;
+  box.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>box.classList.remove("show"),2500);
 }
 
 function setText(id,value){
- const el=$(id);
- if(el)el.textContent=value;
+  const el=$(id);
+  if(el)el.textContent=value;
 }
 
 function getToken(){
- try{
-  const value=JSON.parse(localStorage.getItem("elgen_student_session")||"null");
-  if(typeof value==="string")return value;
-  return value&&typeof value.token==="string"?value.token:"";
- }catch{return ""}
+  try{
+    const value=JSON.parse(localStorage.getItem("elgen_student_session")||"null");
+    if(typeof value==="string")return value;
+    return value&&typeof value.token==="string"?value.token:"";
+  }catch{return ""}
 }
 
 function getCachedAccount(){
- try{
-  const value=JSON.parse(localStorage.getItem("elgen_student_account")||"null");
-  return value?.user||value||{};
- }catch{return {}}
+  try{
+    const value=JSON.parse(localStorage.getItem("elgen_student_account")||"null");
+    return value?.user||value||{};
+  }catch{return {}}
 }
 
 function applyAccount(account){
- if(!account)return;
+  if(!account)return;
 
- const name=account.full_name||account.name||"حساب الطالب";
- studentCode=account.user_code||account.student_code||account.code||"—";
- const photo=account.avatar_url||account.photo_url||account.profile_image||"";
- const initial=String(name).trim().charAt(0)||"ط";
+  const name=account.full_name||account.name||"حساب الطالب";
+  studentCode=account.user_code||account.student_code||account.code||"—";
+  const photo=account.avatar_url||account.photo_url||account.profile_image||"";
+  const initial=String(name).trim().charAt(0)||"ط";
 
- ["profileName","sideName","topName"].forEach(id=>setText(id,name));
- setText("profileCode",studentCode);
- setText("sideCode",studentCode);
+  ["profileName","sideName","topName"].forEach(id=>setText(id,name));
+  setText("profileCode",studentCode);
+  setText("sideCode",studentCode);
 
- setText(
-  "welcomeText",
-  name==="حساب الطالب"
-   ?"أهلاً بك في منصة الجنايني"
-   :"أهلاً يا "+name+"، نتمنى لك رحلة تعليمية ناجحة."
- );
+  setText(
+    "welcomeText",
+    name==="حساب الطالب"
+      ?"هنا تبدأ خطواتك نحو التفوق والتميز."
+      :"أهلاً يا "+name+"، نتمنى لك رحلة تعليمية ناجحة."
+  );
 
- const meta=[
-  account.education_type,
-  account.school_grade,
-  account.governorate,
-  account.education_center,
-  account.village
- ].filter(Boolean);
+  const meta=[
+    account.education_type,
+    account.school_grade,
+    account.governorate,
+    account.education_center,
+    account.village
+  ].filter(Boolean);
 
- setText("studentMeta",meta.length?meta.join(" • "):"بيانات حسابك التعليمية.");
+  setText("studentMeta",meta.length?meta.join(" • "):"بيانات حسابك التعليمية.");
 
- const verified=$("verifiedBadge");
- if(verified)verified.style.display=account.is_verified===true?"inline-flex":"none";
+  const verified=$("verifiedBadge");
+  if(verified)verified.style.display=account.is_verified===true?"inline-flex":"none";
 
- setText(
-  "verificationStatus",
-  account.is_verified===true
-   ?"حسابك موثّق بالفعل."
-   :"حسابك غير موثّق حاليًا. التوثيق يتم من خلال الإدارة."
- );
+  setText(
+    "verificationStatus",
+    account.is_verified===true
+      ?"حسابك موثّق بالفعل."
+      :"حسابك غير موثّق حاليًا. التوثيق يتم من خلال الإدارة."
+  );
 
- ["profileAvatar","sideAvatar","topAvatar"].forEach(id=>{
-  const el=$(id);
-  if(!el)return;
+  ["profileAvatar","sideAvatar","topAvatar"].forEach(id=>{
+    const el=$(id);
+    if(!el)return;
 
-  el.textContent=initial;
-
-  if(photo&&/^(https?:\/\/|data:image\/)/i.test(String(photo))){
-   const img=document.createElement("img");
-   img.src=photo;
-   img.alt="الصورة الشخصية";
-   img.onerror=()=>{
-    img.remove();
     el.textContent=initial;
-   };
-   el.textContent="";
-   el.appendChild(img);
-  }
- });
+
+    if(photo&&/^(https?:\/\/|data:image\/)/i.test(String(photo))){
+      const img=document.createElement("img");
+      img.src=photo;
+      img.alt="الصورة الشخصية";
+      img.onerror=()=>{
+        img.remove();
+        el.textContent=initial;
+      };
+      el.textContent="";
+      el.appendChild(img);
+    }
+  });
 }
 
 async function api(action,extra={}){
- if(!CONFIG||!DASHBOARD_URL){
-  throw new Error("إعدادات الاتصال غير موجودة.");
- }
+  if(!CONFIG||!DASHBOARD_URL){
+    throw new Error("إعدادات الاتصال غير موجودة.");
+  }
 
- const token=getToken();
- if(!token)throw new Error("جلسة الدخول غير موجودة. سجّل الدخول مرة أخرى.");
+  const token=getToken();
+  if(!token)throw new Error("جلسة الدخول غير موجودة. سجّل الدخول مرة أخرى.");
 
- const response=await fetch(DASHBOARD_URL,{
-  method:"POST",
-  headers:{
-   "Content-Type":"application/json",
-   "apikey":CONFIG.publishableKey,
-   "Authorization":"Bearer "+CONFIG.publishableKey
-  },
-  body:JSON.stringify({
-   action,
-   session_token:token,
-   ...extra
-  })
- });
+  const response=await fetch(DASHBOARD_URL,{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "apikey":CONFIG.publishableKey,
+      "Authorization":"Bearer "+CONFIG.publishableKey
+    },
+    body:JSON.stringify({
+      action,
+      session_token:token,
+      ...extra
+    })
+  });
 
- const result=await response.json().catch(()=>({}));
- if(!response.ok||result.ok!==true){
-  throw new Error(result.error||"تعذر تحميل البيانات حاليًا.");
- }
- return result;
+  const result=await response.json().catch(()=>({}));
+
+  if(!response.ok||result.ok!==true){
+    throw new Error(result.error||"تعذر تحميل البيانات حاليًا.");
+  }
+  return result;
 }
 
 function emptyState(message){
- const box=document.createElement("div");
- box.className="empty";
+  const box=document.createElement("div");
+  box.className="empty";
 
- const icon=document.createElement("span");
- icon.className="empty-icon";
- icon.textContent="•";
+  const icon=document.createElement("span");
+  icon.className="empty-icon";
+  icon.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>';
 
- const text=document.createElement("span");
- text.textContent=message;
+  const text=document.createElement("span");
+  text.textContent=message;
 
- box.append(icon,text);
- return box;
+  box.append(icon,text);
+  return box;
 }
 
 function dateText(value){
- if(!value)return "";
- const date=new Date(value);
- if(Number.isNaN(date.getTime()))return "";
+  if(!value)return "";
+  const date=new Date(value);
+  if(Number.isNaN(date.getTime()))return "";
 
- return new Intl.DateTimeFormat("ar-EG",{
-  day:"numeric",month:"short",year:"numeric"
- }).format(date);
+  return new Intl.DateTimeFormat("ar-EG",{
+    day:"numeric",month:"short",year:"numeric"
+  }).format(date);
 }
 
 function renderCourses(courses){
- const box=$("coursesList");
- box.replaceChildren();
+  const box=$("coursesList");
+  box.replaceChildren();
 
- if(!courses.length){
-  box.appendChild(emptyState("لا توجد كورسات مفعّلة لحسابك حتى الآن."));
-  return;
- }
+  if(!courses.length){
+    box.appendChild(emptyState("لا توجد كورسات مفعّلة لحسابك حتى الآن."));
+    return;
+  }
 
- courses.forEach(course=>{
-  const item=document.createElement("a");
-  item.className="course-item";
-  item.href="./courses.html?course="+encodeURIComponent(course.id);
+  courses.forEach(course=>{
+    const item=document.createElement("div");
+    item.className="course-item";
 
-  const icon=document.createElement("span");
-  icon.className="quick-icon";
-  icon.textContent="▤";
+    const icon=document.createElement("span");
+    icon.className="quick-icon";
+    icon.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/><path d="M8 7h8M8 10h6"/></svg>';
 
-  const copy=document.createElement("span");
-  copy.className="item-copy";
+    const copy=document.createElement("span");
+    copy.className="item-copy";
 
-  const title=document.createElement("strong");
-  title.textContent=course.title||"كورس";
+    const title=document.createElement("strong");
+    title.textContent=course.title||"كورس";
 
-  const desc=document.createElement("small");
-  desc.textContent=course.description||"كورس مفعّل لحسابك";
+    const desc=document.createElement("small");
+    desc.textContent=course.description||"كورس مفعّل لحسابك";
 
-  copy.append(title,desc);
+    copy.append(title,desc);
 
-  const action=document.createElement("span");
-  action.className="item-action";
-  action.textContent="فتح";
+    const action=document.createElement("span");
+    action.className="item-action";
+    action.textContent="متاح";
 
-  item.append(icon,copy,action);
-  box.appendChild(item);
- });
+    item.append(icon,copy,action);
+    box.appendChild(item);
+  });
 }
 
 function renderActivity(progress){
- const box=$("activityList");
- box.replaceChildren();
+  const box=$("activityList");
+  box.replaceChildren();
 
- if(!progress.length){
-  box.appendChild(emptyState("لا توجد أنشطة أو دروس مسجلة في سجل تقدمك حتى الآن."));
-  return;
- }
+  if(!progress.length){
+    box.appendChild(emptyState("لا توجد أنشطة أو دروس مسجلة في سجل تقدمك حتى الآن."));
+    return;
+  }
 
- progress.slice(0,6).forEach(row=>{
-  const item=document.createElement("div");
-  item.className="activity-item";
+  progress.slice(0,6).forEach(row=>{
+    const item=document.createElement("div");
+    item.className="activity-item";
 
-  const icon=document.createElement("span");
-  icon.className="quick-icon";
-  icon.textContent=row.is_completed?"✓":"↗";
+    const icon=document.createElement("span");
+    icon.className="quick-icon";
+    icon.innerHTML=row.is_completed
+      ?'<svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>'
+      :'<svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h17M7 15l4-4 3 2 6-7"/></svg>';
 
-  const copy=document.createElement("span");
-  copy.className="item-copy";
+    const copy=document.createElement("span");
+    copy.className="item-copy";
 
-  const title=document.createElement("strong");
-  title.textContent=row.is_completed?"درس مكتمل":"تقدم في الدراسة";
+    const title=document.createElement("strong");
+    title.textContent=row.is_completed?"درس مكتمل":"تقدم في الدراسة";
 
-  const detail=document.createElement("small");
-  detail.textContent="نسبة الإنجاز: "+Number(row.progress_percent||0)+"%";
+    const detail=document.createElement("small");
+    detail.textContent="نسبة الإنجاز: "+Number(row.progress_percent||0)+"%";
 
-  copy.append(title,detail);
+    copy.append(title,detail);
 
-  const date=document.createElement("span");
-  date.className="item-action";
-  date.textContent=dateText(row.last_studied_at||row.updated_at);
+    const date=document.createElement("span");
+    date.className="item-action";
+    date.textContent=dateText(row.last_studied_at||row.updated_at);
 
-  item.append(icon,copy,date);
-  box.appendChild(item);
- });
+    item.append(icon,copy,date);
+    box.appendChild(item);
+  });
 }
 
 function renderNotices(id,items,message){
- const box=$(id);
- box.replaceChildren();
+  const box=$(id);
+  box.replaceChildren();
 
- if(!items.length){
-  box.appendChild(emptyState(message));
-  return;
- }
+  if(!items.length){
+    box.appendChild(emptyState(message));
+    return;
+  }
 
- items.forEach(item=>{
-  const row=document.createElement("div");
-  row.className="notice-item";
+  items.forEach(item=>{
+    const row=document.createElement("div");
+    row.className="notice-item";
 
-  const icon=document.createElement("span");
-  icon.className="quick-icon";
-  icon.textContent=id==="announcementsList"?"!":"•";
+    const icon=document.createElement("span");
+    icon.className="quick-icon";
+    icon.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/></svg>';
 
-  const copy=document.createElement("div");
-  copy.className="item-copy";
+    const copy=document.createElement("div");
+    copy.className="item-copy";
 
-  const title=document.createElement("strong");
-  title.textContent=item.title||"تنبيه";
+    const title=document.createElement("strong");
+    title.textContent=item.title||"تنبيه";
 
-  const body=document.createElement("p");
-  body.textContent=item.body||"";
+    const body=document.createElement("p");
+    body.textContent=item.body||"";
 
-  const time=document.createElement("time");
-  time.textContent=dateText(item.published_at||item.created_at);
+    const time=document.createElement("time");
+    time.textContent=dateText(item.published_at||item.created_at);
 
-  copy.append(title,body,time);
-  row.append(icon,copy);
-  box.appendChild(row);
- });
+    copy.append(title,body,time);
+    row.append(icon,copy);
+    box.appendChild(row);
+  });
 }
 
 function renderDashboard(data){
- dashboardData=data;
+  dashboardData=data;
 
- const courses=data.courses||[];
- const progress=data.progress||[];
- const stats=data.stats||{};
+  const courses=data.courses||[];
+  const progress=data.progress||[];
+  const stats=data.stats||{};
 
- setText("coursesCount",stats.active_courses??"—");
- setText("lessonsCount",stats.completed_lessons??"—");
+  setText("coursesCount",stats.active_courses??"—");
+  setText("lessonsCount",stats.completed_lessons??"—");
 
- setText(
-  "averageProgress",
-  Number.isFinite(Number(stats.average_progress))
-   ?Number(stats.average_progress)+"%"
-   :"—"
- );
+  setText(
+    "averageProgress",
+    Number.isFinite(Number(stats.average_progress))
+      ?Number(stats.average_progress)+"%"
+      :"—"
+  );
 
- const value=Number(stats.average_progress||0);
+  const value=Number(stats.average_progress||0);
 
- if(progress.length){
-  setText("progressValue",value+"%");
-  setText("progressCaption","متوسط تقدمك في الدروس المسجلة.");
-  $("progressBar").style.width=Math.min(100,Math.max(0,value))+"%";
-  setText("progressNote",stats.completed_lessons+" درس مكتمل.");
- }else{
-  setText("progressValue","—");
-  setText("progressCaption","لا توجد بيانات تقدم مسجلة حتى الآن.");
-  $("progressBar").style.width="0%";
-  setText("progressNote","سيظهر تقدمك عند بدء الدراسة وتسجيل الدروس.");
- }
+  if(progress.length){
+    setText("progressValue",value+"%");
+    setText("progressCaption","متوسط تقدمك في الدروس المسجلة.");
+    $("progressBar").style.width=Math.min(100,Math.max(0,value))+"%";
+    setText("progressNote",(stats.completed_lessons??0)+" درس مكتمل.");
+  }else{
+    setText("progressValue","—");
+    setText("progressCaption","لا توجد بيانات تقدم مسجلة حتى الآن.");
+    $("progressBar").style.width="0%";
+    setText("progressNote","سيظهر تقدمك عند بدء الدراسة وتسجيل الدروس.");
+  }
 
- if(data.wallet){
-  setText("pointsCount",data.wallet.coin_balance);
-  setText("pointsSummary",data.wallet.coin_balance);
-  setText("pointsStatus","العملة: "+(data.wallet.display_currency||"نقاط"));
- }else{
-  setText("pointsCount","—");
-  setText("pointsSummary","—");
-  setText("pointsStatus","لا توجد محفظة نقاط مسجلة لهذا الحساب حتى الآن.");
- }
+  if(data.wallet){
+    setText("pointsCount",data.wallet.coin_balance);
+    setText("pointsSummary",data.wallet.coin_balance);
+    setText("pointsStatus","العملة: "+(data.wallet.display_currency||"نقاط"));
+  }else{
+    setText("pointsCount","—");
+    setText("pointsSummary","—");
+    setText("pointsStatus","لا توجد محفظة نقاط مسجلة لهذا الحساب حتى الآن.");
+  }
 
- const competitions=data.competitions||[];
- setText(
-  "competitionsStatus",
-  competitions.length
-   ?"لديك "+competitions.length+" مشاركة مسجلة."
-   :"لا توجد مشاركات مسابقات مسجلة لحسابك حتى الآن."
- );
+  const competitions=data.competitions||[];
+  setText(
+    "competitionsStatus",
+    competitions.length
+      ?"لديك "+competitions.length+" مشاركة مسجلة."
+      :"لا توجد مشاركات مسابقات مسجلة لحسابك حتى الآن."
+  );
 
- renderCourses(courses);
- renderActivity(progress);
+  renderCourses(courses);
+  renderActivity(progress);
 
- renderNotices(
-  "announcementsList",
-  data.announcements||[],
-  "لا توجد إعلانات منشورة حاليًا."
- );
+  renderNotices(
+    "announcementsList",
+    data.announcements||[],
+    "لا توجد إعلانات منشورة حاليًا."
+  );
 
- renderNotices(
-  "notificationsList",
-  data.notifications||[],
-  "لا توجد إشعارات مسجلة لحسابك حاليًا."
- );
+  renderNotices(
+    "notificationsList",
+    data.notifications||[],
+    "لا توجد إشعارات مسجلة لحسابك حاليًا."
+  );
 
- $("studyNotes").value=data.study_note?.note_text||"";
+  $("studyNotes").value=data.study_note?.note_text||"";
 
- setText(
-  "notesStatus",
-  data.study_note?.updated_at
-   ?"آخر حفظ: "+dateText(data.study_note.updated_at)
-   :"لم تحفظ ملاحظات بعد."
- );
+  setText(
+    "notesStatus",
+    data.study_note?.updated_at
+      ?"آخر حفظ: "+dateText(data.study_note.updated_at)
+      :"لم تحفظ ملاحظات بعد."
+  );
 }
 
 async function loadDashboard(){
- try{
-  const result=await api("dashboard");
-  if(result.user)applyAccount(result.user);
-  renderDashboard(result.dashboard||{});
- }catch(error){
-  toast(error.message);
-  if(error.message.includes("جلسة الدخول")){
-   setText("coursesList","تعذر التحقق من الجلسة.");
+  try{
+    const result=await api("dashboard");
+    if(result.user)applyAccount(result.user);
+    renderDashboard(result.dashboard||{});
+  }catch(error){
+    toast(error.message);
+    if(error.message.includes("جلسة الدخول")){
+      $("coursesList").replaceChildren(emptyState("تعذر التحقق من الجلسة. سجّل الدخول مرة أخرى."));
+    }
   }
- }
 }
 
 async function saveNotes(){
- const button=$("saveNotes");
- const status=$("notesStatus");
+  const button=$("saveNotes");
+  const status=$("notesStatus");
 
- button.disabled=true;
- button.textContent="جاري الحفظ...";
+  button.disabled=true;
+  button.textContent="جاري الحفظ...";
 
- try{
-  const result=await api("save_note",{
-   note_text:$("studyNotes").value
-  });
+  try{
+    const result=await api("save_note",{
+      note_text:$("studyNotes").value
+    });
 
-  status.textContent="تم حفظ ملاحظاتك في حسابك.";
-  if(dashboardData)dashboardData.study_note=result.note;
-  toast("تم حفظ الملاحظات بنجاح");
- }catch(error){
-  status.textContent=error.message;
-  toast(error.message);
- }finally{
-  button.disabled=false;
-  button.textContent="حفظ الملاحظات";
- }
+    status.textContent="تم حفظ ملاحظاتك في حسابك.";
+    if(dashboardData)dashboardData.study_note=result.note;
+    toast("تم حفظ الملاحظات بنجاح");
+  }catch(error){
+    status.textContent=error.message;
+    toast(error.message);
+  }finally{
+    button.disabled=false;
+    button.textContent="حفظ الملاحظات";
+  }
 }
 
 function setupMenu(){
- const menu=$("menuBtn");
- const overlay=$("overlay");
+  const menu=$("menuBtn");
+  const overlay=$("overlay");
 
- const close=()=>{
-  document.body.classList.remove("menu-open");
-  menu.setAttribute("aria-expanded","false");
- };
+  const close=()=>{
+    document.body.classList.remove("menu-open");
+    menu.setAttribute("aria-expanded","false");
+  };
 
- menu.addEventListener("click",()=>{
-  const open=document.body.classList.toggle("menu-open");
-  menu.setAttribute("aria-expanded",String(open));
- });
-
- overlay.addEventListener("click",close);
-
- document.addEventListener("keydown",e=>{
-  if(e.key==="Escape")close();
- });
-
- document.querySelectorAll(".nav-link").forEach(link=>{
-  link.addEventListener("click",()=>{
-   close();
-
-   document.querySelectorAll(".nav-link").forEach(a=>{
-    a.classList.remove("active");
-   });
-
-   link.classList.add("active");
+  menu.addEventListener("click",()=>{
+    const open=document.body.classList.toggle("menu-open");
+    menu.setAttribute("aria-expanded",String(open));
   });
- });
+
+  overlay.addEventListener("click",close);
+
+  document.addEventListener("keydown",event=>{
+    if(event.key==="Escape")close();
+  });
+
+  document.querySelectorAll(".nav-link").forEach(link=>{
+    link.addEventListener("click",()=>{
+      close();
+      document.querySelectorAll(".nav-link").forEach(item=>item.classList.remove("active"));
+      link.classList.add("active");
+    });
+  });
 }
 
 function setupSearch(){
- const input=$("platformSearch");
- const results=$("searchResults");
+  const input=$("platformSearch");
+  const results=$("searchResults");
 
- const entries=[
-  ["الرئيسية","#home","الصفحة الرئيسية"],
-  ["الكورسات","#courses","كورساتي"],
-  ["التقدم الدراسي","#progress","التقدم والإنجازات"],
-  ["الإعلانات","#announcements","أخبار المنصة"],
-  ["الإشعارات","#notifications","تنبيهات حسابك"],
-  ["الملف الشخصي","./profile.html","حساب الطالب"],
-  ["خدمة العملاء","./support.html","الدعم"],
-  ["الإعدادات","./settings.html","إعدادات الحساب"]
- ];
+  const entries=[
+    ["الرئيسية","#home","الصفحة الرئيسية"],
+    ["الكورسات","#courses","كورساتي"],
+    ["التقدم الدراسي","#progress","التقدم والإنجازات"],
+    ["الإعلانات","#announcements","أخبار المنصة"],
+    ["الإشعارات","#notifications","تنبيهات حسابك"],
+    ["الملف الشخصي","#student-account","حساب الطالب"],
+    ["دفتر الملاحظات","#notes","الملاحظات"],
+    ["النقاط","#wallet","رصيد النقاط"],
+    ["المسابقات","#competitions","المشاركات"]
+  ];
 
- input.addEventListener("input",()=>{
-  const q=input.value.trim().toLocaleLowerCase("ar");
-  results.replaceChildren();
+  input.addEventListener("input",()=>{
+    const q=input.value.trim().toLocaleLowerCase("ar");
+    results.replaceChildren();
 
-  if(!q){
-   results.classList.remove("show");
-   return;
-  }
+    if(!q){
+      results.classList.remove("show");
+      return;
+    }
 
-  const matches=entries.filter(item=>
-   item.join(" ").toLocaleLowerCase("ar").includes(q)
-  );
+    const matches=entries.filter(item=>
+      item.join(" ").toLocaleLowerCase("ar").includes(q)
+    );
 
-  if(!matches.length){
-   results.appendChild(emptyState("لا توجد نتائج مطابقة."));
-  }else{
-   matches.forEach(item=>{
-    const a=document.createElement("a");
-    a.className="search-result";
-    a.href=item[1];
+    if(!matches.length){
+      results.appendChild(emptyState("لا توجد نتائج مطابقة."));
+    }else{
+      matches.forEach(item=>{
+        const a=document.createElement("a");
+        a.className="search-result";
+        a.href=item[1];
 
-    const icon=document.createElement("span");
-    icon.textContent="⌕";
+        const icon=document.createElement("span");
+        icon.innerHTML='<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>';
 
-    const label=document.createElement("span");
-    label.textContent=item[0];
+        const label=document.createElement("span");
+        label.textContent=item[0];
 
-    a.append(icon,label);
-    results.appendChild(a);
-   });
-  }
+        a.append(icon,label);
+        results.appendChild(a);
+      });
+    }
+    results.classList.add("show");
+  });
 
-  results.classList.add("show");
- });
-
- document.addEventListener("click",e=>{
-  if(!e.target.closest(".search-area")){
-   results.classList.remove("show");
-  }
- });
+  document.addEventListener("click",event=>{
+    if(!event.target.closest(".search-area")){
+      results.classList.remove("show");
+    }
+  });
 }
 
 function setupCopy(){
- $("copyStudentId").addEventListener("click",async()=>{
-  if(studentCode==="—"){
-   toast("رقم الطالب غير متاح");
-   return;
-  }
+  $("copyStudentId").addEventListener("click",async()=>{
+    if(studentCode==="—"){
+      toast("كود الطالب غير متاح");
+      return;
+    }
 
-  try{
-   await navigator.clipboard.writeText(String(studentCode));
-   toast("تم نسخ رقم الطالب");
-  }catch{
-   const field=document.createElement("textarea");
-   field.value=String(studentCode);
-   document.body.appendChild(field);
-   field.select();
-   document.execCommand("copy");
-   field.remove();
-   toast("تم نسخ رقم الطالب");
-  }
- });
+    try{
+      await navigator.clipboard.writeText(String(studentCode));
+      toast("تم نسخ كود الطالب");
+    }catch{
+      const field=document.createElement("textarea");
+      field.value=String(studentCode);
+      document.body.appendChild(field);
+      field.select();
+      document.execCommand("copy");
+      field.remove();
+      toast("تم نسخ كود الطالب");
+    }
+  });
 }
 
-function preventGestures(){
- document.addEventListener("gesturestart",e=>e.preventDefault(),{passive:false});
- document.addEventListener("gesturechange",e=>e.preventDefault(),{passive:false});
- document.addEventListener("gestureend",e=>e.preventDefault(),{passive:false});
-
- document.addEventListener("touchmove",e=>{
-  if(e.touches&&e.touches.length>1)e.preventDefault();
- },{passive:false});
-
- document.addEventListener("wheel",e=>{
-  if(e.ctrlKey)e.preventDefault();
- },{passive:false});
+function setupBottomNav(){
+  document.querySelectorAll(".bottom-nav a").forEach(link=>{
+    link.addEventListener("click",()=>{
+      document.querySelectorAll(".bottom-nav a").forEach(item=>item.classList.remove("active"));
+      link.classList.add("active");
+    });
+  });
 }
 
 function initialize(){
- applyAccount(getCachedAccount());
+  applyAccount(getCachedAccount());
+  setText("year",new Date().getFullYear());
 
- setText("year",new Date().getFullYear());
+  try{
+    setText(
+      "todayDate",
+      new Intl.DateTimeFormat("ar-EG",{
+        weekday:"long",day:"numeric",month:"long"
+      }).format(new Date())
+    );
+  }catch{}
 
- try{
-  setText(
-   "todayDate",
-   new Intl.DateTimeFormat("ar-EG",{
-    weekday:"long",day:"numeric",month:"long"
-   }).format(new Date())
-  );
- }catch{}
+  setupMenu();
+  setupSearch();
+  setupCopy();
+  setupBottomNav();
 
- setupMenu();
- setupSearch();
- setupCopy();
- preventGestures();
+  $("saveNotes").addEventListener("click",saveNotes);
 
- $("saveNotes").addEventListener("click",saveNotes);
+  window.addEventListener("elgen:session-ready",event=>{
+    if(event.detail)applyAccount(event.detail);
+    loadDashboard();
+  });
 
- window.addEventListener("elgen:session-ready",event=>{
-  if(event.detail)applyAccount(event.detail);
+  window.addEventListener("elgen:session-expired",()=>{
+    toast("انتهت جلسة الدخول. سجّل الدخول مرة أخرى.");
+  });
+
+  window.addEventListener("elgen:session-offline",()=>{
+    toast("تعذر الاتصال بالخدمة. تحقق من الإنترنت.");
+  });
+
   loadDashboard();
- });
-
- window.addEventListener("elgen:session-expired",()=>{
-  toast("انتهت جلسة الدخول. سجّل الدخول مرة أخرى.");
- });
-
- window.addEventListener("elgen:session-offline",()=>{
-  toast("تعذر الاتصال بالخدمة. تحقق من الإنترنت.");
- });
-
- loadDashboard();
 }
 
 if(document.readyState==="loading"){
- document.addEventListener("DOMContentLoaded",initialize,{once:true});
+  document.addEventListener("DOMContentLoaded",initialize,{once:true});
 }else{
- initialize();
+  initialize();
 }
-
 })();
 </script>
-
-<script src="./auth.js"></script>
 </body>
 </html>
