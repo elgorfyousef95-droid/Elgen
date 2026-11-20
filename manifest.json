@@ -1,0 +1,15 @@
+
+{
+  "id": "./",
+  "name": "منصة الدكتور محمود الجنايني",
+  "short_name": "Elgen",
+  "description": "منصة الدكتور محمود الجنايني التعليمية",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#080808",
+  "theme_color": "#080808"
+}
