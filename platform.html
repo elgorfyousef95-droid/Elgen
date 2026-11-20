@@ -1,532 +1,558 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#080808">
+<meta name="theme-color" content="#090b13">
 <title>الرئيسية | منصة الجنايني التعليمية</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="manifest" href="./manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 <style>
 :root{
- --bg:#080808;--panel:#111;--panel2:#171717;
- --gold:#d8b477;--gold2:#f1d7a9;
- --text:#f7f4ed;--muted:#aaa;
- --line:rgba(216,180,119,.24);
- --green:#5bd6a0;--red:#ed7885;
+ --bg:#090b13;--surface:#111522;--surface2:#171d2d;
+ --line:rgba(160,177,221,.14);--text:#f5f7ff;
+ --muted:#9ca8c2;--blue:#7795ff;--cyan:#56d6e8;
+ --green:#63d8ad;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{width:100%;height:100%;margin:0;overflow:hidden;overscroll-behavior:none;background:var(--bg);color:var(--text);font-family:Cairo,sans-serif}
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--text);font-family:Cairo,sans-serif}
 body{
- background:#080808 url("./1795124002624.jpg") center center/cover fixed no-repeat;
+ background:
+ radial-gradient(ellipse at 78% 0%,#1c2850 0,transparent 34%),
+ radial-gradient(ellipse at 0% 85%,#17243b 0,transparent 35%),var(--bg)
 }
 button,input,textarea{font:inherit}
 button,a{touch-action:manipulation}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
 svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
 .app{height:100dvh;display:flex;overflow:hidden}
 .sidebar{
- width:280px;flex:0 0 280px;height:100%;display:flex;flex-direction:column;
- overflow-y:auto;background:rgba(7,7,7,.86);
- border-left:1px solid var(--line);z-index:100;transition:transform .25s;
- backdrop-filter:blur(12px);
+ width:270px;flex:0 0 270px;height:100%;
+ display:flex;flex-direction:column;overflow-y:auto;
+ background:rgba(10,13,23,.94);
+ border-left:1px solid var(--line);z-index:100;
+ backdrop-filter:blur(20px);transition:transform .25s
 }
-.brand{padding:25px 20px;display:flex;align-items:center;gap:13px;border-bottom:1px solid var(--line)}
-.brand-mark{width:52px;height:52px;display:grid;place-items:center;border-radius:17px;background:linear-gradient(145deg,#f3dfb9,#b7803c);color:#17120b;box-shadow:0 8px 25px #b7803c35}
-.brand-mark svg{width:29px;height:29px}
-.brand-title{font-weight:900;font-size:14px}
-.brand-sub{color:var(--gold);font-size:9px;letter-spacing:1px;margin-top:4px}
-.nav-label{padding:22px 20px 9px;color:#c4a16b;font-size:11px;font-weight:900}
+.brand{padding:24px 20px;display:flex;align-items:center;gap:13px;border-bottom:1px solid var(--line)}
+.brand-mark{
+ width:48px;height:48px;display:grid;place-items:center;
+ border-radius:16px;color:#07101d;
+ background:linear-gradient(140deg,#a9c2ff,#62dbea);
+ box-shadow:0 8px 30px #6d9aff35
+}
+.brand-mark svg{width:27px;height:27px}
+.brand-title{font-size:13px;font-weight:900}
+.brand-sub{font-size:9px;color:#91a8e9;letter-spacing:1px;margin-top:3px}
+.nav-label{padding:22px 20px 8px;color:#7f91bd;font-size:10px;font-weight:900}
 .nav-list{padding:0 12px}
-.nav-link{min-height:49px;padding:11px 14px;margin:4px 0;display:flex;align-items:center;gap:12px;border:1px solid transparent;border-radius:13px;color:#c4c0b8;font-size:12px;font-weight:800;transition:.2s}
-.nav-link svg{color:#aaa;width:19px}
-.nav-link:hover,.nav-link.active{color:var(--gold2);background:#d8b47718;border-color:var(--line)}
-.nav-link.active svg{color:var(--gold)}
-.sidebar-bottom{margin-top:auto;padding:17px;border-top:1px solid var(--line)}
-.side-user{display:flex;align-items:center;gap:11px;min-width:0}
-.avatar{width:43px;height:43px;flex:0 0 43px;display:grid;place-items:center;overflow:hidden;border:1px solid #d8b47788;border-radius:50%;background:#222;color:var(--gold2);font-weight:900}
+.nav-link{
+ min-height:47px;padding:10px 13px;margin:4px 0;
+ display:flex;align-items:center;gap:12px;
+ border:1px solid transparent;border-radius:13px;
+ color:#b4bfd6;font-size:11px;font-weight:800;transition:.2s
+}
+.nav-link svg{width:18px;color:#8190b4}
+.nav-link:hover,.nav-link.active{
+ color:#fff;background:linear-gradient(100deg,#668cff28,#6cdaea0c);
+ border-color:#809dff38
+}
+.nav-link.active svg{color:#91aaff}
+.sidebar-bottom{margin-top:auto;padding:16px;border-top:1px solid var(--line)}
+.side-user{display:flex;align-items:center;gap:10px;min-width:0}
+.avatar{
+ width:42px;height:42px;flex:0 0 42px;display:grid;
+ place-items:center;overflow:hidden;border:1px solid #8ea9ff70;
+ border-radius:50%;background:#202943;color:#d9e4ff;font-weight:900
+}
 .avatar img{width:100%;height:100%;object-fit:cover}
-.side-user strong{display:block;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.side-user small{font-size:10px;color:var(--muted)}
+.side-user strong{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.side-user small{font-size:9px;color:var(--muted)}
+
 .main{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;overflow:hidden}
 .topbar{
- min-height:76px;padding:11px 30px;display:flex;align-items:center;
- justify-content:space-between;gap:14px;background:rgba(7,7,7,.78);
- border-bottom:1px solid var(--line);backdrop-filter:blur(12px);
+ min-height:72px;padding:10px 28px;display:flex;align-items:center;
+ justify-content:space-between;gap:14px;
+ background:#0b0e18bd;border-bottom:1px solid var(--line);
+ backdrop-filter:blur(18px)
 }
 .top-start,.top-end,.top-actions{display:flex;align-items:center;gap:11px;min-width:0}
 .menu-btn,.top-icon{
- width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);
- border-radius:14px;background:#151515;color:var(--gold2);
+ width:42px;height:42px;display:grid;place-items:center;
+ border:1px solid var(--line);border-radius:13px;
+ background:#171d2c;color:#b9caff
 }
-.heading strong{display:block;font-size:15px}
-.heading small{display:block;color:var(--muted);font-size:10px}
-.profile-btn{padding:6px 11px;display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:15px;background:#141414}
-.profile-btn .avatar{width:38px;height:38px;flex-basis:38px}
-.profile-btn strong{display:block;font-size:11px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.heading strong{display:block;font-size:14px}
+.heading small{display:block;color:var(--muted);font-size:9px}
+.profile-btn{
+ padding:5px 10px;display:flex;align-items:center;gap:9px;
+ border:1px solid var(--line);border-radius:14px;background:#151b29
+}
+.profile-btn .avatar{width:36px;height:36px;flex-basis:36px}
+.profile-btn strong{display:block;font-size:10px;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .profile-btn small{font-size:9px;color:var(--muted)}
+
 .content{
- flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
- -webkit-overflow-scrolling:touch;padding:30px clamp(18px,3vw,48px) 50px;
- scrollbar-width:thin;scrollbar-color:#80633b transparent;background:rgba(5,5,5,.12);
+ flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;
+ overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+ padding:27px clamp(14px,3vw,42px) 48px;
+ scrollbar-width:thin;scrollbar-color:#52699f transparent
 }
-.content::-webkit-scrollbar,.sidebar::-webkit-scrollbar{width:6px}
-.content::-webkit-scrollbar-thumb,.sidebar::-webkit-scrollbar-thumb{background:#80633b99;border-radius:20px}
-.welcome{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px}
-.welcome h1{margin:0;font-size:clamp(23px,2.7vw,34px);font-weight:900}
-.welcome p{margin:7px 0 0;color:#d0cbc1;font-size:13px}
-.today-chip{padding:10px 16px;border:1px solid var(--line);border-radius:30px;background:#121212d9;color:var(--gold2);font-size:11px}
-.search-area{position:relative;max-width:760px;margin-bottom:24px}
-.search-box{height:55px;padding:0 17px;display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:16px;background:#111c;backdrop-filter:blur(8px)}
-.search-box svg{color:var(--gold);width:22px;height:22px}
-.search-box input{width:100%;border:0;outline:0;background:transparent;color:white;font-size:13px}
-.search-box input::placeholder{color:#999}
-.search-results{display:none;position:absolute;z-index:80;top:61px;right:0;left:0;padding:9px;border:1px solid var(--line);border-radius:15px;background:#171717;box-shadow:0 15px 40px #000b}
+.content::-webkit-scrollbar,.sidebar::-webkit-scrollbar{width:5px}
+.content::-webkit-scrollbar-thumb,.sidebar::-webkit-scrollbar-thumb{background:#52699f88;border-radius:20px}
+
+.welcome{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:20px}
+.welcome h1{margin:0;font-size:clamp(23px,2.5vw,32px);font-weight:900;letter-spacing:-.5px}
+.welcome p{margin:6px 0 0;color:#aab6d0;font-size:11px}
+.today-chip{padding:9px 14px;border:1px solid var(--line);border-radius:30px;background:#151b2b;color:#b9caff;font-size:10px;white-space:nowrap}
+
+.search-area{position:relative;max-width:700px;margin-bottom:20px}
+.search-box{
+ height:49px;padding:0 15px;display:flex;align-items:center;gap:11px;
+ border:1px solid var(--line);border-radius:14px;background:#131a29c9
+}
+.search-box svg{color:#8daaff}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:#fff;font-size:11px}
+.search-box input::placeholder{color:#8190ac}
+.search-results{
+ display:none;position:absolute;z-index:80;top:55px;right:0;left:0;
+ padding:8px;border:1px solid var(--line);border-radius:14px;
+ background:#171e2e;box-shadow:0 18px 40px #0009
+}
 .search-results.show{display:block}
-.search-result{display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;font-size:12px}
-.search-result:hover{background:#d8b47718}
+.search-result{display:flex;align-items:center;gap:10px;padding:11px;border-radius:9px;font-size:11px}
+.search-result:hover{background:#8ba7ff18}
+
 .hero{
- position:relative;isolation:isolate;min-height:370px;overflow:hidden;
- display:flex;align-items:center;padding:clamp(25px,4vw,55px);
- border:1px solid #d8b47788;border-radius:28px;
- background:
-  linear-gradient(90deg,rgba(5,5,5,.50) 0%,rgba(5,5,5,.23) 52%,rgba(5,5,5,.05) 100%),
-  url("./1795124002624.jpg") center/cover no-repeat;
- box-shadow:0 25px 70px #0009;
+ position:relative;isolation:isolate;min-height:320px;overflow:hidden;
+ display:flex;align-items:center;padding:clamp(22px,4vw,48px);
+ border:1px solid #91aaff35;border-radius:25px;
+ background:linear-gradient(105deg,#111a31f5 0%,#182849d9 52%,#1a3650a8 100%),url("./1795124002624.jpg") center/cover;
+ box-shadow:0 22px 60px #0005
+}
+.hero:before{
+ content:"";position:absolute;inset:0;z-index:-1;
+ background:radial-gradient(circle at 75% 45%,#7c9fff26,transparent 34%)
 }
 .hero-copy{position:relative;z-index:3;max-width:620px}
-.hero-kicker{color:var(--gold2);font-size:11px;font-weight:900;letter-spacing:1.4px}
-.hero h2{margin:13px 0;font-size:clamp(28px,3.8vw,46px);line-height:1.45;font-weight:900;text-shadow:0 3px 15px #000}
-.hero p{max-width:520px;margin:0;color:#f0eee9;font-size:14px;line-height:2.1;text-shadow:0 2px 9px #000}
-.hero-image{position:absolute;z-index:2;left:2%;bottom:0;width:min(37%,420px);height:98%;display:flex;align-items:flex-end;justify-content:center;pointer-events:none}
-.hero-image img{width:100%;height:100%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 12px 25px #000)}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
-.btn-primary,.btn-secondary{min-height:47px;padding:11px 19px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;font-size:12px;font-weight:900}
-.btn-primary{color:#17120b;background:linear-gradient(135deg,#f2dbb0,#bd8a48);box-shadow:0 8px 25px #bd8a4835}
-.btn-secondary{color:var(--gold2);border:1px solid #d8b47766;background:#09090980}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;color:#a9c1ff;font-size:10px;font-weight:900;letter-spacing:1px}
+.hero-kicker:before{content:"";width:22px;height:2px;background:var(--cyan)}
+.hero h2{margin:13px 0 10px;font-size:clamp(26px,3.5vw,43px);line-height:1.5;font-weight:900}
+.hero p{max-width:510px;margin:0;color:#c6d1e8;font-size:12px;line-height:2.1}
+.hero-image{
+ position:absolute;z-index:2;left:2%;bottom:0;width:min(35%,390px);
+ height:96%;display:flex;align-items:flex-end;justify-content:center;pointer-events:none
+}
+.hero-image img{width:100%;height:100%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 15px 25px #0008)}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:19px}
+.btn-primary,.btn-secondary{
+ min-height:43px;padding:10px 17px;display:inline-flex;align-items:center;
+ justify-content:center;gap:8px;border-radius:11px;font-size:10px;font-weight:900
+}
+.btn-primary{color:#08101d;background:linear-gradient(130deg,#b8ceff,#69d9e8);box-shadow:0 8px 24px #6d9fff30}
+.btn-secondary{color:#d8e2ff;border:1px solid #a9bfff50;background:#0a1225a8}
+
 .overview{
- display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:20px;padding:24px;
- border:1px solid var(--line);border-radius:22px;
- background:linear-gradient(120deg,rgba(17,17,17,.88),rgba(7,7,7,.80));backdrop-filter:blur(9px);
+ display:grid;grid-template-columns:1.1fr .9fr;gap:15px;margin-top:16px;
+ padding:20px;border:1px solid var(--line);border-radius:20px;
+ background:linear-gradient(120deg,#141b2bdf,#101624e8)
 }
-.student-info{display:flex;align-items:center;gap:17px;min-width:0}
-.student-info .avatar{width:88px;height:88px;flex-basis:88px;border-width:2px;font-size:27px;box-shadow:0 0 0 6px #d8b47710}
-.student-label{color:var(--gold);font-size:11px;font-weight:800}
-.student-name{margin:6px 0;font-size:clamp(19px,2vw,26px);font-weight:900;overflow-wrap:anywhere}
-.verified{display:none;align-items:center;gap:6px;margin:4px 0 7px;color:var(--green);font-size:11px;font-weight:900}
-.verified svg{width:16px;height:16px}
-.student-code{display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:var(--muted);font-size:11px}
-.student-code b{color:var(--gold2);direction:ltr}
-.copy-btn{padding:6px 10px;border:1px solid var(--line);border-radius:8px;color:var(--gold2);background:transparent;font-size:10px}
-.student-meta{margin-top:7px;color:#bbb;font-size:10px;line-height:1.9}
-.progress-box{padding:19px;border:1px solid #ffffff18;border-radius:17px;background:#080808b8}
-.progress-title{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:800}
-.progress-title span{color:var(--gold);font-size:10px}
-.progress-value{margin:12px 0 5px;color:var(--gold2);font-size:34px;font-weight:900}
-.progress-desc{color:var(--muted);font-size:10px;line-height:1.9}
-.progress-track{height:9px;margin:13px 0 8px;overflow:hidden;border-radius:20px;background:#ffffff19}
-.progress-fill{width:0;height:100%;border-radius:20px;background:linear-gradient(90deg,#a9773e,#f0d6a5);transition:width .5s}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px}
-.stat{min-width:0;padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(22,22,22,.90),rgba(7,7,7,.82));backdrop-filter:blur(7px)}
-.stat-head{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#bbb;font-size:10px}
-.stat-icon{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);border-radius:13px;color:var(--gold2);background:#d8b47715}
-.stat-icon svg{width:19px;height:19px}
-.stat strong{display:block;margin-top:12px;color:#f2d8aa;font-size:27px;font-weight:900}
-.stat small{display:block;margin-top:4px;color:#999;font-size:10px}
-.section{margin-top:36px;scroll-margin-top:15px}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:15px}
-.section-head h2{margin:0;font-size:20px;font-weight:900;color:#f2e5d1}
-.section-head p{margin:5px 0 0;color:#aaa;font-size:11px}
-.section-link{padding:9px 13px;border:1px solid var(--line);border-radius:10px;color:var(--gold2);font-size:10px}
-.quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.student-info{display:flex;align-items:center;gap:15px;min-width:0}
+.student-info .avatar{
+ width:76px;height:76px;flex-basis:76px;border-width:2px;
+ font-size:24px;box-shadow:0 0 0 6px #8caaff0c
+}
+.student-label{color:#8faaff;font-size:10px;font-weight:800}
+.student-name{margin:5px 0;font-size:clamp(17px,2vw,23px);font-weight:900;overflow-wrap:anywhere}
+.verified{display:none;align-items:center;gap:5px;margin:3px 0 6px;color:var(--green);font-size:10px;font-weight:900}
+.verified svg{width:15px;height:15px}
+.student-code{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:10px}
+.student-code b{color:#d7e2ff;direction:ltr}
+.copy-btn{padding:5px 9px;border:1px solid var(--line);border-radius:8px;color:#c3d2ff;background:#202b42;font-size:9px}
+.student-meta{margin-top:6px;color:#98a6c1;font-size:9px;line-height:1.8}
+.progress-box{padding:16px;border:1px solid #a8bbff1c;border-radius:15px;background:#0c1220b8}
+.progress-title{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:800}
+.progress-title span{color:#9cb5ff;font-size:9px}
+.progress-value{margin:9px 0 3px;color:#c3d5ff;font-size:30px;font-weight:900}
+.progress-desc{color:var(--muted);font-size:9px;line-height:1.8}
+.progress-track{height:7px;margin:11px 0 7px;overflow:hidden;border-radius:20px;background:#ffffff17}
+.progress-fill{width:0;height:100%;border-radius:20px;background:linear-gradient(90deg,#718cff,#5bd8e7);transition:width .5s}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:15px}
+.stat{min-width:0;padding:15px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#171e2f,#101624)}
+.stat-head{display:flex;align-items:center;justify-content:space-between;gap:7px;color:#aebbd4;font-size:9px}
+.stat-icon{width:37px;height:37px;display:grid;place-items:center;border:1px solid #8eaaff25;border-radius:11px;color:#a9c0ff;background:#8eaaff12}
+.stat-icon svg{width:17px;height:17px}
+.stat strong{display:block;margin-top:9px;color:#e3ebff;font-size:24px;font-weight:900}
+.stat small{display:block;margin-top:3px;color:#8492ad;font-size:9px}
+
+.section{margin-top:31px;scroll-margin-top:12px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:13px}
+.section-head h2{margin:0;font-size:18px;font-weight:900}
+.section-head p{margin:4px 0 0;color:#8f9db8;font-size:9px}
+.section-link{padding:8px 11px;border:1px solid var(--line);border-radius:9px;color:#b9caff;font-size:9px}
+.quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
 .quick-card{
- min-height:112px;padding:17px;display:flex;align-items:center;gap:13px;
- border:1px solid var(--line);border-radius:18px;
- background:linear-gradient(110deg,rgba(7,7,7,.70),rgba(12,12,12,.48)),
- url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=75") center/cover;
- backdrop-filter:blur(4px);transition:.2s;
+ min-height:96px;padding:14px;display:flex;align-items:center;gap:12px;
+ border:1px solid var(--line);border-radius:16px;
+ background:linear-gradient(110deg,#141c2def,#17243bdf),url("./1795124002624.jpg") center/cover;
+ transition:.2s
 }
-.quick-card:hover{transform:translateY(-3px);border-color:#d8b47790;box-shadow:0 12px 28px #0007}
-.quick-icon{width:48px;height:48px;flex:0 0 48px;display:grid;place-items:center;border:1px solid var(--line);border-radius:14px;color:var(--gold2);background:#d8b47718;font-size:19px}
-.quick-card strong{display:block;font-size:12px}
-.quick-card small{display:block;margin-top:5px;color:#ccc;font-size:10px;line-height:1.8}
-.panel{min-width:0;padding:19px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(145deg,rgba(15,15,15,.88),rgba(7,7,7,.82));backdrop-filter:blur(8px)}
-.empty{min-height:105px;padding:16px;display:flex;align-items:center;gap:13px;border:1px dashed #d8b47755;border-radius:14px;color:#bbb;font-size:11px;line-height:2}
-.empty-icon{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center;border-radius:13px;color:var(--gold2);background:#d8b47716;font-size:18px}
-.course-list,.activity-list,.notice-list{display:grid;gap:11px}
-.course-item,.activity-item,.notice-item{min-width:0;padding:15px;display:flex;align-items:center;gap:13px;border:1px solid #ffffff18;border-radius:14px;background:#ffffff09}
+.quick-card:hover{transform:translateY(-2px);border-color:#8daaff66;box-shadow:0 12px 28px #0005}
+.quick-icon{
+ width:43px;height:43px;flex:0 0 43px;display:grid;place-items:center;
+ border:1px solid #8eaaff2b;border-radius:13px;color:#bfd0ff;background:#8eaaff13;font-size:17px
+}
+.quick-card strong{display:block;font-size:10px}
+.quick-card small{display:block;margin-top:4px;color:#9caac4;font-size:9px;line-height:1.8}
+
+.panel{min-width:0;padding:17px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#151c2c,#101624)}
+.empty{
+ min-height:88px;padding:14px;display:flex;align-items:center;gap:11px;
+ border:1px dashed #8eaaff40;border-radius:12px;color:#aab6ce;font-size:10px;line-height:2
+}
+.empty-icon{width:39px;height:39px;flex:0 0 39px;display:grid;place-items:center;border-radius:11px;color:#b9caff;background:#8eaaff14;font-size:16px}
+.course-list,.activity-list,.notice-list{display:grid;gap:9px}
+.course-item,.activity-item,.notice-item{
+ min-width:0;padding:13px;display:flex;align-items:center;gap:11px;
+ border:1px solid #ffffff12;border-radius:12px;background:#ffffff08
+}
 .item-copy{min-width:0;flex:1}
-.item-copy strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
-.item-copy small{display:block;margin-top:5px;color:var(--muted);font-size:10px;line-height:1.8}
-.item-action{color:var(--gold2);font-size:10px;white-space:nowrap}
+.item-copy strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px}
+.item-copy small{display:block;margin-top:4px;color:var(--muted);font-size:9px;line-height:1.8}
+.item-action{color:#b9caff;font-size:9px;white-space:nowrap}
 .notice-item{align-items:flex-start}
-.notice-item p{margin:6px 0 0;color:#bbb;font-size:10px;line-height:1.9}
-.notice-item time{display:block;margin-top:6px;color:#999;font-size:9px}
-.feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
-.feature-card{min-width:0;padding:21px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(145deg,rgba(21,21,21,.9),rgba(7,7,7,.82));backdrop-filter:blur(7px)}
-.feature-title{display:flex;align-items:center;gap:12px;margin-bottom:11px}
-.feature-title .quick-icon{width:43px;height:43px;flex-basis:43px}
-.feature-title strong{font-size:13px}
-.feature-card p{margin:0;color:#aaa;font-size:10px;line-height:2}
-.feature-status{margin-top:13px;padding:12px;border:1px dashed var(--line);border-radius:11px;color:#bbb;font-size:10px;line-height:1.9}
-.points-value{margin:12px 0;color:var(--gold2);font-size:30px;font-weight:900}
+.notice-item p{margin:5px 0 0;color:#aab6ce;font-size:9px;line-height:1.9}
+.notice-item time{display:block;margin-top:5px;color:#7f8da8;font-size:8px}
+
+.feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.feature-card{min-width:0;padding:18px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#171f31,#101624)}
+.feature-title{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+.feature-title .quick-icon{width:39px;height:39px;flex-basis:39px}
+.feature-title strong{font-size:11px}
+.feature-card p{margin:0;color:#95a3bd;font-size:9px;line-height:2}
+.feature-status{margin-top:11px;padding:10px;border:1px dashed var(--line);border-radius:10px;color:#aebbd2;font-size:9px;line-height:1.9}
+.points-value{margin:9px 0;color:#c5d7ff;font-size:27px;font-weight:900}
 .study-card{grid-column:1/-1}
-.study-card textarea{width:100%;min-height:175px;margin-top:14px;padding:15px;resize:vertical;border:1px solid var(--line);border-radius:13px;outline:0;color:white;background:#050505c9;font-size:12px;line-height:2}
-.study-card textarea:focus{border-color:var(--gold)}
-.study-tools{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-top:12px}
-.action-btn{min-height:40px;padding:9px 14px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:10px;color:var(--gold2);background:#d8b47714;font-size:10px;font-weight:800}
-.study-tools small{color:var(--muted);font-size:10px}
-.footer{padding:35px 0 10px;text-align:center;color:#aaa;font-size:10px}
-.overlay{display:none;position:fixed;inset:0;z-index:90;background:#000c;backdrop-filter:blur(5px)}
-.toast{position:fixed;z-index:300;right:50%;bottom:20px;transform:translate(50%,20px);padding:13px 18px;border:1px solid var(--line);border-radius:13px;color:white;background:#171717;font-size:11px;opacity:0;pointer-events:none;transition:.2s}
+.study-card textarea{
+ width:100%;min-height:145px;margin-top:12px;padding:13px;resize:vertical;
+ border:1px solid var(--line);border-radius:11px;outline:0;color:#fff;
+ background:#0a0f1b;font-size:11px;line-height:2
+}
+.study-card textarea:focus{border-color:#829eff}
+.study-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.action-btn{
+ min-height:38px;padding:8px 13px;display:inline-flex;align-items:center;
+ justify-content:center;border:1px solid #8eaaff40;border-radius:9px;
+ color:#d2deff;background:#8eaaff15;font-size:9px;font-weight:800
+}
+.study-tools small{color:var(--muted);font-size:9px}
+.footer{padding:28px 0 8px;text-align:center;color:#7785a0;font-size:9px}
+
+.overlay{display:none;position:fixed;inset:0;z-index:90;background:#02040bcc;backdrop-filter:blur(4px)}
+.toast{
+ position:fixed;z-index:300;right:50%;bottom:18px;transform:translate(50%,20px);
+ padding:12px 16px;border:1px solid var(--line);border-radius:12px;
+ color:white;background:#1b2436;font-size:10px;opacity:0;pointer-events:none;transition:.2s
+}
 .toast.show{opacity:1;transform:translate(50%,0)}
-@media(max-width:1100px){
+
+@media(max-width:1050px){
  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
  .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:760px){
- .sidebar{position:fixed;right:0;top:0;bottom:0;width:min(320px,88vw);height:100dvh;transform:translateX(105%);padding-bottom:env(safe-area-inset-bottom)}
+ .sidebar{
+  position:fixed;right:0;top:0;bottom:0;width:min(310px,88vw);
+  height:100dvh;transform:translateX(105%);padding-bottom:env(safe-area-inset-bottom)
+ }
  body.menu-open .sidebar{transform:translateX(0)}
  body.menu-open .overlay{display:block}
- .topbar{min-height:62px;padding:8px 10px;padding-top:max(8px,env(safe-area-inset-top))}
- .menu-btn,.top-icon{width:39px;height:39px}
+ .topbar{min-height:60px;padding:7px 10px;padding-top:max(7px,env(safe-area-inset-top))}
+ .menu-btn,.top-icon{width:38px;height:38px}
  .heading strong{font-size:11px}.heading small{font-size:8px}
- .profile-btn{max-width:45px;padding:4px}.profile-btn .profile-text{display:none}
- .content{padding:17px 12px max(28px,env(safe-area-inset-bottom))}
- .welcome{align-items:flex-start}.welcome h1{font-size:21px}
- .welcome p{font-size:10px}.today-chip{padding:8px;font-size:8px}
- .hero{min-height:285px;padding:20px;border-radius:19px}
+ .profile-btn{max-width:43px;padding:3px}
+ .profile-btn .profile-text{display:none}
+ .content{padding:16px 11px max(25px,env(safe-area-inset-bottom))}
+ .welcome{align-items:flex-start}
+ .welcome h1{font-size:21px}.welcome p{font-size:9px}
+ .today-chip{padding:7px 9px;font-size:8px}
+ .hero{min-height:265px;padding:19px;border-radius:18px}
  .hero-copy{max-width:72%;align-self:flex-start}
- .hero h2{font-size:24px}.hero p{font-size:10px}
- .hero-image{left:0;width:44%;height:77%}
+ .hero h2{font-size:22px}.hero p{font-size:9px}
+ .hero-image{left:0;width:43%;height:78%}
  .hero-kicker{font-size:8px}
- .btn-primary,.btn-secondary{min-height:39px;padding:8px 11px;font-size:9px}
- .overview{grid-template-columns:1fr;padding:16px;gap:14px}
- .student-info .avatar{width:70px;height:70px;flex-basis:70px}
- .stats{gap:9px}.stat{padding:13px}.stat strong{font-size:21px}
- .quick-grid{gap:9px}.quick-card{min-height:88px;padding:11px;gap:9px}
- .quick-icon{width:39px;height:39px;flex-basis:39px}
+ .btn-primary,.btn-secondary{min-height:37px;padding:8px 10px;font-size:8px}
+ .overview{grid-template-columns:1fr;padding:14px;gap:12px}
+ .student-info .avatar{width:65px;height:65px;flex-basis:65px}
+ .stats{gap:8px}.stat{padding:11px}.stat strong{font-size:20px}
+ .quick-grid{gap:8px}
+ .quick-card{min-height:82px;padding:10px;gap:8px}
+ .quick-icon{width:37px;height:37px;flex-basis:37px}
  .feature-grid{grid-template-columns:1fr}
- .section{margin-top:28px}
- .section-head h2{font-size:17px}
+ .section{margin-top:25px}.section-head h2{font-size:16px}
 }
 @media(max-width:390px){
  .content{padding-inline:9px}
  .welcome{flex-wrap:wrap}
- .hero{min-height:255px}
- .hero h2{font-size:20px}
+ .hero{min-height:240px}
+ .hero h2{font-size:19px}
  .hero-image{width:46%}
  .quick-grid{grid-template-columns:1fr}
  .study-card{grid-column:auto}
+ .top-actions{gap:6px}
 }
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
 }
 </style>
-
-<link rel="manifest" href="./manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script src="./offline.js" defer></script>
 </head>
-<body><div class="app">
+
+<body>
+<div class="app">
+
 <aside class="sidebar" id="sidebar">
-  <div class="brand">
-    <div class="brand-mark">
-      <svg viewBox="0 0 24 24"><path d="M12 2.8 20 7v10l-8 4.2L4 17V7z"/><path d="m8 12 2.5 2.5L16.5 8"/></svg>
-    </div>
-    <div>
-      <div class="brand-title">منصة الجنايني التعليمية</div>
-      <div class="brand-sub">ELGEN EDUCATION PLATFORM</div>
-    </div>
+ <div class="brand">
+  <div class="brand-mark">
+   <svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M7 11.5V16c3.3 2.5 6.7 2.5 10 0v-4.5"/><path d="M21 9v6"/></svg>
   </div>
-
-  <div class="nav-label">التعلم والدراسة</div>
-  <nav class="nav-list">
-    <a class="nav-link active" href="#home">
-      <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10h-7v-7h-4v7H4z"/></svg>
-      الرئيسية
-    </a>
-    <a class="nav-link" href="#courses">
-      <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z"/></svg>
-      كورساتي
-    </a>
-    <a class="nav-link" href="./lessons.html">
-      <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m10 8 6 4-6 4z"/></svg>
-      الدروس
-    </a>
-    <a class="nav-link" href="./lectures.html">
-      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m10 8 5 2.5-5 2.5z"/></svg>
-      المحاضرات
-    </a>
-    <a class="nav-link" href="./exams.html">
-      <svg viewBox="0 0 24 24"><path d="M8 4h12v17H4V4h4"/><path d="m8 12 2 2 5-5"/></svg>
-      الاختبارات
-    </a>
-    <a class="nav-link" href="#progress">
-      <svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 6-7"/></svg>
-      التقدم الدراسي
-    </a>
-  </nav>
-
-  <div class="nav-label">التفاعل والمجتمع</div>
-  <nav class="nav-list">
-    <a class="nav-link" href="./competitions.html">
-      <svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 13v5m-4 3h8m-6-3h4"/></svg>
-      المسابقات
-    </a>
-    <a class="nav-link" href="#announcements">الإعلانات</a>
-    <a class="nav-link" href="#notifications">الإشعارات</a>
-  </nav>
-
-  <div class="nav-label">حسابك والمساعدة</div>
-  <nav class="nav-list">
-    <a class="nav-link" href="./profile.html">الملف الشخصي</a>
-    <a class="nav-link" href="./support.html">خدمة العملاء</a>
-    <a class="nav-link" href="./settings.html">الإعدادات</a>
-    <a class="nav-link" href="./help.html">المساعدة</a>
-  </nav>
-
-  <div class="sidebar-bottom">
-    <a class="side-user" href="./profile.html">
-      <span class="avatar" id="sideAvatar">ط</span>
-      <span style="min-width:0">
-        <strong id="sideName">حساب الطالب</strong>
-        <small id="sideCode">الملف الشخصي</small>
-      </span>
-    </a>
+  <div>
+   <div class="brand-title">منصة الجنايني التعليمية</div>
+   <div class="brand-sub">ELGEN LEARNING EXPERIENCE</div>
   </div>
+ </div>
+
+ <div class="nav-label">مساحة التعلم</div>
+ <nav class="nav-list">
+  <a class="nav-link active" href="#home">⌂ <span>الرئيسية</span></a>
+  <a class="nav-link" href="#courses">▤ <span>كورساتي</span></a>
+  <a class="nav-link" href="#progress">↗ <span>إنجازاتي وتقدمي</span></a>
+  <a class="nav-link" href="#notes">✎ <span>دفتر الملاحظات</span></a>
+ </nav>
+
+ <div class="nav-label">تابع كل جديد</div>
+ <nav class="nav-list">
+  <a class="nav-link" href="#announcements">◇ <span>إعلانات المنصة</span></a>
+  <a class="nav-link" href="#notifications">◉ <span>إشعاراتي</span></a>
+  <a class="nav-link" href="#wallet">◈ <span>رصيد النقاط</span></a>
+  <a class="nav-link" href="#competitions">☆ <span>المسابقات</span></a>
+ </nav>
+
+ <div class="nav-label">حسابك</div>
+ <nav class="nav-list">
+  <a class="nav-link" href="./profile.html">◎ <span>الملف الشخصي</span></a>
+  <a class="nav-link" href="./support.html">؟ <span>الدعم والمساعدة</span></a>
+  <a class="nav-link" href="./settings.html">⚙ <span>الإعدادات</span></a>
+ </nav>
+
+ <div class="sidebar-bottom">
+  <a class="side-user" href="./profile.html">
+   <span class="avatar" id="sideAvatar">ط</span>
+   <span style="min-width:0">
+    <strong id="sideName">حساب الطالب</strong>
+    <small id="sideCode">الملف الشخصي</small>
+   </span>
+  </a>
+ </div>
 </aside>
 
 <div class="overlay" id="overlay"></div>
 
 <div class="main">
 <header class="topbar">
-  <div class="top-start">
-    <button class="menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false">
-      <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
-    <div class="heading">
-      <strong id="pageTitle">الرئيسية</strong>
-      <small>منصة الجنايني التعليمية</small>
-    </div>
+ <div class="top-start">
+  <button class="menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false">
+   <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <div class="heading">
+   <strong id="pageTitle">لوحة التعلم</strong>
+   <small>منصة الجنايني التعليمية</small>
   </div>
+ </div>
 
-  <div class="top-end">
-    <div class="top-actions">
-      <a class="top-icon" href="#notifications" aria-label="الإشعارات">
-        <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
-      </a>
-      <a class="top-icon" href="./support.html" aria-label="الدعم">
-        <svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="12" width="4" height="7" rx="2"/><rect x="17" y="12" width="4" height="7" rx="2"/></svg>
-      </a>
-    </div>
-    <a class="profile-btn" href="./profile.html">
-      <span class="avatar" id="topAvatar">ط</span>
-      <span class="profile-text">
-        <strong id="topName">حسابي</strong>
-        <small>ملفي الشخصي</small>
-      </span>
-    </a>
+ <div class="top-end">
+  <div class="top-actions">
+   <a class="top-icon" href="#notifications" aria-label="الإشعارات">
+    <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
+   </a>
+   <a class="top-icon" href="./support.html" aria-label="الدعم">
+    <svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="12" width="4" height="7" rx="2"/><rect x="17" y="12" width="4" height="7" rx="2"/></svg>
+   </a>
   </div>
+  <a class="profile-btn" href="./profile.html">
+   <span class="avatar" id="topAvatar">ط</span>
+   <span class="profile-text">
+    <strong id="topName">حساب الطالب</strong>
+    <small>حسابي الشخصي</small>
+   </span>
+  </a>
+ </div>
 </header>
 
-<main class="content" id="pageContent">
+<main class="content" id="home">
 
-<section id="home">
-  <div class="welcome">
-    <div>
-      <h1 id="welcomeText">أهلاً بك في منصة الجنايني</h1>
-      <p>مساحتك التعليمية لمتابعة دروسك وإنجازاتك.</p>
+ <div class="welcome">
+  <div>
+   <h1>مساحتك للتميّز تبدأ من هنا</h1>
+   <p id="welcomeText">أهلاً بك في منصة الجنايني التعليمية.</p>
+  </div>
+  <div class="today-chip" id="todayDate">رحلتك التعليمية</div>
+ </div>
+
+ <div class="search-area">
+  <div class="search-box">
+   <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+   <input id="platformSearch" type="search" placeholder="ابحث في أقسام المنصة..." autocomplete="off">
+  </div>
+  <div class="search-results" id="searchResults"></div>
+ </div>
+
+ <section class="hero">
+  <div class="hero-copy">
+   <div class="hero-kicker">رحلتك العلمية — خطوة بخطوة</div>
+   <h2>افهم الكيمياء،<br>وابنِ مستقبلك بثقة.</h2>
+   <p>كل ما تحتاجه لمتابعة دراستك وتنظيم تقدمك في مكان واحد. ابدأ من حيث توقفت، واجعل كل يوم خطوة جديدة نحو هدفك.</p>
+   <div class="hero-actions">
+    <a class="btn-primary" href="#courses">استكشف كورساتي</a>
+    <a class="btn-secondary" href="#progress">تابع إنجازك</a>
+   </div>
+  </div>
+  <div class="hero-image">
+   <img src="./85.jpg" alt="الدكتور محمود الجنايني" onerror="this.style.display='none'">
+  </div>
+ </section>
+
+ <section class="overview">
+  <div class="student-info">
+   <span class="avatar" id="profileAvatar">ط</span>
+   <div style="min-width:0">
+    <div class="student-label">ملف الطالب</div>
+    <div class="student-name" id="profileName">حساب الطالب</div>
+    <div class="verified" id="verifiedBadge">✓ حساب موثّق</div>
+    <div class="student-code">
+     كود الطالب: <b id="profileCode">—</b>
+     <button class="copy-btn" id="copyStudentId" type="button">نسخ الكود</button>
     </div>
-    <div class="today-chip" id="todayDate">رحلتك نحو التفوق</div>
+    <div class="student-meta" id="studentMeta">بيانات حسابك التعليمية.</div>
+   </div>
   </div>
 
-  <div class="search-area">
-    <label class="search-box">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
-      <input id="platformSearch" type="search" placeholder="ابحث عن كورس أو درس أو قسم..." autocomplete="off">
-    </label>
-    <div class="search-results" id="searchResults"></div>
+  <div class="progress-box" id="progress">
+   <div class="progress-title">ملخص تقدمك الدراسي <span>تحديث من حسابك</span></div>
+   <div class="progress-value" id="progressValue">—</div>
+   <div class="progress-desc" id="progressCaption">سيظهر تقدمك هنا عند توفر بيانات الدراسة.</div>
+   <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+   <div class="progress-desc" id="progressNote">لا توجد بيانات تقدم مسجلة بعد.</div>
   </div>
+ </section>
 
-  <section class="hero">
-    <div class="hero-copy">
-      <div class="hero-kicker">ELGEN EDUCATION PLATFORM</div>
-      <h2>خطوتك القادمة نحو التفوق تبدأ هنا</h2>
-      <p>تابع كورساتك ودروسك، واكتشف مستواك، وواصل رحلتك التعليمية من مكان واحد.</p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="#courses">استكشف كورساتي</a>
-        <a class="btn-secondary" href="#progress">تقدمي الدراسي</a>
-      </div>
-    </div>
-    <div class="hero-image">
-      <img src="./85.jpg" alt="الدكتور محمود الجنايني" loading="eager">
-    </div>
-  </section>
+ <section class="stats">
+  <div class="stat">
+   <div class="stat-head"><span>الكورسات النشطة</span><span class="stat-icon">▤</span></div>
+   <strong id="coursesCount">—</strong>
+   <small>الكورسات المرتبطة بحسابك</small>
+  </div>
+  <div class="stat">
+   <div class="stat-head"><span>الدروس المكتملة</span><span class="stat-icon">✓</span></div>
+   <strong id="lessonsCount">—</strong>
+   <small>إنجازاتك المسجلة</small>
+  </div>
+  <div class="stat">
+   <div class="stat-head"><span>متوسط التقدم</span><span class="stat-icon">↗</span></div>
+   <strong id="averageProgress">—</strong>
+   <small>من بيانات تقدمك الفعلية</small>
+  </div>
+  <div class="stat">
+   <div class="stat-head"><span>رصيد النقاط</span><span class="stat-icon">◈</span></div>
+   <strong id="pointsCount">—</strong>
+   <small>رصيد حسابك الحالي</small>
+  </div>
+ </section>
 
-  <section class="overview">
-    <div class="student-info">
-      <span class="avatar" id="profileAvatar">ط</span>
-      <div style="min-width:0">
-        <div class="student-label">ملف الطالب</div>
-        <h2 class="student-name" id="profileName">حساب الطالب</h2>
-        <div class="verified" id="verifiedBadge">
-          <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>
-          حساب موثّق
-        </div>
-        <div class="student-code">
-          <span>رقم الطالب:</span>
-          <b id="profileCode">—</b>
-          <button class="copy-btn" id="copyStudentId" type="button">نسخ</button>
-        </div>
-        <div class="student-meta" id="studentMeta">بيانات حسابك التعليمية.</div>
-      </div>
-    </div>
-
-    <div class="progress-box" id="progress">
-      <div class="progress-title">
-        <strong>ملخص تقدمك الدراسي</strong>
-        <span>إنجازاتك</span>
-      </div>
-      <div class="progress-value" id="progressValue">—</div>
-      <div class="progress-desc" id="progressCaption">سيظهر تقدمك بعد تحميل بيانات التعلم.</div>
-      <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
-      <div class="progress-desc" id="progressNote">في انتظار بيانات التقدم.</div>
-    </div>
-  </section>
-
-  <section class="stats">
-    <article class="stat">
-      <div class="stat-head"><span>الكورسات المفعّلة</span><span class="stat-icon">▤</span></div>
-      <strong id="coursesCount">—</strong>
-      <small>اشتراكات حسابك</small>
-    </article>
-    <article class="stat">
-      <div class="stat-head"><span>الدروس المكتملة</span><span class="stat-icon">✓</span></div>
-      <strong id="lessonsCount">—</strong>
-      <small>من سجل تقدمك</small>
-    </article>
-    <article class="stat">
-      <div class="stat-head"><span>متوسط التقدم</span><span class="stat-icon">↗</span></div>
-      <strong id="averageProgress">—</strong>
-      <small>حسب الدروس المسجلة</small>
-    </article>
-    <article class="stat">
-      <div class="stat-head"><span>رصيد النقاط</span><span class="stat-icon">✧</span></div>
-      <strong id="pointsCount">—</strong>
-      <small>رصيد محفظتك</small>
-    </article>
-  </section>
-</section>
-
-<section class="section" id="shortcuts">
+ <section class="section">
   <div class="section-head">
-    <div><h2>مساحتك التعليمية</h2><p>انتقل مباشرة إلى الجزء الذي تريد متابعته</p></div>
+   <div><h2>اختصارات سريعة</h2><p>انتقل مباشرة إلى الجزء الذي تحتاجه</p></div>
   </div>
   <div class="quick-grid">
-    <a class="quick-card" href="#courses"><span class="quick-icon">▤</span><span><strong>كورساتي</strong><small>اشتراكاتك ومحتوى الدراسة</small></span></a>
-    <a class="quick-card" href="./lessons.html"><span class="quick-icon">▷</span><span><strong>الدروس</strong><small>تابع شرح الدروس</small></span></a>
-    <a class="quick-card" href="./lectures.html"><span class="quick-icon">▣</span><span><strong>المحاضرات</strong><small>المحاضرات المتاحة لك</small></span></a>
-    <a class="quick-card" href="./exams.html"><span class="quick-icon">✓</span><span><strong>الاختبارات</strong><small>اختبر مستواك الدراسي</small></span></a>
-    <a class="quick-card" href="#progress"><span class="quick-icon">↗</span><span><strong>تقدمي الدراسي</strong><small>راجع إنجازاتك</small></span></a>
-    <a class="quick-card" href="./competitions.html"><span class="quick-icon">♜</span><span><strong>المسابقات</strong><small>التحديات والمنافسات</small></span></a>
-    <a class="quick-card" href="#announcements"><span class="quick-icon">!</span><span><strong>الإعلانات</strong><small>آخر أخبار المنصة</small></span></a>
-    <a class="quick-card" href="#notifications"><span class="quick-icon">◉</span><span><strong>الإشعارات</strong><small>تنبيهات حسابك</small></span></a>
-    <a class="quick-card" href="./support.html"><span class="quick-icon">?</span><span><strong>خدمة العملاء</strong><small>تواصل مع فريق الدعم</small></span></a>
+   <a class="quick-card" href="#courses"><span class="quick-icon">▤</span><span><strong>كورساتي</strong><small>تابع المحتوى المتاح لك</small></span></a>
+   <a class="quick-card" href="#progress"><span class="quick-icon">↗</span><span><strong>تقدمي الدراسي</strong><small>راجع إنجازاتك المسجلة</small></span></a>
+   <a class="quick-card" href="#announcements"><span class="quick-icon">◇</span><span><strong>إعلانات المنصة</strong><small>اعرف آخر المستجدات</small></span></a>
   </div>
-</section>
+ </section>
 
-<section class="section" id="courses">
-  <div class="section-head">
-    <div><h2>كورساتي</h2><p>الكورسات المفعّلة لحسابك من قاعدة البيانات</p></div>
-    <a class="section-link" href="./courses.html">كل الكورسات</a>
-  </div>
-  <div class="panel">
-    <div id="coursesList" class="course-list">
-      <div class="empty"><span class="empty-icon">▤</span><span>جاري تحميل الكورسات الخاصة بحسابك...</span></div>
-    </div>
-  </div>
-</section>
+ <section class="section" id="courses">
+  <div class="section-head"><div><h2>كورساتي</h2><p>المحتوى التعليمي المرتبط بحسابك</p></div></div>
+  <div class="panel"><div class="course-list" id="coursesList"><div class="empty">جاري تحميل كورساتك...</div></div></div>
+ </section>
 
-<section class="section">
-  <div class="section-head">
-    <div><h2>نشاطك الدراسي</h2><p>آخر ما تم تسجيله من تقدمك في الدروس</p></div>
-  </div>
-  <div class="panel">
-    <div id="activityList" class="activity-list">
-      <div class="empty"><span class="empty-icon">↗</span><span>في انتظار تحميل سجل التقدم.</span></div>
-    </div>
-  </div>
-</section>
+ <section class="section">
+  <div class="section-head"><div><h2>آخر نشاط دراسي</h2><p>ملخص ما تم تسجيله في حسابك</p></div></div>
+  <div class="panel"><div class="activity-list" id="activityList"><div class="empty">جاري تحميل نشاطك...</div></div></div>
+ </section>
 
-<section class="section" id="announcements">
-  <div class="section-head">
-    <div><h2>إعلانات المنصة</h2><p>الإعلانات المنشورة من الإدارة</p></div>
-  </div>
-  <div class="panel">
-    <div id="announcementsList" class="notice-list">
-      <div class="empty"><span class="empty-icon">!</span><span>جاري تحميل الإعلانات المنشورة...</span></div>
-    </div>
-  </div>
-</section>
+ <section class="section" id="announcements">
+  <div class="section-head"><div><h2>إعلانات المنصة</h2><p>الأخبار والتنبيهات العامة المنشورة</p></div></div>
+  <div class="panel"><div class="notice-list" id="announcementsList"><div class="empty">جاري تحميل الإعلانات...</div></div></div>
+ </section>
 
-<section class="section" id="notifications">
-  <div class="section-head">
-    <div><h2>آخر الإشعارات</h2><p>التنبيهات الخاصة بحسابك</p></div>
-  </div>
-  <div class="panel">
-    <div id="notificationsList" class="notice-list">
-      <div class="empty"><span class="empty-icon">◉</span><span>جاري تحميل إشعاراتك...</span></div>
-    </div>
-  </div>
-</section>
+ <section class="section" id="notifications">
+  <div class="section-head"><div><h2>إشعاراتك</h2><p>التنبيهات المرتبطة بحسابك</p></div></div>
+  <div class="panel"><div class="notice-list" id="notificationsList"><div class="empty">جاري تحميل الإشعارات...</div></div></div>
+ </section>
 
-<section class="section">
-  <div class="section-head">
-    <div><h2>حسابك ومشاركاتك</h2><p>ملخص الخدمات المرتبطة بحساب الطالب</p></div>
+ <section class="section feature-grid">
+  <div class="feature-card" id="wallet">
+   <div class="feature-title"><span class="quick-icon">◈</span><strong>محفظة النقاط</strong></div>
+   <div class="points-value" id="pointsSummary">—</div>
+   <p id="pointsStatus">سيظهر رصيدك عند توفر بيانات المحفظة.</p>
   </div>
 
-  <div class="feature-grid">
-    <article class="feature-card">
-      <div class="feature-title"><span class="quick-icon">✧</span><strong>محفظة النقاط</strong></div>
-      <div class="points-value" id="pointsSummary">—</div>
-      <p>رصيد النقاط المسجل في محفظتك التعليمية.</p>
-      <div class="feature-status" id="pointsStatus">سيظهر الرصيد بعد تحميل بيانات المحفظة.</div>
-    </article>
-
-    <article class="feature-card">
-      <div class="feature-title"><span class="quick-icon">♜</span><strong>المسابقات</strong></div>
-      <p>تابع المسابقات التي اشتركت فيها ونتائج مشاركتك.</p>
-      <div class="feature-status" id="competitionsStatus">سيظهر سجل مشاركاتك عند توفره.</div>
-      <a class="action-btn" href="./competitions.html">فتح المسابقات</a>
-    </article>
-
-    <article class="feature-card">
-      <div class="feature-title"><span class="quick-icon">✓</span><strong>توثيق الحساب</strong></div>
-      <p>حالة توثيق حساب الطالب وفق قرار الإدارة.</p>
-      <div class="feature-status" id="verificationStatus">جاري تحميل حالة التوثيق.</div>
-      <a class="action-btn" href="./support.html">التواصل مع الإدارة</a>
-    </article>
-
-    <article class="feature-card study-card">
-      <div class="feature-title"><span class="quick-icon">▤</span><strong>دفتر ملاحظاتك</strong></div>
-      <p>اكتب ملاحظاتك التعليمية واحفظها في حسابك لتظهر عند دخولك من جهاز آخر.</p>
-      <textarea id="studyNotes" placeholder="اكتب ملاحظاتك التعليمية هنا..."></textarea>
-      <div class="study-tools">
-        <button class="action-btn" id="saveNotes" type="button">حفظ الملاحظات</button>
-        <small id="notesStatus">الملاحظات مرتبطة بحسابك.</small>
-      </div>
-    </article>
+  <div class="feature-card" id="competitions">
+   <div class="feature-title"><span class="quick-icon">☆</span><strong>المسابقات</strong></div>
+   <p>تابع مشاركاتك ونتائجك عند توفرها في حسابك.</p>
+   <div class="feature-status" id="competitionsStatus">لا توجد مشاركات مسابقات مسجلة حاليًا.</div>
   </div>
-</section>
 
-<footer class="footer">جميع الحقوق محفوظة لمنصة الجنايني التعليمية © <span id="year">2026</span></footer>
+  <div class="feature-card">
+   <div class="feature-title"><span class="quick-icon">✓</span><strong>حالة التوثيق</strong></div>
+   <p>حالة التوثيق الظاهرة مرتبطة ببيانات حسابك الفعلية.</p>
+   <div class="feature-status" id="verificationStatus">جارٍ التحقق من حالة الحساب.</div>
+  </div>
+
+  <div class="feature-card">
+   <div class="feature-title"><span class="quick-icon">◎</span><strong>حسابك التعليمي</strong></div>
+   <p>بياناتك الشخصية والتعليمية تظهر وفق المعلومات المسجلة في ملفك.</p>
+   <div class="feature-status">يمكنك مراجعة بياناتك من صفحة الملف الشخصي.</div>
+  </div>
+
+  <div class="feature-card study-card" id="notes">
+   <div class="feature-title"><span class="quick-icon">✎</span><strong>دفتر ملاحظاتك</strong></div>
+   <p>اكتب ملاحظاتك الدراسية واحفظها داخل حسابك.</p>
+   <textarea id="studyNotes" placeholder="اكتب ملاحظاتك هنا..."></textarea>
+   <div class="study-tools">
+    <button class="action-btn" id="saveNotes" type="button">حفظ الملاحظات</button>
+    <small id="notesStatus">لم تحفظ ملاحظات بعد.</small>
+   </div>
+  </div>
+ </section>
+
+ <footer class="footer">© <span id="year"></span> منصة الجنايني التعليمية — جميع الحقوق محفوظة</footer>
 </main>
 </div>
 </div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div><script src="./supabase-config.js"></script>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="./supabase-config.js"></script>
+<script src="./offline.js" defer></script>
+
 <script>
 (function(){
 "use strict";
@@ -575,7 +601,6 @@ function applyAccount(account){
  const initial=String(name).trim().charAt(0)||"ط";
 
  ["profileName","sideName","topName"].forEach(id=>setText(id,name));
-
  setText("profileCode",studentCode);
  setText("sideCode",studentCode);
 
@@ -594,16 +619,10 @@ function applyAccount(account){
   account.village
  ].filter(Boolean);
 
- setText(
-  "studentMeta",
-  meta.length?meta.join(" • "):"بيانات حسابك التعليمية."
- );
+ setText("studentMeta",meta.length?meta.join(" • "):"بيانات حسابك التعليمية.");
 
  const verified=$("verifiedBadge");
-
- if(verified){
-  verified.style.display=account.is_verified===true?"inline-flex":"none";
- }
+ if(verified)verified.style.display=account.is_verified===true?"inline-flex":"none";
 
  setText(
   "verificationStatus",
@@ -638,10 +657,7 @@ async function api(action,extra={}){
  }
 
  const token=getToken();
-
- if(!token){
-  throw new Error("جلسة الدخول غير موجودة. سجّل الدخول مرة أخرى.");
- }
+ if(!token)throw new Error("جلسة الدخول غير موجودة. سجّل الدخول مرة أخرى.");
 
  const response=await fetch(DASHBOARD_URL,{
   method:"POST",
@@ -658,11 +674,9 @@ async function api(action,extra={}){
  });
 
  const result=await response.json().catch(()=>({}));
-
  if(!response.ok||result.ok!==true){
   throw new Error(result.error||"تعذر تحميل البيانات حاليًا.");
  }
-
  return result;
 }
 
@@ -683,15 +697,11 @@ function emptyState(message){
 
 function dateText(value){
  if(!value)return "";
-
  const date=new Date(value);
-
  if(Number.isNaN(date.getTime()))return "";
 
  return new Intl.DateTimeFormat("ar-EG",{
-  day:"numeric",
-  month:"short",
-  year:"numeric"
+  day:"numeric",month:"short",year:"numeric"
  }).format(date);
 }
 
@@ -700,9 +710,7 @@ function renderCourses(courses){
  box.replaceChildren();
 
  if(!courses.length){
-  box.appendChild(
-   emptyState("لا توجد كورسات مفعّلة لحسابك حتى الآن.")
-  );
+  box.appendChild(emptyState("لا توجد كورسات مفعّلة لحسابك حتى الآن."));
   return;
  }
 
@@ -740,9 +748,7 @@ function renderActivity(progress){
  box.replaceChildren();
 
  if(!progress.length){
-  box.appendChild(
-   emptyState("لا توجد أنشطة أو دروس مسجلة في سجل تقدمك حتى الآن.")
-  );
+  box.appendChild(emptyState("لا توجد أنشطة أو دروس مسجلة في سجل تقدمك حتى الآن."));
   return;
  }
 
@@ -831,42 +837,26 @@ function renderDashboard(data){
  if(progress.length){
   setText("progressValue",value+"%");
   setText("progressCaption","متوسط تقدمك في الدروس المسجلة.");
-
-  $("progressBar").style.width=
-   Math.min(100,Math.max(0,value))+"%";
-
+  $("progressBar").style.width=Math.min(100,Math.max(0,value))+"%";
   setText("progressNote",stats.completed_lessons+" درس مكتمل.");
  }else{
   setText("progressValue","—");
   setText("progressCaption","لا توجد بيانات تقدم مسجلة حتى الآن.");
   $("progressBar").style.width="0%";
-
-  setText(
-   "progressNote",
-   "سيظهر تقدمك عند بدء الدراسة وتسجيل الدروس."
-  );
+  setText("progressNote","سيظهر تقدمك عند بدء الدراسة وتسجيل الدروس.");
  }
 
  if(data.wallet){
   setText("pointsCount",data.wallet.coin_balance);
   setText("pointsSummary",data.wallet.coin_balance);
-
-  setText(
-   "pointsStatus",
-   "العملة: "+(data.wallet.display_currency||"نقاط")
-  );
+  setText("pointsStatus","العملة: "+(data.wallet.display_currency||"نقاط"));
  }else{
   setText("pointsCount","—");
   setText("pointsSummary","—");
-
-  setText(
-   "pointsStatus",
-   "لا توجد محفظة نقاط مسجلة لهذا الحساب حتى الآن."
-  );
+  setText("pointsStatus","لا توجد محفظة نقاط مسجلة لهذا الحساب حتى الآن.");
  }
 
  const competitions=data.competitions||[];
-
  setText(
   "competitionsStatus",
   competitions.length
@@ -902,13 +892,10 @@ function renderDashboard(data){
 async function loadDashboard(){
  try{
   const result=await api("dashboard");
-
   if(result.user)applyAccount(result.user);
-
   renderDashboard(result.dashboard||{});
  }catch(error){
   toast(error.message);
-
   if(error.message.includes("جلسة الدخول")){
    setText("coursesList","تعذر التحقق من الجلسة.");
   }
@@ -928,11 +915,7 @@ async function saveNotes(){
   });
 
   status.textContent="تم حفظ ملاحظاتك في حسابك.";
-
-  if(dashboardData){
-   dashboardData.study_note=result.note;
-  }
-
+  if(dashboardData)dashboardData.study_note=result.note;
   toast("تم حفظ الملاحظات بنجاح");
  }catch(error){
   status.textContent=error.message;
@@ -986,10 +969,6 @@ function setupSearch(){
   ["التقدم الدراسي","#progress","التقدم والإنجازات"],
   ["الإعلانات","#announcements","أخبار المنصة"],
   ["الإشعارات","#notifications","تنبيهات حسابك"],
-  ["الدروس","./lessons.html","شرح الدروس"],
-  ["المحاضرات","./lectures.html","المحاضرات"],
-  ["الاختبارات","./exams.html","الاختبارات"],
-  ["المسابقات","./competitions.html","المنافسات"],
   ["الملف الشخصي","./profile.html","حساب الطالب"],
   ["خدمة العملاء","./support.html","الدعم"],
   ["الإعدادات","./settings.html","إعدادات الحساب"]
@@ -997,7 +976,6 @@ function setupSearch(){
 
  input.addEventListener("input",()=>{
   const q=input.value.trim().toLocaleLowerCase("ar");
-
   results.replaceChildren();
 
   if(!q){
@@ -1061,39 +1039,17 @@ function setupCopy(){
 }
 
 function preventGestures(){
- document.addEventListener(
-  "gesturestart",
-  e=>e.preventDefault(),
-  {passive:false}
- );
+ document.addEventListener("gesturestart",e=>e.preventDefault(),{passive:false});
+ document.addEventListener("gesturechange",e=>e.preventDefault(),{passive:false});
+ document.addEventListener("gestureend",e=>e.preventDefault(),{passive:false});
 
- document.addEventListener(
-  "gesturechange",
-  e=>e.preventDefault(),
-  {passive:false}
- );
+ document.addEventListener("touchmove",e=>{
+  if(e.touches&&e.touches.length>1)e.preventDefault();
+ },{passive:false});
 
- document.addEventListener(
-  "gestureend",
-  e=>e.preventDefault(),
-  {passive:false}
- );
-
- document.addEventListener(
-  "touchmove",
-  e=>{
-   if(e.touches&&e.touches.length>1)e.preventDefault();
-  },
-  {passive:false}
- );
-
- document.addEventListener(
-  "wheel",
-  e=>{
-   if(e.ctrlKey)e.preventDefault();
-  },
-  {passive:false}
- );
+ document.addEventListener("wheel",e=>{
+  if(e.ctrlKey)e.preventDefault();
+ },{passive:false});
 }
 
 function initialize(){
@@ -1105,9 +1061,7 @@ function initialize(){
   setText(
    "todayDate",
    new Intl.DateTimeFormat("ar-EG",{
-    weekday:"long",
-    day:"numeric",
-    month:"long"
+    weekday:"long",day:"numeric",month:"long"
    }).format(new Date())
   );
  }catch{}
@@ -1131,6 +1085,8 @@ function initialize(){
  window.addEventListener("elgen:session-offline",()=>{
   toast("تعذر الاتصال بالخدمة. تحقق من الإنترنت.");
  });
+
+ loadDashboard();
 }
 
 if(document.readyState==="loading"){
@@ -1141,6 +1097,7 @@ if(document.readyState==="loading"){
 
 })();
 </script>
+
 <script src="./auth.js"></script>
 </body>
 </html>
