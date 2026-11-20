@@ -12,7 +12,11 @@ const APP_FILES = [
   "./assets.css",
   "./app.js",
   "./auth.js",
+  
   "./supabase-config.js",
+  "./manifest.json",
+  "./offline.js",
+
   "./85.jpg",
   "./86.jpg",
   "./login-bg.jpg",
